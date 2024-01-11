@@ -7,8 +7,18 @@ edition = "2021"
 name = "bot"
 path = "examples/bot.rs"
 
+[[example]]
+name = "hyper"
+path = "examples/hyper.rs"
+
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-cargo-edit = "0.12.2"
+http-body-util = "0.1"
+hyper = { version = "1", features = ["full"] }
+hyper-util = { version = "0.1", features = ["full"] }
 structopt = "0.3.26"
+tokio = { version = "1", features = ["full"] }
+
+[dev-dependencies]
+cargo-edit = "0.12.2"

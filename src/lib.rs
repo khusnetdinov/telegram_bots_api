@@ -1,4 +1,4 @@
-pub use crate::api::Api as Api;
+pub use crate::api::Api;
 
 mod api;
 mod config;

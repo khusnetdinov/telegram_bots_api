@@ -7,9 +7,23 @@ pub struct Config {
     #[structopt(short, long)]
     pub debug: bool,
 
-    /// Verbose mode (-v, -vv, -vvv, etc.)
-    #[structopt(short, long, parse(from_occurrences))]
-    pub verbose: u8,
+    /// Production environment
+    #[structopt(short, long)]
+    pub production: bool,
+
+    /// Telegram token
+    #[structopt(short, long, required_unless("help"))]
+    pub token: String,
+
+    /// Telegram api url
+    #[structopt(short, long, default_value = "https://api.telegram.org/")]
+    pub url: String,
+}
+
+impl Default for Config {
+    fn default() -> Self {
+        Self::new()
+    }
 }
 
 impl Config {
