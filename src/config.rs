@@ -29,12 +29,6 @@ pub struct Config {
     pub connect_timeout: u64,
 }
 
-impl Default for Config {
-    fn default() -> Self {
-        Self::new()
-    }
-}
-
 impl Config {
     pub fn new() -> Self {
         Config::from_args()

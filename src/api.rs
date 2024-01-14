@@ -7,12 +7,6 @@ pub struct Api {
     pub url: String,
 }
 
-impl Default for Api {
-    fn default() -> Self {
-        Self::new()
-    }
-}
-
 impl Api {
     pub fn new() -> Self {
         let config = Config::new();
