@@ -1,7 +1,14 @@
 use telegram::Api;
+use std::error::Error;
 
-fn main() {
-    let api = Api::new().unwrap();
+#[tokio::main]
+async fn main() -> Result<(), Box<dyn Error>> {
+    let api = Api::new();
 
-    println!("{:?}", api);
+    let res = api.client.post(format!("{}{}", api.url, "getMe")).send().await?;
+    let body = res.text().await?;
+
+    println!("{:#?}", body);
+
+    Ok(())
 }

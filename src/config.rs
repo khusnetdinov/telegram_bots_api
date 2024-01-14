@@ -1,4 +1,5 @@
 use structopt::StructOpt;
+use std::time::Duration;
 
 #[derive(StructOpt, Debug)]
 #[structopt(name = "base")]
@@ -12,12 +13,20 @@ pub struct Config {
     pub production: bool,
 
     /// Telegram token
-    #[structopt(short, long, required_unless("help"))]
+    #[structopt(long, required_unless("help"))]
     pub token: String,
 
     /// Telegram api url
-    #[structopt(short, long, default_value = "https://api.telegram.org/")]
+    #[structopt(long, default_value = "https://api.telegram.org/")]
     pub url: String,
+
+    /// Http timeout in secs. The timeout is applied from when the request starts connecting until the response body has finished.
+    #[structopt(long, default_value = "5")]
+    pub timeout: u64,
+
+    /// Http connect timeout in secs. Set a timeout for only the connect phase.
+    #[structopt(long, default_value = "5")]
+    pub connect_timeout: u64,
 }
 
 impl Default for Config {
@@ -31,3 +40,23 @@ impl Config {
         Config::from_args()
     }
 }
+
+pub trait Builder {
+    fn build_client(&self) -> reqwest::Client;
+    fn build_url(&self) -> String;
+}
+
+impl Builder for Config {
+    fn build_client(&self) -> reqwest::Client {
+        reqwest::Client::builder()
+            .timeout(Duration::from_secs(self.timeout))
+            .connect_timeout(Duration::from_secs(self.connect_timeout))
+            .build()
+            .unwrap()
+    }
+
+    fn build_url(&self) -> String {
+        format!("{}bot{}/", self.url, self.token)
+    }
+}
+

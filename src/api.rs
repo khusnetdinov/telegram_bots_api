@@ -1,27 +1,28 @@
-use crate::config::Config;
-use hyper::Uri;
-use std::error::Error;
+use crate::config::{Builder, Config};
 
 #[derive(Debug)]
 pub struct Api {
-    pub address: String,
+    pub client: reqwest::Client,
     pub config: Config,
-    pub uri: Uri,
+    pub url: String,
+}
+
+impl Default for Api {
+    fn default() -> Self {
+        Self::new()
+    }
 }
 
 impl Api {
-    pub fn new() -> Result<Api, Box<dyn Error>> {
+    pub fn new() -> Self {
         let config = Config::new();
-        let url = format!("{}bot{}/", config.url, config.token);
-        let uri = url.parse::<hyper::Uri>().unwrap();
-        let host = uri.host().unwrap();
-        let port = uri.port_u16().unwrap_or(80);
-        let address = format!("{}:{}", host, port);
+        let client = config.build_client();
+        let url = config.build_url();
 
-        Ok(Api {
-            address,
+        Api {
             config,
-            uri,
-        })
+            client,
+            url,
+        }
     }
 }
