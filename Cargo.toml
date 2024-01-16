@@ -1,7 +1,8 @@
 [package]
 name = "telegram"
-version = "0.0.1"
 edition = "2021"
+version = "0.0.1"
+talegram-version = "7.0"
 
 [[example]]
 name = "bot"
