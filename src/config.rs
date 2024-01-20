@@ -1,5 +1,5 @@
-use structopt::StructOpt;
 use std::time::Duration;
+use structopt::StructOpt;
 
 #[derive(StructOpt, Debug)]
 #[structopt(name = "base")]
@@ -53,4 +53,3 @@ impl Builder for Config {
         format!("{}bot{}/", self.url, self.token)
     }
 }
-
