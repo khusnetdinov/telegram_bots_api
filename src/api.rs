@@ -12,6 +12,7 @@ pub struct Api {
     pub sync: Sync,
     pub url: String,
 }
+
 impl Api {
     pub fn new() -> Self {
         let config = Config::new();
