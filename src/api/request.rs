@@ -1,4 +1,4 @@
-pub trait Requests {
+pub trait Request {
     // // https://core.telegram.org/bots/api#getupdates
     // fn get_updates(&self) {}
 

@@ -12,8 +12,11 @@ path = "examples/bot.rs"
 
 [dependencies]
 reqwest = { version = "0.11", features = ["json"] }
+serde = {  version = "1.0.195", features = ["derive"] }
+serde_json = "1.0.111"
 structopt = "0.3.26"
 tokio = { version = "1", features = ["full"] }
+
 
 [dev-dependencies]
 cargo-edit = "0.12.2"

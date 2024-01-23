@@ -1,7 +1,9 @@
-mod requests;
+pub mod params;
+pub mod request;
+pub mod response;
 mod sync;
+pub mod types;
 
-use crate::api::requests::Requests;
 use crate::api::sync::Sync;
 use crate::config::{Builder, Config};
 
@@ -28,5 +30,3 @@ impl Api {
         }
     }
 }
-
-impl Requests for Api {}

@@ -1,5 +1,3 @@
-use crate::api::Requests;
-
 #[derive(Debug, Clone, Copy)]
 pub struct Sync {}
 
@@ -8,5 +6,3 @@ impl Sync {
         Sync {}
     }
 }
-
-impl Requests for Sync {}

@@ -11,7 +11,6 @@
 //     allowed_updates: Option<Vec< String>>,
 // }
 
-
 // // https://core.telegram.org/bots/api#user
 // struct UserParams {
 //     id: i64,
@@ -26,7 +25,6 @@
 //     can_read_all_group_messages: Option<bool>,
 //     supports_inline_queries: Option<bool>,
 // }
-
 
 // // https:core.telegram.orgbotsapi#chat
 // struct ChatParams {
@@ -66,7 +64,6 @@
 //     linked_chat_id: Option<i64>,
 //     location: Option<ChatLocation>,
 // }
-
 
 // // https:core.telegram.orgbotsapi#message
 // struct MessageParams {
@@ -146,12 +143,10 @@
 //     reply_markup: Option<InlineKeyboardMarkup>,
 // }
 
-
 // // https:core.telegram.orgbotsapi#messageid
 // struct MessageIdParams {
 //     message_id: i64,
 // }
-
 
 // // https:core.telegram.orgbotsapi#inaccessiblemessage
 // struct InaccessibleMessageParams {
@@ -160,11 +155,9 @@
 //     date: i64,
 // }
 
-
 // // https:core.telegram.orgbotsapi#maybeinaccessiblemessage
 // struct MaybeInaccessibleMessageParams {
 // }
-
 
 // // https:core.telegram.orgbotsapi#messageentity
 // struct MessageEntityParams {
@@ -177,7 +170,6 @@
 //     custom_emoji_id: Option<String>,
 // }
 
-
 // // https:core.telegram.orgbotsapi#textquote
 // struct TextQuoteParams {
 //     text: String,
@@ -185,7 +177,6 @@
 //     position: i64,
 //     is_manual: Option<bool>,
 // }
-
 
 // // https:core.telegram.orgbotsapi#externalreplyinfo
 // struct ExternalReplyInfoParams {
@@ -214,7 +205,6 @@
 //     venue: Option<Venue>,
 // }
 
-
 // // https:core.telegram.orgbotsapi#replyparameters
 // struct ReplyParametersParams {
 //     message_id: i64,
@@ -226,11 +216,9 @@
 //     quote_position: Option<i64>,
 // }
 
-
 // // https:core.telegram.orgbotsapi#messageorigin
 // struct MessageOriginParams {
 // }
-
 
 // // https:core.telegram.orgbotsapi#messageoriginuser
 // struct MessageOriginUserParams {
@@ -239,14 +227,12 @@
 //     sender_user: User,
 // }
 
-
 // // https:core.telegram.orgbotsapi#messageoriginhiddenuser
 // struct MessageOriginHiddenUserParams {
 //     type: String,
 //     date: i64,
 //     sender_user_name: String,
 // }
-
 
 // // https:core.telegram.orgbotsapi#messageoriginchat
 // struct MessageOriginChatParams {
@@ -255,7 +241,6 @@
 //     sender_chat: Chat,
 //     author_signature: Option<String>,
 // }
-
 
 // // https:core.telegram.orgbotsapi#messageoriginchannel
 // struct MessageOriginChannelParams {
@@ -266,7 +251,6 @@
 //     author_signature: Option<String>,
 // }
 
-
 // // https:core.telegram.orgbotsapi#photosize
 // struct PhotoSizeParams {
 //     file_id: String,
@@ -275,7 +259,6 @@
 //     height: i64,
 //     file_size: Option<i64>,
 // }
-
 
 // // https:core.telegram.orgbotsapi#animation
 // struct AnimationParams {
@@ -290,7 +273,6 @@
 //     file_size: Option<i64>,
 // }
 
-
 // // https:core.telegram.orgbotsapi#audio
 // struct AudioParams {
 //     file_id: String,
@@ -304,7 +286,6 @@
 //     thumbnail: Option<PhotoSize>,
 // }
 
-
 // // https:core.telegram.orgbotsapi#document
 // struct DocumentParams {
 //     file_id: String,
@@ -315,11 +296,9 @@
 //     file_size: Option<i64>,
 // }
 
-
 // // https:core.telegram.orgbotsapi#story
 // struct StoryParams {
 // }
-
 
 // // https:core.telegram.orgbotsapi#video
 // struct VideoParams {
@@ -334,7 +313,6 @@
 //     file_size: Option<i64>,
 // }
 
-
 // // https:core.telegram.orgbotsapi#videonote
 // struct VideoNoteParams {
 //     file_id: String,
@@ -345,7 +323,6 @@
 //     file_size: Option<i64>,
 // }
 
-
 // // https:core.telegram.orgbotsapi#voice
 // struct VoiceParams {
 //     file_id: String,
@@ -354,7 +331,6 @@
 //     mime_type: Option<String>,
 //     file_size: Option<i64>,
 // }
-
 
 // // https:core.telegram.orgbotsapi#contact
 // struct ContactParams {
@@ -365,20 +341,17 @@
 //     vcard: Option<String>,
 // }
 
-
 // // https:core.telegram.orgbotsapi#dice
 // struct DiceParams {
 //     emoji: String,
 //     value: i64,
 // }
 
-
 // // https:core.telegram.orgbotsapi#polloption
 // struct PollOptionParams {
 //     text: String,
 //     voter_count: i64,
 // }
-
 
 // // https:core.telegram.orgbotsapi#pollanswer
 // struct PollAnswerParams {
@@ -387,7 +360,6 @@
 //     user: Option<User>,
 //     option_ids: Vec< Integer>,
 // }
-
 
 // // https:core.telegram.orgbotsapi#poll
 // struct PollParams {
@@ -406,7 +378,6 @@
 //     close_date: Option<i64>,
 // }
 
-
 // // https:core.telegram.orgbotsapi#location
 // struct LocationParams {
 //     longitude: f64,
@@ -416,7 +387,6 @@
 //     heading: Option<i64>,
 //     proximity_alert_radius: Option<i64>,
 // }
-
 
 // // https:core.telegram.orgbotsapi#venue
 // struct VenueParams {
@@ -429,13 +399,11 @@
 //     google_place_type: Option<String>,
 // }
 
-
 // // https:core.telegram.orgbotsapi#webappdata
 // struct WebAppDataParams {
 //     data: String,
 //     button_text: String,
 // }
-
 
 // // https:core.telegram.orgbotsapi#proximityalerttriggered
 // struct ProximityAlertTriggeredParams {
@@ -444,12 +412,10 @@
 //     distance: i64,
 // }
 
-
 // // https:core.telegram.orgbotsapi#messageautodeletetimerchanged
 // struct MessageAutoDeleteTimerChangedParams {
 //     message_auto_delete_time: i64,
 // }
-
 
 // // https:core.telegram.orgbotsapi#forumtopiccreated
 // struct ForumTopicCreatedParams {
@@ -458,11 +424,9 @@
 //     icon_custom_emoji_id: Option<String>,
 // }
 
-
 // // https:core.telegram.orgbotsapi#forumtopicclosed
 // struct ForumTopicClosedParams {
 // }
-
 
 // // https:core.telegram.orgbotsapi#forumtopicedited
 // struct ForumTopicEditedParams {
@@ -470,21 +434,17 @@
 //     icon_custom_emoji_id: Option<String>,
 // }
 
-
 // // https:core.telegram.orgbotsapi#forumtopicreopened
 // struct ForumTopicReopenedParams {
 // }
-
 
 // // https:core.telegram.orgbotsapi#generalforumtopichidden
 // struct GeneralForumTopicHiddenParams {
 // }
 
-
 // // https:core.telegram.orgbotsapi#generalforumtopicunhidden
 // struct GeneralForumTopicUnhiddenParams {
 // }
-
 
 // // https:core.telegram.orgbotsapi#usersshared
 // struct UsersSharedParams {
@@ -492,13 +452,11 @@
 //     user_ids: Vec< Integer>,
 // }
 
-
 // // https:core.telegram.orgbotsapi#chatshared
 // struct ChatSharedParams {
 //     request_id: i64,
 //     chat_id: i64,
 // }
-
 
 // // https:core.telegram.orgbotsapi#writeaccessallowed
 // struct WriteAccessAllowedParams {
@@ -507,34 +465,28 @@
 //     from_attachment_menu: Option<bool>,
 // }
 
-
 // // https:core.telegram.orgbotsapi#videochatscheduled
 // struct VideoChatScheduledParams {
 //     start_date: i64,
 // }
 
-
 // // https:core.telegram.orgbotsapi#videochatstarted
 // struct VideoChatStartedParams {
 // }
-
 
 // // https:core.telegram.orgbotsapi#videochatended
 // struct VideoChatEndedParams {
 //     duration: i64,
 // }
 
-
 // // https:core.telegram.orgbotsapi#videochatparticipantsinvited
 // struct VideoChatParticipantsInvitedParams {
 //     users: Vec< User>,
 // }
 
-
 // // https:core.telegram.orgbotsapi#giveawaycreated
 // struct GiveawayCreatedParams {
 // }
-
 
 // // https:core.telegram.orgbotsapi#giveaway
 // struct GiveawayParams {
@@ -547,7 +499,6 @@
 //     country_codes: Option<Vec< String>>,
 //     premium_subscription_month_count: Option<i64>,
 // }
-
 
 // // https:core.telegram.orgbotsapi#giveawaywinners
 // struct GiveawayWinnersParams {
@@ -564,14 +515,12 @@
 //     prize_description: Option<String>,
 // }
 
-
 // // https:core.telegram.orgbotsapi#giveawaycompleted
 // struct GiveawayCompletedParams {
 //     winner_count: i64,
 //     unclaimed_prize_count: Option<i64>,
 //     giveaway_message: Option<Message>,
 // }
-
 
 // // https:core.telegram.orgbotsapi#linkpreviewoptions
 // struct LinkPreviewOptionsParams {
@@ -582,24 +531,20 @@
 //     show_above_text: Option<bool>,
 // }
 
-
 // // https:core.telegram.orgbotsapi#userprofilephotos
 // struct UserProfilePhotosParams {
 //     total_count: i64,
 //     photos: Vec< Array of PhotoSize>,
 // }
 
-
 // // https:core.telegram.orgbotsapi#file
 // struct FileParams {
 // }
-
 
 // // https:core.telegram.orgbotsapi#webappinfo
 // struct WebAppInfoParams {
 //     url: String,
 // }
-
 
 // // https:core.telegram.orgbotsapi#replykeyboardmarkup
 // struct ReplyKeyboardMarkupParams {
@@ -610,7 +555,6 @@
 //     input_field_placeholder: Option<String>,
 //     selective: Option<bool>,
 // }
-
 
 // // https:core.telegram.orgbotsapi#keyboardbutton
 // struct KeyboardButtonParams {
@@ -623,7 +567,6 @@
 //     web_app: Option<WebAppInfo>,
 // }
 
-
 // // https:core.telegram.orgbotsapi#keyboardbuttonrequestusers
 // struct KeyboardButtonRequestUsersParams {
 //     request_id: i64,
@@ -631,7 +574,6 @@
 //     user_is_premium: Option<bool>,
 //     max_quantity: Option<i64>,
 // }
-
 
 // // https:core.telegram.orgbotsapi#keyboardbuttonrequestchat
 // struct KeyboardButtonRequestChatParams {
@@ -645,12 +587,10 @@
 //     bot_is_member: Option<bool>,
 // }
 
-
 // // https:core.telegram.orgbotsapi#keyboardbuttonpolltype
 // struct KeyboardButtonPollTypeParams {
 //     type: Option<String>,
 // }
-
 
 // // https:core.telegram.orgbotsapi#replykeyboardremove
 // struct ReplyKeyboardRemoveParams {
@@ -658,12 +598,10 @@
 //     selective: Option<bool>,
 // }
 
-
 // // https:core.telegram.orgbotsapi#inlinekeyboardmarkup
 // struct InlineKeyboardMarkupParams {
 //     inline_keyboard: Vec< Array of InlineKeyboardButton>,
 // }
-
 
 // // https:core.telegram.orgbotsapi#inlinekeyboardbutton
 // struct InlineKeyboardButtonParams {
@@ -679,11 +617,9 @@
 //     pay: Option<bool>,
 // }
 
-
 // // https:core.telegram.orgbotsapi#loginurl
 // struct LoginUrlParams {
 // }
-
 
 // // https:core.telegram.orgbotsapi#switchinlinequerychosenchat
 // struct SwitchInlineQueryChosenChatParams {
@@ -693,7 +629,6 @@
 //     allow_group_chats: Option<bool>,
 //     allow_channel_chats: Option<bool>,
 // }
-
 
 // // https:core.telegram.orgbotsapi#callbackquery
 // struct CallbackQueryParams {
@@ -706,14 +641,12 @@
 //     game_short_name: Option<String>,
 // }
 
-
 // // https:core.telegram.orgbotsapi#forcereply
 // struct ForceReplyParams {
 //     force_reply: bool,
 //     input_field_placeholder: Option<String>,
 //     selective: Option<bool>,
 // }
-
 
 // // https:core.telegram.orgbotsapi#chatphoto
 // struct ChatPhotoParams {
@@ -722,7 +655,6 @@
 //     big_file_id: String,
 //     big_file_unique_id: String,
 // }
-
 
 // // https:core.telegram.orgbotsapi#chatinvitelink
 // struct ChatInviteLinkParams {
@@ -736,7 +668,6 @@
 //     member_limit: Option<i64>,
 //     pending_join_request_count: Option<i64>,
 // }
-
 
 // // https:core.telegram.orgbotsapi#chatadministratorrights
 // struct ChatAdministratorRightsParams {
@@ -757,7 +688,6 @@
 //     can_manage_topics: Option<bool>,
 // }
 
-
 // // https:core.telegram.orgbotsapi#chatmemberupdated
 // struct ChatMemberUpdatedParams {
 //     chat: Chat,
@@ -769,11 +699,9 @@
 //     via_chat_folder_invite_link: Option<bool>,
 // }
 
-
 // // https:core.telegram.orgbotsapi#chatmember
 // struct ChatMemberParams {
 // }
-
 
 // // https:core.telegram.orgbotsapi#chatmemberowner
 // struct ChatMemberOwnerParams {
@@ -782,7 +710,6 @@
 //     is_anonymous: bool,
 //     custom_title: Option<String>,
 // }
-
 
 // // https:core.telegram.orgbotsapi#chatmemberadministrator
 // struct ChatMemberAdministratorParams {
@@ -807,13 +734,11 @@
 //     custom_title: Option<String>,
 // }
 
-
 // // https:core.telegram.orgbotsapi#chatmembermember
 // struct ChatMemberMemberParams {
 //     status: String,
 //     user: User,
 // }
-
 
 // // https:core.telegram.orgbotsapi#chatmemberrestricted
 // struct ChatMemberRestrictedParams {
@@ -837,13 +762,11 @@
 //     until_date: i64,
 // }
 
-
 // // https:core.telegram.orgbotsapi#chatmemberleft
 // struct ChatMemberLeftParams {
 //     status: String,
 //     user: User,
 // }
-
 
 // // https:core.telegram.orgbotsapi#chatmemberbanned
 // struct ChatMemberBannedParams {
@@ -851,7 +774,6 @@
 //     user: User,
 //     until_date: i64,
 // }
-
 
 // // https:core.telegram.orgbotsapi#chatjoinrequest
 // struct ChatJoinRequestParams {
@@ -862,7 +784,6 @@
 //     bio: Option<String>,
 //     invite_link: Option<ChatInviteLink>,
 // }
-
 
 // // https:core.telegram.orgbotsapi#chatpermissions
 // struct ChatPermissionsParams {
@@ -882,18 +803,15 @@
 //     can_manage_topics: Option<bool>,
 // }
 
-
 // // https:core.telegram.orgbotsapi#chatlocation
 // struct ChatLocationParams {
 //     location: Location,
 //     address: String,
 // }
 
-
 // // https:core.telegram.orgbotsapi#reactiontype
 // struct ReactionTypeParams {
 // }
-
 
 // // https:core.telegram.orgbotsapi#reactiontypeemoji
 // struct ReactionTypeEmojiParams {
@@ -901,20 +819,17 @@
 //     emoji: String,
 // }
 
-
 // // https:core.telegram.orgbotsapi#reactiontypecustomemoji
 // struct ReactionTypeCustomEmojiParams {
 //     type: String,
 //     custom_emoji_id: String,
 // }
 
-
 // // https:core.telegram.orgbotsapi#reactioncount
 // struct ReactionCountParams {
 //     type: ReactionType,
 //     total_count: i64,
 // }
-
 
 // // https:core.telegram.orgbotsapi#messagereactionupdated
 // struct MessageReactionUpdatedParams {
@@ -927,7 +842,6 @@
 //     new_reaction: Vec< ReactionType>,
 // }
 
-
 // // https:core.telegram.orgbotsapi#messagereactioncountupdated
 // struct MessageReactionCountUpdatedParams {
 //     chat: Chat,
@@ -935,7 +849,6 @@
 //     date: i64,
 //     reactions: Vec< ReactionCount>,
 // }
-
 
 // // https:core.telegram.orgbotsapi#forumtopic
 // struct ForumTopicParams {
@@ -945,42 +858,35 @@
 //     icon_custom_emoji_id: Option<String>,
 // }
 
-
 // // https:core.telegram.orgbotsapi#botcommand
 // struct BotCommandParams {
 //     command: String,
 //     description: String,
 // }
 
-
 // // https:core.telegram.orgbotsapi#botcommandscope
 // struct BotCommandScopeParams {
 // }
-
 
 // // https:core.telegram.orgbotsapi#botcommandscopedefault
 // struct BotCommandScopeDefaultParams {
 //     type: String,
 // }
 
-
 // // https:core.telegram.orgbotsapi#botcommandscopeallprivatechats
 // struct BotCommandScopeAllPrivateChatsParams {
 //     type: String,
 // }
-
 
 // // https:core.telegram.orgbotsapi#botcommandscopeallgroupchats
 // struct BotCommandScopeAllGroupChatsParams {
 //     type: String,
 // }
 
-
 // // https:core.telegram.orgbotsapi#botcommandscopeallchatadministrators
 // struct BotCommandScopeAllChatAdministratorsParams {
 //     type: String,
 // }
-
 
 // // https:core.telegram.orgbotsapi#botcommandscopechat
 // struct BotCommandScopeChatParams {
@@ -988,13 +894,11 @@
 //     chat_id: Integer or String,
 // }
 
-
 // // https:core.telegram.orgbotsapi#botcommandscopechatadministrators
 // struct BotCommandScopeChatAdministratorsParams {
 //     type: String,
 //     chat_id: Integer or String,
 // }
-
 
 // // https:core.telegram.orgbotsapi#botcommandscopechatmember
 // struct BotCommandScopeChatMemberParams {
@@ -1003,35 +907,29 @@
 //     user_id: i64,
 // }
 
-
 // // https:core.telegram.orgbotsapi#botname
 // struct BotNameParams {
 //     name: String,
 // }
-
 
 // // https:core.telegram.orgbotsapi#botdescription
 // struct BotDescriptionParams {
 //     description: String,
 // }
 
-
 // // https:core.telegram.orgbotsapi#botshortdescription
 // struct BotShortDescriptionParams {
 //     short_description: String,
 // }
 
-
 // // https:core.telegram.orgbotsapi#menubutton
 // struct MenuButtonParams {
 // }
-
 
 // // https:core.telegram.orgbotsapi#menubuttoncommands
 // struct MenuButtonCommandsParams {
 //     type: String,
 // }
-
 
 // // https:core.telegram.orgbotsapi#menubuttonwebapp
 // struct MenuButtonWebAppParams {
@@ -1040,17 +938,14 @@
 //     web_app: WebAppInfo,
 // }
 
-
 // // https:core.telegram.orgbotsapi#menubuttondefault
 // struct MenuButtonDefaultParams {
 //     type: String,
 // }
 
-
 // // https:core.telegram.orgbotsapi#chatboostsource
 // struct ChatBoostSourceParams {
 // }
-
 
 // // https:core.telegram.orgbotsapi#chatboostsourcepremium
 // struct ChatBoostSourcePremiumParams {
@@ -1058,13 +953,11 @@
 //     user: User,
 // }
 
-
 // // https:core.telegram.orgbotsapi#chatboostsourcegiftcode
 // struct ChatBoostSourceGiftCodeParams {
 //     source: String,
 //     user: User,
 // }
-
 
 // // https:core.telegram.orgbotsapi#chatboostsourcegiveaway
 // struct ChatBoostSourceGiveawayParams {
@@ -1074,7 +967,6 @@
 //     is_unclaimed: Option<bool>,
 // }
 
-
 // // https:core.telegram.orgbotsapi#chatboost
 // struct ChatBoostParams {
 //     boost_id: String,
@@ -1083,13 +975,11 @@
 //     source: ChatBoostSource,
 // }
 
-
 // // https:core.telegram.orgbotsapi#chatboostupdated
 // struct ChatBoostUpdatedParams {
 //     chat: Chat,
 //     boost: ChatBoost,
 // }
-
 
 // // https:core.telegram.orgbotsapi#chatboostremoved
 // struct ChatBoostRemovedParams {
@@ -1099,12 +989,10 @@
 //     source: ChatBoostSource,
 // }
 
-
 // // https:core.telegram.orgbotsapi#userchatboosts
 // struct UserChatBoostsParams {
 //     boosts: Vec< ChatBoost>,
 // }
-
 
 // // https:core.telegram.orgbotsapi#responseparameters
 // struct ResponseParametersParams {
@@ -1112,11 +1000,9 @@
 //     retry_after: Option<i64>,
 // }
 
-
 // // https:core.telegram.orgbotsapi#inputmedia
 // struct InputMediaParams {
 // }
-
 
 // // https:core.telegram.orgbotsapi#inputmediaphoto
 // struct InputMediaPhotoParams {
@@ -1127,7 +1013,6 @@
 //     caption_entities: Option<Vec< MessageEntity>>,
 //     has_spoiler: Option<bool>,
 // }
-
 
 // // https:core.telegram.orgbotsapi#inputmediavideo
 // struct InputMediaVideoParams {
@@ -1144,7 +1029,6 @@
 //     has_spoiler: Option<bool>,
 // }
 
-
 // // https:core.telegram.orgbotsapi#inputmediaanimation
 // struct InputMediaAnimationParams {
 //     type: String,
@@ -1159,7 +1043,6 @@
 //     has_spoiler: Option<bool>,
 // }
 
-
 // // https:core.telegram.orgbotsapi#inputmediaaudio
 // struct InputMediaAudioParams {
 //     type: String,
@@ -1173,7 +1056,6 @@
 //     title: Option<String>,
 // }
 
-
 // // https:core.telegram.orgbotsapi#inputmediadocument
 // struct InputMediaDocumentParams {
 //     type: String,
@@ -1185,41 +1067,33 @@
 //     disable_content_type_detection: Option<bool>,
 // }
 
-
 // // https:core.telegram.orgbotsapi#inputfile
 // struct InputFileParams {
 // }
-
 
 // // https:core.telegram.orgbotsapi#sending-files
 // struct Sending filesParams {
 // }
 
-
 // // https:core.telegram.orgbotsapi#accent-colors
 // struct Accent colorsParams {
 // }
-
 
 // // https:core.telegram.orgbotsapi#profile-accent-colors
 // struct Profile accent colorsParams {
 // }
 
-
 // // https:core.telegram.orgbotsapi#inline-mode-objects
 // struct Inline mode objectsParams {
 // }
-
 
 // // https:core.telegram.orgbotsapi#formatting-options
 // struct Formatting optionsParams {
 // }
 
-
 // // https:core.telegram.orgbotsapi#inline-mode-methods
 // struct Inline mode methodsParams {
 // }
-
 
 // // https:core.telegram.orgbotsapi#sticker
 // struct StickerParams {
@@ -1240,7 +1114,6 @@
 //     file_size: Option<i64>,
 // }
 
-
 // // https:core.telegram.orgbotsapi#stickerset
 // struct StickerSetParams {
 //     name: String,
@@ -1252,7 +1125,6 @@
 //     thumbnail: Option<PhotoSize>,
 // }
 
-
 // // https:core.telegram.orgbotsapi#maskposition
 // struct MaskPositionParams {
 //     point: String,
@@ -1261,7 +1133,6 @@
 //     scale: f64,
 // }
 
-
 // // https:core.telegram.orgbotsapi#inputsticker
 // struct InputStickerParams {
 //     sticker: InputFile or String,
@@ -1269,7 +1140,6 @@
 //     mask_position: Option<MaskPosition>,
 //     keywords: Option<Vec< String>>,
 // }
-
 
 // // https:core.telegram.orgbotsapi#inlinequery
 // struct InlineQueryParams {
@@ -1281,7 +1151,6 @@
 //     location: Option<Location>,
 // }
 
-
 // // https:core.telegram.orgbotsapi#inlinequeryresultsbutton
 // struct InlineQueryResultsButtonParams {
 //     text: String,
@@ -1289,11 +1158,9 @@
 //     start_parameter: Option<String>,
 // }
 
-
 // // https:core.telegram.orgbotsapi#inlinequeryresult
 // struct InlineQueryResultParams {
 // }
-
 
 // // https:core.telegram.orgbotsapi#inlinequeryresultarticle
 // struct InlineQueryResultArticleParams {
@@ -1309,7 +1176,6 @@
 //     thumbnail_width: Option<i64>,
 //     thumbnail_height: Option<i64>,
 // }
-
 
 // // https:core.telegram.orgbotsapi#inlinequeryresultphoto
 // struct InlineQueryResultPhotoParams {
@@ -1327,7 +1193,6 @@
 //     reply_markup: Option<InlineKeyboardMarkup>,
 //     input_message_content: Option<InputMessageContent>,
 // }
-
 
 // // https:core.telegram.orgbotsapi#inlinequeryresultgif
 // struct InlineQueryResultGifParams {
@@ -1347,7 +1212,6 @@
 //     input_message_content: Option<InputMessageContent>,
 // }
 
-
 // // https:core.telegram.orgbotsapi#inlinequeryresultmpeg4gif
 // struct InlineQueryResultMpeg4GifParams {
 //     type: String,
@@ -1366,11 +1230,9 @@
 //     input_message_content: Option<InputMessageContent>,
 // }
 
-
 // // https:core.telegram.orgbotsapi#inlinequeryresultvideo
 // struct InlineQueryResultVideoParams {
 // }
-
 
 // // https:core.telegram.orgbotsapi#inlinequeryresultaudio
 // struct InlineQueryResultAudioParams {
@@ -1387,7 +1249,6 @@
 //     input_message_content: Option<InputMessageContent>,
 // }
 
-
 // // https:core.telegram.orgbotsapi#inlinequeryresultvoice
 // struct InlineQueryResultVoiceParams {
 //     type: String,
@@ -1401,7 +1262,6 @@
 //     reply_markup: Option<InlineKeyboardMarkup>,
 //     input_message_content: Option<InputMessageContent>,
 // }
-
 
 // // https:core.telegram.orgbotsapi#inlinequeryresultdocument
 // struct InlineQueryResultDocumentParams {
@@ -1421,7 +1281,6 @@
 //     thumbnail_height: Option<i64>,
 // }
 
-
 // // https:core.telegram.orgbotsapi#inlinequeryresultlocation
 // struct InlineQueryResultLocationParams {
 //     type: String,
@@ -1439,7 +1298,6 @@
 //     thumbnail_width: Option<i64>,
 //     thumbnail_height: Option<i64>,
 // }
-
 
 // // https:core.telegram.orgbotsapi#inlinequeryresultvenue
 // struct InlineQueryResultVenueParams {
@@ -1460,7 +1318,6 @@
 //     thumbnail_height: Option<i64>,
 // }
 
-
 // // https:core.telegram.orgbotsapi#inlinequeryresultcontact
 // struct InlineQueryResultContactParams {
 //     type: String,
@@ -1476,7 +1333,6 @@
 //     thumbnail_height: Option<i64>,
 // }
 
-
 // // https:core.telegram.orgbotsapi#inlinequeryresultgame
 // struct InlineQueryResultGameParams {
 //     type: String,
@@ -1484,7 +1340,6 @@
 //     game_short_name: String,
 //     reply_markup: Option<InlineKeyboardMarkup>,
 // }
-
 
 // // https:core.telegram.orgbotsapi#inlinequeryresultcachedphoto
 // struct InlineQueryResultCachedPhotoParams {
@@ -1500,7 +1355,6 @@
 //     input_message_content: Option<InputMessageContent>,
 // }
 
-
 // // https:core.telegram.orgbotsapi#inlinequeryresultcachedgif
 // struct InlineQueryResultCachedGifParams {
 //     type: String,
@@ -1513,7 +1367,6 @@
 //     reply_markup: Option<InlineKeyboardMarkup>,
 //     input_message_content: Option<InputMessageContent>,
 // }
-
 
 // // https:core.telegram.orgbotsapi#inlinequeryresultcachedmpeg4gif
 // struct InlineQueryResultCachedMpeg4GifParams {
@@ -1528,7 +1381,6 @@
 //     input_message_content: Option<InputMessageContent>,
 // }
 
-
 // // https:core.telegram.orgbotsapi#inlinequeryresultcachedsticker
 // struct InlineQueryResultCachedStickerParams {
 //     type: String,
@@ -1537,7 +1389,6 @@
 //     reply_markup: Option<InlineKeyboardMarkup>,
 //     input_message_content: Option<InputMessageContent>,
 // }
-
 
 // // https:core.telegram.orgbotsapi#inlinequeryresultcacheddocument
 // struct InlineQueryResultCachedDocumentParams {
@@ -1553,7 +1404,6 @@
 //     input_message_content: Option<InputMessageContent>,
 // }
 
-
 // // https:core.telegram.orgbotsapi#inlinequeryresultcachedvideo
 // struct InlineQueryResultCachedVideoParams {
 //     type: String,
@@ -1568,7 +1418,6 @@
 //     input_message_content: Option<InputMessageContent>,
 // }
 
-
 // // https:core.telegram.orgbotsapi#inlinequeryresultcachedvoice
 // struct InlineQueryResultCachedVoiceParams {
 //     type: String,
@@ -1582,7 +1431,6 @@
 //     input_message_content: Option<InputMessageContent>,
 // }
 
-
 // // https:core.telegram.orgbotsapi#inlinequeryresultcachedaudio
 // struct InlineQueryResultCachedAudioParams {
 //     type: String,
@@ -1595,11 +1443,9 @@
 //     input_message_content: Option<InputMessageContent>,
 // }
 
-
 // // https:core.telegram.orgbotsapi#inputmessagecontent
 // struct InputMessageContentParams {
 // }
-
 
 // // https:core.telegram.orgbotsapi#inputtextmessagecontent
 // struct InputTextMessageContentParams {
@@ -1608,7 +1454,6 @@
 //     entities: Option<Vec< MessageEntity>>,
 //     link_preview_options: Option<LinkPreviewOptions>,
 // }
-
 
 // // https:core.telegram.orgbotsapi#inputlocationmessagecontent
 // struct InputLocationMessageContentParams {
@@ -1619,7 +1464,6 @@
 //     heading: Option<i64>,
 //     proximity_alert_radius: Option<i64>,
 // }
-
 
 // // https:core.telegram.orgbotsapi#inputvenuemessagecontent
 // struct InputVenueMessageContentParams {
@@ -1633,7 +1477,6 @@
 //     google_place_type: Option<String>,
 // }
 
-
 // // https:core.telegram.orgbotsapi#inputcontactmessagecontent
 // struct InputContactMessageContentParams {
 //     phone_number: String,
@@ -1641,7 +1484,6 @@
 //     last_name: Option<String>,
 //     vcard: Option<String>,
 // }
-
 
 // // https:core.telegram.orgbotsapi#inputinvoicemessagecontent
 // struct InputInvoiceMessageContentParams {
@@ -1667,7 +1509,6 @@
 //     is_flexible: Option<bool>,
 // }
 
-
 // // https:core.telegram.orgbotsapi#choseninlineresult
 // struct ChosenInlineResultParams {
 //     result_id: String,
@@ -1677,19 +1518,16 @@
 //     query: String,
 // }
 
-
 // // https:core.telegram.orgbotsapi#sentwebappmessage
 // struct SentWebAppMessageParams {
 //     inline_message_id: Option<String>,
 // }
-
 
 // // https:core.telegram.orgbotsapi#labeledprice
 // struct LabeledPriceParams {
 //     label: String,
 //     amount: i64,
 // }
-
 
 // // https:core.telegram.orgbotsapi#invoice
 // struct InvoiceParams {
@@ -1699,7 +1537,6 @@
 //     currency: String,
 //     total_amount: i64,
 // }
-
 
 // // https:core.telegram.orgbotsapi#shippingaddress
 // struct ShippingAddressParams {
@@ -1711,7 +1548,6 @@
 //     post_code: String,
 // }
 
-
 // // https:core.telegram.orgbotsapi#orderinfo
 // struct OrderInfoParams {
 //     name: Option<String>,
@@ -1720,14 +1556,12 @@
 //     shipping_address: Option<ShippingAddress>,
 // }
 
-
 // // https:core.telegram.orgbotsapi#shippingoption
 // struct ShippingOptionParams {
 //     id: String,
 //     title: String,
 //     prices: Vec< LabeledPrice>,
 // }
-
 
 // // https:core.telegram.orgbotsapi#successfulpayment
 // struct SuccessfulPaymentParams {
@@ -1740,7 +1574,6 @@
 //     provider_payment_charge_id: String,
 // }
 
-
 // // https:core.telegram.orgbotsapi#shippingquery
 // struct ShippingQueryParams {
 //     id: String,
@@ -1748,7 +1581,6 @@
 //     invoice_payload: String,
 //     shipping_address: ShippingAddress,
 // }
-
 
 // // https:core.telegram.orgbotsapi#precheckoutquery
 // struct PreCheckoutQueryParams {
@@ -1761,13 +1593,11 @@
 //     order_info: Option<OrderInfo>,
 // }
 
-
 // // https:core.telegram.orgbotsapi#passportdata
 // struct PassportDataParams {
 //     data: Vec< EncryptedPassportElement>,
 //     credentials: EncryptedCredentials,
 // }
-
 
 // // https:core.telegram.orgbotsapi#passportfile
 // struct PassportFileParams {
@@ -1776,7 +1606,6 @@
 //     file_size: i64,
 //     file_date: i64,
 // }
-
 
 // // https:core.telegram.orgbotsapi#encryptedpassportelement
 // struct EncryptedPassportElementParams {
@@ -1792,7 +1621,6 @@
 //     hash: String,
 // }
 
-
 // // https:core.telegram.orgbotsapi#encryptedcredentials
 // struct EncryptedCredentialsParams {
 //     data: String,
@@ -1800,11 +1628,9 @@
 //     secret: String,
 // }
 
-
 // // https:core.telegram.orgbotsapi#passportelementerror
 // struct PassportElementErrorParams {
 // }
-
 
 // // https:core.telegram.orgbotsapi#passportelementerrordatafield
 // struct PassportElementErrorDataFieldParams {
@@ -1815,7 +1641,6 @@
 //     message: String,
 // }
 
-
 // // https:core.telegram.orgbotsapi#passportelementerrorfrontside
 // struct PassportElementErrorFrontSideParams {
 //     source: String,
@@ -1823,7 +1648,6 @@
 //     file_hash: String,
 //     message: String,
 // }
-
 
 // // https:core.telegram.orgbotsapi#passportelementerrorreverseside
 // struct PassportElementErrorReverseSideParams {
@@ -1833,7 +1657,6 @@
 //     message: String,
 // }
 
-
 // // https:core.telegram.orgbotsapi#passportelementerrorselfie
 // struct PassportElementErrorSelfieParams {
 //     source: String,
@@ -1841,7 +1664,6 @@
 //     file_hash: String,
 //     message: String,
 // }
-
 
 // // https:core.telegram.orgbotsapi#passportelementerrorfile
 // struct PassportElementErrorFileParams {
@@ -1851,7 +1673,6 @@
 //     message: String,
 // }
 
-
 // // https:core.telegram.orgbotsapi#passportelementerrorfiles
 // struct PassportElementErrorFilesParams {
 //     source: String,
@@ -1859,7 +1680,6 @@
 //     file_hashes: Vec< String>,
 //     message: String,
 // }
-
 
 // // https:core.telegram.orgbotsapi#passportelementerrortranslationfile
 // struct PassportElementErrorTranslationFileParams {
@@ -1869,7 +1689,6 @@
 //     message: String,
 // }
 
-
 // // https:core.telegram.orgbotsapi#passportelementerrortranslationfiles
 // struct PassportElementErrorTranslationFilesParams {
 //     source: String,
@@ -1878,7 +1697,6 @@
 //     message: String,
 // }
 
-
 // // https:core.telegram.orgbotsapi#passportelementerrorunspecified
 // struct PassportElementErrorUnspecifiedParams {
 //     source: String,
@@ -1886,7 +1704,6 @@
 //     element_hash: String,
 //     message: String,
 // }
-
 
 // // https:core.telegram.orgbotsapi#game
 // struct GameParams {
@@ -1898,11 +1715,9 @@
 //     animation: Option<Animation>,
 // }
 
-
 // // https://core.telegram.org/bots/api#callbackgame
 // struct CallbackGameParams {
 // }
-
 
 // // https://core.telegram.org/bots/api#gamehighscore
 // struct GameHighScoreParams {

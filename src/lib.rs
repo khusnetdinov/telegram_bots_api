@@ -1,7 +1,7 @@
-#![allow(clippy::new_without_default)]
+#![allow(clippy::new_without_default, dead_code)]
 
 pub use crate::api::Api;
 
-mod api;
+pub mod api;
 mod config;
 mod tests;
