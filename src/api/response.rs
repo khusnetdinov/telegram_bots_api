@@ -1,14 +1,20 @@
 use serde::Deserialize;
 
+#[derive(Debug)]
+enum Response<T> {
+    Ok(ResponseSuccess<T>),
+    Err(ResponseError),
+}
+
 #[derive(Debug, Deserialize)]
-pub struct Success<T> {
+pub struct ResponseSuccess<T> {
     ok: bool,
     result: T,
     description: Option<String>,
 }
 
 #[derive(Debug, Deserialize)]
-pub struct Error {
+pub struct ResponseError {
     ok: bool,
     error_code: u64,
     description: String,
