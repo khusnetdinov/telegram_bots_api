@@ -1,11 +1,5 @@
 use serde::Deserialize;
 
-#[derive(Debug)]
-enum Response<T> {
-    Ok(ResponseSuccess<T>),
-    Err(ResponseError),
-}
-
 #[derive(Debug, Deserialize)]
 pub struct ResponseSuccess<T> {
     ok: bool,
