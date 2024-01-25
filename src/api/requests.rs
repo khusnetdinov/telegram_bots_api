@@ -1,8 +1,9 @@
-use crate::api::response::ResponseSuccess;
+use crate::api::responses::ResponseSuccess;
 use crate::api::types::User;
 
-pub trait Request {
+pub trait Requests {
     type Error;
+    type Success<T>;
 
     // // https://core.telegram.org/bots/api#getupdates
     // fn get_updates(&self)

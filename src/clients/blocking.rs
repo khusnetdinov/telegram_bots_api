@@ -1,3 +1,6 @@
+use crate::api::requests::Requests;
+use crate::api::responses::{ResponseError, ResponseSuccess};
+use crate::api::types::User;
 use crate::config::Config;
 use std::time::Duration;
 
@@ -18,5 +21,24 @@ impl Blocking {
         let url = config.build_url();
 
         Blocking { client, url }
+    }
+}
+
+impl Requests for Blocking {
+    type Error = ResponseError;
+    type Success<T> = ResponseSuccess<T>;
+
+    fn get_me(&self) -> Result<Self::Success<User>, Self::Error> {
+        let response = self
+            .client
+            .post(format!("{}{}", self.url, "getMe"))
+            .send()
+            .unwrap();
+        let body = response.text().unwrap();
+
+        match serde_json::from_str::<Self::Success<User>>(&body) {
+            Ok(success) => Ok(success),
+            Err(_) => Err(Self::Error::new(&body))
+        }
     }
 }

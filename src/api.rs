@@ -1,8 +1,8 @@
-mod errors;
-mod params;
-mod request;
-mod response;
-mod types;
+pub mod errors;
+pub mod params;
+pub mod requests;
+pub mod responses;
+pub mod types;
 
 use crate::clients::blocking::Blocking;
 use crate::clients::reqwest::Reqwest;
