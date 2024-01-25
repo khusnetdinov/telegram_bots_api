@@ -1,27 +1,30 @@
-pub mod params;
-pub mod request;
-pub mod response;
-pub mod types;
+mod errors;
+mod params;
+mod request;
+mod response;
+mod types;
 
-use crate::config::{Builder, Config};
+use crate::clients::blocking::Blocking;
+use crate::clients::reqwest::Reqwest;
+use crate::config::Config;
 
 #[derive(Debug)]
 pub struct Api {
-    pub client: reqwest::blocking::Client,
+    pub blocking: Blocking,
+    pub client: Reqwest,
     pub config: Config,
-    pub url: String,
 }
 
 impl Api {
     pub fn new() -> Self {
         let config = Config::new();
-        let client = config.build_client();
-        let url = config.build_url();
+        let blocking = Blocking::new(&config);
+        let client = Reqwest::new(&config);
 
         Api {
             config,
             client,
-            url,
+            blocking,
         }
     }
 }
