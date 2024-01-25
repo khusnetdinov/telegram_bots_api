@@ -7,7 +7,7 @@ use crate::config::{Builder, Config};
 
 #[derive(Debug)]
 pub struct Api {
-    pub client: reqwest::Client,
+    pub client: reqwest::blocking::Client,
     pub config: Config,
     pub url: String,
 }

@@ -36,13 +36,13 @@ impl Config {
 }
 
 pub trait Builder {
-    fn build_client(&self) -> reqwest::Client;
+    fn build_client(&self) -> reqwest::blocking::Client;
     fn build_url(&self) -> String;
 }
 
 impl Builder for Config {
-    fn build_client(&self) -> reqwest::Client {
-        reqwest::Client::builder()
+    fn build_client(&self) -> reqwest::blocking::Client {
+        reqwest::blocking::ClientBuilder::new()
             .timeout(Duration::from_secs(self.timeout))
             .connect_timeout(Duration::from_secs(self.connect_timeout))
             .build()
