@@ -2,12 +2,12 @@ use crate::config::Config;
 use std::time::Duration;
 
 #[derive(Debug)]
-pub struct Reqwest {
+pub struct Async {
     client: reqwest::Client,
     url: String,
 }
 
-impl Reqwest {
+impl Async {
     pub fn new(config: &Config) -> Self {
         let client = reqwest::Client::builder()
             .timeout(Duration::from_secs(config.timeout))
@@ -17,6 +17,6 @@ impl Reqwest {
 
         let url = config.build_url();
 
-        Reqwest { client, url }
+        Self { client, url }
     }
 }

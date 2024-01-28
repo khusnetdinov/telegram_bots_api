@@ -1,5 +1,6 @@
-use crate::api::requests::Requests;
-use crate::api::responses::{ResponseError, ResponseSuccess};
+use crate::api::requests::blocking::Requests;
+use crate::api::responses::ResponseError;
+use crate::api::responses::ResponseSuccess;
 use crate::api::types::User;
 use crate::config::Config;
 use crate::errors::Error;

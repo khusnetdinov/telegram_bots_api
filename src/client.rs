@@ -1,28 +1,23 @@
-pub mod params;
-pub mod requests;
-pub mod responses;
-pub mod types;
-
 use crate::clients::blocking::Blocking;
-use crate::clients::reqwest::Reqwest;
+use crate::clients::r#async::Async;
 use crate::config::Config;
 
 #[derive(Debug)]
-pub struct Api {
+pub struct Client {
     pub blocking: Blocking,
-    pub client: Reqwest,
+    pub r#async: Async,
     pub config: Config,
 }
 
-impl Api {
+impl Client {
     pub fn new() -> Self {
         let config = Config::new();
         let blocking = Blocking::new(&config);
-        let client = Reqwest::new(&config);
+        let r#async = Async::new(&config);
 
-        Api {
+        Self {
             config,
-            client,
+            r#async,
             blocking,
         }
     }
