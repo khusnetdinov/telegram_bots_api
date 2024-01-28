@@ -1,5 +1,5 @@
 mod api;
-mod config;
 mod client;
 mod clients;
+mod config;
 mod errors;

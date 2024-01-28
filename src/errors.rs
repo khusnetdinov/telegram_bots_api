@@ -1,5 +1,5 @@
-use std::fmt::{Display, Formatter};
 use crate::api::responses::ResponseError;
+use std::fmt::{Display, Formatter};
 
 #[derive(Debug)]
 pub enum Error {
@@ -15,7 +15,7 @@ impl Display for Error {
             Error::Request(error) => write!(f, "{:#?}", error),
             Error::Response(error) => write!(f, "{:#?}", error),
             Error::Decode(error) => write!(f, "{:#?}", error),
-            _ => write!(f, "Debug")
+            _ => write!(f, "Debug"),
         }
     }
 }
