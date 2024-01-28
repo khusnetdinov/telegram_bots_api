@@ -41,9 +41,7 @@ impl Requests for Blocking {
                         Err(error) => Err(Error::Decode(error)),
                     }
                 }
-                _ => Err(Error::Response(ResponseError::new(
-                    &response.text().unwrap(),
-                ))),
+                _ => Err(Error::Response(ResponseError::new(&response.text().unwrap()))),
             },
             Err(error) => Err(Error::Request(error)),
         }
