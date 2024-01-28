@@ -1,9 +1,8 @@
-use crate::api::responses::ResponseSuccess;
 use crate::api::types::User;
 
 pub trait Requests {
     type Error;
-    type Success<T>;
+    type Response<T>;
 
     // // https://core.telegram.org/bots/api#getupdates
     // fn get_updates(&self)
@@ -18,7 +17,7 @@ pub trait Requests {
     // fn get_webhook_info(&self)
 
     // https://core.telegram.org/bots/api#getme
-    fn get_me(&self) -> Result<ResponseSuccess<User>, Self::Error>;
+    fn get_me(&self) -> Result<User, Self::Error>;
 
     // // https://core.telegram.org/bots/api#logout
     // fn log_out(&self)

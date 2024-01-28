@@ -3,8 +3,8 @@ use serde::Deserialize;
 #[derive(Debug, Deserialize)]
 pub struct ResponseSuccess<T> {
     ok: bool,
-    result: T,
     description: Option<String>,
+    pub result: T,
 }
 
 #[derive(Debug, Deserialize)]

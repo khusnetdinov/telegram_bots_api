@@ -5,4 +5,5 @@ pub use crate::api::Api;
 pub mod api;
 mod clients;
 mod config;
+mod errors;
 mod tests;
