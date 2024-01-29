@@ -1,10 +1,10 @@
-use crate::clients::blocking::Blocking;
+use crate::clients::sync::Sync;
 use crate::clients::r#async::Async;
 use crate::config::Config;
 
 #[derive(Debug)]
 pub struct Client {
-    pub blocking: Blocking,
+    pub sync: Sync,
     pub r#async: Async,
     pub config: Config,
 }
@@ -12,13 +12,13 @@ pub struct Client {
 impl Client {
     pub fn new() -> Self {
         let config = Config::new();
-        let blocking = Blocking::new(&config);
+        let sync = Sync::new(&config);
         let r#async = Async::new(&config);
 
         Self {
             config,
             r#async,
-            blocking,
+            sync,
         }
     }
 }

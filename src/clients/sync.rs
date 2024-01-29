@@ -1,4 +1,4 @@
-use crate::api::requests::blocking::Requests;
+use crate::api::requests::sync::Requests;
 use crate::api::responses::ResponseError;
 use crate::api::responses::ResponseSuccess;
 use crate::api::types::User;
@@ -7,13 +7,13 @@ use crate::errors::Error;
 use std::time::Duration;
 
 #[derive(Debug)]
-pub struct Blocking {
+pub struct Sync {
     client: reqwest::blocking::Client,
     url: String,
 }
 
-impl Blocking {
-    pub fn new(config: &Config) -> Blocking {
+impl Sync {
+    pub fn new(config: &Config) -> Sync {
         let client = reqwest::blocking::ClientBuilder::new()
             .timeout(Duration::from_secs(config.timeout))
             .connect_timeout(Duration::from_secs(config.connect_timeout))
@@ -22,11 +22,11 @@ impl Blocking {
 
         let url = config.build_url();
 
-        Blocking { client, url }
+        Sync { client, url }
     }
 }
 
-impl Requests for Blocking {
+impl Requests for Sync {
     type Error = Error;
     type Response<T> = ResponseSuccess<T>;
 

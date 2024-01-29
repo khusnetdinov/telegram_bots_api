@@ -1,3 +1,3 @@
 pub mod r#async;
-pub mod blocking;
+pub mod sync;
 mod traits;
