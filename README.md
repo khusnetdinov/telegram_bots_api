@@ -1,6 +1,6 @@
 # Telegram
 
-https://github.com/khusnetdinov/telegram/actions/workflows/rust/badge.svg
+![https://github.com/khusnetdinov/telegram/actions/workflows/rust/badge.svg](https://github.com/khusnetdinov/telegram/actions/workflows/rust.yml/badge.svg)
 
 ### Project Status
 - TODO
