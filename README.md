@@ -1,5 +1,7 @@
 # Telegram
 
+https://github.com/khusnetdinov/telegram/actions/workflows/rust/badge.svg
+
 ### Project Status
 - TODO
 
@@ -67,7 +69,7 @@
 └── README.md                   # README.md
 ```
 
-### installation
+### Installation
 
 - TODO
 
