@@ -86,5 +86,3 @@
 ### Examples
 
 - TODO
-
-### Licence
