@@ -1,3 +1,13 @@
+use serde::Serialize;
+
+// https://core.telegram.org/bots/api#webhookinfo
+#[derive(Debug, Serialize)]
+pub struct UpdateParams {
+    pub offset: i64,
+    pub limit: i64,
+    pub timeout: u64,
+}
+
 // // https://core.telegram.org/bots/api#webhookinfo
 // struct WebhookInfoParams {
 //     url: String,

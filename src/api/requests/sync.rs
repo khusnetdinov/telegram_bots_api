@@ -1,11 +1,11 @@
+use crate::api::params::UpdateParams;
+use crate::api::types::Update;
 use crate::api::types::User;
+use crate::errors::Error;
 
 pub trait Requests {
-    type Error;
-    type Response<T>;
-
-    // // https://core.telegram.org/bots/api#getupdates
-    // fn get_updates(&self)
+    // https://core.telegram.org/bots/api#getupdates
+    fn get_updates(&self, params: &UpdateParams) -> Result<Vec<Update>, Error>;
 
     // // https://core.telegram.org/bots/api#setwebhook
     // fn set_webhook(&self)
@@ -17,7 +17,7 @@ pub trait Requests {
     // fn get_webhook_info(&self)
 
     // https://core.telegram.org/bots/api#getme
-    fn get_me(&self) -> Result<User, Self::Error>;
+    fn get_me(&self) -> Result<User, Error>;
 
     // // https://core.telegram.org/bots/api#logout
     // fn log_out(&self)

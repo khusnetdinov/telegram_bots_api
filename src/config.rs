@@ -26,6 +26,18 @@ pub struct Config {
     /// Client: Connect timeout in secs. Set a timeout for only the connect phase.
     #[structopt(long, default_value = "5")]
     pub connect_timeout: u64,
+
+    /// Updates: Identifier of the first update to be returned.
+    #[structopt(long, default_value = "0")]
+    pub updates_offset: i64,
+
+    /// Updates: Limits the number of updates to be retrieved.
+    #[structopt(long, default_value = "100")]
+    pub updates_limit: i64,
+
+    /// Updates: Timeout in seconds for long polling.
+    #[structopt(long, default_value = "0")]
+    pub updates_timeout: u64,
 }
 
 impl Config {

@@ -1,5 +1,5 @@
-use crate::clients::sync::Sync;
 use crate::clients::r#async::Async;
+use crate::clients::sync::Sync;
 use crate::config::Config;
 
 #[derive(Debug)]
