@@ -7,7 +7,7 @@ use crate::api::types::webhook_info::WebhookInfo;
 use crate::clients::traits::{Decoder, Responder};
 use crate::config::Config;
 use crate::errors::Error;
-use reqwest::blocking::{ClientBuilder, Response};
+use reqwest::blocking::{ClientBuilder, RequestBuilder, Response};
 use serde::de::DeserializeOwned;
 use std::time::Duration;
 
@@ -42,8 +42,8 @@ impl Sync {
         }
     }
 
-    pub fn url_for(&self, method: &str) -> String {
-        format!("{}{}", self.url, method)
+    pub fn request_for(&self, method: &str) -> RequestBuilder {
+        self.client.post(format!("{}{}", self.url, method))
     }
 }
 
@@ -75,34 +75,31 @@ impl Responder for Sync {
 
 impl Requests for Sync {
     fn get_updates(&self, params: &GetUpdateParams) -> Result<Vec<Update>, Error> {
-        let request = self.client.post(self.url_for("getUpdates")).query(params);
+        let request = self.request_for("getUpdates").query(params);
 
         self.respond_with::<Vec<Update>>(request.send())
     }
 
     fn set_webhook(&self, params: &SetWebhookParams) -> Result<bool, Error> {
-        let request = self.client.post(self.url_for("setWebhook")).query(params);
+        let request = self.request_for("setWebhook").query(params);
 
         self.respond_with::<bool>(request.send())
     }
 
     fn delete_webhook(&self, params: &DeleteWebhookParams) -> Result<bool, Error> {
-        let request = self
-            .client
-            .post(self.url_for("deleteWebhook"))
-            .query(params);
+        let request = self.request_for("deleteWebhook").query(params);
 
         self.respond_with::<bool>(request.send())
     }
 
     fn get_webhook_info(&self) -> Result<WebhookInfo, Error> {
-        let request = self.client.post(self.url_for("getWebhookInfo")).query(&{});
+        let request = self.request_for("getWebhookInfo").query(&{});
 
         self.respond_with::<WebhookInfo>(request.send())
     }
 
     fn get_me(&self) -> Result<User, Error> {
-        let request = self.client.post(self.url_for("getMe")).query(&{});
+        let request = self.request_for("getMe").query(&{});
 
         self.respond_with::<User>(request.send())
     }
