@@ -1,22 +1,29 @@
-use crate::api::params::UpdateParams;
-use crate::api::types::Update;
-use crate::api::types::User;
+use crate::api::params::{DeleteWebhookParams, GetUpdateParams, SetWebhookParams};
+use crate::api::types::update::Update;
+use crate::api::types::user::User;
+use crate::api::types::webhook_info::WebhookInfo;
 use crate::errors::Error;
 
 pub trait Requests {
-    // https://core.telegram.org/bots/api#getupdates
-    fn get_updates(&self, params: &UpdateParams) -> Result<Vec<Update>, Error>;
+    /// https://core.telegram.org/bots/api#getupdates
+    /// Use this method to receive incoming updates using long polling (wiki). Returns an Array of Update objects.
+    fn get_updates(&self, params: &GetUpdateParams) -> Result<Vec<Update>, Error>;
 
-    // // https://core.telegram.org/bots/api#setwebhook
-    // fn set_webhook(&self)
+    /// https://core.telegram.org/bots/api#setwebhook
+    /// Use this method to specify a URL and receive incoming updates via an outgoing webhook. Whenever there is an update for the bot, we will send an HTTPS POST request to the specified URL, containing a JSON-serialized Update. In case of an unsuccessful request, we will give up after a reasonable amount of attempts. Returns True on success.
+    /// If you'd like to make sure that the webhook was set by you, you can specify secret data in the parameter secret_token. If specified, the request will contain a header “X-Telegram-Bot-Api-Secret-Token” with the secret token as content.
+    fn set_webhook(&self, params: &SetWebhookParams) -> Result<bool, Error>;
 
-    // // https://core.telegram.org/bots/api#deletewebhook
-    // fn delete_webhook(&self)
+    /// https://core.telegram.org/bots/api#deletewebhook
+    /// Use this method to remove webhook integration if you decide to switch back to getUpdates. Returns True on success.
+    fn delete_webhook(&self, params: &DeleteWebhookParams) -> Result<bool, Error>;
 
-    // // https://core.telegram.org/bots/api#getwebhookinfo
-    // fn get_webhook_info(&self)
+    /// https://core.telegram.org/bots/api#getwebhookinfo
+    /// Use this method to get current webhook status. Requires no parameters. On success, returns a WebhookInfo object. If the bot is using getUpdates, will return an object with the url field empty.
+    fn get_webhook_info(&self) -> Result<WebhookInfo, Error>;
 
-    // https://core.telegram.org/bots/api#getme
+    /// https://core.telegram.org/bots/api#getme
+    /// A simple method for testing your bot's authentication token. Requires no parameters. Returns basic information about the bot in form of a User object.
     fn get_me(&self) -> Result<User, Error>;
 
     // // https://core.telegram.org/bots/api#logout

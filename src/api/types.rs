@@ -1,58 +1,9 @@
-use serde::Deserialize;
+pub mod update;
+pub mod user;
+pub mod webhook_info;
 
-// https://core.telegram.org/bots/api#update
-#[derive(Debug, Deserialize)]
-pub struct Update {
-    update_id: i64,
-    message: Option<Message>,
-    edited_message: Option<Message>,
-    channel_post: Option<Message>,
-    edited_channel_post: Option<Message>,
-    message_reaction: Option<MessageReactionUpdated>,
-    message_reaction_count: Option<MessageReactionCountUpdated>,
-    inline_query: Option<InlineQuery>,
-    chosen_inline_result: Option<ChosenInlineResult>,
-    callback_query: Option<CallbackQuery>,
-    shipping_query: Option<ShippingQuery>,
-    pre_checkout_query: Option<PreCheckoutQuery>,
-    poll: Option<Poll>,
-    poll_answer: Option<PollAnswer>,
-    my_chat_member: Option<ChatMemberUpdated>,
-    chat_member: Option<ChatMemberUpdated>,
-    chat_join_request: Option<ChatJoinRequest>,
-    chat_boost: Option<ChatBoostUpdated>,
-    removed_chat_boost: Option<ChatBoostRemoved>,
-}
-
-// https://core.telegram.org/bots/api#webhookinfo
-#[derive(Debug, Deserialize)]
-struct WebhookInfo {
-    url: String,
-    has_custom_certificate: bool,
-    pending_update_count: i64,
-    ip_address: Option<String>,
-    last_error_date: Option<i64>,
-    last_error_message: Option<String>,
-    last_synchronization_error_date: Option<i64>,
-    max_connections: Option<i64>,
-    allowed_updates: Option<Vec<String>>,
-}
-
-// https://core.telegram.org/bots/api#user
-#[derive(Debug, Deserialize)]
-pub struct User {
-    id: i64,
-    is_bot: bool,
-    first_name: String,
-    last_name: Option<String>,
-    username: Option<String>,
-    language_code: Option<String>,
-    is_premium: Option<bool>,
-    added_to_attachment_menu: Option<bool>,
-    can_join_groups: Option<bool>,
-    can_read_all_group_messages: Option<bool>,
-    supports_inline_queries: Option<bool>,
-}
+use crate::api::types::user::User;
+use serde::{Deserialize, Serialize};
 
 // https://core.telegram.org/bots/api#chat
 #[derive(Debug, Deserialize)]
@@ -1196,8 +1147,8 @@ struct InputMediaDocument {
 }
 
 // https://core.telegram.org/bots/api#inputfile
-#[derive(Debug, Deserialize)]
-struct InputFile {}
+#[derive(Debug, Serialize, Deserialize)]
+pub struct InputFile {}
 
 // https://core.telegram.org/bots/api#sticker
 #[derive(Debug, Deserialize)]
