@@ -10,7 +10,6 @@ fn main() -> Result<(), Box<dyn Error>> {
 
     let response = api.sync.get_me().unwrap();
 
-
     println!("Response: {:#?}", response);
 
     Ok(())

@@ -1,14 +1,18 @@
 use crate::errors::Error;
-use reqwest::Response;
+use reqwest::blocking::Response;
+use serde::de::DeserializeOwned;
 
-pub trait Decode {
-    fn decode<R>(response: &Response) -> Result<R, Error>;
-}
-
-pub trait Encode {
+pub trait Encoder {
     fn encode<P>(params: &P) -> Result<String, Error>;
 }
 
-pub trait Responder: Decode {
-    fn respond_with<T>(response: &Response) -> Result<T, Error>;
+pub trait Decoder {
+    fn decode<T: DeserializeOwned>(&self, response: Response) -> Result<T, Error>;
+}
+
+pub trait Responder: Decoder {
+    fn respond_with<T: DeserializeOwned>(
+        &self,
+        response: Result<Response, reqwest::Error>,
+    ) -> Result<T, Error>;
 }
