@@ -2,8 +2,8 @@ use serde::Deserialize;
 
 /// https://core.telegram.org/bots/api#webhookinfo
 /// Describes the current status of a webhook.
-#[serde_with_macros::skip_serializing_none]
 #[derive(Debug, Deserialize)]
+#[serde_with_macros::skip_serializing_none]
 pub struct WebhookInfo {
     url: String,
     has_custom_certificate: bool,

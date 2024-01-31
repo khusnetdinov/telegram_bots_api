@@ -1,4 +1,5 @@
-use crate::api::types::InputFile;
+use crate::api::types::{InputFile, LinkPreviewOptions, MessageEntity, ReplyParameters};
+
 use serde::Serialize;
 
 /// https://core.telegram.org/bots/api#getupdates
@@ -29,19 +30,21 @@ pub struct DeleteWebhookParams {
     pub drop_pending_updates: Option<bool>,
 }
 
-// // https://core.telegram.org/bots/api#sendmessage
-// struct SendMessageParams {
-//     // chat_id: i64 or String,
-//     message_thread_id: Option<i64>,
-//     text: String,
-//     parse_mode: Option<String>,
-//     entities: Option<Vec<MessageEntity>>,
-//     link_preview_options: Option<LinkPreviewOptions>,
-//     disable_notification: Option<bool>,
-//     protect_content: Option<bool>,
-//     reply_parameters: Option<ReplyParameters>,
-//     // reply_markup: Option<InlineKeyboardMarkup or ReplyKeyboardMarkup or ReplyKeyboardRemove or ForceReply>,
-// }
+/// https://core.telegram.org/bots/api#sendmessage
+#[derive(Debug, Serialize, Default)]
+#[serde_with_macros::skip_serializing_none]
+pub struct SendMessageParams {
+    pub chat_id: i64,
+    pub message_thread_id: Option<i64>,
+    pub text: String,
+    pub parse_mode: Option<String>,
+    pub entities: Option<Vec<MessageEntity>>,
+    pub link_preview_options: Option<LinkPreviewOptions>,
+    pub disable_notification: Option<bool>,
+    pub protect_content: Option<bool>,
+    pub reply_parameters: Option<ReplyParameters>,
+    // reply_markup: Option<InlineKeyboardMarkup or ReplyKeyboardMarkup or ReplyKeyboardRemove or ForceReply>,
+}
 
 // // https://core.telegram.org/bots/api#forwardmessage
 // struct ForwardMessageParams {

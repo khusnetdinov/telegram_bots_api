@@ -1,6 +1,9 @@
-use crate::api::params::{DeleteWebhookParams, GetUpdateParams, SetWebhookParams};
+use crate::api::params::{
+    DeleteWebhookParams, GetUpdateParams, SendMessageParams, SetWebhookParams,
+};
 use crate::api::requests::sync::Requests;
 use crate::api::responses::{ResponseError, ResponseResult};
+use crate::api::types::message::Message;
 use crate::api::types::update::Update;
 use crate::api::types::user::User;
 use crate::api::types::webhook_info::WebhookInfo;
@@ -102,5 +105,23 @@ impl Requests for Sync {
         let request = self.request_for("getMe").query(&{});
 
         self.respond_with::<User>(request.send())
+    }
+
+    fn log_out(&self) -> Result<bool, Error> {
+        let request = self.request_for("logOut").query(&{});
+
+        self.respond_with::<bool>(request.send())
+    }
+
+    fn close(&self) -> Result<bool, Error> {
+        let request = self.request_for("close").query(&{});
+
+        self.respond_with::<bool>(request.send())
+    }
+
+    fn send_message(&self, params: &SendMessageParams) -> Result<Message, Error> {
+        let request = self.request_for("sendMessage").query(params);
+
+        self.respond_with::<Message>(request.send())
     }
 }

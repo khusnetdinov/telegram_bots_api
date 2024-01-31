@@ -1,4 +1,7 @@
-use crate::api::params::{DeleteWebhookParams, GetUpdateParams, SetWebhookParams};
+use crate::api::params::{
+    DeleteWebhookParams, GetUpdateParams, SendMessageParams, SetWebhookParams,
+};
+use crate::api::types::message::Message;
 use crate::api::types::update::Update;
 use crate::api::types::user::User;
 use crate::api::types::webhook_info::WebhookInfo;
@@ -26,14 +29,17 @@ pub trait Requests {
     /// A simple method for testing your bot's authentication token. Requires no parameters. Returns basic information about the bot in form of a User object.
     fn get_me(&self) -> Result<User, Error>;
 
-    // // https://core.telegram.org/bots/api#logout
-    // fn log_out(&self)
+    /// https://core.telegram.org/bots/api#logout
+    /// Use this method to log out from the cloud Bot API server before launching the bot locally. You must log out the bot before running it locally, otherwise there is no guarantee that the bot will receive updates. After a successful call, you can immediately log in on a local server, but will not be able to log in back to the cloud Bot API server for 10 minutes. Returns True on success. Requires no parameters.
+    fn log_out(&self) -> Result<bool, Error>;
 
-    // // https://core.telegram.org/bots/api#close
-    // fn close(&self)
+    /// https://core.telegram.org/bots/api#close
+    /// Use this method to close the bot instance before moving it from one local server to another. You need to delete the webhook before calling this method to ensure that the bot isn't launched again after server restart. The method will return error 429 in the first 10 minutes after the bot is launched. Returns True on success. Requires no parameters.
+    fn close(&self) -> Result<bool, Error>;
 
-    // // https://core.telegram.org/bots/api#sendmessage
-    // fn send_message(&self)
+    /// https://core.telegram.org/bots/api#sendmessage
+    /// Use this method to send text messages. On success, the sent Message is returned.
+    fn send_message(&self, params: &SendMessageParams) -> Result<Message, Error>;
 
     // // https://core.telegram.org/bots/api#forwardmessage
     // fn forward_message(&self)

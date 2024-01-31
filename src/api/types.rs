@@ -1,12 +1,14 @@
+pub mod message;
 pub mod update;
 pub mod user;
 pub mod webhook_info;
 
+use crate::api::types::message::Message;
 use crate::api::types::user::User;
 use serde::{Deserialize, Serialize};
 
 // https://core.telegram.org/bots/api#chat
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Deserialize, Default)]
 struct Chat {
     id: i64,
     // type: String,
@@ -45,85 +47,6 @@ struct Chat {
     location: Option<ChatLocation>,
 }
 
-// https://core.telegram.org/bots/api#message
-#[derive(Debug, Deserialize)]
-struct Message {
-    message_id: i64,
-    message_thread_id: Option<i64>,
-    from: Option<User>,
-    sender_chat: Option<Box<Chat>>,
-    date: i64,
-    chat: Chat,
-    forward_origin: Option<MessageOrigin>,
-    is_topic_message: Option<bool>,
-    is_automatic_forward: Option<bool>,
-    reply_to_message: Option<Box<Message>>,
-    external_reply: Option<ExternalReplyInfo>,
-    quote: Option<TextQuote>,
-    via_bot: Option<User>,
-    edit_date: Option<i64>,
-    has_protected_content: Option<bool>,
-    media_group_id: Option<String>,
-    author_signature: Option<String>,
-    text: Option<String>,
-    entities: Option<Vec<MessageEntity>>,
-    link_preview_options: Option<LinkPreviewOptions>,
-    animation: Option<Animation>,
-    audio: Option<Audio>,
-    document: Option<Document>,
-    photo: Option<Vec<PhotoSize>>,
-    sticker: Option<Sticker>,
-    story: Option<Story>,
-    video: Option<Video>,
-    video_note: Option<VideoNote>,
-    voice: Option<Voice>,
-    caption: Option<String>,
-    caption_entities: Option<Vec<MessageEntity>>,
-    has_media_spoiler: Option<bool>,
-    contact: Option<Contact>,
-    dice: Option<Dice>,
-    game: Option<Game>,
-    poll: Option<Poll>,
-    venue: Option<Venue>,
-    location: Option<Location>,
-    new_chat_members: Option<Vec<User>>,
-    left_chat_member: Option<User>,
-    new_chat_title: Option<String>,
-    new_chat_photo: Option<Vec<PhotoSize>>,
-    delete_chat_photo: Option<bool>,
-    group_chat_created: Option<bool>,
-    supergroup_chat_created: Option<bool>,
-    channel_chat_created: Option<bool>,
-    message_auto_delete_timer_changed: Option<MessageAutoDeleteTimerChanged>,
-    migrate_to_chat_id: Option<i64>,
-    migrate_from_chat_id: Option<i64>,
-    pinned_message: Option<MaybeInaccessibleMessage>,
-    invoice: Option<Invoice>,
-    successful_payment: Option<SuccessfulPayment>,
-    users_shared: Option<UsersShared>,
-    chat_shared: Option<ChatShared>,
-    connected_website: Option<String>,
-    write_access_allowed: Option<WriteAccessAllowed>,
-    passport_data: Option<PassportData>,
-    proximity_alert_triggered: Option<ProximityAlertTriggered>,
-    forum_topic_created: Option<ForumTopicCreated>,
-    forum_topic_edited: Option<ForumTopicEdited>,
-    forum_topic_closed: Option<ForumTopicClosed>,
-    forum_topic_reopened: Option<ForumTopicReopened>,
-    general_forum_topic_hidden: Option<GeneralForumTopicHidden>,
-    general_forum_topic_unhidden: Option<GeneralForumTopicUnhidden>,
-    giveaway_created: Option<GiveawayCreated>,
-    giveaway: Option<Giveaway>,
-    giveaway_winners: Option<GiveawayWinners>,
-    giveaway_completed: Option<GiveawayCompleted>,
-    video_chat_scheduled: Option<VideoChatScheduled>,
-    video_chat_started: Option<VideoChatStarted>,
-    video_chat_ended: Option<VideoChatEnded>,
-    video_chat_participants_invited: Option<VideoChatParticipantsInvited>,
-    web_app_data: Option<WebAppData>,
-    reply_markup: Option<InlineKeyboardMarkup>,
-}
-
 // https://core.telegram.org/bots/api#messageid
 #[derive(Debug, Deserialize)]
 struct MessageId {
@@ -143,8 +66,8 @@ struct InaccessibleMessage {
 struct MaybeInaccessibleMessage {}
 
 // https://core.telegram.org/bots/api#messageentity
-#[derive(Debug, Deserialize)]
-struct MessageEntity {
+#[derive(Debug, Serialize, Deserialize)]
+pub struct MessageEntity {
     // type: String,
     offset: i64,
     length: i64,
@@ -191,9 +114,9 @@ struct ExternalReplyInfo {
     venue: Option<Venue>,
 }
 
-// https://core.telegram.org/bots/api#replyparameters
-#[derive(Debug, Deserialize)]
-struct ReplyParameters {
+/// https://core.telegram.org/bots/api#replyparameters
+#[derive(Debug, Serialize, Deserialize)]
+pub struct ReplyParameters {
     message_id: i64,
     chat_id: Option<i64>,
     allow_sending_without_reply: Option<bool>,
@@ -541,9 +464,9 @@ struct GiveawayCompleted {
     giveaway_completed: Option<Box<GiveawayCompleted>>,
 }
 
-// https://core.telegram.org/bots/api#linkpreviewoptions
-#[derive(Debug, Deserialize)]
-struct LinkPreviewOptions {
+/// https://core.telegram.org/bots/api#linkpreviewoptions
+#[derive(Debug, Serialize, Deserialize)]
+pub struct LinkPreviewOptions {
     is_disabled: Option<bool>,
     url: Option<String>,
     prefer_small_media: Option<bool>,
@@ -570,7 +493,7 @@ struct WebAppInfo {
 
 // https://core.telegram.org/bots/api#replykeyboardmarkup
 #[derive(Debug, Deserialize)]
-struct ReplyKeyboardMarkup {
+pub struct ReplyKeyboardMarkup {
     keyboard: Vec<KeyboardButton>,
     is_persistent: Option<bool>,
     resize_keyboard: Option<bool>,
@@ -621,14 +544,14 @@ struct KeyboardButtonPollType {
 
 // https://core.telegram.org/bots/api#replykeyboardremove
 #[derive(Debug, Deserialize)]
-struct ReplyKeyboardRemove {
+pub struct ReplyKeyboardRemove {
     remove_keyboard: bool,
     selective: Option<bool>,
 }
 
 // https://core.telegram.org/bots/api#inlinekeyboardmarkup
 #[derive(Debug, Deserialize)]
-struct InlineKeyboardMarkup {
+pub struct InlineKeyboardMarkup {
     inline_keyboard: Vec<InlineKeyboardButton>,
 }
 
@@ -675,7 +598,7 @@ struct CallbackQuery {
 
 // https://core.telegram.org/bots/api#forcereply
 #[derive(Debug, Deserialize)]
-struct ForceReply {
+pub struct ForceReply {
     force_reply: bool,
     input_field_placeholder: Option<String>,
     selective: Option<bool>,
