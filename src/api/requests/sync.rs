@@ -1,7 +1,9 @@
 use crate::api::params::{
     DeleteWebhookParams, GetUpdateParams, SendMessageParams, SetWebhookParams,
+    ForwardMessageParams, ForwardMessagesParams
 };
 use crate::api::types::message::Message;
+use crate::api::types::message_id::MessageId;
 use crate::api::types::update::Update;
 use crate::api::types::user::User;
 use crate::api::types::webhook_info::WebhookInfo;
@@ -41,11 +43,13 @@ pub trait Requests {
     /// Use this method to send text messages. On success, the sent Message is returned.
     fn send_message(&self, params: &SendMessageParams) -> Result<Message, Error>;
 
-    // // https://core.telegram.org/bots/api#forwardmessage
-    // fn forward_message(&self)
+    /// https://core.telegram.org/bots/api#forwardmessage
+    /// Use this method to forward messages of any kind. Service messages and messages with protected content can't be forwarded. On success, the sent Message is returned.
+    fn forward_message(&self, params: &ForwardMessageParams) -> Result<MessageId, Error>;
 
-    // // https://core.telegram.org/bots/api#forwardmessages
-    // fn forward_messages(&self)
+    /// https://core.telegram.org/bots/api#forwardmessages
+    /// Use this method to forward multiple messages of any kind. If some of the specified messages can't be found or forwarded, they are skipped. Service messages and messages with protected content can't be forwarded. Album grouping is kept for forwarded messages. On success, an array of MessageId of the sent messages is returned.
+    fn forward_messages(&self, params: &ForwardMessagesParams) -> Result<MessageId, Error>;
 
     // // https://core.telegram.org/bots/api#copymessage
     // fn copy_message(&self)

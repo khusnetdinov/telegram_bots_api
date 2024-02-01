@@ -1,6 +1,4 @@
-use crate::api::params::{
-    DeleteWebhookParams, GetUpdateParams, SendMessageParams, SetWebhookParams,
-};
+use crate::api::params::{DeleteWebhookParams, ForwardMessageParams, ForwardMessagesParams, GetUpdateParams, SendMessageParams, SetWebhookParams};
 use crate::api::requests::sync::Requests;
 use crate::api::responses::{ResponseError, ResponseResult};
 use crate::api::types::message::Message;
@@ -13,6 +11,7 @@ use crate::errors::Error;
 use reqwest::blocking::{ClientBuilder, RequestBuilder, Response};
 use serde::de::DeserializeOwned;
 use std::time::Duration;
+use crate::api::types::message_id::MessageId;
 
 #[derive(Debug)]
 pub struct Sync {
@@ -78,50 +77,62 @@ impl Responder for Sync {
 
 impl Requests for Sync {
     fn get_updates(&self, params: &GetUpdateParams) -> Result<Vec<Update>, Error> {
-        let request = self.request_for("getUpdates").query(params);
+        let request = self.request_for("getUpdates").json(params);
 
         self.respond_with::<Vec<Update>>(request.send())
     }
 
     fn set_webhook(&self, params: &SetWebhookParams) -> Result<bool, Error> {
-        let request = self.request_for("setWebhook").query(params);
+        let request = self.request_for("setWebhook").json(params);
 
         self.respond_with::<bool>(request.send())
     }
 
     fn delete_webhook(&self, params: &DeleteWebhookParams) -> Result<bool, Error> {
-        let request = self.request_for("deleteWebhook").query(params);
+        let request = self.request_for("deleteWebhook").json(params);
 
         self.respond_with::<bool>(request.send())
     }
 
     fn get_webhook_info(&self) -> Result<WebhookInfo, Error> {
-        let request = self.request_for("getWebhookInfo").query(&{});
+        let request = self.request_for("getWebhookInfo").json(&{});
 
         self.respond_with::<WebhookInfo>(request.send())
     }
 
     fn get_me(&self) -> Result<User, Error> {
-        let request = self.request_for("getMe").query(&{});
+        let request = self.request_for("getMe").json(&{});
 
         self.respond_with::<User>(request.send())
     }
 
     fn log_out(&self) -> Result<bool, Error> {
-        let request = self.request_for("logOut").query(&{});
+        let request = self.request_for("logOut").json(&{});
 
         self.respond_with::<bool>(request.send())
     }
 
     fn close(&self) -> Result<bool, Error> {
-        let request = self.request_for("close").query(&{});
+        let request = self.request_for("close").json(&{});
 
         self.respond_with::<bool>(request.send())
     }
 
     fn send_message(&self, params: &SendMessageParams) -> Result<Message, Error> {
-        let request = self.request_for("sendMessage").query(params);
+        let request = self.request_for("sendMessage").json(params);
 
         self.respond_with::<Message>(request.send())
+    }
+
+    fn forward_message(&self, params: &ForwardMessageParams) -> Result<MessageId, Error> {
+        let request = self.request_for("forwardMessage").json(params);
+
+        self.respond_with::<MessageId>(request.send())
+    }
+
+    fn forward_messages(&self, params: &ForwardMessagesParams) -> Result<MessageId, Error> {
+        let request = self.request_for("sendMessage").json(params);
+
+        self.respond_with::<MessageId>(request.send())
     }
 }

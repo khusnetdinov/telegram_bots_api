@@ -47,25 +47,29 @@ pub struct SendMessageParams {
     pub reply_markup: Option<ReplyMarkup>,
 }
 
-// // https://core.telegram.org/bots/api#forwardmessage
-// struct ForwardMessageParams {
-//     // chat_id: i64 or String,
-//     message_thread_id: Option<i64>,
-//     // from_chat_id: i64 or String,
-//     disable_notification: Option<bool>,
-//     protect_content: Option<bool>,
-//     message_id: i64,
-// }
+/// https://core.telegram.org/bots/api#forwardmessage
+#[derive(Debug, Serialize, Default)]
+#[serde_with_macros::skip_serializing_none]
+pub struct ForwardMessageParams {
+    pub chat_id: i64,
+    pub message_thread_id: Option<i64>,
+    pub from_chat_id: i64,
+    pub disable_notification: Option<bool>,
+    pub protect_content: Option<bool>,
+    pub message_id: i64,
+}
 
-// // https://core.telegram.org/bots/api#forwardmessages
-// struct ForwardMessagesParams {
-//     // chat_id: i64 or String,
-//     message_thread_id: Option<i64>,
-//     // from_chat_id: i64 or String,
-//     message_ids: Vec<i64>,
-//     disable_notification: Option<bool>,
-//     protect_content: Option<bool>,
-// }
+/// https://core.telegram.org/bots/api#forwardmessages
+#[derive(Debug, Serialize, Default)]
+#[serde_with_macros::skip_serializing_none]
+pub struct ForwardMessagesParams {
+    pub chat_id: i64,
+    pub message_thread_id: Option<i64>,
+    pub from_chat_id: i64,
+    pub message_ids: Vec<i64>,
+    pub disable_notification: Option<bool>,
+    pub protect_content: Option<bool>,
+}
 
 // // https://core.telegram.org/bots/api#copymessage
 // struct CopyMessageParams {

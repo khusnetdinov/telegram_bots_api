@@ -1,4 +1,5 @@
 pub mod message;
+pub mod message_id;
 pub mod update;
 pub mod user;
 pub mod webhook_info;
@@ -45,12 +46,6 @@ struct Chat {
     can_set_sticker_set: Option<bool>,
     linked_chat_id: Option<i64>,
     location: Option<ChatLocation>,
-}
-
-// https://core.telegram.org/bots/api#messageid
-#[derive(Debug, Serialize, Deserialize)]
-struct MessageId {
-    message_id: i64,
 }
 
 // https://core.telegram.org/bots/api#inaccessiblemessage
