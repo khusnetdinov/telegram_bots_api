@@ -4,12 +4,12 @@ use crate::api::types::{
     ChosenInlineResult, InlineQuery, MessageReactionCountUpdated, MessageReactionUpdated, Poll,
     PollAnswer, PreCheckoutQuery, ShippingQuery,
 };
-use serde::Deserialize;
+use serde::{Deserialize, Serialize};
 
 /// https://core.telegram.org/bots/api#update
 /// This object represents an incoming update.
 /// At most one of the optional parameters can be present in any given update.
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 #[serde_with_macros::skip_serializing_none]
 pub struct Update {
     update_id: i64,

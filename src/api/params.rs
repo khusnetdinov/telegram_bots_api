@@ -1,3 +1,4 @@
+use crate::api::enums::ReplyMarkup;
 use crate::api::types::{InputFile, LinkPreviewOptions, MessageEntity, ReplyParameters};
 
 use serde::Serialize;
@@ -43,7 +44,7 @@ pub struct SendMessageParams {
     pub disable_notification: Option<bool>,
     pub protect_content: Option<bool>,
     pub reply_parameters: Option<ReplyParameters>,
-    // reply_markup: Option<InlineKeyboardMarkup or ReplyKeyboardMarkup or ReplyKeyboardRemove or ForceReply>,
+    pub reply_markup: Option<ReplyMarkup>,
 }
 
 // // https://core.telegram.org/bots/api#forwardmessage

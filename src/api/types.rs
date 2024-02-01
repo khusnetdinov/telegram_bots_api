@@ -8,7 +8,7 @@ use crate::api::types::user::User;
 use serde::{Deserialize, Serialize};
 
 // https://core.telegram.org/bots/api#chat
-#[derive(Debug, Deserialize, Default)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 struct Chat {
     id: i64,
     // type: String,
@@ -48,13 +48,13 @@ struct Chat {
 }
 
 // https://core.telegram.org/bots/api#messageid
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct MessageId {
     message_id: i64,
 }
 
 // https://core.telegram.org/bots/api#inaccessiblemessage
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct InaccessibleMessage {
     chat: Chat,
     message_id: i64,
@@ -62,7 +62,7 @@ struct InaccessibleMessage {
 }
 
 // https://core.telegram.org/bots/api#maybeinaccessiblemessage
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct MaybeInaccessibleMessage {}
 
 // https://core.telegram.org/bots/api#messageentity
@@ -78,7 +78,7 @@ pub struct MessageEntity {
 }
 
 // https://core.telegram.org/bots/api#textquote
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct TextQuote {
     text: String,
     entities: Option<Vec<MessageEntity>>,
@@ -87,7 +87,7 @@ struct TextQuote {
 }
 
 // https://core.telegram.org/bots/api#externalreplyinfo
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct ExternalReplyInfo {
     origin: MessageOrigin,
     chat: Option<Chat>,
@@ -127,11 +127,11 @@ pub struct ReplyParameters {
 }
 
 // https://core.telegram.org/bots/api#messageorigin
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct MessageOrigin {}
 
 // https://core.telegram.org/bots/api#messageoriginuser
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct MessageOriginUser {
     // type: String,
     date: i64,
@@ -139,7 +139,7 @@ struct MessageOriginUser {
 }
 
 // https://core.telegram.org/bots/api#messageoriginhiddenuser
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct MessageOriginHiddenUser {
     // type: String,
     date: i64,
@@ -147,7 +147,7 @@ struct MessageOriginHiddenUser {
 }
 
 // https://core.telegram.org/bots/api#messageoriginchat
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct MessageOriginChat {
     // type: String,
     date: i64,
@@ -156,7 +156,7 @@ struct MessageOriginChat {
 }
 
 // https://core.telegram.org/bots/api#messageoriginchannel
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct MessageOriginChannel {
     // type: String,
     date: i64,
@@ -166,7 +166,7 @@ struct MessageOriginChannel {
 }
 
 // https://core.telegram.org/bots/api#photosize
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct PhotoSize {
     file_id: String,
     file_unique_id: String,
@@ -176,7 +176,7 @@ struct PhotoSize {
 }
 
 // https://core.telegram.org/bots/api#animation
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct Animation {
     file_id: String,
     file_unique_id: String,
@@ -190,7 +190,7 @@ struct Animation {
 }
 
 // https://core.telegram.org/bots/api#audio
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct Audio {
     file_id: String,
     file_unique_id: String,
@@ -204,7 +204,7 @@ struct Audio {
 }
 
 // https://core.telegram.org/bots/api#document
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct Document {
     file_id: String,
     file_unique_id: String,
@@ -215,11 +215,11 @@ struct Document {
 }
 
 // https://core.telegram.org/bots/api#story
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct Story {}
 
 // https://core.telegram.org/bots/api#video
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct Video {
     file_id: String,
     file_unique_id: String,
@@ -233,7 +233,7 @@ struct Video {
 }
 
 // https://core.telegram.org/bots/api#videonote
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct VideoNote {
     file_id: String,
     file_unique_id: String,
@@ -244,7 +244,7 @@ struct VideoNote {
 }
 
 // https://core.telegram.org/bots/api#voice
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct Voice {
     file_id: String,
     file_unique_id: String,
@@ -254,7 +254,7 @@ struct Voice {
 }
 
 // https://core.telegram.org/bots/api#contact
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct Contact {
     phone_number: String,
     first_name: String,
@@ -264,21 +264,21 @@ struct Contact {
 }
 
 // https://core.telegram.org/bots/api#dice
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct Dice {
     emoji: String,
     value: i64,
 }
 
 // https://core.telegram.org/bots/api#polloption
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct PollOption {
     text: String,
     voter_count: i64,
 }
 
 // https://core.telegram.org/bots/api#pollanswer
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct PollAnswer {
     poll_id: String,
     voter_chat: Option<Chat>,
@@ -287,7 +287,7 @@ struct PollAnswer {
 }
 
 // https://core.telegram.org/bots/api#poll
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct Poll {
     id: String,
     question: String,
@@ -305,7 +305,7 @@ struct Poll {
 }
 
 // https://core.telegram.org/bots/api#location
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct Location {
     longitude: f64,
     latitude: f64,
@@ -316,7 +316,7 @@ struct Location {
 }
 
 // https://core.telegram.org/bots/api#venue
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct Venue {
     location: Location,
     title: String,
@@ -328,14 +328,14 @@ struct Venue {
 }
 
 // https://core.telegram.org/bots/api#webappdata
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct WebAppData {
     data: String,
     button_text: String,
 }
 
 // https://core.telegram.org/bots/api#proximityalerttriggered
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct ProximityAlertTriggered {
     traveler: User,
     watcher: User,
@@ -343,13 +343,13 @@ struct ProximityAlertTriggered {
 }
 
 // https://core.telegram.org/bots/api#messageautodeletetimerchanged
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct MessageAutoDeleteTimerChanged {
     message_auto_delete_time: i64,
 }
 
 // https://core.telegram.org/bots/api#forumtopiccreated
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct ForumTopicCreated {
     name: String,
     icon_color: i64,
@@ -357,44 +357,44 @@ struct ForumTopicCreated {
 }
 
 // https://core.telegram.org/bots/api#forumtopicclosed
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct ForumTopicClosed {}
 
 // https://core.telegram.org/bots/api#forumtopicedited
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct ForumTopicEdited {
     name: Option<String>,
     icon_custom_emoji_id: Option<String>,
 }
 
 // https://core.telegram.org/bots/api#forumtopicreopened
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct ForumTopicReopened {}
 
 // https://core.telegram.org/bots/api#generalforumtopichidden
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct GeneralForumTopicHidden {}
 
 // https://core.telegram.org/bots/api#generalforumtopicunhidden
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct GeneralForumTopicUnhidden {}
 
 // https://core.telegram.org/bots/api#usersshared
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct UsersShared {
     request_id: i64,
     user_ids: Vec<i64>,
 }
 
 // https://core.telegram.org/bots/api#chatshared
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct ChatShared {
     request_id: i64,
     chat_id: i64,
 }
 
 // https://core.telegram.org/bots/api#writeaccessallowed
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct WriteAccessAllowed {
     from_request: Option<bool>,
     web_app_name: Option<String>,
@@ -402,33 +402,33 @@ struct WriteAccessAllowed {
 }
 
 // https://core.telegram.org/bots/api#videochatscheduled
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct VideoChatScheduled {
     start_date: i64,
 }
 
 // https://core.telegram.org/bots/api#videochatstarted
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct VideoChatStarted {}
 
 // https://core.telegram.org/bots/api#videochatended
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct VideoChatEnded {
     duration: i64,
 }
 
 // https://core.telegram.org/bots/api#videochatparticipantsinvited
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct VideoChatParticipantsInvited {
     users: Vec<User>,
 }
 
 // https://core.telegram.org/bots/api#giveawaycreated
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct GiveawayCreated {}
 
 // https://core.telegram.org/bots/api#giveaway
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct Giveaway {
     chats: Vec<Chat>,
     winners_selection_date: i64,
@@ -441,7 +441,7 @@ struct Giveaway {
 }
 
 // https://core.telegram.org/bots/api#giveawaywinners
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct GiveawayWinners {
     chat: Chat,
     giveaway_message_id: i64,
@@ -457,7 +457,7 @@ struct GiveawayWinners {
 }
 
 // https://core.telegram.org/bots/api#giveawaycompleted
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct GiveawayCompleted {
     winner_count: i64,
     unclaimed_prize_count: Option<i64>,
@@ -475,24 +475,24 @@ pub struct LinkPreviewOptions {
 }
 
 // https://core.telegram.org/bots/api#userprofilephotos
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct UserProfilePhotos {
     total_count: i64,
     photos: Vec<PhotoSize>,
 }
 
 // https://core.telegram.org/bots/api#file
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct File {}
 
 // https://core.telegram.org/bots/api#webappinfo
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct WebAppInfo {
     url: String,
 }
 
 // https://core.telegram.org/bots/api#replykeyboardmarkup
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct ReplyKeyboardMarkup {
     keyboard: Vec<KeyboardButton>,
     is_persistent: Option<bool>,
@@ -503,7 +503,7 @@ pub struct ReplyKeyboardMarkup {
 }
 
 // https://core.telegram.org/bots/api#keyboardbutton
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct KeyboardButton {
     text: String,
     request_users: Option<KeyboardButtonRequestUsers>,
@@ -515,7 +515,7 @@ struct KeyboardButton {
 }
 
 // https://core.telegram.org/bots/api#keyboardbuttonrequestusers
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct KeyboardButtonRequestUsers {
     request_id: i64,
     user_is_bot: Option<bool>,
@@ -524,7 +524,7 @@ struct KeyboardButtonRequestUsers {
 }
 
 // https://core.telegram.org/bots/api#keyboardbuttonrequestchat
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct KeyboardButtonRequestChat {
     request_id: i64,
     chat_is_channel: bool,
@@ -537,26 +537,26 @@ struct KeyboardButtonRequestChat {
 }
 
 // https://core.telegram.org/bots/api#keyboardbuttonpolltype
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct KeyboardButtonPollType {
     // type: Option<String>,
 }
 
 // https://core.telegram.org/bots/api#replykeyboardremove
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct ReplyKeyboardRemove {
     remove_keyboard: bool,
     selective: Option<bool>,
 }
 
 // https://core.telegram.org/bots/api#inlinekeyboardmarkup
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct InlineKeyboardMarkup {
     inline_keyboard: Vec<InlineKeyboardButton>,
 }
 
 // https://core.telegram.org/bots/api#inlinekeyboardbutton
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct InlineKeyboardButton {
     text: String,
     url: Option<String>,
@@ -571,11 +571,11 @@ struct InlineKeyboardButton {
 }
 
 // https://core.telegram.org/bots/api#loginurl
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct LoginUrl {}
 
 // https://core.telegram.org/bots/api#switchinlinequerychosenchat
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct SwitchInlineQueryChosenChat {
     query: Option<String>,
     allow_user_chats: Option<bool>,
@@ -585,7 +585,7 @@ struct SwitchInlineQueryChosenChat {
 }
 
 // https://core.telegram.org/bots/api#callbackquery
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct CallbackQuery {
     id: String,
     from: User,
@@ -597,7 +597,7 @@ struct CallbackQuery {
 }
 
 // https://core.telegram.org/bots/api#forcereply
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct ForceReply {
     force_reply: bool,
     input_field_placeholder: Option<String>,
@@ -605,7 +605,7 @@ pub struct ForceReply {
 }
 
 // https://core.telegram.org/bots/api#chatphoto
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct ChatPhoto {
     small_file_id: String,
     small_file_unique_id: String,
@@ -614,7 +614,7 @@ struct ChatPhoto {
 }
 
 // https://core.telegram.org/bots/api#chatinvitelink
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct ChatInviteLink {
     invite_link: String,
     creator: User,
@@ -628,7 +628,7 @@ struct ChatInviteLink {
 }
 
 // https://core.telegram.org/bots/api#chatadministratorrights
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct ChatAdministratorRights {
     is_anonymous: bool,
     can_manage_chat: bool,
@@ -648,7 +648,7 @@ struct ChatAdministratorRights {
 }
 
 // https://core.telegram.org/bots/api#chatmemberupdated
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct ChatMemberUpdated {
     chat: Chat,
     from: User,
@@ -660,11 +660,11 @@ struct ChatMemberUpdated {
 }
 
 // https://core.telegram.org/bots/api#chatmember
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct ChatMember {}
 
 // https://core.telegram.org/bots/api#chatmemberowner
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct ChatMemberOwner {
     status: String,
     user: User,
@@ -673,7 +673,7 @@ struct ChatMemberOwner {
 }
 
 // https://core.telegram.org/bots/api#chatmemberadministrator
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct ChatMemberAdministrator {
     status: String,
     user: User,
@@ -697,14 +697,14 @@ struct ChatMemberAdministrator {
 }
 
 // https://core.telegram.org/bots/api#chatmembermember
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct ChatMemberMember {
     status: String,
     user: User,
 }
 
 // https://core.telegram.org/bots/api#chatmemberrestricted
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct ChatMemberRestricted {
     status: String,
     user: User,
@@ -727,14 +727,14 @@ struct ChatMemberRestricted {
 }
 
 // https://core.telegram.org/bots/api#chatmemberleft
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct ChatMemberLeft {
     status: String,
     user: User,
 }
 
 // https://core.telegram.org/bots/api#chatmemberbanned
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct ChatMemberBanned {
     status: String,
     user: User,
@@ -742,7 +742,7 @@ struct ChatMemberBanned {
 }
 
 // https://core.telegram.org/bots/api#chatjoinrequest
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct ChatJoinRequest {
     chat: Chat,
     from: User,
@@ -753,7 +753,7 @@ struct ChatJoinRequest {
 }
 
 // https://core.telegram.org/bots/api#chatpermissions
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct ChatPermissions {
     can_send_messages: Option<bool>,
     can_send_audios: Option<bool>,
@@ -772,39 +772,39 @@ struct ChatPermissions {
 }
 
 // https://core.telegram.org/bots/api#chatlocation
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct ChatLocation {
     location: Location,
     address: String,
 }
 
 // https://core.telegram.org/bots/api#reactiontype
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct ReactionType {}
 
 // https://core.telegram.org/bots/api#reactiontypeemoji
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct ReactionTypeEmoji {
     // type: String,
     emoji: String,
 }
 
 // https://core.telegram.org/bots/api#reactiontypecustomemoji
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct ReactionTypeCustomEmoji {
     // type: String,
     custom_emoji_id: String,
 }
 
 // https://core.telegram.org/bots/api#reactioncount
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct ReactionCount {
     // type: ReactionType,
     total_count: i64,
 }
 
 // https://core.telegram.org/bots/api#messagereactionupdated
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct MessageReactionUpdated {
     chat: Chat,
     message_id: i64,
@@ -816,7 +816,7 @@ struct MessageReactionUpdated {
 }
 
 // https://core.telegram.org/bots/api#messagereactioncountupdated
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct MessageReactionCountUpdated {
     chat: Chat,
     message_id: i64,
@@ -825,7 +825,7 @@ struct MessageReactionCountUpdated {
 }
 
 // https://core.telegram.org/bots/api#forumtopic
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct ForumTopic {
     message_thread_id: i64,
     name: String,
@@ -834,56 +834,56 @@ struct ForumTopic {
 }
 
 // https://core.telegram.org/bots/api#botcommand
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct BotCommand {
     command: String,
     description: String,
 }
 
 // https://core.telegram.org/bots/api#botcommandscope
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct BotCommandScope {}
 
 // https://core.telegram.org/bots/api#botcommandscopedefault
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct BotCommandScopeDefault {
     // type: String,
 }
 
 // https://core.telegram.org/bots/api#botcommandscopeallprivatechats
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct BotCommandScopeAllPrivateChats {
     // type: String,
 }
 
 // https://core.telegram.org/bots/api#botcommandscopeallgroupchats
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct BotCommandScopeAllGroupChats {
     // type: String,
 }
 
 // https://core.telegram.org/bots/api#botcommandscopeallchatadministrators
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct BotCommandScopeAllChatAdministrators {
     // type: String,
 }
 
 // https://core.telegram.org/bots/api#botcommandscopechat
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct BotCommandScopeChat {
     // type: String,
     chat_id: i64,
 }
 
 // https://core.telegram.org/bots/api#botcommandscopechatadministrators
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct BotCommandScopeChatAdministrators {
     // type: String,
     chat_id: i64,
 }
 
 // https://core.telegram.org/bots/api#botcommandscopechatmember
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct BotCommandScopeChatMember {
     // type: String,
     // chat_id: i64,
@@ -891,35 +891,35 @@ struct BotCommandScopeChatMember {
 }
 
 // https://core.telegram.org/bots/api#botname
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct BotName {
     name: String,
 }
 
 // https://core.telegram.org/bots/api#botdescription
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct BotDescription {
     description: String,
 }
 
 // https://core.telegram.org/bots/api#botshortdescription
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct BotShortDescription {
     short_description: String,
 }
 
 // https://core.telegram.org/bots/api#menubutton
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct MenuButton {}
 
 // https://core.telegram.org/bots/api#menubuttoncommands
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct MenuButtonCommands {
     // type: String,
 }
 
 // https://core.telegram.org/bots/api#menubuttonwebapp
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct MenuButtonWebApp {
     // type: String,
     text: String,
@@ -927,31 +927,31 @@ struct MenuButtonWebApp {
 }
 
 // https://core.telegram.org/bots/api#menubuttondefault
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct MenuButtonDefault {
     // type: String,
 }
 
 // https://core.telegram.org/bots/api#chatboostsource
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct ChatBoostSource {}
 
 // https://core.telegram.org/bots/api#chatboostsourcepremium
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct ChatBoostSourcePremium {
     source: String,
     user: User,
 }
 
 // https://core.telegram.org/bots/api#chatboostsourcegiftcode
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct ChatBoostSourceGiftCode {
     source: String,
     user: User,
 }
 
 // https://core.telegram.org/bots/api#chatboostsourcegiveaway
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct ChatBoostSourceGiveaway {
     source: String,
     giveaway_message_id: i64,
@@ -960,7 +960,7 @@ struct ChatBoostSourceGiveaway {
 }
 
 // https://core.telegram.org/bots/api#chatboost
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct ChatBoost {
     boost_id: String,
     add_date: i64,
@@ -969,14 +969,14 @@ struct ChatBoost {
 }
 
 // https://core.telegram.org/bots/api#chatboostupdated
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct ChatBoostUpdated {
     chat: Chat,
     boost: ChatBoost,
 }
 
 // https://core.telegram.org/bots/api#chatboostremoved
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct ChatBoostRemoved {
     chat: Chat,
     boost_id: String,
@@ -985,24 +985,24 @@ struct ChatBoostRemoved {
 }
 
 // https://core.telegram.org/bots/api#userchatboosts
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct UserChatBoosts {
     boosts: Vec<ChatBoost>,
 }
 
 // https://core.telegram.org/bots/api#responseparameters
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct ResponseParameters {
     migrate_to_chat_id: Option<i64>,
     retry_after: Option<i64>,
 }
 
 // https://core.telegram.org/bots/api#inputmedia
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct InputMedia {}
 
 // https://core.telegram.org/bots/api#inputmediaphoto
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct InputMediaPhoto {
     // type: String,
     media: String,
@@ -1013,7 +1013,7 @@ struct InputMediaPhoto {
 }
 
 // https://core.telegram.org/bots/api#inputmediavideo
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct InputMediaVideo {
     // type: String,
     media: String,
@@ -1029,7 +1029,7 @@ struct InputMediaVideo {
 }
 
 // https://core.telegram.org/bots/api#inputmediaanimation
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct InputMediaAnimation {
     // type: String,
     media: String,
@@ -1044,7 +1044,7 @@ struct InputMediaAnimation {
 }
 
 // https://core.telegram.org/bots/api#inputmediaaudio
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct InputMediaAudio {
     // type: String,
     media: String,
@@ -1058,7 +1058,7 @@ struct InputMediaAudio {
 }
 
 // https://core.telegram.org/bots/api#inputmediadocument
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct InputMediaDocument {
     // type: String,
     media: String,
@@ -1074,7 +1074,7 @@ struct InputMediaDocument {
 pub struct InputFile {}
 
 // https://core.telegram.org/bots/api#sticker
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct Sticker {
     file_id: String,
     file_unique_id: String,
@@ -1094,7 +1094,7 @@ struct Sticker {
 }
 
 // https://core.telegram.org/bots/api#stickerset
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct StickerSet {
     name: String,
     title: String,
@@ -1106,7 +1106,7 @@ struct StickerSet {
 }
 
 // https://core.telegram.org/bots/api#maskposition
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct MaskPosition {
     point: String,
     x_shift: f64,
@@ -1115,7 +1115,7 @@ struct MaskPosition {
 }
 
 // https://core.telegram.org/bots/api#inputsticker
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct InputSticker {
     // sticker: InputFile or String,
     emoji_list: Vec<String>,
@@ -1124,7 +1124,7 @@ struct InputSticker {
 }
 
 // https://core.telegram.org/bots/api#inlinequery
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct InlineQuery {
     id: String,
     from: User,
@@ -1135,7 +1135,7 @@ struct InlineQuery {
 }
 
 // https://core.telegram.org/bots/api#inlinequeryresultsbutton
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct InlineQueryResultsButton {
     text: String,
     web_app: Option<WebAppInfo>,
@@ -1143,11 +1143,11 @@ struct InlineQueryResultsButton {
 }
 
 // https://core.telegram.org/bots/api#inlinequeryresult
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct InlineQueryResult {}
 
 // https://core.telegram.org/bots/api#inlinequeryresultarticle
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct InlineQueryResultArticle {
     // type: String,
     id: String,
@@ -1163,7 +1163,7 @@ struct InlineQueryResultArticle {
 }
 
 // https://core.telegram.org/bots/api#inlinequeryresultphoto
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct InlineQueryResultPhoto {
     // type: String,
     id: String,
@@ -1181,7 +1181,7 @@ struct InlineQueryResultPhoto {
 }
 
 // https://core.telegram.org/bots/api#inlinequeryresultgif
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct InlineQueryResultGif {
     // type: String,
     id: String,
@@ -1200,7 +1200,7 @@ struct InlineQueryResultGif {
 }
 
 // https://core.telegram.org/bots/api#inlinequeryresultmpeg4gif
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct InlineQueryResultMpeg4Gif {
     // type: String,
     id: String,
@@ -1219,11 +1219,11 @@ struct InlineQueryResultMpeg4Gif {
 }
 
 // https://core.telegram.org/bots/api#inlinequeryresultvideo
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct InlineQueryResultVideo {}
 
 // https://core.telegram.org/bots/api#inlinequeryresultaudio
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct InlineQueryResultAudio {
     // type: String,
     id: String,
@@ -1239,7 +1239,7 @@ struct InlineQueryResultAudio {
 }
 
 // https://core.telegram.org/bots/api#inlinequeryresultvoice
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct InlineQueryResultVoice {
     // type: String,
     id: String,
@@ -1254,7 +1254,7 @@ struct InlineQueryResultVoice {
 }
 
 // https://core.telegram.org/bots/api#inlinequeryresultdocument
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct InlineQueryResultDocument {
     // type: String,
     id: String,
@@ -1273,7 +1273,7 @@ struct InlineQueryResultDocument {
 }
 
 // https://core.telegram.org/bots/api#inlinequeryresultlocation
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct InlineQueryResultLocation {
     // type: String,
     id: String,
@@ -1292,7 +1292,7 @@ struct InlineQueryResultLocation {
 }
 
 // https://core.telegram.org/bots/api#inlinequeryresultvenue
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct InlineQueryResultVenue {
     // type: String,
     id: String,
@@ -1312,7 +1312,7 @@ struct InlineQueryResultVenue {
 }
 
 // https://core.telegram.org/bots/api#inlinequeryresultcontact
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct InlineQueryResultContact {
     // type: String,
     id: String,
@@ -1328,7 +1328,7 @@ struct InlineQueryResultContact {
 }
 
 // https://core.telegram.org/bots/api#inlinequeryresultgame
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct InlineQueryResultGame {
     // type: String,
     id: String,
@@ -1337,7 +1337,7 @@ struct InlineQueryResultGame {
 }
 
 // https://core.telegram.org/bots/api#inlinequeryresultcachedphoto
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct InlineQueryResultCachedPhoto {
     // type: String,
     id: String,
@@ -1352,7 +1352,7 @@ struct InlineQueryResultCachedPhoto {
 }
 
 // https://core.telegram.org/bots/api#inlinequeryresultcachedgif
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct InlineQueryResultCachedGif {
     // type: String,
     id: String,
@@ -1366,7 +1366,7 @@ struct InlineQueryResultCachedGif {
 }
 
 // https://core.telegram.org/bots/api#inlinequeryresultcachedmpeg4gif
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct InlineQueryResultCachedMpeg4Gif {
     // type: String,
     id: String,
@@ -1380,7 +1380,7 @@ struct InlineQueryResultCachedMpeg4Gif {
 }
 
 // https://core.telegram.org/bots/api#inlinequeryresultcachedsticker
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct InlineQueryResultCachedSticker {
     // type: String,
     id: String,
@@ -1390,7 +1390,7 @@ struct InlineQueryResultCachedSticker {
 }
 
 // https://core.telegram.org/bots/api#inlinequeryresultcacheddocument
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct InlineQueryResultCachedDocument {
     // type: String,
     id: String,
@@ -1405,7 +1405,7 @@ struct InlineQueryResultCachedDocument {
 }
 
 // https://core.telegram.org/bots/api#inlinequeryresultcachedvideo
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct InlineQueryResultCachedVideo {
     // type: String,
     id: String,
@@ -1420,7 +1420,7 @@ struct InlineQueryResultCachedVideo {
 }
 
 // https://core.telegram.org/bots/api#inlinequeryresultcachedvoice
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct InlineQueryResultCachedVoice {
     // type: String,
     id: String,
@@ -1434,7 +1434,7 @@ struct InlineQueryResultCachedVoice {
 }
 
 // https://core.telegram.org/bots/api#inlinequeryresultcachedaudio
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct InlineQueryResultCachedAudio {
     // type: String,
     id: String,
@@ -1447,11 +1447,11 @@ struct InlineQueryResultCachedAudio {
 }
 
 // https://core.telegram.org/bots/api#inputmessagecontent
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct InputMessageContent {}
 
 // https://core.telegram.org/bots/api#inputtextmessagecontent
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct InputTextMessageContent {
     message_text: String,
     parse_mode: Option<String>,
@@ -1460,7 +1460,7 @@ struct InputTextMessageContent {
 }
 
 // https://core.telegram.org/bots/api#inputlocationmessagecontent
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct InputLocationMessageContent {
     latitude: f64,
     longitude: f64,
@@ -1471,7 +1471,7 @@ struct InputLocationMessageContent {
 }
 
 // https://core.telegram.org/bots/api#inputvenuemessagecontent
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct InputVenueMessageContent {
     latitude: f64,
     longitude: f64,
@@ -1484,7 +1484,7 @@ struct InputVenueMessageContent {
 }
 
 // https://core.telegram.org/bots/api#inputcontactmessagecontent
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct InputContactMessageContent {
     phone_number: String,
     first_name: String,
@@ -1493,7 +1493,7 @@ struct InputContactMessageContent {
 }
 
 // https://core.telegram.org/bots/api#inputinvoicemessagecontent
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct InputInvoiceMessageContent {
     title: String,
     description: String,
@@ -1518,7 +1518,7 @@ struct InputInvoiceMessageContent {
 }
 
 // https://core.telegram.org/bots/api#choseninlineresult
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct ChosenInlineResult {
     result_id: String,
     from: User,
@@ -1528,20 +1528,20 @@ struct ChosenInlineResult {
 }
 
 // https://core.telegram.org/bots/api#sentwebappmessage
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct SentWebAppMessage {
     inline_message_id: Option<String>,
 }
 
 // https://core.telegram.org/bots/api#labeledprice
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct LabeledPrice {
     label: String,
     amount: i64,
 }
 
 // https://core.telegram.org/bots/api#invoice
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct Invoice {
     title: String,
     description: String,
@@ -1551,7 +1551,7 @@ struct Invoice {
 }
 
 // https://core.telegram.org/bots/api#shippingaddress
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct ShippingAddress {
     country_code: String,
     state: String,
@@ -1562,7 +1562,7 @@ struct ShippingAddress {
 }
 
 // https://core.telegram.org/bots/api#orderinfo
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct OrderInfo {
     name: Option<String>,
     phone_number: Option<String>,
@@ -1571,7 +1571,7 @@ struct OrderInfo {
 }
 
 // https://core.telegram.org/bots/api#shippingoption
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct ShippingOption {
     id: String,
     title: String,
@@ -1579,7 +1579,7 @@ struct ShippingOption {
 }
 
 // https://core.telegram.org/bots/api#successfulpayment
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct SuccessfulPayment {
     currency: String,
     total_amount: i64,
@@ -1591,7 +1591,7 @@ struct SuccessfulPayment {
 }
 
 // https://core.telegram.org/bots/api#shippingquery
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct ShippingQuery {
     id: String,
     from: User,
@@ -1600,7 +1600,7 @@ struct ShippingQuery {
 }
 
 // https://core.telegram.org/bots/api#precheckoutquery
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct PreCheckoutQuery {
     id: String,
     from: User,
@@ -1612,14 +1612,14 @@ struct PreCheckoutQuery {
 }
 
 // https://core.telegram.org/bots/api#passportdata
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct PassportData {
     data: Vec<EncryptedPassportElement>,
     credentials: EncryptedCredentials,
 }
 
 // https://core.telegram.org/bots/api#passportfile
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct PassportFile {
     file_id: String,
     file_unique_id: String,
@@ -1628,7 +1628,7 @@ struct PassportFile {
 }
 
 // https://core.telegram.org/bots/api#encryptedpassportelement
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct EncryptedPassportElement {
     // type: String,
     data: Option<String>,
@@ -1643,7 +1643,7 @@ struct EncryptedPassportElement {
 }
 
 // https://core.telegram.org/bots/api#encryptedcredentials
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct EncryptedCredentials {
     data: String,
     hash: String,
@@ -1651,11 +1651,11 @@ struct EncryptedCredentials {
 }
 
 // https://core.telegram.org/bots/api#passportelementerror
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct PassportElementError {}
 
 // https://core.telegram.org/bots/api#passportelementerrordatafield
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct PassportElementErrorDataField {
     source: String,
     // type: String,
@@ -1665,7 +1665,7 @@ struct PassportElementErrorDataField {
 }
 
 // https://core.telegram.org/bots/api#passportelementerrorfrontside
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct PassportElementErrorFrontSide {
     source: String,
     // type: String,
@@ -1674,7 +1674,7 @@ struct PassportElementErrorFrontSide {
 }
 
 // https://core.telegram.org/bots/api#passportelementerrorreverseside
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct PassportElementErrorReverseSide {
     source: String,
     // type: String,
@@ -1683,7 +1683,7 @@ struct PassportElementErrorReverseSide {
 }
 
 // https://core.telegram.org/bots/api#passportelementerrorselfie
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct PassportElementErrorSelfie {
     source: String,
     // type: String,
@@ -1692,7 +1692,7 @@ struct PassportElementErrorSelfie {
 }
 
 // https://core.telegram.org/bots/api#passportelementerrorfile
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct PassportElementErrorFile {
     source: String,
     // type: String,
@@ -1701,7 +1701,7 @@ struct PassportElementErrorFile {
 }
 
 // https://core.telegram.org/bots/api#passportelementerrorfiles
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct PassportElementErrorFiles {
     source: String,
     // type: String,
@@ -1710,7 +1710,7 @@ struct PassportElementErrorFiles {
 }
 
 // https://core.telegram.org/bots/api#passportelementerrortranslationfile
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct PassportElementErrorTranslationFile {
     source: String,
     // type: String,
@@ -1719,7 +1719,7 @@ struct PassportElementErrorTranslationFile {
 }
 
 // https://core.telegram.org/bots/api#passportelementerrortranslationfiles
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct PassportElementErrorTranslationFiles {
     source: String,
     // type: String,
@@ -1728,7 +1728,7 @@ struct PassportElementErrorTranslationFiles {
 }
 
 // https://core.telegram.org/bots/api#passportelementerrorunspecified
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct PassportElementErrorUnspecified {
     source: String,
     // type: String,
@@ -1737,7 +1737,7 @@ struct PassportElementErrorUnspecified {
 }
 
 // https://core.telegram.org/bots/api#game
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct Game {
     title: String,
     description: String,
@@ -1748,11 +1748,11 @@ struct Game {
 }
 
 // https://core.telegram.org/bots/api#callbackgame
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct CallbackGame {}
 
 // https://core.telegram.org/bots/api#gamehighscore
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct GameHighScore {
     position: i64,
     user: User,

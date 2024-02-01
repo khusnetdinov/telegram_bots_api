@@ -1,8 +1,9 @@
 use crate::api::types::{
     ForceReply, InlineKeyboardMarkup, ReplyKeyboardMarkup, ReplyKeyboardRemove,
 };
-
-enum ReplyMarkup {
+use serde::Serialize;
+#[derive(Debug, Serialize)]
+pub enum ReplyMarkup {
     InlineKeyboardMarkup(InlineKeyboardMarkup),
     ReplyKeyboardMarkup(ReplyKeyboardMarkup),
     ReplyKeyboardRemove(ReplyKeyboardRemove),

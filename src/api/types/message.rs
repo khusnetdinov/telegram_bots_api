@@ -9,11 +9,11 @@ use crate::api::types::{
     TextQuote, UsersShared, Venue, Video, VideoChatEnded, VideoChatParticipantsInvited,
     VideoChatScheduled, VideoChatStarted, VideoNote, Voice, WebAppData, WriteAccessAllowed,
 };
-use serde::Deserialize;
+use serde::{Deserialize, Serialize};
 
 /// https://core.telegram.org/bots/api#message
 /// This object represents a message.
-#[derive(Debug, Deserialize, Default)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 #[serde_with_macros::skip_serializing_none]
 pub struct Message {
     message_id: i64,
