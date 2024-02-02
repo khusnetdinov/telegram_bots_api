@@ -1,7 +1,11 @@
-use crate::api::params::{DeleteWebhookParams, ForwardMessageParams, ForwardMessagesParams, GetUpdateParams, SendMessageParams, SetWebhookParams};
+use crate::api::params::{
+    DeleteWebhookParams, ForwardMessageParams, ForwardMessagesParams, GetUpdateParams,
+    SendMessageParams, SetWebhookParams,
+};
 use crate::api::requests::sync::Requests;
 use crate::api::responses::{ResponseError, ResponseResult};
 use crate::api::types::message::Message;
+use crate::api::types::message_id::MessageId;
 use crate::api::types::update::Update;
 use crate::api::types::user::User;
 use crate::api::types::webhook_info::WebhookInfo;
@@ -11,7 +15,6 @@ use crate::errors::Error;
 use reqwest::blocking::{ClientBuilder, RequestBuilder, Response};
 use serde::de::DeserializeOwned;
 use std::time::Duration;
-use crate::api::types::message_id::MessageId;
 
 #[derive(Debug)]
 pub struct Sync {

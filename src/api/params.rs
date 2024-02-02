@@ -1,7 +1,13 @@
 use crate::api::enums::ReplyMarkup;
 use crate::api::types::{InputFile, LinkPreviewOptions, MessageEntity, ReplyParameters};
 
-use serde::Serialize;
+use serde::{Deserialize, Serialize};
+
+#[derive(Debug, Serialize, Deserialize, Default)]
+pub struct ChatId(pub i64);
+
+#[derive(Debug, Serialize, Deserialize, Default)]
+pub struct ChannelUsername(pub String);
 
 /// https://core.telegram.org/bots/api#getupdates
 #[derive(Debug, Serialize)]
@@ -35,7 +41,7 @@ pub struct DeleteWebhookParams {
 #[derive(Debug, Serialize, Default)]
 #[serde_with_macros::skip_serializing_none]
 pub struct SendMessageParams {
-    pub chat_id: i64,
+    pub chat_id: ChatId,
     pub message_thread_id: Option<i64>,
     pub text: String,
     pub parse_mode: Option<String>,
@@ -51,9 +57,9 @@ pub struct SendMessageParams {
 #[derive(Debug, Serialize, Default)]
 #[serde_with_macros::skip_serializing_none]
 pub struct ForwardMessageParams {
-    pub chat_id: i64,
+    pub chat_id: ChatId,
     pub message_thread_id: Option<i64>,
-    pub from_chat_id: i64,
+    pub from_chat_id: ChatId,
     pub disable_notification: Option<bool>,
     pub protect_content: Option<bool>,
     pub message_id: i64,
@@ -63,9 +69,9 @@ pub struct ForwardMessageParams {
 #[derive(Debug, Serialize, Default)]
 #[serde_with_macros::skip_serializing_none]
 pub struct ForwardMessagesParams {
-    pub chat_id: i64,
+    pub chat_id: ChatId,
     pub message_thread_id: Option<i64>,
-    pub from_chat_id: i64,
+    pub from_chat_id: ChatId,
     pub message_ids: Vec<i64>,
     pub disable_notification: Option<bool>,
     pub protect_content: Option<bool>,
@@ -73,9 +79,9 @@ pub struct ForwardMessagesParams {
 
 // // https://core.telegram.org/bots/api#copymessage
 // struct CopyMessageParams {
-//     chat_id: i64 or String,
+//     chat_id: ChatId,
 //     message_thread_id: Option<i64>,
-//     from_chat_id: i64 or String,
+//     from_chat_id: ChatId,
 //     message_id: i64,
 //     caption: Option<String>,
 //     parse_mode: Option<String>,
@@ -88,9 +94,9 @@ pub struct ForwardMessagesParams {
 
 // // https://core.telegram.org/bots/api#copymessages
 // struct CopyMessagesParams {
-//     chat_id: i64 or String,
+//     chat_id: ChatId,
 //     message_thread_id: Option<i64>,
-//     from_chat_id: i64 or String,
+//     from_chat_id: ChatId,
 //     message_ids: Vec<i64>,
 //     disable_notification: Option<bool>,
 //     protect_content: Option<bool>,
@@ -99,7 +105,7 @@ pub struct ForwardMessagesParams {
 
 // // https://core.telegram.org/bots/api#sendphoto
 // struct SendPhotoParams {
-//     chat_id: i64 or String,
+//     chat_id: ChatId,
 //     message_thread_id: Option<i64>,
 //     photo: InputFile or String,
 //     caption: Option<String>,
@@ -114,7 +120,7 @@ pub struct ForwardMessagesParams {
 
 // // https://core.telegram.org/bots/api#senddocument
 // struct SendDocumentParams {
-//     chat_id: i64 or String,
+//     chat_id: ChatId,
 //     message_thread_id: Option<i64>,
 //     document: InputFile or String,
 //     thumbnail: Option<InputFile or String>,
@@ -130,7 +136,7 @@ pub struct ForwardMessagesParams {
 
 // // https://core.telegram.org/bots/api#sendvideo
 // struct SendVideoParams {
-//     chat_id: i64 or String,
+//     chat_id: ChatId,
 //     message_thread_id: Option<i64>,
 //     video: InputFile or String,
 //     duration: Option<i64>,
@@ -150,7 +156,7 @@ pub struct ForwardMessagesParams {
 
 // // https://core.telegram.org/bots/api#sendanimation
 // struct SendAnimationParams {
-//     chat_id: i64 or String,
+//     chat_id: ChatId,
 //     message_thread_id: Option<i64>,
 //     animation: InputFile or String,
 //     duration: Option<i64>,
@@ -169,7 +175,7 @@ pub struct ForwardMessagesParams {
 
 // // https://core.telegram.org/bots/api#sendvoice
 // struct SendVoiceParams {
-//     chat_id: i64 or String,
+//     chat_id: ChatId,
 //     message_thread_id: Option<i64>,
 //     voice: InputFile or String,
 //     caption: Option<String>,
@@ -184,7 +190,7 @@ pub struct ForwardMessagesParams {
 
 // // https://core.telegram.org/bots/api#sendvideonote
 // struct SendVideoNoteParams {
-//     chat_id: i64 or String,
+//     chat_id: ChatId,
 //     message_thread_id: Option<i64>,
 //     video_note: InputFile or String,
 //     duration: Option<i64>,
@@ -198,7 +204,7 @@ pub struct ForwardMessagesParams {
 
 // // https://core.telegram.org/bots/api#sendmediagroup
 // struct SendMediaGroupParams {
-//     chat_id: i64 or String,
+//     chat_id: ChatId,
 //     message_thread_id: Option<i64>,
 //     media: Vec<InputMediaAudio, InputMediaDocument, InputMediaPhoto and InputMediaVideo>,
 //     disable_notification: Option<bool>,
@@ -208,7 +214,7 @@ pub struct ForwardMessagesParams {
 
 // // https://core.telegram.org/bots/api#sendlocation
 // struct SendLocationParams {
-//     chat_id: i64 or String,
+//     chat_id: ChatId,
 //     message_thread_id: Option<i64>,
 //     latitude: f64,
 //     longitude: f64,
@@ -224,7 +230,7 @@ pub struct ForwardMessagesParams {
 
 // // https://core.telegram.org/bots/api#sendvenue
 // struct SendVenueParams {
-//     chat_id: i64 or String,
+//     chat_id: ChatId,
 //     message_thread_id: Option<i64>,
 //     latitude: f64,
 //     longitude: f64,
@@ -242,7 +248,7 @@ pub struct ForwardMessagesParams {
 
 // // https://core.telegram.org/bots/api#sendcontact
 // struct SendContactParams {
-//     chat_id: i64 or String,
+//     chat_id: ChatId,
 //     message_thread_id: Option<i64>,
 //     phone_number: String,
 //     first_name: String,
@@ -256,7 +262,7 @@ pub struct ForwardMessagesParams {
 
 // // https://core.telegram.org/bots/api#sendpoll
 // struct SendPollParams {
-//     chat_id: i64 or String,
+//     chat_id: ChatId,
 //     message_thread_id: Option<i64>,
 //     question: String,
 //     options: Vec<String>,
@@ -278,7 +284,7 @@ pub struct ForwardMessagesParams {
 
 // // https://core.telegram.org/bots/api#senddice
 // struct SendDiceParams {
-//     chat_id: i64 or String,
+//     chat_id: ChatId,
 //     message_thread_id: Option<i64>,
 //     emoji: Option<String>,
 //     disable_notification: Option<bool>,
@@ -289,7 +295,7 @@ pub struct ForwardMessagesParams {
 
 // // https://core.telegram.org/bots/api#setmessagereaction
 // struct SetMessageReactionParams {
-//     chat_id: i64 or String,
+//     chat_id: ChatId,
 //     message_id: i64,
 //     reaction: Option<Vec<ReactionType>>,
 //     is_big: Option<bool>,
@@ -309,7 +315,7 @@ pub struct ForwardMessagesParams {
 
 // // https://core.telegram.org/bots/api#banchatmember
 // struct BanChatMemberParams {
-//     chat_id: i64 or String,
+//     chat_id: ChatId,
 //     user_id: i64,
 //     until_date: Option<i64>,
 //     revoke_messages: Option<bool>,
@@ -317,14 +323,14 @@ pub struct ForwardMessagesParams {
 
 // // https://core.telegram.org/bots/api#unbanchatmember
 // struct UnbanChatMemberParams {
-//     chat_id: i64 or String,
+//     chat_id: ChatId,
 //     user_id: i64,
 //     only_if_banned: Option<bool>,
 // }
 
 // // https://core.telegram.org/bots/api#restrictchatmember
 // struct RestrictChatMemberParams {
-//     chat_id: i64 or String,
+//     chat_id: ChatId,
 //     user_id: i64,
 //     permissions: ChatPermissions,
 //     use_independent_chat_permissions: Option<bool>,
@@ -333,7 +339,7 @@ pub struct ForwardMessagesParams {
 
 // // https://core.telegram.org/bots/api#promotechatmember
 // struct PromoteChatMemberParams {
-//     chat_id: i64 or String,
+//     chat_id: ChatId,
 //     user_id: i64,
 //     is_anonymous: Option<bool>,
 //     can_manage_chat: Option<bool>,
@@ -354,38 +360,38 @@ pub struct ForwardMessagesParams {
 
 // // https://core.telegram.org/bots/api#setchatadministratorcustomtitle
 // struct SetChatAdministratorCustomTitleParams {
-//     chat_id: i64 or String,
+//     chat_id: ChatId,
 //     user_id: i64,
 //     custom_title: String,
 // }
 
 // // https://core.telegram.org/bots/api#banchatsenderchat
 // struct BanChatSenderChatParams {
-//     chat_id: i64 or String,
+//     chat_id: ChatId,
 //     sender_chat_id: i64,
 // }
 
 // // https://core.telegram.org/bots/api#unbanchatsenderchat
 // struct UnbanChatSenderChatParams {
-//     chat_id: i64 or String,
+//     chat_id: ChatId,
 //     sender_chat_id: i64,
 // }
 
 // // https://core.telegram.org/bots/api#setchatpermissions
 // struct SetChatPermissionsParams {
-//     chat_id: i64 or String,
+//     chat_id: ChatId,
 //     permissions: ChatPermissions,
 //     use_independent_chat_permissions: Option<bool>,
 // }
 
 // // https://core.telegram.org/bots/api#exportchatinvitelink
 // struct ExportChatInviteLinkParams {
-//     chat_id: i64 or String,
+//     chat_id: ChatId,
 // }
 
 // // https://core.telegram.org/bots/api#createchatinvitelink
 // struct CreateChatInviteLinkParams {
-//     chat_id: i64 or String,
+//     chat_id: ChatId,
 //     name: Option<String>,
 //     expire_date: Option<i64>,
 //     member_limit: Option<i64>,
@@ -394,7 +400,7 @@ pub struct ForwardMessagesParams {
 
 // // https://core.telegram.org/bots/api#editchatinvitelink
 // struct EditChatInviteLinkParams {
-//     chat_id: i64 or String,
+//     chat_id: ChatId,
 //     invite_link: String,
 //     name: Option<String>,
 //     expire_date: Option<i64>,
@@ -404,98 +410,98 @@ pub struct ForwardMessagesParams {
 
 // // https://core.telegram.org/bots/api#revokechatinvitelink
 // struct RevokeChatInviteLinkParams {
-//     chat_id: i64 or String,
+//     chat_id: ChatId,
 //     invite_link: String,
 // }
 
 // // https://core.telegram.org/bots/api#approvechatjoinrequest
 // struct ApproveChatJoinRequestParams {
-//     chat_id: i64 or String,
+//     chat_id: ChatId,
 //     user_id: i64,
 // }
 
 // // https://core.telegram.org/bots/api#declinechatjoinrequest
 // struct DeclineChatJoinRequestParams {
-//     chat_id: i64 or String,
+//     chat_id: ChatId,
 //     user_id: i64,
 // }
 
 // // https://core.telegram.org/bots/api#setchatphoto
 // struct SetChatPhotoParams {
-//     chat_id: i64 or String,
+//     chat_id: ChatId,
 //     photo: InputFile,
 // }
 
 // // https://core.telegram.org/bots/api#deletechatphoto
 // struct DeleteChatPhotoParams {
-//     chat_id: i64 or String,
+//     chat_id: ChatId,
 // }
 
 // // https://core.telegram.org/bots/api#setchattitle
 // struct SetChatTitleParams {
-//     chat_id: i64 or String,
+//     chat_id: ChatId,
 //     title: String,
 // }
 
 // // https://core.telegram.org/bots/api#setchatdescription
 // struct SetChatDescriptionParams {
-//     chat_id: i64 or String,
+//     chat_id: ChatId,
 //     description: Option<String>,
 // }
 
 // // https://core.telegram.org/bots/api#pinchatmessage
 // struct PinChatMessageParams {
-//     chat_id: i64 or String,
+//     chat_id: ChatId,
 //     message_id: i64,
 //     disable_notification: Option<bool>,
 // }
 
 // // https://core.telegram.org/bots/api#unpinchatmessage
 // struct UnpinChatMessageParams {
-//     chat_id: i64 or String,
+//     chat_id: ChatId,
 //     message_id: Option<i64>,
 // }
 
 // // https://core.telegram.org/bots/api#unpinallchatmessages
 // struct UnpinAllChatMessagesParams {
-//     chat_id: i64 or String,
+//     chat_id: ChatId,
 // }
 
 // // https://core.telegram.org/bots/api#leavechat
 // struct LeaveChatParams {
-//     chat_id: i64 or String,
+//     chat_id: ChatId,
 // }
 
 // // https://core.telegram.org/bots/api#getchat
 // struct GetChatParams {
-//     chat_id: i64 or String,
+//     chat_id: ChatId,
 // }
 
 // // https://core.telegram.org/bots/api#getchatadministrators
 // struct GetChatAdministratorsParams {
-//     chat_id: i64 or String,
+//     chat_id: ChatId,
 // }
 
 // // https://core.telegram.org/bots/api#getchatmembercount
 // struct GetChatMemberCountParams {
-//     chat_id: i64 or String,
+//     chat_id: ChatId,
 // }
 
 // // https://core.telegram.org/bots/api#getchatmember
 // struct GetChatMemberParams {
-//     chat_id: i64 or String,
+//     chat_id: ChatId,
 //     user_id: i64,
 // }
 
 // // https://core.telegram.org/bots/api#setchatstickerset
 // struct SetChatStickerSetParams {
-//     chat_id: i64 or String,
+//     chat_id: ChatId,
 //     sticker_set_name: String,
 // }
 
 // // https://core.telegram.org/bots/api#deletechatstickerset
 // struct DeleteChatStickerSetParams {
-//     chat_id: i64 or String,
+//     chat_id: ChatId,
 // }
 
 // // https://core.telegram.org/bots/api#getforumtopiciconstickers
@@ -504,7 +510,7 @@ pub struct ForwardMessagesParams {
 
 // // https://core.telegram.org/bots/api#createforumtopic
 // struct CreateForumTopicParams {
-//     chat_id: i64 or String,
+//     chat_id: ChatId,
 //     name: String,
 //     icon_color: Option<i64>,
 //     icon_custom_emoji_id: Option<String>,
@@ -512,7 +518,7 @@ pub struct ForwardMessagesParams {
 
 // // https://core.telegram.org/bots/api#editforumtopic
 // struct EditForumTopicParams {
-//     chat_id: i64 or String,
+//     chat_id: ChatId,
 //     message_thread_id: i64,
 //     name: Option<String>,
 //     icon_custom_emoji_id: Option<String>,
@@ -520,57 +526,57 @@ pub struct ForwardMessagesParams {
 
 // // https://core.telegram.org/bots/api#closeforumtopic
 // struct CloseForumTopicParams {
-//     chat_id: i64 or String,
+//     chat_id: ChatId,
 //     message_thread_id: i64,
 // }
 
 // // https://core.telegram.org/bots/api#reopenforumtopic
 // struct ReopenForumTopicParams {
-//     chat_id: i64 or String,
+//     chat_id: ChatId,
 //     message_thread_id: i64,
 // }
 
 // // https://core.telegram.org/bots/api#deleteforumtopic
 // struct DeleteForumTopicParams {
-//     chat_id: i64 or String,
+//     chat_id: ChatId,
 //     message_thread_id: i64,
 // }
 
 // // https://core.telegram.org/bots/api#unpinallforumtopicmessages
 // struct UnpinAllForumTopicMessagesParams {
-//     chat_id: i64 or String,
+//     chat_id: ChatId,
 //     message_thread_id: i64,
 // }
 
 // // https://core.telegram.org/bots/api#editgeneralforumtopic
 // struct EditGeneralForumTopicParams {
-//     chat_id: i64 or String,
+//     chat_id: ChatId,
 //     name: String,
 // }
 
 // // https://core.telegram.org/bots/api#closegeneralforumtopic
 // struct CloseGeneralForumTopicParams {
-//     chat_id: i64 or String,
+//     chat_id: ChatId,
 // }
 
 // // https://core.telegram.org/bots/api#reopengeneralforumtopic
 // struct ReopenGeneralForumTopicParams {
-//     chat_id: i64 or String,
+//     chat_id: ChatId,
 // }
 
 // // https://core.telegram.org/bots/api#hidegeneralforumtopic
 // struct HideGeneralForumTopicParams {
-//     chat_id: i64 or String,
+//     chat_id: ChatId,
 // }
 
 // // https://core.telegram.org/bots/api#unhidegeneralforumtopic
 // struct UnhideGeneralForumTopicParams {
-//     chat_id: i64 or String,
+//     chat_id: ChatId,
 // }
 
 // // https://core.telegram.org/bots/api#unpinallgeneralforumtopicmessages
 // struct UnpinAllGeneralForumTopicMessagesParams {
-//     chat_id: i64 or String,
+//     chat_id: ChatId,
 // }
 
 // // https://core.telegram.org/bots/api#answercallbackquery
@@ -579,7 +585,7 @@ pub struct ForwardMessagesParams {
 
 // // https://core.telegram.org/bots/api#getuserchatboosts
 // struct GetUserChatBoostsParams {
-//     chat_id: i64 or String,
+//     chat_id: ChatId,
 //     user_id: i64,
 // }
 
@@ -720,26 +726,26 @@ pub struct ForwardMessagesParams {
 
 // // https://core.telegram.org/bots/api#stoppoll
 // struct StopPollParams {
-//     chat_id: i64 or String,
+//     chat_id: ChatId,
 //     message_id: i64,
 //     reply_markup: Option<InlineKeyboardMarkup>,
 // }
 
 // // https://core.telegram.org/bots/api#deletemessage
 // struct DeleteMessageParams {
-//     chat_id: i64 or String,
+//     chat_id: ChatId,
 //     message_id: i64,
 // }
 
 // // https://core.telegram.org/bots/api#deletemessages
 // struct DeleteMessagesParams {
-//     chat_id: i64 or String,
+//     chat_id: ChatId,
 //     message_ids: Vec<i64>,
 // }
 
 // // https://core.telegram.org/bots/api#sendsticker
 // struct SendStickerParams {
-//     chat_id: i64 or String,
+//     chat_id: ChatId,
 //     message_thread_id: Option<i64>,
 //     sticker: InputFile or String,
 //     emoji: Option<String>,
@@ -855,7 +861,7 @@ pub struct ForwardMessagesParams {
 
 // // https://core.telegram.org/bots/api#sendinvoice
 // struct SendInvoiceParams {
-//     chat_id: i64 or String,
+//     chat_id: ChatId,
 //     message_thread_id: Option<i64>,
 //     title: String,
 //     description: String,

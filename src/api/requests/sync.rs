@@ -1,6 +1,6 @@
 use crate::api::params::{
-    DeleteWebhookParams, GetUpdateParams, SendMessageParams, SetWebhookParams,
-    ForwardMessageParams, ForwardMessagesParams
+    DeleteWebhookParams, ForwardMessageParams, ForwardMessagesParams, GetUpdateParams,
+    SendMessageParams, SetWebhookParams,
 };
 use crate::api::types::message::Message;
 use crate::api::types::message_id::MessageId;
