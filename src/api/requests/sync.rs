@@ -1,7 +1,9 @@
-use crate::api::params::{
-    DeleteWebhookParams, ForwardMessageParams, ForwardMessagesParams, GetUpdateParams,
-    SendMessageParams, SetWebhookParams,
-};
+use crate::api::params::delete_webhook::DeleteWebhook;
+use crate::api::params::forward_message::ForwardMessage;
+use crate::api::params::forward_messages::ForwardMessages;
+use crate::api::params::get_update::GetUpdate;
+use crate::api::params::send_message::SendMessage;
+use crate::api::params::set_webhook::SetWebhook;
 use crate::api::types::message::Message;
 use crate::api::types::message_id::MessageId;
 use crate::api::types::update::Update;
@@ -12,16 +14,16 @@ use crate::errors::Error;
 pub trait Requests {
     /// https://core.telegram.org/bots/api#getupdates
     /// Use this method to receive incoming updates using long polling (wiki). Returns an Array of Update objects.
-    fn get_updates(&self, params: &GetUpdateParams) -> Result<Vec<Update>, Error>;
+    fn get_updates(&self, params: &GetUpdate) -> Result<Vec<Update>, Error>;
 
     /// https://core.telegram.org/bots/api#setwebhook
     /// Use this method to specify a URL and receive incoming updates via an outgoing webhook. Whenever there is an update for the bot, we will send an HTTPS POST request to the specified URL, containing a JSON-serialized Update. In case of an unsuccessful request, we will give up after a reasonable amount of attempts. Returns True on success.
     /// If you'd like to make sure that the webhook was set by you, you can specify secret data in the parameter secret_token. If specified, the request will contain a header “X-Telegram-Bot-Api-Secret-Token” with the secret token as content.
-    fn set_webhook(&self, params: &SetWebhookParams) -> Result<bool, Error>;
+    fn set_webhook(&self, params: &SetWebhook) -> Result<bool, Error>;
 
     /// https://core.telegram.org/bots/api#deletewebhook
     /// Use this method to remove webhook integration if you decide to switch back to getUpdates. Returns True on success.
-    fn delete_webhook(&self, params: &DeleteWebhookParams) -> Result<bool, Error>;
+    fn delete_webhook(&self, params: &DeleteWebhook) -> Result<bool, Error>;
 
     /// https://core.telegram.org/bots/api#getwebhookinfo
     /// Use this method to get current webhook status. Requires no parameters. On success, returns a WebhookInfo object. If the bot is using getUpdates, will return an object with the url field empty.
@@ -41,15 +43,15 @@ pub trait Requests {
 
     /// https://core.telegram.org/bots/api#sendmessage
     /// Use this method to send text messages. On success, the sent Message is returned.
-    fn send_message(&self, params: &SendMessageParams) -> Result<Message, Error>;
+    fn send_message(&self, params: &SendMessage) -> Result<Message, Error>;
 
     /// https://core.telegram.org/bots/api#forwardmessage
     /// Use this method to forward messages of any kind. Service messages and messages with protected content can't be forwarded. On success, the sent Message is returned.
-    fn forward_message(&self, params: &ForwardMessageParams) -> Result<MessageId, Error>;
+    fn forward_message(&self, params: &ForwardMessage) -> Result<MessageId, Error>;
 
     /// https://core.telegram.org/bots/api#forwardmessages
     /// Use this method to forward multiple messages of any kind. If some of the specified messages can't be found or forwarded, they are skipped. Service messages and messages with protected content can't be forwarded. Album grouping is kept for forwarded messages. On success, an array of MessageId of the sent messages is returned.
-    fn forward_messages(&self, params: &ForwardMessagesParams) -> Result<MessageId, Error>;
+    fn forward_messages(&self, params: &ForwardMessages) -> Result<MessageId, Error>;
 
     // // https://core.telegram.org/bots/api#copymessage
     // fn copy_message(&self)

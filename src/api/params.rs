@@ -1,956 +1,112 @@
-use crate::api::enums::ReplyMarkup;
-use crate::api::types::{InputFile, LinkPreviewOptions, MessageEntity, ReplyParameters};
-
-use serde::{Deserialize, Serialize};
-
-#[derive(Debug, Serialize, Deserialize, Default)]
-pub struct ChatId(pub i64);
-
-#[derive(Debug, Serialize, Deserialize, Default)]
-pub struct ChannelUsername(pub String);
-
-/// https://core.telegram.org/bots/api#getupdates
-#[derive(Debug, Serialize)]
-pub struct GetUpdateParams {
-    pub offset: i64,
-    pub limit: i64,
-    pub timeout: u64,
-}
-
-/// https://core.telegram.org/bots/api#setwebhook
-#[derive(Debug, Serialize, Default)]
-#[serde_with_macros::skip_serializing_none]
-pub struct SetWebhookParams {
-    pub url: String,
-    pub certificate: Option<InputFile>,
-    pub ip_address: Option<String>,
-    pub max_connections: Option<u32>,
-    pub allowed_updates: Option<Vec<String>>,
-    pub drop_pending_updates: Option<bool>,
-    pub secret_token: Option<String>,
-}
-
-/// https://core.telegram.org/bots/api#deletewebhook
-#[derive(Debug, Serialize, Default)]
-#[serde_with_macros::skip_serializing_none]
-pub struct DeleteWebhookParams {
-    pub drop_pending_updates: Option<bool>,
-}
-
-/// https://core.telegram.org/bots/api#sendmessage
-#[derive(Debug, Serialize, Default)]
-#[serde_with_macros::skip_serializing_none]
-pub struct SendMessageParams {
-    pub chat_id: ChatId,
-    pub message_thread_id: Option<i64>,
-    pub text: String,
-    pub parse_mode: Option<String>,
-    pub entities: Option<Vec<MessageEntity>>,
-    pub link_preview_options: Option<LinkPreviewOptions>,
-    pub disable_notification: Option<bool>,
-    pub protect_content: Option<bool>,
-    pub reply_parameters: Option<ReplyParameters>,
-    pub reply_markup: Option<ReplyMarkup>,
-}
-
-/// https://core.telegram.org/bots/api#forwardmessage
-#[derive(Debug, Serialize, Default)]
-#[serde_with_macros::skip_serializing_none]
-pub struct ForwardMessageParams {
-    pub chat_id: ChatId,
-    pub message_thread_id: Option<i64>,
-    pub from_chat_id: ChatId,
-    pub disable_notification: Option<bool>,
-    pub protect_content: Option<bool>,
-    pub message_id: i64,
-}
-
-/// https://core.telegram.org/bots/api#forwardmessages
-#[derive(Debug, Serialize, Default)]
-#[serde_with_macros::skip_serializing_none]
-pub struct ForwardMessagesParams {
-    pub chat_id: ChatId,
-    pub message_thread_id: Option<i64>,
-    pub from_chat_id: ChatId,
-    pub message_ids: Vec<i64>,
-    pub disable_notification: Option<bool>,
-    pub protect_content: Option<bool>,
-}
-
-// // https://core.telegram.org/bots/api#copymessage
-// struct CopyMessageParams {
-//     chat_id: ChatId,
-//     message_thread_id: Option<i64>,
-//     from_chat_id: ChatId,
-//     message_id: i64,
-//     caption: Option<String>,
-//     parse_mode: Option<String>,
-//     caption_entities: Option<Vec<MessageEntity>>,
-//     disable_notification: Option<bool>,
-//     protect_content: Option<bool>,
-//     reply_parameters: Option<ReplyParameters>,
-//     reply_markup: Option<InlineKeyboardMarkup or ReplyKeyboardMarkup or ReplyKeyboardRemove or ForceReply>,
-// }
-
-// // https://core.telegram.org/bots/api#copymessages
-// struct CopyMessagesParams {
-//     chat_id: ChatId,
-//     message_thread_id: Option<i64>,
-//     from_chat_id: ChatId,
-//     message_ids: Vec<i64>,
-//     disable_notification: Option<bool>,
-//     protect_content: Option<bool>,
-//     remove_caption: Option<bool>,
-// }
-
-// // https://core.telegram.org/bots/api#sendphoto
-// struct SendPhotoParams {
-//     chat_id: ChatId,
-//     message_thread_id: Option<i64>,
-//     photo: InputFile or String,
-//     caption: Option<String>,
-//     parse_mode: Option<String>,
-//     caption_entities: Option<Vec<MessageEntity>>,
-//     has_spoiler: Option<bool>,
-//     disable_notification: Option<bool>,
-//     protect_content: Option<bool>,
-//     reply_parameters: Option<ReplyParameters>,
-//     reply_markup: Option<InlineKeyboardMarkup or ReplyKeyboardMarkup or ReplyKeyboardRemove or ForceReply>,
-// }
-
-// // https://core.telegram.org/bots/api#senddocument
-// struct SendDocumentParams {
-//     chat_id: ChatId,
-//     message_thread_id: Option<i64>,
-//     document: InputFile or String,
-//     thumbnail: Option<InputFile or String>,
-//     caption: Option<String>,
-//     parse_mode: Option<String>,
-//     caption_entities: Option<Vec<MessageEntity>>,
-//     disable_content_type_detection: Option<bool>,
-//     disable_notification: Option<bool>,
-//     protect_content: Option<bool>,
-//     reply_parameters: Option<ReplyParameters>,
-//     reply_markup: Option<InlineKeyboardMarkup or ReplyKeyboardMarkup or ReplyKeyboardRemove or ForceReply>,
-// }
-
-// // https://core.telegram.org/bots/api#sendvideo
-// struct SendVideoParams {
-//     chat_id: ChatId,
-//     message_thread_id: Option<i64>,
-//     video: InputFile or String,
-//     duration: Option<i64>,
-//     width: Option<i64>,
-//     height: Option<i64>,
-//     thumbnail: Option<InputFile or String>,
-//     caption: Option<String>,
-//     parse_mode: Option<String>,
-//     caption_entities: Option<Vec<MessageEntity>>,
-//     has_spoiler: Option<bool>,
-//     supports_streaming: Option<bool>,
-//     disable_notification: Option<bool>,
-//     protect_content: Option<bool>,
-//     reply_parameters: Option<ReplyParameters>,
-//     reply_markup: Option<InlineKeyboardMarkup or ReplyKeyboardMarkup or ReplyKeyboardRemove or ForceReply>,
-// }
-
-// // https://core.telegram.org/bots/api#sendanimation
-// struct SendAnimationParams {
-//     chat_id: ChatId,
-//     message_thread_id: Option<i64>,
-//     animation: InputFile or String,
-//     duration: Option<i64>,
-//     width: Option<i64>,
-//     height: Option<i64>,
-//     thumbnail: Option<InputFile or String>,
-//     caption: Option<String>,
-//     parse_mode: Option<String>,
-//     caption_entities: Option<Vec<MessageEntity>>,
-//     has_spoiler: Option<bool>,
-//     disable_notification: Option<bool>,
-//     protect_content: Option<bool>,
-//     reply_parameters: Option<ReplyParameters>,
-//     reply_markup: Option<InlineKeyboardMarkup or ReplyKeyboardMarkup or ReplyKeyboardRemove or ForceReply>,
-// }
-
-// // https://core.telegram.org/bots/api#sendvoice
-// struct SendVoiceParams {
-//     chat_id: ChatId,
-//     message_thread_id: Option<i64>,
-//     voice: InputFile or String,
-//     caption: Option<String>,
-//     parse_mode: Option<String>,
-//     caption_entities: Option<Vec<MessageEntity>>,
-//     duration: Option<i64>,
-//     disable_notification: Option<bool>,
-//     protect_content: Option<bool>,
-//     reply_parameters: Option<ReplyParameters>,
-//     reply_markup: Option<InlineKeyboardMarkup or ReplyKeyboardMarkup or ReplyKeyboardRemove or ForceReply>,
-// }
-
-// // https://core.telegram.org/bots/api#sendvideonote
-// struct SendVideoNoteParams {
-//     chat_id: ChatId,
-//     message_thread_id: Option<i64>,
-//     video_note: InputFile or String,
-//     duration: Option<i64>,
-//     length: Option<i64>,
-//     thumbnail: Option<InputFile or String>,
-//     disable_notification: Option<bool>,
-//     protect_content: Option<bool>,
-//     reply_parameters: Option<ReplyParameters>,
-//     reply_markup: Option<InlineKeyboardMarkup or ReplyKeyboardMarkup or ReplyKeyboardRemove or ForceReply>,
-// }
-
-// // https://core.telegram.org/bots/api#sendmediagroup
-// struct SendMediaGroupParams {
-//     chat_id: ChatId,
-//     message_thread_id: Option<i64>,
-//     media: Vec<InputMediaAudio, InputMediaDocument, InputMediaPhoto and InputMediaVideo>,
-//     disable_notification: Option<bool>,
-//     protect_content: Option<bool>,
-//     reply_parameters: Option<ReplyParameters>,
-// }
-
-// // https://core.telegram.org/bots/api#sendlocation
-// struct SendLocationParams {
-//     chat_id: ChatId,
-//     message_thread_id: Option<i64>,
-//     latitude: f64,
-//     longitude: f64,
-//     horizontal_accuracy: Option<f64>,
-//     live_period: Option<i64>,
-//     heading: Option<i64>,
-//     proximity_alert_radius: Option<i64>,
-//     disable_notification: Option<bool>,
-//     protect_content: Option<bool>,
-//     reply_parameters: Option<ReplyParameters>,
-//     reply_markup: Option<InlineKeyboardMarkup or ReplyKeyboardMarkup or ReplyKeyboardRemove or ForceReply>,
-// }
-
-// // https://core.telegram.org/bots/api#sendvenue
-// struct SendVenueParams {
-//     chat_id: ChatId,
-//     message_thread_id: Option<i64>,
-//     latitude: f64,
-//     longitude: f64,
-//     title: String,
-//     address: String,
-//     foursquare_id: Option<String>,
-//     foursquare_type: Option<String>,
-//     google_place_id: Option<String>,
-//     google_place_type: Option<String>,
-//     disable_notification: Option<bool>,
-//     protect_content: Option<bool>,
-//     reply_parameters: Option<ReplyParameters>,
-//     reply_markup: Option<InlineKeyboardMarkup or ReplyKeyboardMarkup or ReplyKeyboardRemove or ForceReply>,
-// }
-
-// // https://core.telegram.org/bots/api#sendcontact
-// struct SendContactParams {
-//     chat_id: ChatId,
-//     message_thread_id: Option<i64>,
-//     phone_number: String,
-//     first_name: String,
-//     last_name: Option<String>,
-//     vcard: Option<String>,
-//     disable_notification: Option<bool>,
-//     protect_content: Option<bool>,
-//     reply_parameters: Option<ReplyParameters>,
-//     reply_markup: Option<InlineKeyboardMarkup or ReplyKeyboardMarkup or ReplyKeyboardRemove or ForceReply>,
-// }
-
-// // https://core.telegram.org/bots/api#sendpoll
-// struct SendPollParams {
-//     chat_id: ChatId,
-//     message_thread_id: Option<i64>,
-//     question: String,
-//     options: Vec<String>,
-//     is_anonymous: Option<bool>,
-//     type: Option<String>,
-//     allows_multiple_answers: Option<bool>,
-//     correct_option_id: Option<i64>,
-//     explanation: Option<String>,
-//     explanation_parse_mode: Option<String>,
-//     explanation_entities: Option<Vec<MessageEntity>>,
-//     open_period: Option<i64>,
-//     close_date: Option<i64>,
-//     is_closed: Option<bool>,
-//     disable_notification: Option<bool>,
-//     protect_content: Option<bool>,
-//     reply_parameters: Option<ReplyParameters>,
-//     reply_markup: Option<InlineKeyboardMarkup or ReplyKeyboardMarkup or ReplyKeyboardRemove or ForceReply>,
-// }
-
-// // https://core.telegram.org/bots/api#senddice
-// struct SendDiceParams {
-//     chat_id: ChatId,
-//     message_thread_id: Option<i64>,
-//     emoji: Option<String>,
-//     disable_notification: Option<bool>,
-//     protect_content: Option<bool>,
-//     reply_parameters: Option<ReplyParameters>,
-//     reply_markup: Option<InlineKeyboardMarkup or ReplyKeyboardMarkup or ReplyKeyboardRemove or ForceReply>,
-// }
-
-// // https://core.telegram.org/bots/api#setmessagereaction
-// struct SetMessageReactionParams {
-//     chat_id: ChatId,
-//     message_id: i64,
-//     reaction: Option<Vec<ReactionType>>,
-//     is_big: Option<bool>,
-// }
-
-// // https://core.telegram.org/bots/api#getuserprofilephotos
-// struct GetUserProfilePhotosParams {
-//     user_id: i64,
-//     offset: Option<i64>,
-//     limit: Option<i64>,
-// }
-
-// // https://core.telegram.org/bots/api#getfile
-// struct GetFileParams {
-//     file_id: String,
-// }
-
-// // https://core.telegram.org/bots/api#banchatmember
-// struct BanChatMemberParams {
-//     chat_id: ChatId,
-//     user_id: i64,
-//     until_date: Option<i64>,
-//     revoke_messages: Option<bool>,
-// }
-
-// // https://core.telegram.org/bots/api#unbanchatmember
-// struct UnbanChatMemberParams {
-//     chat_id: ChatId,
-//     user_id: i64,
-//     only_if_banned: Option<bool>,
-// }
-
-// // https://core.telegram.org/bots/api#restrictchatmember
-// struct RestrictChatMemberParams {
-//     chat_id: ChatId,
-//     user_id: i64,
-//     permissions: ChatPermissions,
-//     use_independent_chat_permissions: Option<bool>,
-//     until_date: Option<i64>,
-// }
-
-// // https://core.telegram.org/bots/api#promotechatmember
-// struct PromoteChatMemberParams {
-//     chat_id: ChatId,
-//     user_id: i64,
-//     is_anonymous: Option<bool>,
-//     can_manage_chat: Option<bool>,
-//     can_delete_messages: Option<bool>,
-//     can_manage_video_chats: Option<bool>,
-//     can_restrict_members: Option<bool>,
-//     can_promote_members: Option<bool>,
-//     can_change_info: Option<bool>,
-//     can_invite_users: Option<bool>,
-//     can_post_messages: Option<bool>,
-//     can_edit_messages: Option<bool>,
-//     can_pin_messages: Option<bool>,
-//     can_post_stories: Option<bool>,
-//     can_edit_stories: Option<bool>,
-//     can_delete_stories: Option<bool>,
-//     can_manage_topics: Option<bool>,
-// }
-
-// // https://core.telegram.org/bots/api#setchatadministratorcustomtitle
-// struct SetChatAdministratorCustomTitleParams {
-//     chat_id: ChatId,
-//     user_id: i64,
-//     custom_title: String,
-// }
-
-// // https://core.telegram.org/bots/api#banchatsenderchat
-// struct BanChatSenderChatParams {
-//     chat_id: ChatId,
-//     sender_chat_id: i64,
-// }
-
-// // https://core.telegram.org/bots/api#unbanchatsenderchat
-// struct UnbanChatSenderChatParams {
-//     chat_id: ChatId,
-//     sender_chat_id: i64,
-// }
-
-// // https://core.telegram.org/bots/api#setchatpermissions
-// struct SetChatPermissionsParams {
-//     chat_id: ChatId,
-//     permissions: ChatPermissions,
-//     use_independent_chat_permissions: Option<bool>,
-// }
-
-// // https://core.telegram.org/bots/api#exportchatinvitelink
-// struct ExportChatInviteLinkParams {
-//     chat_id: ChatId,
-// }
-
-// // https://core.telegram.org/bots/api#createchatinvitelink
-// struct CreateChatInviteLinkParams {
-//     chat_id: ChatId,
-//     name: Option<String>,
-//     expire_date: Option<i64>,
-//     member_limit: Option<i64>,
-//     creates_join_request: Option<bool>,
-// }
-
-// // https://core.telegram.org/bots/api#editchatinvitelink
-// struct EditChatInviteLinkParams {
-//     chat_id: ChatId,
-//     invite_link: String,
-//     name: Option<String>,
-//     expire_date: Option<i64>,
-//     member_limit: Option<i64>,
-//     creates_join_request: Option<bool>,
-// }
-
-// // https://core.telegram.org/bots/api#revokechatinvitelink
-// struct RevokeChatInviteLinkParams {
-//     chat_id: ChatId,
-//     invite_link: String,
-// }
-
-// // https://core.telegram.org/bots/api#approvechatjoinrequest
-// struct ApproveChatJoinRequestParams {
-//     chat_id: ChatId,
-//     user_id: i64,
-// }
-
-// // https://core.telegram.org/bots/api#declinechatjoinrequest
-// struct DeclineChatJoinRequestParams {
-//     chat_id: ChatId,
-//     user_id: i64,
-// }
-
-// // https://core.telegram.org/bots/api#setchatphoto
-// struct SetChatPhotoParams {
-//     chat_id: ChatId,
-//     photo: InputFile,
-// }
-
-// // https://core.telegram.org/bots/api#deletechatphoto
-// struct DeleteChatPhotoParams {
-//     chat_id: ChatId,
-// }
-
-// // https://core.telegram.org/bots/api#setchattitle
-// struct SetChatTitleParams {
-//     chat_id: ChatId,
-//     title: String,
-// }
-
-// // https://core.telegram.org/bots/api#setchatdescription
-// struct SetChatDescriptionParams {
-//     chat_id: ChatId,
-//     description: Option<String>,
-// }
-
-// // https://core.telegram.org/bots/api#pinchatmessage
-// struct PinChatMessageParams {
-//     chat_id: ChatId,
-//     message_id: i64,
-//     disable_notification: Option<bool>,
-// }
-
-// // https://core.telegram.org/bots/api#unpinchatmessage
-// struct UnpinChatMessageParams {
-//     chat_id: ChatId,
-//     message_id: Option<i64>,
-// }
-
-// // https://core.telegram.org/bots/api#unpinallchatmessages
-// struct UnpinAllChatMessagesParams {
-//     chat_id: ChatId,
-// }
-
-// // https://core.telegram.org/bots/api#leavechat
-// struct LeaveChatParams {
-//     chat_id: ChatId,
-// }
-
-// // https://core.telegram.org/bots/api#getchat
-// struct GetChatParams {
-//     chat_id: ChatId,
-// }
-
-// // https://core.telegram.org/bots/api#getchatadministrators
-// struct GetChatAdministratorsParams {
-//     chat_id: ChatId,
-// }
-
-// // https://core.telegram.org/bots/api#getchatmembercount
-// struct GetChatMemberCountParams {
-//     chat_id: ChatId,
-// }
-
-// // https://core.telegram.org/bots/api#getchatmember
-// struct GetChatMemberParams {
-//     chat_id: ChatId,
-//     user_id: i64,
-// }
-
-// // https://core.telegram.org/bots/api#setchatstickerset
-// struct SetChatStickerSetParams {
-//     chat_id: ChatId,
-//     sticker_set_name: String,
-// }
-
-// // https://core.telegram.org/bots/api#deletechatstickerset
-// struct DeleteChatStickerSetParams {
-//     chat_id: ChatId,
-// }
-
-// // https://core.telegram.org/bots/api#getforumtopiciconstickers
-// struct GetForumTopicIconStickersParams {
-// }
-
-// // https://core.telegram.org/bots/api#createforumtopic
-// struct CreateForumTopicParams {
-//     chat_id: ChatId,
-//     name: String,
-//     icon_color: Option<i64>,
-//     icon_custom_emoji_id: Option<String>,
-// }
-
-// // https://core.telegram.org/bots/api#editforumtopic
-// struct EditForumTopicParams {
-//     chat_id: ChatId,
-//     message_thread_id: i64,
-//     name: Option<String>,
-//     icon_custom_emoji_id: Option<String>,
-// }
-
-// // https://core.telegram.org/bots/api#closeforumtopic
-// struct CloseForumTopicParams {
-//     chat_id: ChatId,
-//     message_thread_id: i64,
-// }
-
-// // https://core.telegram.org/bots/api#reopenforumtopic
-// struct ReopenForumTopicParams {
-//     chat_id: ChatId,
-//     message_thread_id: i64,
-// }
-
-// // https://core.telegram.org/bots/api#deleteforumtopic
-// struct DeleteForumTopicParams {
-//     chat_id: ChatId,
-//     message_thread_id: i64,
-// }
-
-// // https://core.telegram.org/bots/api#unpinallforumtopicmessages
-// struct UnpinAllForumTopicMessagesParams {
-//     chat_id: ChatId,
-//     message_thread_id: i64,
-// }
-
-// // https://core.telegram.org/bots/api#editgeneralforumtopic
-// struct EditGeneralForumTopicParams {
-//     chat_id: ChatId,
-//     name: String,
-// }
-
-// // https://core.telegram.org/bots/api#closegeneralforumtopic
-// struct CloseGeneralForumTopicParams {
-//     chat_id: ChatId,
-// }
-
-// // https://core.telegram.org/bots/api#reopengeneralforumtopic
-// struct ReopenGeneralForumTopicParams {
-//     chat_id: ChatId,
-// }
-
-// // https://core.telegram.org/bots/api#hidegeneralforumtopic
-// struct HideGeneralForumTopicParams {
-//     chat_id: ChatId,
-// }
-
-// // https://core.telegram.org/bots/api#unhidegeneralforumtopic
-// struct UnhideGeneralForumTopicParams {
-//     chat_id: ChatId,
-// }
-
-// // https://core.telegram.org/bots/api#unpinallgeneralforumtopicmessages
-// struct UnpinAllGeneralForumTopicMessagesParams {
-//     chat_id: ChatId,
-// }
-
-// // https://core.telegram.org/bots/api#answercallbackquery
-// struct AnswerCallbackQueryParams {
-// }
-
-// // https://core.telegram.org/bots/api#getuserchatboosts
-// struct GetUserChatBoostsParams {
-//     chat_id: ChatId,
-//     user_id: i64,
-// }
-
-// // https://core.telegram.org/bots/api#setmycommands
-// struct SetMyCommandsParams {
-//     commands: Vec<BotCommand>,
-//     scope: Option<BotCommandScope>,
-//     language_code: Option<String>,
-// }
-
-// // https://core.telegram.org/bots/api#deletemycommands
-// struct DeleteMyCommandsParams {
-//     scope: Option<BotCommandScope>,
-//     language_code: Option<String>,
-// }
-
-// // https://core.telegram.org/bots/api#getmycommands
-// struct GetMyCommandsParams {
-//     scope: Option<BotCommandScope>,
-//     language_code: Option<String>,
-// }
-
-// // https://core.telegram.org/bots/api#setmyname
-// struct SetMyNameParams {
-//     name: Option<String>,
-//     language_code: Option<String>,
-// }
-
-// // https://core.telegram.org/bots/api#getmyname
-// struct GetMyNameParams {
-//     language_code: Option<String>,
-// }
-
-// // https://core.telegram.org/bots/api#setmydescription
-// struct SetMyDescriptionParams {
-//     description: Option<String>,
-//     language_code: Option<String>,
-// }
-
-// // https://core.telegram.org/bots/api#getmydescription
-// struct GetMyDescriptionParams {
-//     language_code: Option<String>,
-// }
-
-// // https://core.telegram.org/bots/api#setmyshortdescription
-// struct SetMyShortDescriptionParams {
-//     short_description: Option<String>,
-//     language_code: Option<String>,
-// }
-
-// // https://core.telegram.org/bots/api#getmyshortdescription
-// struct GetMyShortDescriptionParams {
-//     language_code: Option<String>,
-// }
-
-// // https://core.telegram.org/bots/api#setchatmenubutton
-// struct SetChatMenuButtonParams {
-//     chat_id: Option<i64>,
-//     menu_button: Option<MenuButton>,
-// }
-
-// // https://core.telegram.org/bots/api#getchatmenubutton
-// struct GetChatMenuButtonParams {
-//     chat_id: Option<i64>,
-// }
-
-// // https://core.telegram.org/bots/api#setmydefaultadministratorrights
-// struct SetMyDefaultAdministratorRightsParams {
-//     rights: Option<ChatAdministratorRights>,
-//     for_channels: Option<bool>,
-// }
-
-// // https://core.telegram.org/bots/api#getmydefaultadministratorrights
-// struct GetMyDefaultAdministratorRightsParams {
-//     for_channels: Option<bool>,
-// }
-
-// // https://core.telegram.org/bots/api#editmessagetext
-// struct EditMessageTextParams {
-//     chat_id: Option<i64 or String>,
-//     message_id: Option<i64>,
-//     inline_message_id: Option<String>,
-//     text: String,
-//     parse_mode: Option<String>,
-//     entities: Option<Vec<MessageEntity>>,
-//     link_preview_options: Option<LinkPreviewOptions>,
-//     reply_markup: Option<InlineKeyboardMarkup>,
-// }
-
-// // https://core.telegram.org/bots/api#editmessagecaption
-// struct EditMessageCaptionParams {
-//     chat_id: Option<i64 or String>,
-//     message_id: Option<i64>,
-//     inline_message_id: Option<String>,
-//     caption: Option<String>,
-//     parse_mode: Option<String>,
-//     caption_entities: Option<Vec<MessageEntity>>,
-//     reply_markup: Option<InlineKeyboardMarkup>,
-// }
-
-// // https://core.telegram.org/bots/api#editmessagemedia
-// struct EditMessageMediaParams {
-//     chat_id: Option<i64 or String>,
-//     message_id: Option<i64>,
-//     inline_message_id: Option<String>,
-//     media: InputMedia,
-//     reply_markup: Option<InlineKeyboardMarkup>,
-// }
-
-// // https://core.telegram.org/bots/api#editmessagelivelocation
-// struct EditMessageLiveLocationParams {
-//     chat_id: Option<i64 or String>,
-//     message_id: Option<i64>,
-//     inline_message_id: Option<String>,
-//     latitude: f64,
-//     longitude: f64,
-//     horizontal_accuracy: Option<f64>,
-//     heading: Option<i64>,
-//     proximity_alert_radius: Option<i64>,
-//     reply_markup: Option<InlineKeyboardMarkup>,
-// }
-
-// // https://core.telegram.org/bots/api#stopmessagelivelocation
-// struct StopMessageLiveLocationParams {
-//     chat_id: Option<i64 or String>,
-//     message_id: Option<i64>,
-//     inline_message_id: Option<String>,
-//     reply_markup: Option<InlineKeyboardMarkup>,
-// }
-
-// // https://core.telegram.org/bots/api#editmessagereplymarkup
-// struct EditMessageReplyMarkupParams {
-//     chat_id: Option<i64 or String>,
-//     message_id: Option<i64>,
-//     inline_message_id: Option<String>,
-//     reply_markup: Option<InlineKeyboardMarkup>,
-// }
-
-// // https://core.telegram.org/bots/api#stoppoll
-// struct StopPollParams {
-//     chat_id: ChatId,
-//     message_id: i64,
-//     reply_markup: Option<InlineKeyboardMarkup>,
-// }
-
-// // https://core.telegram.org/bots/api#deletemessage
-// struct DeleteMessageParams {
-//     chat_id: ChatId,
-//     message_id: i64,
-// }
-
-// // https://core.telegram.org/bots/api#deletemessages
-// struct DeleteMessagesParams {
-//     chat_id: ChatId,
-//     message_ids: Vec<i64>,
-// }
-
-// // https://core.telegram.org/bots/api#sendsticker
-// struct SendStickerParams {
-//     chat_id: ChatId,
-//     message_thread_id: Option<i64>,
-//     sticker: InputFile or String,
-//     emoji: Option<String>,
-//     disable_notification: Option<bool>,
-//     protect_content: Option<bool>,
-//     reply_parameters: Option<ReplyParameters>,
-//     reply_markup: Option<InlineKeyboardMarkup or ReplyKeyboardMarkup or ReplyKeyboardRemove or ForceReply>,
-// }
-
-// // https://core.telegram.org/bots/api#getstickerset
-// struct GetStickerSetParams {
-//     name: String,
-// }
-
-// // https://core.telegram.org/bots/api#getcustomemojistickers
-// struct GetCustomEmojiStickersParams {
-//     custom_emoji_ids: Vec<String>,
-// }
-
-// // https://core.telegram.org/bots/api#uploadstickerfile
-// struct UploadStickerFileParams {
-//     user_id: i64,
-//     sticker: InputFile,
-//     sticker_format: String,
-// }
-
-// // https://core.telegram.org/bots/api#createnewstickerset
-// struct CreateNewStickerSetParams {
-//     user_id: i64,
-//     name: String,
-//     title: String,
-//     stickers: Vec<InputSticker>,
-//     sticker_format: String,
-//     sticker_type: Option<String>,
-//     needs_repainting: Option<bool>,
-// }
-
-// // https://core.telegram.org/bots/api#addstickertoset
-// struct AddStickerToSetParams {
-//     user_id: i64,
-//     name: String,
-//     sticker: InputSticker,
-// }
-
-// // https://core.telegram.org/bots/api#setstickerpositioninset
-// struct SetStickerPositionInSetParams {
-//     sticker: String,
-//     position: i64,
-// }
-
-// // https://core.telegram.org/bots/api#deletestickerfromset
-// struct DeleteStickerFromSetParams {
-//     sticker: String,
-// }
-
-// // https://core.telegram.org/bots/api#setstickeremojilist
-// struct SetStickerEmojiListParams {
-//     sticker: String,
-//     emoji_list: Vec<String>,
-// }
-
-// // https://core.telegram.org/bots/api#setstickerkeywords
-// struct SetStickerKeywordsParams {
-//     sticker: String,
-//     keywords: Option<Vec<String>>,
-// }
-
-// // https://core.telegram.org/bots/api#setstickermaskposition
-// struct SetStickerMaskPositionParams {
-//     sticker: String,
-//     mask_position: Option<MaskPosition>,
-// }
-
-// // https://core.telegram.org/bots/api#setstickersettitle
-// struct SetStickerSetTitleParams {
-//     name: String,
-//     title: String,
-// }
-
-// // https://core.telegram.org/bots/api#setstickersetthumbnail
-// struct SetStickerSetThumbnailParams {
-//     name: String,
-//     user_id: i64,
-//     thumbnail: Option<InputFile or String>,
-// }
-
-// // https://core.telegram.org/bots/api#setcustomemojistickersetthumbnail
-// struct SetCustomEmojiStickerSetThumbnailParams {
-//     name: String,
-//     custom_emoji_id: Option<String>,
-// }
-
-// // https://core.telegram.org/bots/api#deletestickerset
-// struct DeleteStickerSetParams {
-//     name: String,
-// }
-
-// // https://core.telegram.org/bots/api#answerinlinequery
-// struct AnswerInlineQueryParams {
-//     inline_query_id: String,
-//     results: Vec<InlineQueryResult>,
-//     cache_time: Option<i64>,
-//     is_personal: Option<bool>,
-//     next_offset: Option<String>,
-//     button: Option<InlineQueryResultsButton>,
-// }
-
-// // https://core.telegram.org/bots/api#answerwebappquery
-// struct AnswerWebAppQueryParams {
-//     web_app_query_id: String,
-//     result: InlineQueryResult,
-// }
-
-// // https://core.telegram.org/bots/api#sendinvoice
-// struct SendInvoiceParams {
-//     chat_id: ChatId,
-//     message_thread_id: Option<i64>,
-//     title: String,
-//     description: String,
-//     payload: String,
-//     provider_token: String,
-//     currency: String,
-//     prices: Vec<LabeledPrice>,
-//     max_tip_amount: Option<i64>,
-//     suggested_tip_amounts: Option<Vec<i64>>,
-//     start_parameter: Option<String>,
-//     provider_data: Option<String>,
-//     photo_url: Option<String>,
-//     photo_size: Option<i64>,
-//     photo_width: Option<i64>,
-//     photo_height: Option<i64>,
-//     need_name: Option<bool>,
-//     need_phone_number: Option<bool>,
-//     need_email: Option<bool>,
-//     need_shipping_address: Option<bool>,
-//     send_phone_number_to_provider: Option<bool>,
-//     send_email_to_provider: Option<bool>,
-//     is_flexible: Option<bool>,
-//     disable_notification: Option<bool>,
-//     protect_content: Option<bool>,
-//     reply_parameters: Option<ReplyParameters>,
-//     reply_markup: Option<InlineKeyboardMarkup>,
-// }
-
-// // https://core.telegram.org/bots/api#createinvoicelink
-// struct CreateInvoiceLinkParams {
-//     title: String,
-//     description: String,
-//     payload: String,
-//     provider_token: String,
-//     currency: String,
-//     prices: Vec<LabeledPrice>,
-//     max_tip_amount: Option<i64>,
-//     suggested_tip_amounts: Option<Vec<i64>>,
-//     provider_data: Option<String>,
-//     photo_url: Option<String>,
-//     photo_size: Option<i64>,
-//     photo_width: Option<i64>,
-//     photo_height: Option<i64>,
-//     need_name: Option<bool>,
-//     need_phone_number: Option<bool>,
-//     need_email: Option<bool>,
-//     need_shipping_address: Option<bool>,
-//     send_phone_number_to_provider: Option<bool>,
-//     send_email_to_provider: Option<bool>,
-//     is_flexible: Option<bool>,
-// }
-
-// // https://core.telegram.org/bots/api#answershippingquery
-// struct AnswerShippingQueryParams {
-//     shipping_query_id: String,
-//     ok: bool,
-//     shipping_options: Option<Vec<ShippingOption>>,
-//     error_message: Option<String>,
-// }
-
-// // https://core.telegram.org/bots/api#answerprecheckoutquery
-// struct AnswerPreCheckoutQueryParams {
-//     pre_checkout_query_id: String,
-//     ok: bool,
-//     error_message: Option<String>,
-// }
-
-// // https://core.telegram.org/bots/api#setpassportdataerrors
-// struct SetPassportDataErrorsParams {
-// }
-
-// // https://core.telegram.org/bots/api#sendgame
-// struct SendGameParams {
-//     chat_id: i64,
-//     message_thread_id: Option<i64>,
-//     game_short_name: String,
-//     disable_notification: Option<bool>,
-//     protect_content: Option<bool>,
-//     reply_parameters: Option<ReplyParameters>,
-//     reply_markup: Option<InlineKeyboardMarkup>,
-// }
-
-// // https://core.telegram.org/bots/api#setgamescore
-// struct SetGameScoreParams {
-//     user_id: i64,
-//     score: i64,
-//     force: Option<bool>,
-//     disable_edit_message: Option<bool>,
-//     chat_id: Option<i64>,
-//     message_id: Option<i64>,
-//     inline_message_id: Option<String>,
-// }
+pub mod add_sticker_to_set;
+pub mod answer_callback_query;
+pub mod answer_inline_query;
+pub mod answer_pre_checkout_query;
+pub mod answer_shipping_query;
+pub mod answer_web_app_query;
+pub mod approve_chat_join_request;
+pub mod ban_chat_member;
+pub mod ban_chat_sender_chat;
+pub mod close_forum_topic;
+pub mod close_general_forum_topic;
+pub mod copy_message;
+pub mod copy_messages;
+pub mod create_chat_invite_link;
+pub mod create_forum_topic;
+pub mod create_invoice_link;
+pub mod create_new_sticker_set;
+pub mod decline_chat_join_request;
+pub mod delete_chat_photo;
+pub mod delete_chat_sticker_set;
+pub mod delete_forum_topic;
+pub mod delete_message;
+pub mod delete_messages;
+pub mod delete_my_commands;
+pub mod delete_sticker_from_set;
+pub mod delete_sticker_set;
+pub mod delete_webhook;
+pub mod edit_chat_invite_link;
+pub mod edit_forum_topic;
+pub mod edit_general_forum_topic;
+pub mod edit_message_caption;
+pub mod edit_message_live_location;
+pub mod edit_message_media;
+pub mod edit_message_reply_markup;
+pub mod edit_message_text;
+pub mod export_chat_invite_link;
+pub mod forward_message;
+pub mod forward_messages;
+pub mod get_chat;
+pub mod get_chat_administrators;
+pub mod get_chat_member;
+pub mod get_chat_member_count;
+pub mod get_chat_menu_button;
+pub mod get_custom_emoji_stickers;
+pub mod get_file;
+pub mod get_forum_topic_icon_stickers;
+pub mod get_my_commands;
+pub mod get_my_default_administrator_rights;
+pub mod get_my_description;
+pub mod get_my_name;
+pub mod get_my_short_description;
+pub mod get_sticker_set;
+pub mod get_update;
+pub mod get_user_chat_boosts;
+pub mod get_user_profile_photos;
+pub mod hide_general_forum_topic;
+pub mod leave_chat;
+pub mod pin_chat_message;
+pub mod promote_chat_member;
+pub mod reopen_forum_topic;
+pub mod reopen_general_forum_topic;
+pub mod restrict_chat_member;
+pub mod revoke_chat_invite_link;
+pub mod send_animation;
+pub mod send_contact;
+pub mod send_dice;
+pub mod send_document;
+pub mod send_game;
+pub mod send_invoice;
+pub mod send_location;
+pub mod send_media_group;
+pub mod send_message;
+pub mod send_photo;
+pub mod send_poll;
+pub mod send_sticker;
+pub mod send_venue;
+pub mod send_video;
+pub mod send_video_note;
+pub mod send_voice;
+pub mod set_chat_administrator_custom_title;
+pub mod set_chat_description;
+pub mod set_chat_menu_button;
+pub mod set_chat_permissions;
+pub mod set_chat_photo;
+pub mod set_chat_sticker_set;
+pub mod set_chat_title;
+pub mod set_custom_emoji_sticker_set_thumbnail;
+pub mod set_game_score;
+pub mod set_message_reaction;
+pub mod set_my_commands;
+pub mod set_my_default_administrator_rights;
+pub mod set_my_description;
+pub mod set_my_name;
+pub mod set_my_short_description;
+pub mod set_passport_data_errors;
+pub mod set_sticker_emoji_list;
+pub mod set_sticker_keywords;
+pub mod set_sticker_mask_position;
+pub mod set_sticker_position_in_set;
+pub mod set_sticker_set_thumbnail;
+pub mod set_sticker_set_title;
+pub mod set_webhook;
+pub mod stop_message_live_location;
+pub mod stop_poll;
+pub mod unban_chat_member;
+pub mod unban_chat_sender_chat;
+pub mod unhide_general_forum_topic;
+pub mod unpin_all_chat_messages;
+pub mod unpin_all_forum_topic_messages;
+pub mod unpin_all_general_forum_topic_messages;
+pub mod unpin_chat_message;
+pub mod upload_sticker_file;

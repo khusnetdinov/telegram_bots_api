@@ -1,4 +1,4 @@
-use crate::api::responses::ResponseError;
+use crate::api::responses::error::ResponseError;
 use std::fmt::{Display, Formatter};
 
 #[derive(Debug)]

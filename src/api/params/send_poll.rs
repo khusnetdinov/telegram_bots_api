@@ -1,0 +1,21 @@
+// // https://core.telegram.org/bots/api#sendpoll
+// struct SendPoll {
+//     chat_id: i64,
+//     message_thread_id: Option<i64>,
+//     question: String,
+//     options: Vec<String>,
+//     is_anonymous: Option<bool>,
+//     type: Option<String>,
+//     allows_multiple_answers: Option<bool>,
+//     correct_option_id: Option<i64>,
+//     explanation: Option<String>,
+//     explanation_parse_mode: Option<String>,
+//     explanation_entities: Option<Vec<MessageEntity>>,
+//     open_period: Option<i64>,
+//     close_date: Option<i64>,
+//     is_closed: Option<bool>,
+//     disable_notification: Option<bool>,
+//     protect_content: Option<bool>,
+//     reply_parameters: Option<ReplyParameters>,
+//     reply_markup: Option<InlineKeyboardMarkup or ReplyKeyboardMarkup or ReplyKeyboardRemove or ForceReply>,
+// }

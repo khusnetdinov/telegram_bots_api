@@ -1,14 +1,50 @@
+use crate::api::types::animation::Animation;
+use crate::api::types::audio::Audio;
+use crate::api::types::chat::Chat;
+use crate::api::types::chat_shared::ChatShared;
+use crate::api::types::contact::Contact;
+use crate::api::types::dice::Dice;
+use crate::api::types::document::Document;
+use crate::api::types::external_reply_info::ExternalReplyInfo;
+use crate::api::types::forum_topic_closed::ForumTopicClosed;
+use crate::api::types::forum_topic_created::ForumTopicCreated;
+use crate::api::types::forum_topic_edited::ForumTopicEdited;
+use crate::api::types::forum_topic_reopened::ForumTopicReopened;
+use crate::api::types::game::Game;
+use crate::api::types::general_forum_topic_hidden::GeneralForumTopicHidden;
+use crate::api::types::general_forum_topic_unhidden::GeneralForumTopicUnhidden;
+use crate::api::types::giveaway::Giveaway;
+use crate::api::types::giveaway_completed::GiveawayCompleted;
+use crate::api::types::giveaway_created::GiveawayCreated;
+use crate::api::types::giveaway_winners::GiveawayWinners;
+use crate::api::types::inline_keyboard_markup::InlineKeyboardMarkup;
+use crate::api::types::invoice::Invoice;
+use crate::api::types::link_preview_options::LinkPreviewOptions;
+use crate::api::types::location::Location;
+use crate::api::types::maybe_inaccessible_message::MaybeInaccessibleMessage;
+use crate::api::types::message_auto_delete_timer_changed::MessageAutoDeleteTimerChanged;
+use crate::api::types::message_entity::MessageEntity;
+use crate::api::types::message_origin::MessageOrigin;
+use crate::api::types::passport_data::PassportData;
+use crate::api::types::photo_size::PhotoSize;
+use crate::api::types::poll::Poll;
+use crate::api::types::proximity_alert_triggered::ProximityAlertTriggered;
+use crate::api::types::sticker::Sticker;
+use crate::api::types::story::Story;
+use crate::api::types::successful_payment::SuccessfulPayment;
+use crate::api::types::text_quote::TextQuote;
 use crate::api::types::user::User;
-use crate::api::types::{
-    Animation, Audio, Chat, ChatShared, Contact, Dice, Document, ExternalReplyInfo,
-    ForumTopicClosed, ForumTopicCreated, ForumTopicEdited, ForumTopicReopened, Game,
-    GeneralForumTopicHidden, GeneralForumTopicUnhidden, Giveaway, GiveawayCompleted,
-    GiveawayCreated, GiveawayWinners, InlineKeyboardMarkup, Invoice, LinkPreviewOptions, Location,
-    MaybeInaccessibleMessage, MessageAutoDeleteTimerChanged, MessageEntity, MessageOrigin,
-    PassportData, PhotoSize, Poll, ProximityAlertTriggered, Sticker, Story, SuccessfulPayment,
-    TextQuote, UsersShared, Venue, Video, VideoChatEnded, VideoChatParticipantsInvited,
-    VideoChatScheduled, VideoChatStarted, VideoNote, Voice, WebAppData, WriteAccessAllowed,
-};
+use crate::api::types::users_shared::UsersShared;
+use crate::api::types::venue::Venue;
+use crate::api::types::video::Video;
+use crate::api::types::video_chat_ended::VideoChatEnded;
+use crate::api::types::video_chat_participants_invited::VideoChatParticipantsInvited;
+use crate::api::types::video_chat_scheduled::VideoChatScheduled;
+use crate::api::types::video_chat_started::VideoChatStarted;
+use crate::api::types::video_note::VideoNote;
+use crate::api::types::voice::Voice;
+use crate::api::types::web_app_data::WebAppData;
+use crate::api::types::write_access_allowed::WriteAccessAllowed;
 use serde::{Deserialize, Serialize};
 
 /// https://core.telegram.org/bots/api#message

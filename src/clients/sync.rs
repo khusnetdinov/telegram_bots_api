@@ -1,9 +1,12 @@
-use crate::api::params::{
-    DeleteWebhookParams, ForwardMessageParams, ForwardMessagesParams, GetUpdateParams,
-    SendMessageParams, SetWebhookParams,
-};
+use crate::api::params::delete_webhook::DeleteWebhook;
+use crate::api::params::forward_message::ForwardMessage;
+use crate::api::params::forward_messages::ForwardMessages;
+use crate::api::params::get_update::GetUpdate;
+use crate::api::params::send_message::SendMessage;
+use crate::api::params::set_webhook::SetWebhook;
 use crate::api::requests::sync::Requests;
-use crate::api::responses::{ResponseError, ResponseResult};
+use crate::api::responses::error::ResponseError;
+use crate::api::responses::result::ResponseResult;
 use crate::api::types::message::Message;
 use crate::api::types::message_id::MessageId;
 use crate::api::types::update::Update;
@@ -79,19 +82,19 @@ impl Responder for Sync {
 }
 
 impl Requests for Sync {
-    fn get_updates(&self, params: &GetUpdateParams) -> Result<Vec<Update>, Error> {
+    fn get_updates(&self, params: &GetUpdate) -> Result<Vec<Update>, Error> {
         let request = self.request_for("getUpdates").json(params);
 
         self.respond_with::<Vec<Update>>(request.send())
     }
 
-    fn set_webhook(&self, params: &SetWebhookParams) -> Result<bool, Error> {
+    fn set_webhook(&self, params: &SetWebhook) -> Result<bool, Error> {
         let request = self.request_for("setWebhook").json(params);
 
         self.respond_with::<bool>(request.send())
     }
 
-    fn delete_webhook(&self, params: &DeleteWebhookParams) -> Result<bool, Error> {
+    fn delete_webhook(&self, params: &DeleteWebhook) -> Result<bool, Error> {
         let request = self.request_for("deleteWebhook").json(params);
 
         self.respond_with::<bool>(request.send())
@@ -121,19 +124,19 @@ impl Requests for Sync {
         self.respond_with::<bool>(request.send())
     }
 
-    fn send_message(&self, params: &SendMessageParams) -> Result<Message, Error> {
+    fn send_message(&self, params: &SendMessage) -> Result<Message, Error> {
         let request = self.request_for("sendMessage").json(params);
 
         self.respond_with::<Message>(request.send())
     }
 
-    fn forward_message(&self, params: &ForwardMessageParams) -> Result<MessageId, Error> {
+    fn forward_message(&self, params: &ForwardMessage) -> Result<MessageId, Error> {
         let request = self.request_for("forwardMessage").json(params);
 
         self.respond_with::<MessageId>(request.send())
     }
 
-    fn forward_messages(&self, params: &ForwardMessagesParams) -> Result<MessageId, Error> {
+    fn forward_messages(&self, params: &ForwardMessages) -> Result<MessageId, Error> {
         let request = self.request_for("sendMessage").json(params);
 
         self.respond_with::<MessageId>(request.send())

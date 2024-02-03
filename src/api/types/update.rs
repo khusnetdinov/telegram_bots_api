@@ -1,9 +1,16 @@
+use crate::api::types::callback_query::CallbackQuery;
+use crate::api::types::chat_boost_removed::ChatBoostRemoved;
+use crate::api::types::chat_boost_updated::ChatBoostUpdated;
+use crate::api::types::chat_join_request::ChatJoinRequest;
+use crate::api::types::chat_member_updated::ChatMemberUpdated;
+use crate::api::types::chosen_inline_result::ChosenInlineResult;
+use crate::api::types::inline_query::InlineQuery;
 use crate::api::types::message::Message;
-use crate::api::types::{
-    CallbackQuery, ChatBoostRemoved, ChatBoostUpdated, ChatJoinRequest, ChatMemberUpdated,
-    ChosenInlineResult, InlineQuery, MessageReactionCountUpdated, MessageReactionUpdated, Poll,
-    PollAnswer, PreCheckoutQuery, ShippingQuery,
-};
+use crate::api::types::message_reaction_count_update::MessageReactionCountUpdated;
+use crate::api::types::message_reaction_updated::MessageReactionUpdated;
+use crate::api::types::poll_answer::PollAnswer;
+use crate::api::types::pre_checkout_query::PreCheckoutQuery;
+use crate::api::types::shipping_query::ShippingQuery;
 use serde::{Deserialize, Serialize};
 
 /// https://core.telegram.org/bots/api#update
@@ -24,7 +31,7 @@ pub struct Update {
     callback_query: Option<CallbackQuery>,
     shipping_query: Option<ShippingQuery>,
     pre_checkout_query: Option<PreCheckoutQuery>,
-    poll: Option<Poll>,
+    poll: Option<PreCheckoutQuery>,
     poll_answer: Option<PollAnswer>,
     my_chat_member: Option<ChatMemberUpdated>,
     chat_member: Option<ChatMemberUpdated>,
