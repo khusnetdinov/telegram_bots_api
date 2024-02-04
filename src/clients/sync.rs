@@ -25,7 +25,7 @@ pub struct Sync {
     offset: i64,
     limit: i64,
     timeout: u64,
-    url: String,
+    pub url: String,
 }
 
 impl Sync {

@@ -1,6 +1,6 @@
 use structopt::StructOpt;
 
-#[derive(StructOpt, Debug)]
+#[derive(StructOpt, Debug, Default, PartialEq)]
 #[structopt(name = "base")]
 pub struct Config {
     /// Environment: Debug mode.

@@ -1,4 +1,2 @@
-#[test]
-fn test() {
-    assert_eq!(true, true);
-}
+#[cfg(test)]
+mod tests {}
