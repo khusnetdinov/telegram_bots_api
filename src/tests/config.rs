@@ -12,6 +12,6 @@ mod tests {
             ..Default::default()
         };
 
-        assert_eq!(config.build_url(), format!("{}bot{}/", url, token));
+        assert_eq!(config.build_url(), format!("{}/bot{}/", url, token));
     }
 }

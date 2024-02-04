@@ -16,7 +16,7 @@ pub struct Config {
     pub token: String,
 
     /// Telegram: Api url.
-    #[structopt(long, default_value = "https://api.telegram.org/")]
+    #[structopt(long, default_value = "https://api.telegram.org")]
     pub url: String,
 
     /// Client: Timeout in secs. The timeout is applied from when the request starts connecting until the response body has finished.
@@ -48,6 +48,6 @@ impl Config {
 
 impl Config {
     pub fn build_url(&self) -> String {
-        format!("{}bot{}/", self.url, self.token)
+        format!("{}/bot{}/", self.url, self.token)
     }
 }
