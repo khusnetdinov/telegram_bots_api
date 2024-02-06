@@ -1,12 +1,12 @@
 use super::parameters::ResponseParameters;
 use serde::Deserialize;
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Deserialize, PartialEq)]
 pub struct ResponseError {
-    ok: bool,
-    error_code: u64,
-    description: String,
-    parameters: Option<ResponseParameters>,
+    pub ok: bool,
+    pub error_code: u64,
+    pub description: String,
+    pub parameters: Option<ResponseParameters>,
 }
 
 impl ResponseError {
