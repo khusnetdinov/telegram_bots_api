@@ -2,7 +2,7 @@ use serde::{Deserialize, Serialize};
 
 /// https://core.telegram.org/bots/api#user
 /// This object represents a Telegram user or bot.
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, PartialEq)]
 #[serde_with_macros::skip_serializing_none]
 pub struct User {
     id: i64,

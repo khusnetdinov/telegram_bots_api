@@ -1,6 +1,6 @@
 use structopt::StructOpt;
 
-#[derive(StructOpt, Debug, Default, PartialEq)]
+#[derive(StructOpt, Debug, PartialEq)]
 #[structopt(name = "base")]
 pub struct Config {
     /// Environment: Debug mode.
@@ -49,5 +49,21 @@ impl Config {
 impl Config {
     pub fn build_url(&self) -> String {
         format!("{}/bot{}/", self.url, self.token)
+    }
+}
+
+impl Default for Config {
+    fn default() -> Self {
+        Self {
+            debug: false,
+            production: false,
+            url: String::from(""),
+            token: String::from(""),
+            timeout: 5u64,
+            connect_timeout: 5u64,
+            updates_offset: 0i64,
+            updates_limit: 100i64,
+            updates_timeout: 0u64,
+        }
     }
 }
