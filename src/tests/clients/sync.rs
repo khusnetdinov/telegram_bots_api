@@ -29,9 +29,8 @@ mod tests {
 
         let mock_error = mocked.result::<ResponseError>().unwrap();
         if let Error::Response(real_error) = mocked.client.sync.get_me().unwrap_err() {
-            assert_eq!(mock_error, real_error)
+            assert_eq!(mock_error, real_error);
+            mocked.server.assert();
         }
-
-        mocked.server.assert();
     }
 }

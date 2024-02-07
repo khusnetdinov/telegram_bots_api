@@ -19,6 +19,6 @@ mod tests {
         let error = Error::Debug;
         let error_string = format!("{}", error);
 
-        assert_eq!(error_string, "Debug");
+        assert_eq!(error_string, "Debug Error!");
     }
 }
