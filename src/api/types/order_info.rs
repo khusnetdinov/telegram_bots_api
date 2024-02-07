@@ -2,7 +2,7 @@ use crate::api::types::shipping_address::ShippingAddress;
 use serde::{Deserialize, Serialize};
 
 // https://core.telegram.org/bots/api#orderinfo
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct OrderInfo {
     name: Option<String>,
     phone_number: Option<String>,

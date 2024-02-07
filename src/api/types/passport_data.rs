@@ -3,7 +3,7 @@ use crate::api::types::encrypted_passport_element::EncryptedPassportElement;
 use serde::{Deserialize, Serialize};
 
 // https://core.telegram.org/bots/api#passportdata
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct PassportData {
     data: Vec<EncryptedPassportElement>,
     credentials: EncryptedCredentials,

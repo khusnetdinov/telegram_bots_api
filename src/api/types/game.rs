@@ -4,7 +4,7 @@ use crate::api::types::photo_size::PhotoSize;
 use serde::{Deserialize, Serialize};
 
 // https://core.telegram.org/bots/api#game
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct Game {
     title: String,
     description: String,

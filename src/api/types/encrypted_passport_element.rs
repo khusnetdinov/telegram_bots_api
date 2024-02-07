@@ -2,7 +2,7 @@ use crate::api::types::passport_file::PassportFile;
 use serde::{Deserialize, Serialize};
 
 // https://core.telegram.org/bots/api#encryptedpassportelement
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct EncryptedPassportElement {
     // type: String,
     data: Option<String>,

@@ -1,7 +1,7 @@
 use serde::{Deserialize, Serialize};
 
 // https://core.telegram.org/bots/api#passportelementerrortranslationfiles
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct PassportElementErrorTranslationFiles {
     source: String,
     // type: String,

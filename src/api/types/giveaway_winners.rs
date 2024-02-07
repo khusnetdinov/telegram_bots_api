@@ -3,7 +3,7 @@ use crate::api::types::user::User;
 use serde::{Deserialize, Serialize};
 
 // https://core.telegram.org/bots/api#giveawaywinners
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct GiveawayWinners {
     chat: Chat,
     giveaway_message_id: i64,

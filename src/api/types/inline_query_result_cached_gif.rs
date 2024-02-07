@@ -4,7 +4,7 @@ use crate::api::types::message_entity::MessageEntity;
 use serde::{Deserialize, Serialize};
 
 // https://core.telegram.org/bots/api#inlinequeryresultcachedgif
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct InlineQueryResultCachedGif {
     // type: String,
     id: String,

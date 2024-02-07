@@ -1,0 +1,12 @@
+{
+  "ok": true,
+  "result": {
+    "url": "https://78b3-91-202-26-13.ngrok-free.app",
+    "has_custom_certificate": false,
+    "pending_update_count": 2,
+    "last_error_date": 1707332386,
+    "last_error_message": "Wrong response from the webhook: 404 Not Found",
+    "max_connections": 40,
+    "ip_address": "233.223.223.134"
+  }
+}

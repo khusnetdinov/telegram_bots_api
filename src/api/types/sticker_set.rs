@@ -3,7 +3,7 @@ use crate::api::types::sticker::Sticker;
 use serde::{Deserialize, Serialize};
 
 // https://core.telegram.org/bots/api#stickerset
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct StickerSet {
     name: String,
     title: String,

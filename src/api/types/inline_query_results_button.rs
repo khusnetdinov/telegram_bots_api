@@ -2,7 +2,7 @@ use crate::api::types::web_app_info::WebAppInfo;
 use serde::{Deserialize, Serialize};
 
 // https://core.telegram.org/bots/api#inlinequeryresultsbutton
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct InlineQueryResultsButton {
     text: String,
     web_app: Option<WebAppInfo>,

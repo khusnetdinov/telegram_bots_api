@@ -28,12 +28,7 @@ impl Mocked {
         }
     }
 
-    fn mock_server(
-        server: &mut ServerGuard,
-        token: &str,
-        method: &str,
-        response: &str,
-    ) -> Mock {
+    fn mock_server(server: &mut ServerGuard, token: &str, method: &str, response: &str) -> Mock {
         server
             .mock("POST", format!("/bot{}/{}", token, method).as_str())
             .match_header("content-type", "application/json")

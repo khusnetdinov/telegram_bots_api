@@ -1,7 +1,7 @@
 use serde::{Deserialize, Serialize};
 
 // https://core.telegram.org/bots/api#messageoriginhiddenuser
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct MessageOriginHiddenUser {
     // type: String,
     date: i64,

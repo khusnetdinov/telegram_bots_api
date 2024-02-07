@@ -1,7 +1,7 @@
 use serde::{Deserialize, Serialize};
 
 // https://core.telegram.org/bots/api#forcereply
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct ForceReply {
     force_reply: bool,
     input_field_placeholder: Option<String>,

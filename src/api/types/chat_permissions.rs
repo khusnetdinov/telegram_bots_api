@@ -1,7 +1,7 @@
 use serde::{Deserialize, Serialize};
 
 // https://core.telegram.org/bots/api#chatpermissions
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct ChatPermissions {
     can_send_messages: Option<bool>,
     can_send_audios: Option<bool>,

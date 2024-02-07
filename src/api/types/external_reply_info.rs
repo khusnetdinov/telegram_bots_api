@@ -22,7 +22,7 @@ use crate::api::types::voice::Voice;
 use serde::{Deserialize, Serialize};
 
 // https://core.telegram.org/bots/api#externalreplyinfo
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct ExternalReplyInfo {
     origin: MessageOrigin,
     chat: Option<Chat>,

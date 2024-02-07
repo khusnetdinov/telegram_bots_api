@@ -2,7 +2,7 @@ use crate::api::types::chat::Chat;
 use serde::{Deserialize, Serialize};
 
 // https://core.telegram.org/bots/api#giveaway
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct Giveaway {
     chats: Vec<Chat>,
     winners_selection_date: i64,

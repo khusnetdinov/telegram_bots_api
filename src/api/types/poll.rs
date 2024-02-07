@@ -3,7 +3,7 @@ use crate::api::types::poll_option::PollOption;
 use serde::{Deserialize, Serialize};
 
 // https://core.telegram.org/bots/api#poll
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct Poll {
     id: String,
     question: String,

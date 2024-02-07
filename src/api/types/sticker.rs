@@ -4,7 +4,7 @@ use crate::api::types::photo_size::PhotoSize;
 use serde::{Deserialize, Serialize};
 
 // https://core.telegram.org/bots/api#sticker
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct Sticker {
     file_id: String,
     file_unique_id: String,

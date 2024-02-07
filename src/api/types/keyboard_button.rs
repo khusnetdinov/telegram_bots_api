@@ -5,7 +5,7 @@ use crate::api::types::web_app_info::WebAppInfo;
 use serde::{Deserialize, Serialize};
 
 // https://core.telegram.org/bots/api#keyboardbutton
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct KeyboardButton {
     text: String,
     request_users: Option<KeyboardButtonRequestUsers>,

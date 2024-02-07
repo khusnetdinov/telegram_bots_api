@@ -2,7 +2,7 @@ use crate::api::types::labeled_price::LabeledPrice;
 use serde::{Deserialize, Serialize};
 
 // https://core.telegram.org/bots/api#inputinvoicemessagecontent
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct InputInvoiceMessageContent {
     title: String,
     description: String,

@@ -2,7 +2,7 @@ use crate::api::types::mask_position::MaskPosition;
 use serde::{Deserialize, Serialize};
 
 // https://core.telegram.org/bots/api#inputsticker
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct InputSticker {
     // sticker: InputFile or String,
     emoji_list: Vec<String>,

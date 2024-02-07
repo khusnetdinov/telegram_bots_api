@@ -1,7 +1,7 @@
 use serde::{Deserialize, Serialize};
 
 // https://core.telegram.org/bots/api#switchinlinequerychosenchat
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct SwitchInlineQueryChosenChat {
     query: Option<String>,
     allow_user_chats: Option<bool>,

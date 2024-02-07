@@ -3,7 +3,7 @@ use crate::api::types::user::User;
 use serde::{Deserialize, Serialize};
 
 // https://core.telegram.org/bots/api#choseninlineresult
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct ChosenInlineResult {
     result_id: String,
     from: User,

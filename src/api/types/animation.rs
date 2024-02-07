@@ -2,7 +2,7 @@ use crate::api::types::photo_size::PhotoSize;
 use serde::{Deserialize, Serialize};
 
 // https://core.telegram.org/bots/api#animation
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct Animation {
     file_id: String,
     file_unique_id: String,

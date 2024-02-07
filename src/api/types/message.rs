@@ -49,7 +49,7 @@ use serde::{Deserialize, Serialize};
 
 /// https://core.telegram.org/bots/api#message
 /// This object represents a message.
-#[derive(Debug, Serialize, Deserialize, Default)]
+#[derive(Debug, Serialize, Deserialize, Default, PartialEq)]
 #[serde_with_macros::skip_serializing_none]
 pub struct Message {
     message_id: i64,

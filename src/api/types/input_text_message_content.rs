@@ -3,7 +3,7 @@ use crate::api::types::message_entity::MessageEntity;
 use serde::{Deserialize, Serialize};
 
 // https://core.telegram.org/bots/api#inputtextmessagecontent
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct InputTextMessageContent {
     message_text: String,
     parse_mode: Option<String>,

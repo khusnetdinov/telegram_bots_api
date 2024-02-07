@@ -2,7 +2,7 @@ use crate::api::types::user::User;
 use serde::{Deserialize, Serialize};
 
 // https://core.telegram.org/bots/api#chatmembermember
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct ChatMemberMember {
     status: String,
     user: User,

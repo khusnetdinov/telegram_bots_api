@@ -2,7 +2,7 @@ use crate::api::types::order_info::OrderInfo;
 use serde::{Deserialize, Serialize};
 
 // https://core.telegram.org/bots/api#successfulpayment
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct SuccessfulPayment {
     currency: String,
     total_amount: i64,

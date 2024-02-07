@@ -3,7 +3,7 @@ use crate::api::types::input_message_content::InputMessageContent;
 use serde::{Deserialize, Serialize};
 
 // https://core.telegram.org/bots/api#inlinequeryresultarticle
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct InlineQueryResultArticle {
     // type: String,
     id: String,

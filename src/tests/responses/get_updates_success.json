@@ -1,0 +1,51 @@
+{
+  "ok": true,
+  "result": [
+    {
+      "update_id": 249563356,
+      "message": {
+        "message_id": 490,
+        "from": {
+          "id": 147951145,
+          "is_bot": false,
+          "first_name": "Marat",
+          "last_name": "Khusnetdinov",
+          "username": "khusnetdinov",
+          "language_code": "ru"
+        },
+        "chat": {
+          "id": 147951145,
+          "first_name": "Marat",
+          "last_name": "Khusnetdinov",
+          "username": "khusnetdinov",
+          "type": "private"
+        },
+        "date": 1707331948,
+        "text": "updates1"
+      }
+    },
+    {
+      "update_id": 249563357,
+      "message": {
+        "message_id": 491,
+        "from": {
+          "id": 147951145,
+          "is_bot": false,
+          "first_name": "Marat",
+          "last_name": "Khusnetdinov",
+          "username": "khusnetdinov",
+          "language_code": "ru"
+        },
+        "chat": {
+          "id": 147951145,
+          "first_name": "Marat",
+          "last_name": "Khusnetdinov",
+          "username": "khusnetdinov",
+          "type": "private"
+        },
+        "date": 1707331951,
+        "text": "updates2"
+      }
+    }
+  ]
+}

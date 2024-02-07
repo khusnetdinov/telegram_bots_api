@@ -6,7 +6,7 @@ use crate::api::types::reaction_type::ReactionType;
 use serde::{Deserialize, Serialize};
 
 // https://core.telegram.org/bots/api#chat
-#[derive(Debug, Serialize, Deserialize, Default)]
+#[derive(Debug, Serialize, Deserialize, Default, PartialEq)]
 pub struct Chat {
     id: i64,
     // type: String,

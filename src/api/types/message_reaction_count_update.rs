@@ -3,7 +3,7 @@ use crate::api::types::reaction_count::ReactionCount;
 use serde::{Deserialize, Serialize};
 
 // https://core.telegram.org/bots/api#messagereactioncountupdated
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct MessageReactionCountUpdated {
     chat: Chat,
     message_id: i64,

@@ -2,7 +2,7 @@ use crate::api::types::keyboard_button::KeyboardButton;
 use serde::{Deserialize, Serialize};
 
 // https://core.telegram.org/bots/api#replykeyboardmarkup
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct ReplyKeyboardMarkup {
     keyboard: Vec<KeyboardButton>,
     is_persistent: Option<bool>,

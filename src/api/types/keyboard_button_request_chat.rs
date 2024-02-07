@@ -2,7 +2,7 @@ use crate::api::types::chat_administrator_rights::ChatAdministratorRights;
 use serde::{Deserialize, Serialize};
 
 // https://core.telegram.org/bots/api#keyboardbuttonrequestchat
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct KeyboardButtonRequestChat {
     request_id: i64,
     chat_is_channel: bool,
