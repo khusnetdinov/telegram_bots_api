@@ -4,6 +4,7 @@ use telegram::client::Client;
 
 fn main() -> Result<(), Box<dyn Error>> {
     let api = Client::new();
+    let response = api.sync.get_me();
 
     // let params = GetUpdate {
     //     limit: 100,
@@ -24,7 +25,6 @@ fn main() -> Result<(), Box<dyn Error>> {
     // let response = api.sync.delete_webhook(&params);
     // let response = api.sync.get_webhook_info();
 
-    let response = api.sync.get_me();
     // let response = api.sync.log_out();
     // let response = api.sync.close();
 
@@ -52,6 +52,5 @@ fn main() -> Result<(), Box<dyn Error>> {
     // let response = api.sync.forward_messages(&params);
 
     println!("Response: {:#?}", response.unwrap());
-
     Ok(())
 }
