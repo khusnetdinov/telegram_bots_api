@@ -1,5 +1,6 @@
 #[cfg(test)]
 mod tests {
+    use crate::api::enums::chat_uid::ChatUId;
     use crate::api::params::delete_webhook::DeleteWebhook;
     use crate::api::params::forward_message::ForwardMessage;
     use crate::api::params::forward_messages::ForwardMessages;
@@ -8,7 +9,6 @@ mod tests {
     use crate::api::params::set_webhook::SetWebhook;
     use crate::api::requests::sync::Requests;
     use crate::api::responses::error::ResponseError;
-    use crate::api::types::chat_id::ChatId;
     use crate::api::types::message::Message;
     use crate::api::types::message_id::MessageId;
     use crate::api::types::update::Update;
@@ -249,7 +249,7 @@ mod tests {
 
         let mock_result = mocked.result::<Message>().unwrap();
         let params = SendMessage {
-            chat_id: ChatId::from(147951145),
+            chat_id: ChatUId::from(147951145),
             text: "Hello World".to_string(),
             ..Default::default()
         };
@@ -269,7 +269,7 @@ mod tests {
 
         let mock_error = mocked.result::<ResponseError>().unwrap();
         let params = SendMessage {
-            chat_id: ChatId::from(147951145),
+            chat_id: ChatUId::from(147951145),
             text: "Hello World".to_string(),
             ..Default::default()
         };
@@ -289,8 +289,8 @@ mod tests {
         let mock_result = mocked.result::<MessageId>().unwrap();
         let params = ForwardMessage {
             message_id: MessageId::from(456),
-            chat_id: ChatId::from(147951145),
-            from_chat_id: ChatId::from(147951145),
+            chat_id: ChatUId::from(147951145),
+            from_chat_id: ChatUId::from(147951145),
             ..Default::default()
         };
         let real_result = mocked.client.sync.forward_message(&params).unwrap();
@@ -310,8 +310,8 @@ mod tests {
         let mock_error = mocked.result::<ResponseError>().unwrap();
         let params = ForwardMessage {
             message_id: MessageId::from(456),
-            chat_id: ChatId::from(147951145),
-            from_chat_id: ChatId::from(147951145),
+            chat_id: ChatUId::from(147951145),
+            from_chat_id: ChatUId::from(147951145),
             ..Default::default()
         };
         if let Error::Response(real_error) =
@@ -332,8 +332,8 @@ mod tests {
         let mock_result = mocked.result::<Vec<MessageId>>().unwrap();
         let params = ForwardMessages {
             message_ids: vec![MessageId::from(456)],
-            chat_id: ChatId::from(147951145),
-            from_chat_id: ChatId::from(147951145),
+            chat_id: ChatUId::from(147951145),
+            from_chat_id: ChatUId::from(147951145),
             ..Default::default()
         };
         let real_result = mocked.client.sync.forward_messages(&params).unwrap();
@@ -353,8 +353,8 @@ mod tests {
         let mock_error = mocked.result::<ResponseError>().unwrap();
         let params = ForwardMessages {
             message_ids: vec![MessageId::from(455), MessageId::from(456)],
-            chat_id: ChatId::from(147951145),
-            from_chat_id: ChatId::from(147951145),
+            chat_id: ChatUId::from(147951145),
+            from_chat_id: ChatUId::from(147951145),
             ..Default::default()
         };
         if let Error::Response(real_error) =
