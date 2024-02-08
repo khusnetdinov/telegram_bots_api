@@ -1,0 +1,42 @@
+{
+  "ok": true,
+  "result": {
+    "message_id": 495,
+    "from": {
+      "id": 6591790550,
+      "is_bot": true,
+      "first_name": "development_telegrapha",
+      "username": "development_telegrapha_bot"
+    },
+    "chat": {
+      "id": 147951145,
+      "first_name": "Marat",
+      "last_name": "Khusnetdinov",
+      "username": "khusnetdinov",
+      "type": "private"
+    },
+    "date": 1707416813,
+    "forward_origin": {
+      "type": "user",
+      "sender_user": {
+        "id": 147951145,
+        "is_bot": false,
+        "first_name": "Marat",
+        "last_name": "Khusnetdinov",
+        "username": "khusnetdinov",
+        "language_code": "ru"
+      },
+      "date": 1706810988
+    },
+    "forward_from": {
+      "id": 147951145,
+      "is_bot": false,
+      "first_name": "Marat",
+      "last_name": "Khusnetdinov",
+      "username": "khusnetdinov",
+      "language_code": "ru"
+    },
+    "forward_date": 1706810988,
+    "text": "ывыва"
+  }
+}

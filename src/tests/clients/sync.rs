@@ -13,6 +13,10 @@ mod tests {
     use crate::errors::Error;
     use crate::tests::helpers::*;
     use std::fs;
+    use crate::api::params::forward_message::ForwardMessage;
+    use crate::api::params::forward_messages::ForwardMessages;
+    use crate::api::types::chat_id::ChatId;
+    use crate::api::types::message_id::MessageId;
 
     #[test]
     fn get_updates_success() {
@@ -245,7 +249,7 @@ mod tests {
 
         let mock_result = mocked.result::<Message>().unwrap();
         let params = SendMessage {
-            chat_id: 147951145,
+            chat_id: ChatId(147951145),
             text: "Hello World".to_string(),
             ..Default::default()
         };
@@ -258,17 +262,100 @@ mod tests {
     #[test]
     #[should_panic]
     fn send_message_error() {
-        let mock_response = fs::read_to_string("src/tests/responses/send_message_error.json").unwrap();
+        let mock_response =
+            fs::read_to_string("src/tests/responses/send_message_error.json").unwrap();
         let mut server = mockito::Server::new();
         let mocked = Mocked::new(&mut server, "sendMessage", &mock_response);
 
         let mock_error = mocked.result::<ResponseError>().unwrap();
         let params = SendMessage {
-            chat_id: 147951145,
+            chat_id: ChatId(147951145),
             text: "Hello World".to_string(),
             ..Default::default()
         };
         if let Error::Response(real_error) = mocked.client.sync.send_message(&params).unwrap_err() {
+            assert_eq!(mock_error, real_error);
+            mocked.server.assert();
+        }
+    }
+
+    #[test]
+    fn forward_message_success() {
+        let mock_response =
+            fs::read_to_string("src/tests/responses/forward_message_success.json").unwrap();
+        let mut server = mockito::Server::new();
+        let mocked = Mocked::new(&mut server, "forwardMessage", &mock_response);
+
+        let mock_result = mocked.result::<MessageId>().unwrap();
+        let params = ForwardMessage {
+            message_id: 456,
+            chat_id: ChatId(147951145),
+            from_chat_id: ChatId(147951145),
+            ..Default::default()
+        };
+        let real_result = mocked.client.sync.forward_message(&params).unwrap();
+
+        assert_eq!(mock_result, real_result);
+        mocked.server.assert();
+    }
+
+    #[test]
+    #[should_panic]
+    fn forward_message_error() {
+        let mock_response =
+            fs::read_to_string("src/tests/responses/forward_message_error.json").unwrap();
+        let mut server = mockito::Server::new();
+        let mocked = Mocked::new(&mut server, "forwardMessage", &mock_response);
+
+        let mock_error = mocked.result::<ResponseError>().unwrap();
+        let params = ForwardMessage {
+            message_id: 456,
+            chat_id: ChatId(147951145),
+            from_chat_id: ChatId(147951145),
+            ..Default::default()
+        };
+        if let Error::Response(real_error) = mocked.client.sync.forward_message(&params).unwrap_err() {
+            assert_eq!(mock_error, real_error);
+            mocked.server.assert();
+        }
+    }
+
+    #[test]
+    fn forward_messages_success() {
+        let mock_response =
+            fs::read_to_string("src/tests/responses/forward_messages_success.json").unwrap();
+        let mut server = mockito::Server::new();
+        let mocked = Mocked::new(&mut server, "forwardMessages", &mock_response);
+
+        let mock_result = mocked.result::<Vec<MessageId>>().unwrap();
+        let params = ForwardMessages {
+            message_ids: vec![456],
+            chat_id: ChatId(147951145),
+            from_chat_id: ChatId(147951145),
+            ..Default::default()
+        };
+        let real_result = mocked.client.sync.forward_messages(&params).unwrap();
+
+        assert_eq!(mock_result, real_result);
+        mocked.server.assert();
+    }
+
+    #[test]
+    #[should_panic]
+    fn forward_messages_error() {
+        let mock_response =
+            fs::read_to_string("src/tests/responses/forward_messages_error.json").unwrap();
+        let mut server = mockito::Server::new();
+        let mocked = Mocked::new(&mut server, "forwardMessages", &mock_response);
+
+        let mock_error = mocked.result::<ResponseError>().unwrap();
+        let params = ForwardMessages {
+            message_ids: vec![455, 456],
+            chat_id: ChatId(147951145),
+            from_chat_id: ChatId(147951145),
+            ..Default::default()
+        };
+        if let Error::Response(real_error) = mocked.client.sync.forward_messages(&params).unwrap_err() {
             assert_eq!(mock_error, real_error);
             mocked.server.assert();
         }

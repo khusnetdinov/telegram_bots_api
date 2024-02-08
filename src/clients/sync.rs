@@ -136,9 +136,9 @@ impl Requests for Sync {
         self.respond_with::<MessageId>(request.send())
     }
 
-    fn forward_messages(&self, params: &ForwardMessages) -> Result<MessageId, Error> {
-        let request = self.request_for("sendMessage").json(params);
+    fn forward_messages(&self, params: &ForwardMessages) -> Result<Vec<MessageId>, Error> {
+        let request = self.request_for("forwardMessages").json(params);
 
-        self.respond_with::<MessageId>(request.send())
+        self.respond_with::<Vec<MessageId>>(request.send())
     }
 }
