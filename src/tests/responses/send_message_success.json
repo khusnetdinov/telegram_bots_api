@@ -1,0 +1,21 @@
+{
+  "ok": true,
+  "result": {
+    "message_id": 494,
+    "from": {
+      "id": 6591790550,
+      "is_bot": true,
+      "first_name": "development",
+      "username": "development"
+    },
+    "chat": {
+      "id": 147951145,
+      "first_name": "Marat",
+      "last_name": "Khusnetdinov",
+      "username": "khusnetdinov",
+      "type": "private"
+    },
+    "date": 1707339367,
+    "text": "asdasd"
+  }
+}

@@ -2,9 +2,11 @@
 mod tests {
     use crate::api::params::delete_webhook::DeleteWebhook;
     use crate::api::params::get_update::GetUpdate;
+    use crate::api::params::send_message::SendMessage;
     use crate::api::params::set_webhook::SetWebhook;
     use crate::api::requests::sync::Requests;
     use crate::api::responses::error::ResponseError;
+    use crate::api::types::message::Message;
     use crate::api::types::update::Update;
     use crate::api::types::user::User;
     use crate::api::types::webhook_info::WebhookInfo;
@@ -229,6 +231,44 @@ mod tests {
 
         let mock_error = mocked.result::<ResponseError>().unwrap();
         if let Error::Response(real_error) = mocked.client.sync.close().unwrap_err() {
+            assert_eq!(mock_error, real_error);
+            mocked.server.assert();
+        }
+    }
+
+    #[test]
+    fn send_message_success() {
+        let mock_response =
+            fs::read_to_string("src/tests/responses/send_message_success.json").unwrap();
+        let mut server = mockito::Server::new();
+        let mocked = Mocked::new(&mut server, "sendMessage", &mock_response);
+
+        let mock_result = mocked.result::<Message>().unwrap();
+        let params = SendMessage {
+            chat_id: 147951145,
+            text: "Hello World".to_string(),
+            ..Default::default()
+        };
+        let real_result = mocked.client.sync.send_message(&params).unwrap();
+
+        assert_eq!(mock_result, real_result);
+        mocked.server.assert();
+    }
+
+    #[test]
+    #[should_panic]
+    fn send_message_error() {
+        let mock_response = fs::read_to_string("src/tests/responses/send_message_error.json").unwrap();
+        let mut server = mockito::Server::new();
+        let mocked = Mocked::new(&mut server, "sendMessage", &mock_response);
+
+        let mock_error = mocked.result::<ResponseError>().unwrap();
+        let params = SendMessage {
+            chat_id: 147951145,
+            text: "Hello World".to_string(),
+            ..Default::default()
+        };
+        if let Error::Response(real_error) = mocked.client.sync.send_message(&params).unwrap_err() {
             assert_eq!(mock_error, real_error);
             mocked.server.assert();
         }
