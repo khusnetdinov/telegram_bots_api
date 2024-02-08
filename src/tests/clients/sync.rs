@@ -249,7 +249,7 @@ mod tests {
 
         let mock_result = mocked.result::<Message>().unwrap();
         let params = SendMessage {
-            chat_id: ChatId(147951145),
+            chat_id: ChatId::from(147951145),
             text: "Hello World".to_string(),
             ..Default::default()
         };
@@ -269,7 +269,7 @@ mod tests {
 
         let mock_error = mocked.result::<ResponseError>().unwrap();
         let params = SendMessage {
-            chat_id: ChatId(147951145),
+            chat_id: ChatId::from(147951145),
             text: "Hello World".to_string(),
             ..Default::default()
         };
@@ -288,9 +288,9 @@ mod tests {
 
         let mock_result = mocked.result::<MessageId>().unwrap();
         let params = ForwardMessage {
-            message_id: 456,
-            chat_id: ChatId(147951145),
-            from_chat_id: ChatId(147951145),
+            message_id: MessageId::from(456),
+            chat_id: ChatId::from(147951145),
+            from_chat_id: ChatId::from(147951145),
             ..Default::default()
         };
         let real_result = mocked.client.sync.forward_message(&params).unwrap();
@@ -309,9 +309,9 @@ mod tests {
 
         let mock_error = mocked.result::<ResponseError>().unwrap();
         let params = ForwardMessage {
-            message_id: 456,
-            chat_id: ChatId(147951145),
-            from_chat_id: ChatId(147951145),
+            message_id: MessageId::from(456),
+            chat_id: ChatId::from(147951145),
+            from_chat_id: ChatId::from(147951145),
             ..Default::default()
         };
         if let Error::Response(real_error) =
@@ -331,9 +331,9 @@ mod tests {
 
         let mock_result = mocked.result::<Vec<MessageId>>().unwrap();
         let params = ForwardMessages {
-            message_ids: vec![456],
-            chat_id: ChatId(147951145),
-            from_chat_id: ChatId(147951145),
+            message_ids: vec![MessageId::from(456)],
+            chat_id: ChatId::from(147951145),
+            from_chat_id: ChatId::from(147951145),
             ..Default::default()
         };
         let real_result = mocked.client.sync.forward_messages(&params).unwrap();
@@ -352,9 +352,9 @@ mod tests {
 
         let mock_error = mocked.result::<ResponseError>().unwrap();
         let params = ForwardMessages {
-            message_ids: vec![455, 456],
-            chat_id: ChatId(147951145),
-            from_chat_id: ChatId(147951145),
+            message_ids: vec![MessageId::from(455), MessageId::from(456)],
+            chat_id: ChatId::from(147951145),
+            from_chat_id: ChatId::from(147951145),
             ..Default::default()
         };
         if let Error::Response(real_error) =

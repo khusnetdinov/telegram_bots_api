@@ -8,6 +8,10 @@ talegram-version = "7.0"
 name = "bot"
 path = "examples/bot.rs"
 
+[[example]]
+name = "playground"
+path = "examples/playground.rs"
+
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
