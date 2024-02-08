@@ -1,22 +1,22 @@
 #[cfg(test)]
 mod tests {
     use crate::api::params::delete_webhook::DeleteWebhook;
+    use crate::api::params::forward_message::ForwardMessage;
+    use crate::api::params::forward_messages::ForwardMessages;
     use crate::api::params::get_update::GetUpdate;
     use crate::api::params::send_message::SendMessage;
     use crate::api::params::set_webhook::SetWebhook;
     use crate::api::requests::sync::Requests;
     use crate::api::responses::error::ResponseError;
+    use crate::api::types::chat_id::ChatId;
     use crate::api::types::message::Message;
+    use crate::api::types::message_id::MessageId;
     use crate::api::types::update::Update;
     use crate::api::types::user::User;
     use crate::api::types::webhook_info::WebhookInfo;
     use crate::errors::Error;
     use crate::tests::helpers::*;
     use std::fs;
-    use crate::api::params::forward_message::ForwardMessage;
-    use crate::api::params::forward_messages::ForwardMessages;
-    use crate::api::types::chat_id::ChatId;
-    use crate::api::types::message_id::MessageId;
 
     #[test]
     fn get_updates_success() {
@@ -314,7 +314,9 @@ mod tests {
             from_chat_id: ChatId(147951145),
             ..Default::default()
         };
-        if let Error::Response(real_error) = mocked.client.sync.forward_message(&params).unwrap_err() {
+        if let Error::Response(real_error) =
+            mocked.client.sync.forward_message(&params).unwrap_err()
+        {
             assert_eq!(mock_error, real_error);
             mocked.server.assert();
         }
@@ -355,7 +357,9 @@ mod tests {
             from_chat_id: ChatId(147951145),
             ..Default::default()
         };
-        if let Error::Response(real_error) = mocked.client.sync.forward_messages(&params).unwrap_err() {
+        if let Error::Response(real_error) =
+            mocked.client.sync.forward_messages(&params).unwrap_err()
+        {
             assert_eq!(mock_error, real_error);
             mocked.server.assert();
         }

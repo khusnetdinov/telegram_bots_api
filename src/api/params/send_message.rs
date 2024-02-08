@@ -1,9 +1,9 @@
 use crate::api::enums::reply_markup::ReplyMarkup;
+use crate::api::types::chat_id::ChatId;
 use crate::api::types::link_preview_options::LinkPreviewOptions;
 use crate::api::types::message_entity::MessageEntity;
 use crate::api::types::reply_parameters::ReplyParameters;
 use serde::Serialize;
-use crate::api::types::chat_id::ChatId;
 
 /// https://core.telegram.org/bots/api#sendmessage
 #[derive(Debug, Serialize, Default)]

@@ -1,5 +1,5 @@
-use serde::Serialize;
 use crate::api::types::chat_id::ChatId;
+use serde::Serialize;
 
 /// https://core.telegram.org/bots/api#forwardmessages
 #[derive(Debug, Serialize, Default)]
