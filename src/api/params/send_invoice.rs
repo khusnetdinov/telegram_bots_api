@@ -1,3 +1,4 @@
+use crate::api::enums::chat_uid::ChatUId;
 use crate::api::types::inline_keyboard_markup::InlineKeyboardMarkup;
 use crate::api::types::labeled_price::LabeledPrice;
 use crate::api::types::reply_parameters::ReplyParameters;
@@ -7,7 +8,7 @@ use serde::Serialize;
 /// Use this method to send invoices. On success, the sent Message is returned.
 #[derive(Debug, Serialize)]
 pub struct SendInvoice {
-    chat_id: i64,
+    chat_id: ChatUId,
     message_thread_id: Option<i64>,
     title: String,
     description: String,

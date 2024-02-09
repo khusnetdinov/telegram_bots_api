@@ -1,3 +1,4 @@
+use crate::api::enums::chat_uid::ChatUId;
 use serde::Serialize;
 
 /// https://core.telegram.org/bots/api#setgamescore
@@ -8,7 +9,7 @@ pub struct SetGameScore {
     score: i64,
     force: Option<bool>,
     disable_edit_message: Option<bool>,
-    chat_id: Option<i64>,
+    chat_id: Option<ChatUId>,
     message_id: Option<i64>,
     inline_message_id: Option<String>,
 }

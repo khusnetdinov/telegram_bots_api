@@ -1,3 +1,4 @@
+use crate::api::enums::chat_uid::ChatUId;
 use crate::api::enums::reply_markup::ReplyMarkup;
 use crate::api::types::reply_parameters::ReplyParameters;
 use serde::Serialize;
@@ -6,7 +7,7 @@ use serde::Serialize;
 /// Use this method to send point on the map. On success, the sent Message is returned.
 #[derive(Debug, Serialize)]
 pub struct SendLocation {
-    chat_id: i64,
+    chat_id: ChatUId,
     message_thread_id: Option<i64>,
     latitude: f64,
     longitude: f64,

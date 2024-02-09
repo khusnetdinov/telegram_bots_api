@@ -1,3 +1,4 @@
+use crate::api::enums::chat_uid::ChatUId;
 use crate::api::types::inline_keyboard_markup::InlineKeyboardMarkup;
 use crate::api::types::reply_parameters::ReplyParameters;
 use serde::Serialize;
@@ -6,7 +7,7 @@ use serde::Serialize;
 /// Use this method to send a game. On success, the sent Message is returned.
 #[derive(Debug, Serialize)]
 pub struct SendGame {
-    chat_id: i64,
+    chat_id: ChatUId,
     message_thread_id: Option<i64>,
     game_short_name: String,
     disable_notification: Option<bool>,

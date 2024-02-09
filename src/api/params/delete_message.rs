@@ -1,3 +1,4 @@
+use crate::api::enums::chat_uid::ChatUId;
 use serde::Serialize;
 
 /// https://core.telegram.org/bots/api#deletemessage
@@ -13,6 +14,6 @@ use serde::Serialize;
 /// Returns True on success.
 #[derive(Debug, Serialize)]
 struct DeleteMessage {
-    chat_id: i64,
+    chat_id: ChatUId,
     message_id: i64,
 }

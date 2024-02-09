@@ -1,3 +1,4 @@
+use crate::api::enums::chat_uid::ChatUId;
 use crate::api::enums::reply_markup::ReplyMarkup;
 use crate::api::types::message_entity::MessageEntity;
 use crate::api::types::reply_parameters::ReplyParameters;
@@ -7,7 +8,7 @@ use serde::Serialize;
 /// Use this method to send a native poll. On success, the sent Message is returned.
 #[derive(Debug, Serialize)]
 pub struct SendPoll {
-    chat_id: i64,
+    chat_id: ChatUId,
     message_thread_id: Option<i64>,
     question: String,
     options: Vec<String>,
