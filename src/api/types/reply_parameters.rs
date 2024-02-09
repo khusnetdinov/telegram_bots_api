@@ -2,6 +2,7 @@ use crate::api::types::message_entity::MessageEntity;
 use serde::{Deserialize, Serialize};
 
 /// https://core.telegram.org/bots/api#replyparameters
+/// Describes reply parameters for the message that is being sent.
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct ReplyParameters {
     message_id: i64,

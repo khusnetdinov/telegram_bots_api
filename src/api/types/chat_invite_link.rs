@@ -1,7 +1,8 @@
 use crate::api::types::user::User;
 use serde::{Deserialize, Serialize};
 
-// https://core.telegram.org/bots/api#chatinvitelink
+/// https://core.telegram.org/bots/api#chatinvitelink
+/// Represents an invite link for a chat.
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct ChatInviteLink {
     invite_link: String,

@@ -2,7 +2,8 @@ use crate::api::types::message_entity::MessageEntity;
 use crate::api::types::poll_option::PollOption;
 use serde::{Deserialize, Serialize};
 
-// https://core.telegram.org/bots/api#poll
+/// https://core.telegram.org/bots/api#poll
+/// This object contains information about a poll.
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct Poll {
     id: String,

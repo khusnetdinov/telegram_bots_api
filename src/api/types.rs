@@ -153,7 +153,6 @@ pub mod reaction_type_emoji;
 pub mod reply_keyboard_markup;
 pub mod reply_keyboard_remove;
 pub mod reply_parameters;
-pub mod response_parameters;
 pub mod sent_web_app_message;
 pub mod shipping_address;
 pub mod shipping_option;

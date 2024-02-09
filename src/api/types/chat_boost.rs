@@ -1,7 +1,8 @@
 use crate::api::types::chat_boost_source::ChatBoostSource;
 use serde::{Deserialize, Serialize};
 
-// https://core.telegram.org/bots/api#chatboost
+/// https://core.telegram.org/bots/api#chatboost
+/// This object contains information about a chat boost.
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct ChatBoost {
     boost_id: String,

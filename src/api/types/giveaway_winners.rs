@@ -2,7 +2,8 @@ use crate::api::types::chat::Chat;
 use crate::api::types::user::User;
 use serde::{Deserialize, Serialize};
 
-// https://core.telegram.org/bots/api#giveawaywinners
+/// https://core.telegram.org/bots/api#giveawaywinners
+/// This object represents a message about the completion of a giveaway with public winners.
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct GiveawayWinners {
     chat: Chat,

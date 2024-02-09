@@ -1,6 +1,7 @@
 use serde::{Deserialize, Serialize};
 
-// https://core.telegram.org/bots/api#botcommandscopeallgroupchats
+/// https://core.telegram.org/bots/api#botcommandscopeallgroupchats
+/// Represents the scope of bot commands, covering all group and supergroup chats.
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct BotCommandScopeAllGroupChats {
     // type: String,

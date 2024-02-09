@@ -1,7 +1,8 @@
 use crate::api::types::photo_size::PhotoSize;
 use serde::{Deserialize, Serialize};
 
-// https://core.telegram.org/bots/api#animation
+/// https://core.telegram.org/bots/api#animation
+/// This object represents an animation file (GIF or H.264/MPEG-4 AVC video without sound).
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct Animation {
     file_id: String,

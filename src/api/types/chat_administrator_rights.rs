@@ -1,6 +1,7 @@
 use serde::{Deserialize, Serialize};
 
-// https://core.telegram.org/bots/api#chatadministratorrights
+/// https://core.telegram.org/bots/api#chatadministratorrights
+/// Represents the rights of an administrator in a chat.
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct ChatAdministratorRights {
     is_anonymous: bool,

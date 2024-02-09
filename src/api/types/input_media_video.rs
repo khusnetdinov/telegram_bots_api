@@ -1,7 +1,8 @@
 use crate::api::types::message_entity::MessageEntity;
 use serde::{Deserialize, Serialize};
 
-// https://core.telegram.org/bots/api#inputmediavideo
+/// https://core.telegram.org/bots/api#inputmediavideo
+/// Represents a video to be sent.
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct InputMediaVideo {
     // type: String,

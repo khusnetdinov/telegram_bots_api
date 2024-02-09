@@ -1,7 +1,8 @@
 use crate::api::types::photo_size::PhotoSize;
 use serde::{Deserialize, Serialize};
 
-// https://core.telegram.org/bots/api#video
+/// https://core.telegram.org/bots/api#video
+/// This object represents a video file.
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct Video {
     file_id: String,

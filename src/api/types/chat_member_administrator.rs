@@ -1,7 +1,8 @@
 use crate::api::types::user::User;
 use serde::{Deserialize, Serialize};
 
-// https://core.telegram.org/bots/api#chatmemberadministrator
+/// https://core.telegram.org/bots/api#chatmemberadministrator
+/// Represents a chat member that has some additional privileges.
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct ChatMemberAdministrator {
     status: String,

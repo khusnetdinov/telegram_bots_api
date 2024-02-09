@@ -1,7 +1,8 @@
 use crate::api::types::labeled_price::LabeledPrice;
 use serde::{Deserialize, Serialize};
 
-// https://core.telegram.org/bots/api#inputinvoicemessagecontent
+/// https://core.telegram.org/bots/api#inputinvoicemessagecontent
+/// Represents the content of an invoice message to be sent as the result of an inline query.
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct InputInvoiceMessageContent {
     title: String,

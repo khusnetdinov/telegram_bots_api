@@ -1,7 +1,8 @@
 use crate::api::types::chat::Chat;
 use serde::{Deserialize, Serialize};
 
-// https://core.telegram.org/bots/api#giveaway
+/// https://core.telegram.org/bots/api#giveaway
+/// This object represents a message about a scheduled giveaway.
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct Giveaway {
     chats: Vec<Chat>,

@@ -1,7 +1,8 @@
 use crate::api::types::message_entity::MessageEntity;
 use serde::{Deserialize, Serialize};
 
-// https://core.telegram.org/bots/api#inputmediaanimation
+/// https://core.telegram.org/bots/api#inputmediaanimation
+/// Represents an animation file (GIF or H.264/MPEG-4 AVC video without sound) to be sent.
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct InputMediaAnimation {
     // type: String,

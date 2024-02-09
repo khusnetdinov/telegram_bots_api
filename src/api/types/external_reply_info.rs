@@ -21,7 +21,8 @@ use crate::api::types::video_note::VideoNote;
 use crate::api::types::voice::Voice;
 use serde::{Deserialize, Serialize};
 
-// https://core.telegram.org/bots/api#externalreplyinfo
+/// https://core.telegram.org/bots/api#externalreplyinfo
+/// This object contains information about a message that is being replied to, which may come from another chat or forum topic.
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct ExternalReplyInfo {
     origin: MessageOrigin,

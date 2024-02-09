@@ -1,7 +1,8 @@
 use crate::api::types::order_info::OrderInfo;
 use serde::{Deserialize, Serialize};
 
-// https://core.telegram.org/bots/api#successfulpayment
+/// https://core.telegram.org/bots/api#successfulpayment
+/// This object contains basic information about a successful payment.
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct SuccessfulPayment {
     currency: String,
