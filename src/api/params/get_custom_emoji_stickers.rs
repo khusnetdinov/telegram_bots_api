@@ -1,4 +1,8 @@
-// // https://core.telegram.org/bots/api#getcustomemojistickers
-// struct GetCustomEmojiStickers {
-//     custom_emoji_ids: Vec<String>,
-// }
+use serde::Serialize;
+
+/// https://core.telegram.org/bots/api#getcustomemojistickers
+/// Use this method to get information about custom emoji stickers by their identifiers. Returns an Array of Sticker objects.
+#[derive(Debug, Serialize)]
+pub struct GetCustomEmojiStickers {
+    custom_emoji_ids: Vec<String>,
+}

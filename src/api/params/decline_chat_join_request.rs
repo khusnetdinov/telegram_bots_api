@@ -1,5 +1,9 @@
-// // https://core.telegram.org/bots/api#declinechatjoinrequest
-// struct DeclineChatJoinRequest {
-//     chat_id: i64,
-//     user_id: i64,
-// }
+use serde::Serialize;
+
+/// https://core.telegram.org/bots/api#declinechatjoinrequest
+/// Use this method to decline a chat join request. The bot must be an administrator in the chat for this to work and must have the can_invite_users administrator right. Returns True on success.
+#[derive(Debug, Serialize)]
+struct DeclineChatJoinRequest {
+    chat_id: i64,
+    user_id: i64,
+}

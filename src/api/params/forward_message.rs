@@ -3,8 +3,8 @@ use crate::api::types::message_id::MessageId;
 use serde::Serialize;
 
 /// https://core.telegram.org/bots/api#forwardmessage
+/// Use this method to forward messages of any kind. Service messages and messages with protected content can't be forwarded. On success, the sent Message is returned.
 #[derive(Debug, Serialize, Default)]
-#[serde_with_macros::skip_serializing_none]
 pub struct ForwardMessage {
     pub chat_id: ChatUId,
     pub message_thread_id: Option<MessageId>,

@@ -7,8 +7,8 @@ use crate::api::types::reply_parameters::ReplyParameters;
 use serde::Serialize;
 
 /// https://core.telegram.org/bots/api#sendmessage
+/// Use this method to send text messages. On success, the sent Message is returned.
 #[derive(Debug, Serialize, Default)]
-#[serde_with_macros::skip_serializing_none]
 pub struct SendMessage {
     pub chat_id: ChatUId,
     pub message_thread_id: Option<MessageId>,

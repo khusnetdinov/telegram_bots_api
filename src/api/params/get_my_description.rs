@@ -1,4 +1,8 @@
-// // https://core.telegram.org/bots/api#getmydescription
-// struct GetMyDescription {
-//     language_code: Option<String>,
-// }
+use serde::Serialize;
+
+/// https://core.telegram.org/bots/api#getmydescription
+/// Use this method to get the current bot description for the given user language. Returns BotDescription on success.
+#[derive(Debug, Serialize)]
+pub struct GetMyDescription {
+    language_code: Option<String>,
+}
