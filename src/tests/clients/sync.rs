@@ -1,6 +1,8 @@
 #[cfg(test)]
 mod tests {
     use crate::api::enums::chat_uid::ChatUId;
+    use crate::api::params::copy_message::CopyMessage;
+    use crate::api::params::copy_messages::CopyMessages;
     use crate::api::params::delete_webhook::DeleteWebhook;
     use crate::api::params::forward_message::ForwardMessage;
     use crate::api::params::forward_messages::ForwardMessages;
@@ -359,6 +361,89 @@ mod tests {
         };
         if let Error::Response(real_error) =
             mocked.client.sync.forward_messages(&params).unwrap_err()
+        {
+            assert_eq!(mock_error, real_error);
+            mocked.server.assert();
+        }
+    }
+
+    #[test]
+    fn copy_message_success() {
+        let mock_response =
+            fs::read_to_string("src/tests/responses/copy_message_success.json").unwrap();
+        let mut server = mockito::Server::new();
+        let mocked = Mocked::new(&mut server, "copyMessage", &mock_response);
+
+        let mock_result = mocked.result::<MessageId>().unwrap();
+        let params = CopyMessage {
+            message_id: MessageId::from(456),
+            chat_id: ChatUId::from(147951145),
+            from_chat_id: ChatUId::from(147951145),
+            ..Default::default()
+        };
+        let real_result = mocked.client.sync.copy_message(&params).unwrap();
+
+        assert_eq!(mock_result, real_result);
+        mocked.server.assert();
+    }
+
+    #[test]
+    #[should_panic]
+    fn copy_message_error() {
+        let mock_response =
+            fs::read_to_string("src/tests/responses/copy_message_error.json").unwrap();
+        let mut server = mockito::Server::new();
+        let mocked = Mocked::new(&mut server, "copyMessage", &mock_response);
+
+        let mock_error = mocked.result::<ResponseError>().unwrap();
+        let params = CopyMessage {
+            message_id: MessageId::from(456),
+            chat_id: ChatUId::from(147951145),
+            from_chat_id: ChatUId::from(147951145),
+            ..Default::default()
+        };
+        if let Error::Response(real_error) = mocked.client.sync.copy_message(&params).unwrap_err() {
+            assert_eq!(mock_error, real_error);
+            mocked.server.assert();
+        }
+    }
+
+    #[test]
+    fn copy_messages_success() {
+        let mock_response =
+            fs::read_to_string("src/tests/responses/copy_messages_success.json").unwrap();
+        let mut server = mockito::Server::new();
+        let mocked = Mocked::new(&mut server, "copyMessages", &mock_response);
+
+        let mock_result = mocked.result::<Vec<MessageId>>().unwrap();
+        let params = CopyMessages {
+            message_ids: vec![MessageId::from(456)],
+            chat_id: ChatUId::from(147951145),
+            from_chat_id: ChatUId::from(147951145),
+            ..Default::default()
+        };
+        let real_result = mocked.client.sync.copy_messages(&params).unwrap();
+
+        assert_eq!(mock_result, real_result);
+        mocked.server.assert();
+    }
+
+    #[test]
+    #[should_panic]
+    fn copy_messages_error() {
+        let mock_response =
+            fs::read_to_string("src/tests/responses/copy_messages_error.json").unwrap();
+        let mut server = mockito::Server::new();
+        let mocked = Mocked::new(&mut server, "copyMessages", &mock_response);
+
+        let mock_error = mocked.result::<ResponseError>().unwrap();
+        let params = CopyMessages {
+            message_ids: vec![MessageId::from(455), MessageId::from(456)],
+            chat_id: ChatUId::from(147951145),
+            from_chat_id: ChatUId::from(147951145),
+            ..Default::default()
+        };
+        if let Error::Response(real_error) = mocked.client.sync.copy_messages(&params).unwrap_err()
         {
             assert_eq!(mock_error, real_error);
             mocked.server.assert();

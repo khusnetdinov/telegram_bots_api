@@ -1,3 +1,5 @@
+use crate::api::params::copy_message::CopyMessage;
+use crate::api::params::copy_messages::CopyMessages;
 use crate::api::params::delete_webhook::DeleteWebhook;
 use crate::api::params::forward_message::ForwardMessage;
 use crate::api::params::forward_messages::ForwardMessages;
@@ -138,6 +140,18 @@ impl Requests for Sync {
 
     fn forward_messages(&self, params: &ForwardMessages) -> Result<Vec<MessageId>, Error> {
         let request = self.request_for("forwardMessages").json(params);
+
+        self.respond_with::<Vec<MessageId>>(request.send())
+    }
+
+    fn copy_message(&self, params: &CopyMessage) -> Result<MessageId, Error> {
+        let request = self.request_for("copyMessage").json(params);
+
+        self.respond_with::<MessageId>(request.send())
+    }
+
+    fn copy_messages(&self, params: &CopyMessages) -> Result<Vec<MessageId>, Error> {
+        let request = self.request_for("copyMessages").json(params);
 
         self.respond_with::<Vec<MessageId>>(request.send())
     }

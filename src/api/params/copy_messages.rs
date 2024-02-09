@@ -1,10 +1,16 @@
-// // https://core.telegram.org/bots/api#copymessages
-// struct CopyMessages {
-//     chat_id: i64,
-//     message_thread_id: Option<i64>,
-//     from_chat_id: i64,
-//     message_ids: Vec<i64>,
-//     disable_notification: Option<bool>,
-//     protect_content: Option<bool>,
-//     remove_caption: Option<bool>,
-// }
+use crate::api::enums::chat_uid::ChatUId;
+use crate::api::types::message_id::MessageId;
+use serde::Serialize;
+
+/// https://core.telegram.org/bots/api#copymessages
+/// Use this method to copy messages of any kind. If some of the specified messages can't be found or copied, they are skipped. Service messages, giveaway messages, giveaway winners messages, and invoice messages can't be copied. A quiz poll can be copied only if the value of the field correct_option_id is known to the bot. The method is analogous to the method forwardMessages, but the copied messages don't have a link to the original message. Album grouping is kept for copied messages. On success, an array of MessageId of the sent messages is returned.
+#[derive(Default, Serialize)]
+pub struct CopyMessages {
+    pub chat_id: ChatUId,
+    pub message_thread_id: Option<MessageId>,
+    pub from_chat_id: ChatUId,
+    pub message_ids: Vec<MessageId>,
+    pub disable_notification: Option<bool>,
+    pub protect_content: Option<bool>,
+    pub remove_caption: Option<bool>,
+}

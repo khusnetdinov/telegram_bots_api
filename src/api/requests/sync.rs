@@ -1,3 +1,5 @@
+use crate::api::params::copy_message::CopyMessage;
+use crate::api::params::copy_messages::CopyMessages;
 use crate::api::params::delete_webhook::DeleteWebhook;
 use crate::api::params::forward_message::ForwardMessage;
 use crate::api::params::forward_messages::ForwardMessages;
@@ -53,13 +55,13 @@ pub trait Requests {
     /// Use this method to forward multiple messages of any kind. If some of the specified messages can't be found or forwarded, they are skipped. Service messages and messages with protected content can't be forwarded. Album grouping is kept for forwarded messages. On success, an array of MessageId of the sent messages is returned.
     fn forward_messages(&self, params: &ForwardMessages) -> Result<Vec<MessageId>, Error>;
 
-    // https://core.telegram.org/bots/api#copymessage
-    // Use this method to copy messages of any kind. Service messages, giveaway messages, giveaway winners messages, and invoice messages can't be copied. A quiz poll can be copied only if the value of the field correct_option_id is known to the bot. The method is analogous to the method forwardMessage, but the copied message doesn't have a link to the original message. Returns the MessageId of the sent message on success.
-    // fn copy_message(&self)
+    /// https://core.telegram.org/bots/api#copymessage
+    /// Use this method to copy messages of any kind. Service messages, giveaway messages, giveaway winners messages, and invoice messages can't be copied. A quiz poll can be copied only if the value of the field correct_option_id is known to the bot. The method is analogous to the method forwardMessage, but the copied message doesn't have a link to the original message. Returns the MessageId of the sent message on success.
+    fn copy_message(&self, params: &CopyMessage) -> Result<MessageId, Error>;
 
-    // https://core.telegram.org/bots/api#copymessages
-    // Use this method to copy messages of any kind. If some of the specified messages can't be found or copied, they are skipped. Service messages, giveaway messages, giveaway winners messages, and invoice messages can't be copied. A quiz poll can be copied only if the value of the field correct_option_id is known to the bot. The method is analogous to the method forwardMessages, but the copied messages don't have a link to the original message. Album grouping is kept for copied messages. On success, an array of MessageId of the sent messages is returned.
-    // fn copy_messages(&self)
+    /// https://core.telegram.org/bots/api#copymessages
+    /// Use this method to copy messages of any kind. If some of the specified messages can't be found or copied, they are skipped. Service messages, giveaway messages, giveaway winners messages, and invoice messages can't be copied. A quiz poll can be copied only if the value of the field correct_option_id is known to the bot. The method is analogous to the method forwardMessages, but the copied messages don't have a link to the original message. Album grouping is kept for copied messages. On success, an array of MessageId of the sent messages is returned.
+    fn copy_messages(&self, params: &CopyMessages) -> Result<Vec<MessageId>, Error>;
 
     // https://core.telegram.org/bots/api#sendphoto
     // Use this method to send photos. On success, the sent Message is returned.
