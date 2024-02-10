@@ -6,11 +6,11 @@ use serde::{Deserialize, Serialize};
 /// This object represents a sticker set.
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct StickerSet {
-    name: String,
-    title: String,
-    sticker_type: String,
-    is_animated: bool,
-    is_video: bool,
-    stickers: Vec<Sticker>,
-    thumbnail: Option<PhotoSize>,
+    pub name: String,
+    pub title: String,
+    pub sticker_type: String,
+    pub is_animated: bool,
+    pub is_video: bool,
+    pub stickers: Vec<Sticker>,
+    pub thumbnail: Option<PhotoSize>,
 }

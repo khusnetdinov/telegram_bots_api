@@ -6,11 +6,11 @@ use serde::{Deserialize, Serialize};
 /// Describes reply parameters for the message that is being sent.
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct ReplyParameters {
-    message_id: MessageId,
-    chat_id: Option<i64>,
-    allow_sending_without_reply: Option<bool>,
-    quote: Option<String>,
-    quote_parse_mode: Option<String>,
-    quote_entities: Option<Vec<MessageEntity>>,
-    quote_position: Option<i64>,
+    pub message_id: MessageId,
+    pub chat_id: Option<i64>,
+    pub allow_sending_without_reply: Option<bool>,
+    pub quote: Option<String>,
+    pub quote_parse_mode: Option<String>,
+    pub quote_entities: Option<Vec<MessageEntity>>,
+    pub quote_position: Option<i64>,
 }

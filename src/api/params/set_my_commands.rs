@@ -6,7 +6,7 @@ use serde::Serialize;
 /// Use this method to change the list of the bot's commands. See this manual for more details about bot commands. Returns True on success.
 #[derive(Debug, Serialize)]
 pub struct SetMyCommands {
-    commands: Vec<BotCommand>,
-    scope: Option<BotCommandScope>,
-    language_code: Option<String>,
+    pub commands: Vec<BotCommand>,
+    pub scope: Option<BotCommandScope>,
+    pub language_code: Option<String>,
 }

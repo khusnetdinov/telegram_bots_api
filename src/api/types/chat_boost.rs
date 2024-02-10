@@ -5,8 +5,8 @@ use serde::{Deserialize, Serialize};
 /// This object contains information about a chat boost.
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct ChatBoost {
-    boost_id: String,
-    add_date: i64,
-    expiration_date: i64,
-    source: ChatBoostSource,
+    pub boost_id: String,
+    pub add_date: i64,
+    pub expiration_date: i64,
+    pub source: ChatBoostSource,
 }

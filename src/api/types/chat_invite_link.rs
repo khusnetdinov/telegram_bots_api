@@ -5,13 +5,13 @@ use serde::{Deserialize, Serialize};
 /// Represents an invite link for a chat.
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct ChatInviteLink {
-    invite_link: String,
-    creator: User,
-    creates_join_request: bool,
-    is_primary: bool,
-    is_revoked: bool,
-    name: Option<String>,
-    expire_date: Option<i64>,
-    member_limit: Option<i64>,
-    pending_join_request_count: Option<i64>,
+    pub invite_link: String,
+    pub creator: User,
+    pub creates_join_request: bool,
+    pub is_primary: bool,
+    pub is_revoked: bool,
+    pub name: Option<String>,
+    pub expire_date: Option<i64>,
+    pub member_limit: Option<i64>,
+    pub pending_join_request_count: Option<i64>,
 }

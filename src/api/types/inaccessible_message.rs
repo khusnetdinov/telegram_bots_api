@@ -6,7 +6,7 @@ use serde::{Deserialize, Serialize};
 /// This object describes a message that was deleted or is otherwise inaccessible to the bot.
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct InaccessibleMessage {
-    chat: Chat,
-    message_id: MessageId,
-    date: i64,
+    pub chat: Chat,
+    pub message_id: MessageId,
+    pub date: i64,
 }

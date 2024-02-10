@@ -7,10 +7,10 @@ use serde::Serialize;
 /// Use this method to send a group of photos, videos, documents or audios as an album. Documents and audio files can be only grouped in an album with messages of the same type. On success, an array of Messages that were sent is returned.
 #[derive(Debug, Serialize)]
 pub struct SendMediaGroup {
-    chat_id: ChatUId,
-    message_thread_id: Option<i64>,
-    media: Vec<MediaInput>,
-    disable_notification: Option<bool>,
-    protect_content: Option<bool>,
-    reply_parameters: Option<ReplyParameters>,
+    pub chat_id: ChatUId,
+    pub message_thread_id: Option<i64>,
+    pub media: Vec<MediaInput>,
+    pub disable_notification: Option<bool>,
+    pub protect_content: Option<bool>,
+    pub reply_parameters: Option<ReplyParameters>,
 }

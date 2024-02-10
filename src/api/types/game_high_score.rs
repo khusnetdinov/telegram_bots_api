@@ -5,7 +5,7 @@ use serde::{Deserialize, Serialize};
 /// This object represents one row of the high scores table for a game.
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct GameHighScore {
-    position: i64,
-    user: User,
-    score: i64,
+    pub position: i64,
+    pub user: User,
+    pub score: i64,
 }

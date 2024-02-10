@@ -6,8 +6,8 @@ use serde::{Deserialize, Serialize};
 /// This object contains information about an incoming shipping query.
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct ShippingQuery {
-    id: String,
-    from: User,
-    invoice_payload: String,
-    shipping_address: ShippingAddress,
+    pub id: String,
+    pub from: User,
+    pub invoice_payload: String,
+    pub shipping_address: ShippingAddress,
 }

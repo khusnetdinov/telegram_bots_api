@@ -5,12 +5,12 @@ use serde::{Deserialize, Serialize};
 /// This object defines the criteria used to request a suitable chat. The identifier of the selected chat will be shared with the bot when the corresponding button is pressed.
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct KeyboardButtonRequestChat {
-    request_id: i64,
-    chat_is_channel: bool,
-    chat_is_forum: Option<bool>,
-    chat_has_username: Option<bool>,
-    chat_is_created: Option<bool>,
-    user_administrator_rights: Option<ChatAdministratorRights>,
-    bot_administrator_rights: Option<ChatAdministratorRights>,
-    bot_is_member: Option<bool>,
+    pub request_id: i64,
+    pub chat_is_channel: bool,
+    pub chat_is_forum: Option<bool>,
+    pub chat_has_username: Option<bool>,
+    pub chat_is_created: Option<bool>,
+    pub user_administrator_rights: Option<ChatAdministratorRights>,
+    pub bot_administrator_rights: Option<ChatAdministratorRights>,
+    pub bot_is_member: Option<bool>,
 }

@@ -4,11 +4,11 @@ use serde::Serialize;
 /// https://core.telegram.org/bots/api#createnewstickerset
 #[derive(Debug, Serialize)]
 struct CreateNewStickerSet {
-    user_id: i64,
-    name: String,
-    title: String,
-    stickers: Vec<InputSticker>,
-    sticker_format: String,
-    sticker_type: Option<String>,
-    needs_repainting: Option<bool>,
+    pub user_id: i64,
+    pub name: String,
+    pub title: String,
+    pub stickers: Vec<InputSticker>,
+    pub sticker_format: String,
+    pub sticker_type: Option<String>,
+    pub needs_repainting: Option<bool>,
 }

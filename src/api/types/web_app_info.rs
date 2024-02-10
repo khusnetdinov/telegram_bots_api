@@ -4,5 +4,5 @@ use serde::{Deserialize, Serialize};
 /// Describes a Web App.
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct WebAppInfo {
-    url: String,
+    pub url: String,
 }

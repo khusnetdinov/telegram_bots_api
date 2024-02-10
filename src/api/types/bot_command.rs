@@ -4,6 +4,6 @@ use serde::{Deserialize, Serialize};
 /// This object represents a bot command.
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct BotCommand {
-    command: String,
-    description: String,
+    pub command: String,
+    pub description: String,
 }

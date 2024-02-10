@@ -5,7 +5,7 @@ use serde::{Deserialize, Serialize};
 /// This object represents the content of a service message, sent whenever a user in the chat triggers a proximity alert set by another user.
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct ProximityAlertTriggered {
-    traveler: User,
-    watcher: User,
-    distance: i64,
+    pub traveler: User,
+    pub watcher: User,
+    pub distance: i64,
 }

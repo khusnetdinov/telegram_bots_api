@@ -4,6 +4,6 @@ use serde::{Deserialize, Serialize};
 /// Describes data sent from a Web App to the bot.
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct WebAppData {
-    data: String,
-    button_text: String,
+    pub data: String,
+    pub button_text: String,
 }

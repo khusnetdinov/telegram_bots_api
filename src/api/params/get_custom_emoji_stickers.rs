@@ -4,5 +4,5 @@ use serde::Serialize;
 /// Use this method to get information about custom emoji stickers by their identifiers. Returns an Array of Sticker objects.
 #[derive(Debug, Serialize)]
 pub struct GetCustomEmojiStickers {
-    custom_emoji_ids: Vec<String>,
+    pub custom_emoji_ids: Vec<String>,
 }

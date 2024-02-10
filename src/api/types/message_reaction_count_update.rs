@@ -7,8 +7,8 @@ use serde::{Deserialize, Serialize};
 /// This object represents reaction changes on a message with anonymous reactions.
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct MessageReactionCountUpdated {
-    chat: Chat,
-    message_id: MessageId,
-    date: i64,
-    reactions: Vec<ReactionCount>,
+    pub chat: Chat,
+    pub message_id: MessageId,
+    pub date: i64,
+    pub reactions: Vec<ReactionCount>,
 }

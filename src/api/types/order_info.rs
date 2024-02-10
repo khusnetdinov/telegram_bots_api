@@ -5,8 +5,8 @@ use serde::{Deserialize, Serialize};
 /// This object represents information about an order.
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct OrderInfo {
-    name: Option<String>,
-    phone_number: Option<String>,
-    email: Option<String>,
-    shipping_address: Option<ShippingAddress>,
+    pub name: Option<String>,
+    pub phone_number: Option<String>,
+    pub email: Option<String>,
+    pub shipping_address: Option<ShippingAddress>,
 }

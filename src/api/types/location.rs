@@ -4,10 +4,10 @@ use serde::{Deserialize, Serialize};
 /// This object represents a point on the map.
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct Location {
-    longitude: f64,
-    latitude: f64,
-    horizontal_accuracy: Option<f64>,
-    live_period: Option<i64>,
-    heading: Option<i64>,
-    proximity_alert_radius: Option<i64>,
+    pub longitude: f64,
+    pub latitude: f64,
+    pub horizontal_accuracy: Option<f64>,
+    pub live_period: Option<i64>,
+    pub heading: Option<i64>,
+    pub proximity_alert_radius: Option<i64>,
 }

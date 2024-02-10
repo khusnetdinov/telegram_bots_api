@@ -5,8 +5,8 @@ use serde::{Deserialize, Serialize};
 /// The maximum file size to download is 20 MB
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct File {
-    file_id: String,
-    file_unique_id: String,
-    file_size: i64,
-    file_path: String,
+    pub file_id: String,
+    pub file_unique_id: String,
+    pub file_size: i64,
+    pub file_path: String,
 }

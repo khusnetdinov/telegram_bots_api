@@ -4,6 +4,6 @@ use serde::Serialize;
 /// Use this method to set the title of a created sticker set. Returns True on success.
 #[derive(Debug, Serialize)]
 pub struct SetStickerSetTitle {
-    name: String,
-    title: String,
+    pub name: String,
+    pub title: String,
 }

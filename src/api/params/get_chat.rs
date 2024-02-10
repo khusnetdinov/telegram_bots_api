@@ -5,5 +5,5 @@ use serde::Serialize;
 /// Use this method to get up to date information about the chat. Returns a Chat object on success.
 #[derive(Debug, Serialize)]
 pub struct GetChat {
-    chat_id: ChatUId,
+    pub chat_id: ChatUId,
 }

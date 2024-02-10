@@ -4,9 +4,9 @@ use serde::{Deserialize, Serialize};
 /// This object represents one size of a photo or a file / sticker thumbnail.
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct PhotoSize {
-    file_id: String,
-    file_unique_id: String,
-    width: i64,
-    height: i64,
-    file_size: Option<i64>,
+    pub file_id: String,
+    pub file_unique_id: String,
+    pub width: i64,
+    pub height: i64,
+    pub file_size: Option<i64>,
 }

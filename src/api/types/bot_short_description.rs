@@ -4,5 +4,5 @@ use serde::{Deserialize, Serialize};
 /// This object represents the bot's short description.
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct BotShortDescription {
-    short_description: String,
+    pub short_description: String,
 }

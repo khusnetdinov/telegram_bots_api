@@ -7,11 +7,11 @@ use serde::Serialize;
 /// Use this method to send a game. On success, the sent Message is returned.
 #[derive(Debug, Serialize)]
 pub struct SendGame {
-    chat_id: ChatUId,
-    message_thread_id: Option<i64>,
-    game_short_name: String,
-    disable_notification: Option<bool>,
-    protect_content: Option<bool>,
-    reply_parameters: Option<ReplyParameters>,
-    reply_markup: Option<InlineKeyboardMarkup>,
+    pub chat_id: ChatUId,
+    pub message_thread_id: Option<i64>,
+    pub game_short_name: String,
+    pub disable_notification: Option<bool>,
+    pub protect_content: Option<bool>,
+    pub reply_parameters: Option<ReplyParameters>,
+    pub reply_markup: Option<InlineKeyboardMarkup>,
 }

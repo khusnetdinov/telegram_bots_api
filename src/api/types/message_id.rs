@@ -4,7 +4,7 @@ use serde::{Deserialize, Serialize};
 /// This object represents a unique message identifier.
 #[derive(Debug, Serialize, Deserialize, Default, PartialEq)]
 pub struct MessageId {
-    message_id: i64,
+    pub message_id: i64,
 }
 
 impl From<i64> for MessageId {

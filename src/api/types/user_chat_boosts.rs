@@ -5,5 +5,5 @@ use serde::{Deserialize, Serialize};
 /// This object represents a list of boosts added to a chat by a user.
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct UserChatBoosts {
-    boosts: Vec<ChatBoost>,
+    pub boosts: Vec<ChatBoost>,
 }

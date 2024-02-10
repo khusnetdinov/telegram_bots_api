@@ -4,10 +4,10 @@ use serde::{Deserialize, Serialize};
 /// This object represents a shipping address.
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct ShippingAddress {
-    country_code: String,
-    state: String,
-    city: String,
-    street_line1: String,
-    street_line2: String,
-    post_code: String,
+    pub country_code: String,
+    pub state: String,
+    pub city: String,
+    pub street_line1: String,
+    pub street_line2: String,
+    pub post_code: String,
 }

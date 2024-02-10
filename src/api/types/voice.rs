@@ -4,9 +4,9 @@ use serde::{Deserialize, Serialize};
 /// This object represents a voice note.
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct Voice {
-    file_id: String,
-    file_unique_id: String,
-    duration: i64,
-    mime_type: Option<String>,
-    file_size: Option<i64>,
+    pub file_id: String,
+    pub file_unique_id: String,
+    pub duration: i64,
+    pub mime_type: Option<String>,
+    pub file_size: Option<i64>,
 }

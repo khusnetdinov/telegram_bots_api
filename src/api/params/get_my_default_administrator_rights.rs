@@ -4,5 +4,5 @@ use serde::Serialize;
 /// Use this method to get the current default administrator rights of the bot. Returns ChatAdministratorRights on success.
 #[derive(Debug, Serialize)]
 pub struct GetMyDefaultAdministratorRights {
-    for_channels: Option<bool>,
+    pub for_channels: Option<bool>,
 }

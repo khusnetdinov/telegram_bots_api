@@ -5,13 +5,13 @@ use serde::{Deserialize, Serialize};
 /// This object represents an audio file to be treated as music by the Telegram clients.
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct Audio {
-    file_id: String,
-    file_unique_id: String,
-    duration: i64,
-    performer: Option<String>,
-    title: Option<String>,
-    file_name: Option<String>,
-    mime_type: Option<String>,
-    file_size: Option<i64>,
-    thumbnail: Option<PhotoSize>,
+    pub file_id: String,
+    pub file_unique_id: String,
+    pub duration: i64,
+    pub performer: Option<String>,
+    pub title: Option<String>,
+    pub file_name: Option<String>,
+    pub mime_type: Option<String>,
+    pub file_size: Option<i64>,
+    pub thumbnail: Option<PhotoSize>,
 }

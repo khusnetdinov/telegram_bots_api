@@ -7,8 +7,8 @@ use serde::Serialize;
 /// Use this method to change the chosen reactions on a message. Service messages can't be reacted to. Automatically forwarded messages from a channel to its discussion group have the same available reactions as messages in the channel. Returns True on success.
 #[derive(Debug, Serialize)]
 pub struct SetMessageReaction {
-    chat_id: ChatUId,
-    message_id: MessageId,
-    reaction: Option<Vec<ReactionType>>,
-    is_big: Option<bool>,
+    pub chat_id: ChatUId,
+    pub message_id: MessageId,
+    pub reaction: Option<Vec<ReactionType>>,
+    pub is_big: Option<bool>,
 }

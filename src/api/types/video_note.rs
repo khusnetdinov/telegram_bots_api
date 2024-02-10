@@ -5,10 +5,10 @@ use serde::{Deserialize, Serialize};
 /// This object represents a video message (available in Telegram apps as of v.4.0).
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct VideoNote {
-    file_id: String,
-    file_unique_id: String,
-    length: i64,
-    duration: i64,
-    thumbnail: Option<PhotoSize>,
-    file_size: Option<i64>,
+    pub file_id: String,
+    pub file_unique_id: String,
+    pub length: i64,
+    pub duration: i64,
+    pub thumbnail: Option<PhotoSize>,
+    pub file_size: Option<i64>,
 }

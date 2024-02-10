@@ -5,7 +5,7 @@ use serde::{Deserialize, Serialize};
 /// This object represents one shipping option.
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct ShippingOption {
-    id: String,
-    title: String,
-    prices: Vec<LabeledPrice>,
+    pub id: String,
+    pub title: String,
+    pub prices: Vec<LabeledPrice>,
 }

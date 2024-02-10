@@ -7,10 +7,10 @@ use serde::Serialize;
 /// No more than 50 results per query are allowed.
 #[derive(Debug, Serialize)]
 pub struct AnswerInlineQuery {
-    inline_query_id: String,
-    results: Vec<InlineQueryResult>,
-    cache_time: Option<i64>,
-    is_personal: Option<bool>,
-    next_offset: Option<String>,
-    button: Option<InlineQueryResultsButton>,
+    pub inline_query_id: String,
+    pub results: Vec<InlineQueryResult>,
+    pub cache_time: Option<i64>,
+    pub is_personal: Option<bool>,
+    pub next_offset: Option<String>,
+    pub button: Option<InlineQueryResultsButton>,
 }

@@ -5,6 +5,6 @@ use serde::{Deserialize, Serialize};
 /// The boost was obtained by subscribing to Telegram Premium or by gifting a Telegram Premium subscription to another user.
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct ChatBoostSourcePremium {
-    source: String,
-    user: User,
+    pub source: String,
+    pub user: User,
 }

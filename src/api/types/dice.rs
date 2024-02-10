@@ -4,6 +4,6 @@ use serde::{Deserialize, Serialize};
 /// This object represents an animated emoji that displays a random value.
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct Dice {
-    emoji: String,
-    value: i64,
+    pub emoji: String,
+    pub value: i64,
 }

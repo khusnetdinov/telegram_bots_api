@@ -7,14 +7,14 @@ use serde::Serialize;
 /// Use this method to send phone contacts. On success, the sent Message is returned.
 #[derive(Debug, Serialize)]
 pub struct SendContact {
-    chat_id: ChatUId,
-    message_thread_id: Option<i64>,
-    phone_number: String,
-    first_name: String,
-    last_name: Option<String>,
-    vcard: Option<String>,
-    disable_notification: Option<bool>,
-    protect_content: Option<bool>,
-    reply_parameters: Option<ReplyParameters>,
-    reply_markup: Option<ReplyMarkup>,
+    pub chat_id: ChatUId,
+    pub message_thread_id: Option<i64>,
+    pub phone_number: String,
+    pub first_name: String,
+    pub last_name: Option<String>,
+    pub vcard: Option<String>,
+    pub disable_notification: Option<bool>,
+    pub protect_content: Option<bool>,
+    pub reply_parameters: Option<ReplyParameters>,
+    pub reply_markup: Option<ReplyMarkup>,
 }

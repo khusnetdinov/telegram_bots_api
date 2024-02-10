@@ -4,6 +4,6 @@ use serde::Serialize;
 /// Use this method to change the list of emoji assigned to a regular or custom emoji sticker. The sticker must belong to a sticker set created by the bot. Returns True on success.
 #[derive(Debug, Serialize)]
 pub struct SetStickerEmojiList {
-    sticker: String,
-    emoji_list: Vec<String>,
+    pub sticker: String,
+    pub emoji_list: Vec<String>,
 }

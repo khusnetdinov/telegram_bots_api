@@ -4,7 +4,7 @@ use serde::{Deserialize, Serialize};
 /// This object represents a service message about a new forum topic created in the chat.
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct ForumTopicCreated {
-    name: String,
-    icon_color: i64,
-    icon_custom_emoji_id: Option<String>,
+    pub name: String,
+    pub icon_color: i64,
+    pub icon_custom_emoji_id: Option<String>,
 }

@@ -6,6 +6,6 @@ use serde::{Deserialize, Serialize};
 /// This object represents a boost added to a chat or changed.
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct ChatBoostUpdated {
-    chat: Chat,
-    boost: ChatBoost,
+    pub chat: Chat,
+    pub boost: ChatBoost,
 }

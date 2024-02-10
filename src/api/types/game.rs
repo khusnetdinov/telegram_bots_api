@@ -7,10 +7,10 @@ use serde::{Deserialize, Serialize};
 /// This object represents a game. Use BotFather to create and edit games, their short names will act as unique identifiers.
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct Game {
-    title: String,
-    description: String,
-    photo: Vec<PhotoSize>,
-    text: Option<String>,
-    text_entities: Option<Vec<MessageEntity>>,
-    animation: Option<Animation>,
+    pub title: String,
+    pub description: String,
+    pub photo: Vec<PhotoSize>,
+    pub text: Option<String>,
+    pub text_entities: Option<Vec<MessageEntity>>,
+    pub animation: Option<Animation>,
 }

@@ -5,13 +5,13 @@ use serde::{Deserialize, Serialize};
 /// This object represents a video file.
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct Video {
-    file_id: String,
-    file_unique_id: String,
-    width: i64,
-    height: i64,
-    duration: i64,
-    thumbnail: Option<PhotoSize>,
-    file_name: Option<String>,
-    mime_type: Option<String>,
-    file_size: Option<i64>,
+    pub file_id: String,
+    pub file_unique_id: String,
+    pub width: i64,
+    pub height: i64,
+    pub duration: i64,
+    pub thumbnail: Option<PhotoSize>,
+    pub file_name: Option<String>,
+    pub mime_type: Option<String>,
+    pub file_size: Option<i64>,
 }

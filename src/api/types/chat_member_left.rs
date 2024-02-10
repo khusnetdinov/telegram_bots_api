@@ -5,6 +5,6 @@ use serde::{Deserialize, Serialize};
 /// Represents a chat member that isn't currently a member of the chat, but may join it themselves.
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct ChatMemberLeft {
-    status: String,
-    user: User,
+    pub status: String,
+    pub user: User,
 }

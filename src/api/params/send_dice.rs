@@ -7,11 +7,11 @@ use serde::Serialize;
 /// Use this method to send an animated emoji that will display a random value. On success, the sent Message is returned.
 #[derive(Debug, Serialize)]
 pub struct SendDice {
-    chat_id: ChatUId,
-    message_thread_id: Option<i64>,
-    emoji: Option<String>,
-    disable_notification: Option<bool>,
-    protect_content: Option<bool>,
-    reply_parameters: Option<ReplyParameters>,
-    reply_markup: Option<ReplyMarkup>,
+    pub chat_id: ChatUId,
+    pub message_thread_id: Option<i64>,
+    pub emoji: Option<String>,
+    pub disable_notification: Option<bool>,
+    pub protect_content: Option<bool>,
+    pub reply_parameters: Option<ReplyParameters>,
+    pub reply_markup: Option<ReplyMarkup>,
 }

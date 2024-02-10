@@ -6,10 +6,10 @@ use serde::{Deserialize, Serialize};
 /// This object represents an incoming inline query. When the user sends an empty query, your bot could return some default or trending results.
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct InlineQuery {
-    id: String,
-    from: User,
-    query: String,
-    offset: String,
-    chat_type: Option<String>,
-    location: Option<Location>,
+    pub id: String,
+    pub from: User,
+    pub query: String,
+    pub offset: String,
+    pub chat_type: Option<String>,
+    pub location: Option<Location>,
 }

@@ -5,11 +5,11 @@ use serde::{Deserialize, Serialize};
 /// This object represents a venue.
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct Venue {
-    location: Location,
-    title: String,
-    address: String,
-    foursquare_id: Option<String>,
-    foursquare_type: Option<String>,
-    google_place_id: Option<String>,
-    google_place_type: Option<String>,
+    pub location: Location,
+    pub title: String,
+    pub address: String,
+    pub foursquare_id: Option<String>,
+    pub foursquare_type: Option<String>,
+    pub google_place_id: Option<String>,
+    pub google_place_type: Option<String>,
 }

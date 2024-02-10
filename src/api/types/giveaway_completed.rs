@@ -4,7 +4,7 @@ use serde::{Deserialize, Serialize};
 /// This object represents a service message about the completion of a giveaway without public winners.
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct GiveawayCompleted {
-    winner_count: i64,
-    unclaimed_prize_count: Option<i64>,
-    giveaway_completed: Option<Box<GiveawayCompleted>>,
+    pub winner_count: i64,
+    pub unclaimed_prize_count: Option<i64>,
+    pub giveaway_completed: Option<Box<GiveawayCompleted>>,
 }

@@ -6,7 +6,7 @@ use serde::Serialize;
 /// Use this method to set default chat permissions for all members. The bot must be an administrator in the group or a supergroup for this to work and must have the can_restrict_members administrator rights. Returns True on success.
 #[derive(Debug, Serialize)]
 pub struct SetChatPermissions {
-    chat_id: ChatUId,
-    permissions: ChatPermissions,
-    use_independent_chat_permissions: Option<bool>,
+    pub chat_id: ChatUId,
+    pub permissions: ChatPermissions,
+    pub use_independent_chat_permissions: Option<bool>,
 }

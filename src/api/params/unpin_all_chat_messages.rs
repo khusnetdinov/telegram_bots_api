@@ -5,5 +5,5 @@ use serde::Serialize;
 ///
 #[derive(Debug, Serialize)]
 pub struct UnpinAllChatMessages {
-    chat_id: ChatUId,
+    pub chat_id: ChatUId,
 }

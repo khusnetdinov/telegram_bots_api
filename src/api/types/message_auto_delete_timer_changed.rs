@@ -4,5 +4,5 @@ use serde::{Deserialize, Serialize};
 /// This object represents a service message about a change in auto-delete timer settings.
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct MessageAutoDeleteTimerChanged {
-    message_auto_delete_time: i64,
+    pub message_auto_delete_time: i64,
 }

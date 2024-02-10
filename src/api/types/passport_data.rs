@@ -6,6 +6,6 @@ use serde::{Deserialize, Serialize};
 /// Describes Telegram Passport data shared with the bot by the user.
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct PassportData {
-    data: Vec<EncryptedPassportElement>,
-    credentials: EncryptedCredentials,
+    pub data: Vec<EncryptedPassportElement>,
+    pub credentials: EncryptedCredentials,
 }

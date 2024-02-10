@@ -4,7 +4,7 @@ use serde::Serialize;
 /// Use this method to get a list of profile pictures for a user. Returns a UserProfilePhotos object.
 #[derive(Debug, Serialize)]
 pub struct GetUserProfilePhotos {
-    user_id: i64,
-    offset: Option<i64>,
-    limit: Option<i64>,
+    pub user_id: i64,
+    pub offset: Option<i64>,
+    pub limit: Option<i64>,
 }

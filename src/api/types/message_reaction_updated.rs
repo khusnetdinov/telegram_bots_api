@@ -8,11 +8,11 @@ use serde::{Deserialize, Serialize};
 /// This object represents a change of a reaction on a message performed by a user.
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct MessageReactionUpdated {
-    chat: Chat,
-    message_id: MessageId,
-    user: Option<User>,
-    actor_chat: Option<Chat>,
-    date: i64,
-    old_reaction: Vec<ReactionType>,
-    new_reaction: Vec<ReactionType>,
+    pub chat: Chat,
+    pub message_id: MessageId,
+    pub user: Option<User>,
+    pub actor_chat: Option<Chat>,
+    pub date: i64,
+    pub old_reaction: Vec<ReactionType>,
+    pub new_reaction: Vec<ReactionType>,
 }

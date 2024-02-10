@@ -4,8 +4,8 @@ use serde::{Deserialize, Serialize};
 /// This object represents a chat photo.
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct ChatPhoto {
-    small_file_id: String,
-    small_file_unique_id: String,
-    big_file_id: String,
-    big_file_unique_id: String,
+    pub small_file_id: String,
+    pub small_file_unique_id: String,
+    pub big_file_id: String,
+    pub big_file_unique_id: String,
 }

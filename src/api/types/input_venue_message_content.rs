@@ -4,12 +4,12 @@ use serde::{Deserialize, Serialize};
 /// Represents the content of a venue message to be sent as the result of an inline query.
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct InputVenueMessageContent {
-    latitude: f64,
-    longitude: f64,
-    title: String,
-    address: String,
-    foursquare_id: Option<String>,
-    foursquare_type: Option<String>,
-    google_place_id: Option<String>,
-    google_place_type: Option<String>,
+    pub latitude: f64,
+    pub longitude: f64,
+    pub title: String,
+    pub address: String,
+    pub foursquare_id: Option<String>,
+    pub foursquare_type: Option<String>,
+    pub google_place_id: Option<String>,
+    pub google_place_type: Option<String>,
 }

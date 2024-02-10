@@ -5,6 +5,6 @@ use serde::Serialize;
 /// Use this method to approve a chat join request. The bot must be an administrator in the chat for this to work and must have the can_invite_users administrator right. Returns True on success.
 #[derive(Debug, Serialize)]
 pub struct ApproveChatJoinRequest {
-    chat_id: ChatUId,
-    user_id: i64,
+    pub chat_id: ChatUId,
+    pub user_id: i64,
 }

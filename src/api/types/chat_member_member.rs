@@ -5,6 +5,6 @@ use serde::{Deserialize, Serialize};
 /// Represents a chat member that has no additional privileges or restrictions.
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct ChatMemberMember {
-    status: String,
-    user: User,
+    pub status: String,
+    pub user: User,
 }

@@ -4,6 +4,6 @@ use serde::{Deserialize, Serialize};
 /// This object contains information about one answer option in a poll.
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct PollOption {
-    text: String,
-    voter_count: i64,
+    pub text: String,
+    pub voter_count: i64,
 }

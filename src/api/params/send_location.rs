@@ -7,16 +7,16 @@ use serde::Serialize;
 /// Use this method to send point on the map. On success, the sent Message is returned.
 #[derive(Debug, Serialize)]
 pub struct SendLocation {
-    chat_id: ChatUId,
-    message_thread_id: Option<i64>,
-    latitude: f64,
-    longitude: f64,
-    horizontal_accuracy: Option<f64>,
-    live_period: Option<i64>,
-    heading: Option<i64>,
-    proximity_alert_radius: Option<i64>,
-    disable_notification: Option<bool>,
-    protect_content: Option<bool>,
-    reply_parameters: Option<ReplyParameters>,
-    reply_markup: Option<ReplyMarkup>,
+    pub chat_id: ChatUId,
+    pub message_thread_id: Option<i64>,
+    pub latitude: f64,
+    pub longitude: f64,
+    pub horizontal_accuracy: Option<f64>,
+    pub live_period: Option<i64>,
+    pub heading: Option<i64>,
+    pub proximity_alert_radius: Option<i64>,
+    pub disable_notification: Option<bool>,
+    pub protect_content: Option<bool>,
+    pub reply_parameters: Option<ReplyParameters>,
+    pub reply_markup: Option<ReplyMarkup>,
 }

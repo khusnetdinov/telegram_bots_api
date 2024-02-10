@@ -6,6 +6,6 @@ use serde::Serialize;
 /// Use this method to change the bot's menu button in a private chat, or the default menu button. Returns True on success.
 #[derive(Debug, Serialize)]
 pub struct SetChatMenuButton {
-    chat_id: Option<ChatUId>,
-    menu_button: Option<MenuButton>,
+    pub chat_id: Option<ChatUId>,
+    pub menu_button: Option<MenuButton>,
 }

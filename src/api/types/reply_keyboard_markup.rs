@@ -5,10 +5,10 @@ use serde::{Deserialize, Serialize};
 /// This object represents a custom keyboard with reply options (see Introduction to bots for details and examples).
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct ReplyKeyboardMarkup {
-    keyboard: Vec<KeyboardButton>,
-    is_persistent: Option<bool>,
-    resize_keyboard: Option<bool>,
-    one_time_keyboard: Option<bool>,
-    input_field_placeholder: Option<String>,
-    selective: Option<bool>,
+    pub keyboard: Vec<KeyboardButton>,
+    pub is_persistent: Option<bool>,
+    pub resize_keyboard: Option<bool>,
+    pub one_time_keyboard: Option<bool>,
+    pub input_field_placeholder: Option<String>,
+    pub selective: Option<bool>,
 }

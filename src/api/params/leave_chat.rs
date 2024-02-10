@@ -5,5 +5,5 @@ use serde::Serialize;
 /// Use this method for your bot to leave a group, supergroup or channel. Returns True on success.
 #[derive(Debug, Serialize)]
 pub struct LeaveChat {
-    chat_id: ChatUId,
+    pub chat_id: ChatUId,
 }

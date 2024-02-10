@@ -6,7 +6,7 @@ use serde::Serialize;
 /// Use this method to add a message to the list of pinned messages in a chat. If the chat is not a private chat, the bot must be an administrator in the chat for this to work and must have the 'can_pin_messages' administrator right in a supergroup or 'can_edit_messages' administrator right in a channel. Returns True on success.
 #[derive(Debug, Serialize)]
 pub struct PinChatMessage {
-    chat_id: ChatUId,
-    message_id: MessageId,
-    disable_notification: Option<bool>,
+    pub chat_id: ChatUId,
+    pub message_id: MessageId,
+    pub disable_notification: Option<bool>,
 }

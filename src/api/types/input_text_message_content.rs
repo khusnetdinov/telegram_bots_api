@@ -6,8 +6,8 @@ use serde::{Deserialize, Serialize};
 /// Represents the content of a text message to be sent as the result of an inline query.
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct InputTextMessageContent {
-    message_text: String,
-    parse_mode: Option<String>,
-    entities: Option<Vec<MessageEntity>>,
-    link_preview_options: Option<LinkPreviewOptions>,
+    pub message_text: String,
+    pub parse_mode: Option<String>,
+    pub entities: Option<Vec<MessageEntity>>,
+    pub link_preview_options: Option<LinkPreviewOptions>,
 }

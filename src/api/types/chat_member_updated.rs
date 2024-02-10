@@ -8,11 +8,11 @@ use serde::{Deserialize, Serialize};
 /// This object represents changes in the status of a chat member.
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct ChatMemberUpdated {
-    chat: Chat,
-    from: User,
-    date: i64,
-    old_chat_member: ChatMember,
-    new_chat_member: ChatMember,
-    invite_link: Option<ChatInviteLink>,
-    via_chat_folder_invite_link: Option<bool>,
+    pub chat: Chat,
+    pub from: User,
+    pub date: i64,
+    pub old_chat_member: ChatMember,
+    pub new_chat_member: ChatMember,
+    pub invite_link: Option<ChatInviteLink>,
+    pub via_chat_folder_invite_link: Option<bool>,
 }

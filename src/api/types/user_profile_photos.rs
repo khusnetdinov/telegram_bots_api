@@ -5,6 +5,6 @@ use serde::{Deserialize, Serialize};
 /// This object represent a user's profile pictures.
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct UserProfilePhotos {
-    total_count: i64,
-    photos: Vec<PhotoSize>,
+    pub total_count: i64,
+    pub photos: Vec<PhotoSize>,
 }

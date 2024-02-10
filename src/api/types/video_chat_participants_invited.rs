@@ -5,5 +5,5 @@ use serde::{Deserialize, Serialize};
 /// This object represents a service message about new members invited to a video chat.
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct VideoChatParticipantsInvited {
-    users: Vec<User>,
+    pub users: Vec<User>,
 }

@@ -4,5 +4,5 @@ use serde::Serialize;
 /// Use this method to get the current bot description for the given user language. Returns BotDescription on success.
 #[derive(Debug, Serialize)]
 pub struct GetMyDescription {
-    language_code: Option<String>,
+    pub language_code: Option<String>,
 }

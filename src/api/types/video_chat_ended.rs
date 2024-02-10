@@ -4,5 +4,5 @@ use serde::{Deserialize, Serialize};
 /// This object represents a service message about a video chat ended in the chat.
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct VideoChatEnded {
-    duration: i64,
+    pub duration: i64,
 }

@@ -4,8 +4,8 @@ use serde::{Deserialize, Serialize};
 /// This object describes the position on faces where a mask should be placed by default.
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct MaskPosition {
-    point: String,
-    x_shift: f64,
-    y_shift: f64,
-    scale: f64,
+    pub point: String,
+    pub x_shift: f64,
+    pub y_shift: f64,
+    pub scale: f64,
 }

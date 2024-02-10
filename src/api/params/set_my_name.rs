@@ -4,6 +4,6 @@ use serde::Serialize;
 /// Use this method to change the bot's name. Returns True on success.
 #[derive(Debug, Serialize)]
 pub struct SetMyName {
-    name: Option<String>,
-    language_code: Option<String>,
+    pub name: Option<String>,
+    pub language_code: Option<String>,
 }

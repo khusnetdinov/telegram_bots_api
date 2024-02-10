@@ -5,6 +5,6 @@ use serde::Serialize;
 /// Use this method to change the mask position of a mask sticker. The sticker must belong to a sticker set that was created by the bot. Returns True on success.
 #[derive(Debug, Serialize)]
 pub struct SetStickerMaskPosition {
-    sticker: String,
-    mask_position: Option<MaskPosition>,
+    pub sticker: String,
+    pub mask_position: Option<MaskPosition>,
 }

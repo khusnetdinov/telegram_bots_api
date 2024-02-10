@@ -5,6 +5,6 @@ use serde::Serialize;
 /// Use this method to delete multiple messages simultaneously. If some of the specified messages can't be found, they are skipped. Returns True on success.
 #[derive(Debug, Serialize)]
 struct DeleteMessages {
-    chat_id: ChatUId,
-    message_ids: Vec<i64>,
+    pub chat_id: ChatUId,
+    pub message_ids: Vec<i64>,
 }

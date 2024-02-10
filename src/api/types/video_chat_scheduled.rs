@@ -4,5 +4,5 @@ use serde::{Deserialize, Serialize};
 /// This object represents a service message about a video chat scheduled in the chat.
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct VideoChatScheduled {
-    start_date: i64,
+    pub start_date: i64,
 }
