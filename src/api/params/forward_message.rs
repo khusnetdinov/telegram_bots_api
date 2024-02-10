@@ -6,10 +6,14 @@ use serde::Serialize;
 /// Use this method to forward messages of any kind. Service messages and messages with protected content can't be forwarded. On success, the sent Message is returned.
 #[derive(Debug, Serialize, Default)]
 pub struct ForwardMessage {
-    pub chat_id: ChatUId,
-    pub message_thread_id: Option<i64>,
-    pub from_chat_id: ChatUId,
-    pub disable_notification: Option<bool>,
-    pub protect_content: Option<bool>,
+    #[serde(flatten)]
     pub message_id: MessageId,
+    pub chat_id: ChatUId,
+    pub from_chat_id: ChatUId,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub message_thread_id: Option<i64>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub disable_notification: Option<bool>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub protect_content: Option<bool>,
 }

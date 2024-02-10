@@ -7,5 +7,6 @@ use serde::Serialize;
 pub struct UnbanChatMember {
     pub chat_id: ChatUId,
     pub user_id: i64,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub only_if_banned: Option<bool>,
 }

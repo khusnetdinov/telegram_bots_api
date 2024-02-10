@@ -5,6 +5,8 @@ use serde::{Deserialize, Serialize};
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct ForceReply {
     pub force_reply: bool,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub input_field_placeholder: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub selective: Option<bool>,
 }

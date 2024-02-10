@@ -6,6 +6,8 @@ use serde::{Deserialize, Serialize};
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct InlineQueryResultsButton {
     pub text: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub web_app: Option<WebAppInfo>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub start_parameter: Option<String>,
 }

@@ -10,6 +10,8 @@ pub struct InlineQuery {
     pub from: User,
     pub query: String,
     pub offset: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub chat_type: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub location: Option<Location>,
 }

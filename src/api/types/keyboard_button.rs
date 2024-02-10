@@ -9,10 +9,16 @@ use serde::{Deserialize, Serialize};
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct KeyboardButton {
     pub text: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub request_users: Option<KeyboardButtonRequestUsers>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub request_chat: Option<KeyboardButtonRequestChat>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub request_contact: Option<bool>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub request_location: Option<bool>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub request_poll: Option<KeyboardButtonPollType>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub web_app: Option<WebAppInfo>,
 }

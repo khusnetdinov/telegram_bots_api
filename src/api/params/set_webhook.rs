@@ -8,10 +8,16 @@ use crate::api::types::input_file::InputFile;
 #[derive(Debug, Serialize, Default)]
 pub struct SetWebhook {
     pub url: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub certificate: Option<InputFile>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub ip_address: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub max_connections: Option<u32>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub allowed_updates: Option<Vec<String>>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub drop_pending_updates: Option<bool>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub secret_token: Option<String>,
 }

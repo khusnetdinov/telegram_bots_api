@@ -7,6 +7,8 @@ use serde::Serialize;
 pub struct BanChatMember {
     pub chat_id: ChatUId,
     pub user_id: i64,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub until_date: Option<i64>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub revoke_messages: Option<bool>,
 }

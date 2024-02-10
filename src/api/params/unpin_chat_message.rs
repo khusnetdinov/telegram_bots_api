@@ -6,5 +6,6 @@ use serde::Serialize;
 #[derive(Debug, Serialize)]
 pub struct UnpinChatMessage {
     pub chat_id: ChatUId,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub message_id: Option<i64>,
 }

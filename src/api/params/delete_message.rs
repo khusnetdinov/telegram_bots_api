@@ -15,6 +15,7 @@ use serde::Serialize;
 /// Returns True on success.
 #[derive(Debug, Serialize)]
 struct DeleteMessage {
-    pub chat_id: ChatUId,
+    #[serde(flatten)]
     pub message_id: MessageId,
+    pub chat_id: ChatUId,
 }

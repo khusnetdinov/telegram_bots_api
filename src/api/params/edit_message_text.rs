@@ -8,12 +8,19 @@ use serde::Serialize;
 /// Use this method to edit text and game messages. On success, if the edited message is not an inline message, the edited Message is returned, otherwise True is returned.
 #[derive(Debug, Serialize)]
 pub struct EditMessageText {
-    pub chat_id: Option<ChatUId>,
-    pub message_id: Option<i64>,
-    pub inline_message_id: Option<String>,
     pub text: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub chat_id: Option<ChatUId>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub message_id: Option<i64>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub inline_message_id: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub parse_mode: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub entities: Option<Vec<MessageEntity>>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub link_preview_options: Option<LinkPreviewOptions>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub reply_markup: Option<InlineKeyboardMarkup>,
 }

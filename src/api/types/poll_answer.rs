@@ -7,7 +7,9 @@ use serde::{Deserialize, Serialize};
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct PollAnswer {
     pub poll_id: String,
-    pub voter_chat: Option<Chat>,
-    pub user: Option<User>,
     pub option_ids: Vec<i64>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub voter_chat: Option<Chat>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub user: Option<User>,
 }

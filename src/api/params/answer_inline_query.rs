@@ -9,8 +9,12 @@ use serde::Serialize;
 pub struct AnswerInlineQuery {
     pub inline_query_id: String,
     pub results: Vec<InlineQueryResult>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub cache_time: Option<i64>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub is_personal: Option<bool>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub next_offset: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub button: Option<InlineQueryResultsButton>,
 }

@@ -8,7 +8,9 @@ use serde::{Deserialize, Serialize};
 pub struct ChosenInlineResult {
     pub result_id: String,
     pub from: User,
-    pub location: Option<Location>,
-    pub inline_message_id: Option<String>,
     pub query: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub location: Option<Location>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub inline_message_id: Option<String>,
 }

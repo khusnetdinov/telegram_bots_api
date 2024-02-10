@@ -10,9 +10,11 @@ use serde::{Deserialize, Serialize};
 pub struct MessageReactionUpdated {
     pub chat: Chat,
     pub message_id: MessageId,
-    pub user: Option<User>,
-    pub actor_chat: Option<Chat>,
     pub date: i64,
     pub old_reaction: Vec<ReactionType>,
     pub new_reaction: Vec<ReactionType>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub user: Option<User>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub actor_chat: Option<Chat>,
 }

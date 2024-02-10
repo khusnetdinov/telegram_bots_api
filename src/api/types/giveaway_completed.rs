@@ -5,6 +5,8 @@ use serde::{Deserialize, Serialize};
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct GiveawayCompleted {
     pub winner_count: i64,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub unclaimed_prize_count: Option<i64>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub giveaway_completed: Option<Box<GiveawayCompleted>>,
 }

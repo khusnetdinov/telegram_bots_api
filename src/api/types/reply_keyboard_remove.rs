@@ -5,5 +5,6 @@ use serde::{Deserialize, Serialize};
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct ReplyKeyboardRemove {
     pub remove_keyboard: bool,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub selective: Option<bool>,
 }

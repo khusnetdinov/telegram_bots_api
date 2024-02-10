@@ -13,6 +13,8 @@ pub struct ChatMemberUpdated {
     pub date: i64,
     pub old_chat_member: ChatMember,
     pub new_chat_member: ChatMember,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub invite_link: Option<ChatInviteLink>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub via_chat_folder_invite_link: Option<bool>,
 }

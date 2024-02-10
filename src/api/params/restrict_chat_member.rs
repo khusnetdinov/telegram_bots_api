@@ -9,6 +9,8 @@ pub struct RestrictChatMember {
     pub chat_id: ChatUId,
     pub user_id: i64,
     pub permissions: ChatPermissions,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub use_independent_chat_permissions: Option<bool>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub until_date: Option<i64>,
 }

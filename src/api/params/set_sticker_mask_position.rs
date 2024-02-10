@@ -6,5 +6,6 @@ use serde::Serialize;
 #[derive(Debug, Serialize)]
 pub struct SetStickerMaskPosition {
     pub sticker: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub mask_position: Option<MaskPosition>,
 }

@@ -6,5 +6,6 @@ use serde::{Deserialize, Serialize};
 pub struct ForumTopicCreated {
     pub name: String,
     pub icon_color: i64,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub icon_custom_emoji_id: Option<String>,
 }

@@ -6,8 +6,12 @@ use serde::Serialize;
 #[derive(Debug, Serialize)]
 pub struct CreateChatInviteLink {
     pub chat_id: ChatUId,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub name: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub expire_date: Option<i64>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub member_limit: Option<i64>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub creates_join_request: Option<bool>,
 }

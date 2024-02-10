@@ -7,5 +7,6 @@ use serde::Serialize;
 pub struct SetStickerSetThumbnail {
     pub name: String,
     pub user_id: i64,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub thumbnail: Option<FileInput>,
 }

@@ -4,5 +4,6 @@ use serde::{Deserialize, Serialize};
 /// Describes an inline message sent by a Web App on behalf of a user.
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct SentWebAppMessage {
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub inline_message_id: Option<String>,
 }

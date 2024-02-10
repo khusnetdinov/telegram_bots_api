@@ -7,9 +7,12 @@ use serde::Serialize;
 #[derive(Debug, Serialize, Default)]
 pub struct ForwardMessages {
     pub chat_id: ChatUId,
-    pub message_thread_id: Option<i64>,
     pub from_chat_id: ChatUId,
     pub message_ids: Vec<MessageId>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub message_thread_id: Option<i64>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub disable_notification: Option<bool>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub protect_content: Option<bool>,
 }

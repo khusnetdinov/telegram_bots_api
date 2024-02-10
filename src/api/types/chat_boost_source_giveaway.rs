@@ -7,6 +7,8 @@ use serde::{Deserialize, Serialize};
 pub struct ChatBoostSourceGiveaway {
     pub source: String,
     pub giveaway_message_id: i64,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub user: Option<User>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub is_unclaimed: Option<bool>,
 }

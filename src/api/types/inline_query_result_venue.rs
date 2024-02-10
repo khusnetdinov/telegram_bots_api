@@ -13,13 +13,22 @@ pub struct InlineQueryResultVenue {
     pub longitude: f64,
     pub title: String,
     pub address: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub foursquare_id: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub foursquare_type: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub google_place_id: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub google_place_type: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub reply_markup: Option<InlineKeyboardMarkup>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub input_message_content: Option<InputMessageContent>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub thumbnail_url: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub thumbnail_width: Option<i64>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub thumbnail_height: Option<i64>,
 }

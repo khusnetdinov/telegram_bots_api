@@ -11,6 +11,8 @@ pub struct ChatJoinRequest {
     pub from: User,
     pub user_chat_id: i64,
     pub date: i64,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub bio: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub invite_link: Option<ChatInviteLink>,
 }

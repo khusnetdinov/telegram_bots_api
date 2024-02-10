@@ -10,21 +10,35 @@ use serde::Serialize;
 pub struct SendPoll {
     #[serde(rename(serialize = "type", deserialize = "type"))]
     pub kind: Option<String>,
-    pub allows_multiple_answers: Option<bool>,
     pub chat_id: ChatUId,
-    pub message_thread_id: Option<i64>,
     pub question: String,
     pub options: Vec<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub allows_multiple_answers: Option<bool>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub message_thread_id: Option<i64>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub is_anonymous: Option<bool>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub correct_option_id: Option<i64>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub explanation: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub explanation_parse_mode: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub explanation_entities: Option<Vec<MessageEntity>>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub open_period: Option<i64>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub close_date: Option<i64>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub is_closed: Option<bool>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub disable_notification: Option<bool>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub protect_content: Option<bool>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub reply_parameters: Option<ReplyParameters>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub reply_markup: Option<ReplyMarkup>,
 }

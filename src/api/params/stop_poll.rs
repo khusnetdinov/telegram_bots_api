@@ -7,7 +7,9 @@ use serde::Serialize;
 /// Use this method to stop a poll which was sent by the bot. On success, the stopped Poll is returned.
 #[derive(Debug, Serialize)]
 pub struct StopPoll {
-    pub chat_id: ChatUId,
+    #[serde(flatten)]
     pub message_id: MessageId,
+    pub chat_id: ChatUId,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub reply_markup: Option<InlineKeyboardMarkup>,
 }

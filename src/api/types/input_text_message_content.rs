@@ -7,7 +7,10 @@ use serde::{Deserialize, Serialize};
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct InputTextMessageContent {
     pub message_text: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub parse_mode: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub entities: Option<Vec<MessageEntity>>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub link_preview_options: Option<LinkPreviewOptions>,
 }

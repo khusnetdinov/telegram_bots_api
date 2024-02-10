@@ -12,5 +12,6 @@ pub struct StickerSet {
     pub is_animated: bool,
     pub is_video: bool,
     pub stickers: Vec<Sticker>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub thumbnail: Option<PhotoSize>,
 }

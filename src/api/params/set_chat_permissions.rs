@@ -8,5 +8,6 @@ use serde::Serialize;
 pub struct SetChatPermissions {
     pub chat_id: ChatUId,
     pub permissions: ChatPermissions,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub use_independent_chat_permissions: Option<bool>,
 }

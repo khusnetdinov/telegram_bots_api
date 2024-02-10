@@ -11,15 +11,25 @@ pub struct InlineQueryResultGif {
     pub kind: String,
     pub id: String,
     pub gif_url: String,
-    pub gif_width: Option<i64>,
-    pub gif_height: Option<i64>,
-    pub gif_duration: Option<i64>,
     pub thumbnail_url: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub gif_width: Option<i64>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub gif_height: Option<i64>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub gif_duration: Option<i64>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub thumbnail_mime_type: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub title: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub caption: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub parse_mode: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub caption_entities: Option<Vec<MessageEntity>>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub reply_markup: Option<InlineKeyboardMarkup>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub input_message_content: Option<InputMessageContent>,
 }

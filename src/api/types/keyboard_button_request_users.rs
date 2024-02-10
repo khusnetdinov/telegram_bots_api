@@ -5,7 +5,10 @@ use serde::{Deserialize, Serialize};
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct KeyboardButtonRequestUsers {
     pub request_id: i64,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub user_is_bot: Option<bool>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub user_is_premium: Option<bool>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub max_quantity: Option<i64>,
 }

@@ -9,6 +9,8 @@ pub struct VideoNote {
     pub file_unique_id: String,
     pub length: i64,
     pub duration: i64,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub thumbnail: Option<PhotoSize>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub file_size: Option<i64>,
 }

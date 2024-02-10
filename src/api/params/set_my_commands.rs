@@ -7,6 +7,8 @@ use serde::Serialize;
 #[derive(Debug, Serialize)]
 pub struct SetMyCommands {
     pub commands: Vec<BotCommand>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub scope: Option<BotCommandScope>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub language_code: Option<String>,
 }

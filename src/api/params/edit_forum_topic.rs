@@ -7,6 +7,8 @@ use serde::Serialize;
 pub struct EditForumTopic {
     pub chat_id: ChatUId,
     pub message_thread_id: i64,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub name: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub icon_custom_emoji_id: Option<String>,
 }

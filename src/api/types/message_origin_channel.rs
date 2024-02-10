@@ -11,5 +11,6 @@ pub struct MessageOriginChannel {
     pub date: i64,
     pub chat: Chat,
     pub message_id: MessageId,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub author_signature: Option<String>,
 }

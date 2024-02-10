@@ -8,5 +8,6 @@ pub struct ChatMemberOwner {
     pub status: String,
     pub user: User,
     pub is_anonymous: bool,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub custom_title: Option<String>,
 }
