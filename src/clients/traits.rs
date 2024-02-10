@@ -1,5 +1,5 @@
 use crate::errors::Error;
-use reqwest::blocking::Response;
+use reqwest::blocking::{RequestBuilder, Response};
 use serde::de::DeserializeOwned;
 
 pub trait Encoder {
@@ -8,6 +8,10 @@ pub trait Encoder {
 
 pub trait Decoder {
     fn decode<T: DeserializeOwned>(&self, response: Response) -> Result<T, Error>;
+}
+
+pub trait Requester {
+    fn request_for(&self, method: &str) -> RequestBuilder;
 }
 
 pub trait Responder: Decoder {

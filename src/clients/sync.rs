@@ -14,7 +14,7 @@ use crate::api::types::message_id::MessageId;
 use crate::api::types::update::Update;
 use crate::api::types::user::User;
 use crate::api::types::webhook_info::WebhookInfo;
-use crate::clients::traits::{Decoder, Responder};
+use crate::clients::traits::{Decoder, Requester, Responder};
 use crate::config::Config;
 use crate::errors::Error;
 use reqwest::blocking::{ClientBuilder, RequestBuilder, Response};
@@ -51,10 +51,6 @@ impl Sync {
             url,
         }
     }
-
-    pub fn request_for(&self, method: &str) -> RequestBuilder {
-        self.client.post(format!("{}{}", self.url, method))
-    }
 }
 
 impl Decoder for Sync {
@@ -63,6 +59,12 @@ impl Decoder for Sync {
             Ok(success) => Ok(success.result),
             Err(error) => Err(Error::Decode(error)),
         }
+    }
+}
+
+impl Requester for Sync {
+    fn request_for(&self, method: &str) -> RequestBuilder {
+        self.client.post(format!("{}{}", self.url, method))
     }
 }
 
