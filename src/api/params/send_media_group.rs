@@ -1,4 +1,5 @@
 use crate::api::enums::chat_uid::ChatUId;
+use crate::api::enums::media_input::MediaInput;
 use crate::api::types::reply_parameters::ReplyParameters;
 use serde::Serialize;
 
@@ -8,7 +9,7 @@ use serde::Serialize;
 pub struct SendMediaGroup {
     chat_id: ChatUId,
     message_thread_id: Option<i64>,
-    // media: Vec<InputMediaAudio, InputMediaDocument, InputMediaPhoto and InputMediaVideo>,
+    media: Vec<MediaInput>,
     disable_notification: Option<bool>,
     protect_content: Option<bool>,
     reply_parameters: Option<ReplyParameters>,
