@@ -1,6 +1,6 @@
 use crate::api::enums::chat_uid::ChatUId;
+use crate::api::enums::input_media::InputMedia;
 use crate::api::types::inline_keyboard_markup::InlineKeyboardMarkup;
-use crate::api::types::input_media::InputMedia;
 use serde::Serialize;
 
 /// https://core.telegram.org/bots/api#editmessagemedia

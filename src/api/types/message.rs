@@ -1,3 +1,5 @@
+use crate::api::enums::maybe_inaccessible_message::MaybeInaccessibleMessage;
+use crate::api::enums::message_origin::MessageOrigin;
 use crate::api::types::animation::Animation;
 use crate::api::types::audio::Audio;
 use crate::api::types::chat::Chat;
@@ -21,11 +23,9 @@ use crate::api::types::inline_keyboard_markup::InlineKeyboardMarkup;
 use crate::api::types::invoice::Invoice;
 use crate::api::types::link_preview_options::LinkPreviewOptions;
 use crate::api::types::location::Location;
-use crate::api::types::maybe_inaccessible_message::MaybeInaccessibleMessage;
 use crate::api::types::message_auto_delete_timer_changed::MessageAutoDeleteTimerChanged;
 use crate::api::types::message_entity::MessageEntity;
 use crate::api::types::message_id::MessageId;
-use crate::api::types::message_origin::MessageOrigin;
 use crate::api::types::passport_data::PassportData;
 use crate::api::types::photo_size::PhotoSize;
 use crate::api::types::poll::Poll;

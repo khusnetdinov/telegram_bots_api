@@ -1,6 +1,6 @@
+use crate::api::enums::reaction_type::ReactionType;
 use crate::api::types::chat::Chat;
 use crate::api::types::message_id::MessageId;
-use crate::api::types::reaction_type::ReactionType;
 use crate::api::types::user::User;
 use serde::{Deserialize, Serialize};
 

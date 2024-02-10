@@ -1,3 +1,4 @@
+use crate::api::enums::message_origin::MessageOrigin;
 use crate::api::types::animation::Animation;
 use crate::api::types::audio::Audio;
 use crate::api::types::chat::Chat;
@@ -10,7 +11,6 @@ use crate::api::types::giveaway_winners::GiveawayWinners;
 use crate::api::types::invoice::Invoice;
 use crate::api::types::link_preview_options::LinkPreviewOptions;
 use crate::api::types::location::Location;
-use crate::api::types::message_origin::MessageOrigin;
 use crate::api::types::photo_size::PhotoSize;
 use crate::api::types::poll::Poll;
 use crate::api::types::sticker::Sticker;

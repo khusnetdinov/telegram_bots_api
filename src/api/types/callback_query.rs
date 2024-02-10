@@ -1,4 +1,4 @@
-use crate::api::types::maybe_inaccessible_message::MaybeInaccessibleMessage;
+use crate::api::enums::maybe_inaccessible_message::MaybeInaccessibleMessage;
 use crate::api::types::user::User;
 use serde::{Deserialize, Serialize};
 

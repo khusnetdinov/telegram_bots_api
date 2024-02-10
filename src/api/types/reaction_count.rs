@@ -1,4 +1,4 @@
-use crate::api::types::reaction_type::ReactionType;
+use crate::api::enums::reaction_type::ReactionType;
 use serde::{Deserialize, Serialize};
 
 /// https://core.telegram.org/bots/api#reactioncount

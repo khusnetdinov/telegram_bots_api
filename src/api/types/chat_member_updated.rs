@@ -1,6 +1,6 @@
+use crate::api::enums::chat_member::ChatMember;
 use crate::api::types::chat::Chat;
 use crate::api::types::chat_invite_link::ChatInviteLink;
-use crate::api::types::chat_member::ChatMember;
 use crate::api::types::user::User;
 use serde::{Deserialize, Serialize};
 

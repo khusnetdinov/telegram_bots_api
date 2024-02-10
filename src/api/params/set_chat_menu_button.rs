@@ -1,5 +1,5 @@
 use crate::api::enums::chat_uid::ChatUId;
-use crate::api::types::menu_button::MenuButton;
+use crate::api::enums::menu_button::MenuButton;
 use serde::Serialize;
 
 /// https://core.telegram.org/bots/api#setchatmenubutton

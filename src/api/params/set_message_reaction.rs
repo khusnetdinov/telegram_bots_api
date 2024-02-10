@@ -1,6 +1,6 @@
 use crate::api::enums::chat_uid::ChatUId;
+use crate::api::enums::reaction_type::ReactionType;
 use crate::api::types::message_id::MessageId;
-use crate::api::types::reaction_type::ReactionType;
 use serde::Serialize;
 
 /// https://core.telegram.org/bots/api#setmessagereaction

@@ -1,4 +1,4 @@
-use crate::api::types::inline_query_result::InlineQueryResult;
+use crate::api::enums::inline_query_result::InlineQueryResult;
 use serde::Serialize;
 
 /// https://core.telegram.org/bots/api#answerwebappquery

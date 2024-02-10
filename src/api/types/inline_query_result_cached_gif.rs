@@ -1,5 +1,5 @@
+use crate::api::enums::input_message_content::InputMessageContent;
 use crate::api::types::inline_keyboard_markup::InlineKeyboardMarkup;
-use crate::api::types::input_message_content::InputMessageContent;
 use crate::api::types::message_entity::MessageEntity;
 use serde::{Deserialize, Serialize};
 

@@ -1,5 +1,5 @@
+use crate::api::enums::chat_boost_source::ChatBoostSource;
 use crate::api::types::chat::Chat;
-use crate::api::types::chat_boost_source::ChatBoostSource;
 use serde::{Deserialize, Serialize};
 
 /// https://core.telegram.org/bots/api#chatboostremoved

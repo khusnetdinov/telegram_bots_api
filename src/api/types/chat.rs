@@ -1,8 +1,8 @@
+use crate::api::enums::reaction_type::ReactionType;
 use crate::api::types::chat_location::ChatLocation;
 use crate::api::types::chat_permissions::ChatPermissions;
 use crate::api::types::chat_photo::ChatPhoto;
 use crate::api::types::message::Message;
-use crate::api::types::reaction_type::ReactionType;
 use serde::{Deserialize, Serialize};
 
 /// https://core.telegram.org/bots/api#chat

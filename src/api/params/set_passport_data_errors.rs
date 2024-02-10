@@ -1,4 +1,4 @@
-use crate::api::types::passport_element_error::PassportElementError;
+use crate::api::enums::passport_element_error::PassportElementError;
 use serde::Serialize;
 
 /// https://core.telegram.org/bots/api#setpassportdataerrors

@@ -1,4 +1,4 @@
-use crate::api::types::bot_command_scope::BotCommandScope;
+use crate::api::enums::bot_command_scope::BotCommandScope;
 use serde::Serialize;
 
 /// https://core.telegram.org/bots/api#getmycommands
