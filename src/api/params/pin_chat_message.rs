@@ -1,4 +1,5 @@
 use crate::api::enums::chat_uid::ChatUId;
+use crate::api::types::message_id::MessageId;
 use serde::Serialize;
 
 /// https://core.telegram.org/bots/api#pinchatmessage
@@ -6,6 +7,6 @@ use serde::Serialize;
 #[derive(Debug, Serialize)]
 pub struct PinChatMessage {
     chat_id: ChatUId,
-    message_id: i64,
+    message_id: MessageId,
     disable_notification: Option<bool>,
 }

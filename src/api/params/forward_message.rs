@@ -7,7 +7,7 @@ use serde::Serialize;
 #[derive(Debug, Serialize, Default)]
 pub struct ForwardMessage {
     pub chat_id: ChatUId,
-    pub message_thread_id: Option<MessageId>,
+    pub message_thread_id: Option<i64>,
     pub from_chat_id: ChatUId,
     pub disable_notification: Option<bool>,
     pub protect_content: Option<bool>,

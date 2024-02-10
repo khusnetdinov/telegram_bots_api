@@ -1,4 +1,5 @@
 use crate::api::types::chat::Chat;
+use crate::api::types::message_id::MessageId;
 use crate::api::types::reaction_count::ReactionCount;
 use serde::{Deserialize, Serialize};
 
@@ -7,7 +8,7 @@ use serde::{Deserialize, Serialize};
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct MessageReactionCountUpdated {
     chat: Chat,
-    message_id: i64,
+    message_id: MessageId,
     date: i64,
     reactions: Vec<ReactionCount>,
 }

@@ -7,7 +7,7 @@ use serde::Serialize;
 #[derive(Default, Serialize)]
 pub struct CopyMessages {
     pub chat_id: ChatUId,
-    pub message_thread_id: Option<MessageId>,
+    pub message_thread_id: Option<i64>,
     pub from_chat_id: ChatUId,
     pub message_ids: Vec<MessageId>,
     pub disable_notification: Option<bool>,

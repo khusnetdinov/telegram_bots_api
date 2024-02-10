@@ -17,7 +17,6 @@ use serde::{Deserialize, Serialize};
 /// This object represents an incoming update.
 /// At most one of the optional parameters can be present in any given update.
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
-#[serde_with_macros::skip_serializing_none]
 pub struct Update {
     update_id: i64,
     message: Option<Message>,

@@ -1,4 +1,5 @@
 use crate::api::enums::chat_uid::ChatUId;
+use crate::api::types::message_id::MessageId;
 use crate::api::types::reaction_type::ReactionType;
 use serde::Serialize;
 
@@ -7,7 +8,7 @@ use serde::Serialize;
 #[derive(Debug, Serialize)]
 pub struct SetMessageReaction {
     chat_id: ChatUId,
-    message_id: i64,
+    message_id: MessageId,
     reaction: Option<Vec<ReactionType>>,
     is_big: Option<bool>,
 }

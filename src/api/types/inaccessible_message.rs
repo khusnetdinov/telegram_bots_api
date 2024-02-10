@@ -1,4 +1,5 @@
 use crate::api::types::chat::Chat;
+use crate::api::types::message_id::MessageId;
 use serde::{Deserialize, Serialize};
 
 /// https://core.telegram.org/bots/api#inaccessiblemessage
@@ -6,6 +7,6 @@ use serde::{Deserialize, Serialize};
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct InaccessibleMessage {
     chat: Chat,
-    message_id: i64,
+    message_id: MessageId,
     date: i64,
 }

@@ -1,5 +1,6 @@
 use crate::api::enums::chat_uid::ChatUId;
 use crate::api::types::inline_keyboard_markup::InlineKeyboardMarkup;
+use crate::api::types::message_id::MessageId;
 use serde::Serialize;
 
 /// https://core.telegram.org/bots/api#stoppoll
@@ -7,6 +8,6 @@ use serde::Serialize;
 #[derive(Debug, Serialize)]
 pub struct StopPoll {
     chat_id: ChatUId,
-    message_id: i64,
+    message_id: MessageId,
     reply_markup: Option<InlineKeyboardMarkup>,
 }
