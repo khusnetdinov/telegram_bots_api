@@ -1,3 +1,5 @@
+use crate::api::types::inaccessible_message::InaccessibleMessage;
+use crate::api::types::message::Message;
 use serde::{Deserialize, Serialize};
 
 /// https://core.telegram.org/bots/api#maybeinaccessiblemessage
@@ -5,4 +7,7 @@ use serde::{Deserialize, Serialize};
 /// Message
 /// InaccessibleMessage
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
-pub struct MaybeInaccessibleMessage {}
+pub enum MaybeInaccessibleMessage {
+    Message(Box<Message>),
+    InaccessibleMessage(InaccessibleMessage),
+}

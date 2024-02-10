@@ -1,3 +1,5 @@
+use crate::api::types::reaction_type_custom_emoji::ReactionTypeCustomEmoji;
+use crate::api::types::reaction_type_emoji::ReactionTypeEmoji;
 use serde::{Deserialize, Serialize};
 
 /// https://core.telegram.org/bots/api#reactiontype
@@ -5,4 +7,7 @@ use serde::{Deserialize, Serialize};
 /// ReactionTypeEmoji
 /// ReactionTypeCustomEmoji
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
-pub struct ReactionType {}
+pub enum ReactionType {
+    ReactionTypeEmoji(ReactionTypeEmoji),
+    ReactionTypeCustomEmoji(ReactionTypeCustomEmoji),
+}

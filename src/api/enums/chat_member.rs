@@ -1,3 +1,9 @@
+use crate::api::types::chat_member_administrator::ChatMemberAdministrator;
+use crate::api::types::chat_member_banned::ChatMemberBanned;
+use crate::api::types::chat_member_left::ChatMemberLeft;
+use crate::api::types::chat_member_member::ChatMemberMember;
+use crate::api::types::chat_member_owner::ChatMemberOwner;
+use crate::api::types::chat_member_restricted::ChatMemberRestricted;
 use serde::{Deserialize, Serialize};
 
 /// https://core.telegram.org/bots/api#chatmember
@@ -9,4 +15,11 @@ use serde::{Deserialize, Serialize};
 /// ChatMemberLeft
 /// ChatMemberBanned
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
-pub struct ChatMember {}
+pub enum ChatMember {
+    ChatMemberOwner(ChatMemberOwner),
+    ChatMemberAdministrator(ChatMemberAdministrator),
+    ChatMemberMember(ChatMemberMember),
+    ChatMemberRestricted(ChatMemberRestricted),
+    ChatMemberLeft(ChatMemberLeft),
+    ChatMemberBanned(ChatMemberBanned),
+}

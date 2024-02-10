@@ -102,7 +102,7 @@ pub struct Message {
     pub message_auto_delete_timer_changed: Option<MessageAutoDeleteTimerChanged>,
     pub migrate_to_chat_id: Option<i64>,
     pub migrate_from_chat_id: Option<i64>,
-    pub pinned_message: Option<MaybeInaccessibleMessage>,
+    pub pinned_message: Option<Box<MaybeInaccessibleMessage>>,
     pub invoice: Option<Invoice>,
     pub successful_payment: Option<SuccessfulPayment>,
     pub users_shared: Option<UsersShared>,
