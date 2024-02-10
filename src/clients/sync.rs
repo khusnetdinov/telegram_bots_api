@@ -85,74 +85,50 @@ impl Responder for Sync {
 
 impl Requests for Sync {
     fn get_updates(&self, params: &GetUpdate) -> Result<Vec<Update>, Error> {
-        let request = self.request_for("getUpdates").json(params);
-
-        self.respond_with::<Vec<Update>>(request.send())
+        self.respond_with::<Vec<Update>>(self.request_for("getUpdates").json(params).send())
     }
 
     fn set_webhook(&self, params: &SetWebhook) -> Result<bool, Error> {
-        let request = self.request_for("setWebhook").json(params);
-
-        self.respond_with::<bool>(request.send())
+        self.respond_with::<bool>(self.request_for("setWebhook").json(params).send())
     }
 
     fn delete_webhook(&self, params: &DeleteWebhook) -> Result<bool, Error> {
-        let request = self.request_for("deleteWebhook").json(params);
-
-        self.respond_with::<bool>(request.send())
+        self.respond_with::<bool>(self.request_for("deleteWebhook").json(params).send())
     }
 
     fn get_webhook_info(&self) -> Result<WebhookInfo, Error> {
-        let request = self.request_for("getWebhookInfo").json(&{});
-
-        self.respond_with::<WebhookInfo>(request.send())
+        self.respond_with::<WebhookInfo>(self.request_for("getWebhookInfo").json(&{}).send())
     }
 
     fn get_me(&self) -> Result<User, Error> {
-        let request = self.request_for("getMe").json(&{});
-
-        self.respond_with::<User>(request.send())
+        self.respond_with::<User>(self.request_for("getMe").json(&{}).send())
     }
 
     fn log_out(&self) -> Result<bool, Error> {
-        let request = self.request_for("logOut").json(&{});
-
-        self.respond_with::<bool>(request.send())
+        self.respond_with::<bool>(self.request_for("logOut").json(&{}).send())
     }
 
     fn close(&self) -> Result<bool, Error> {
-        let request = self.request_for("close").json(&{});
-
-        self.respond_with::<bool>(request.send())
+        self.respond_with::<bool>(self.request_for("close").json(&{}).send())
     }
 
     fn send_message(&self, params: &SendMessage) -> Result<Message, Error> {
-        let request = self.request_for("sendMessage").json(params);
-
-        self.respond_with::<Message>(request.send())
+        self.respond_with::<Message>(self.request_for("sendMessage").json(params).send())
     }
 
     fn forward_message(&self, params: &ForwardMessage) -> Result<MessageId, Error> {
-        let request = self.request_for("forwardMessage").json(params);
-
-        self.respond_with::<MessageId>(request.send())
+        self.respond_with::<MessageId>(self.request_for("forwardMessage").json(params).send())
     }
 
     fn forward_messages(&self, params: &ForwardMessages) -> Result<Vec<MessageId>, Error> {
-        let request = self.request_for("forwardMessages").json(params);
-
-        self.respond_with::<Vec<MessageId>>(request.send())
+        self.respond_with::<Vec<MessageId>>(self.request_for("forwardMessages").json(params).send())
     }
 
     fn copy_message(&self, params: &CopyMessage) -> Result<MessageId, Error> {
-        let request = self.request_for("copyMessage").json(params);
-
-        self.respond_with::<MessageId>(request.send())
+        self.respond_with::<MessageId>(self.request_for("copyMessage").json(params).send())
     }
 
     fn copy_messages(&self, params: &CopyMessages) -> Result<Vec<MessageId>, Error> {
-        let request = self.request_for("copyMessages").json(params);
-
-        self.respond_with::<Vec<MessageId>>(request.send())
+        self.respond_with::<Vec<MessageId>>(self.request_for("copyMessages").json(params).send())
     }
 }
