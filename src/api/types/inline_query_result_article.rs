@@ -6,15 +6,16 @@ use serde::{Deserialize, Serialize};
 /// Represents a link to an article or web page.
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct InlineQueryResultArticle {
-    // type: String,
-    id: String,
-    title: String,
-    input_message_content: InputMessageContent,
-    reply_markup: Option<InlineKeyboardMarkup>,
-    url: Option<String>,
-    hide_url: Option<bool>,
-    description: Option<String>,
-    thumbnail_url: Option<String>,
-    thumbnail_width: Option<i64>,
-    thumbnail_height: Option<i64>,
+    #[serde(rename(serialize = "type", deserialize = "type"))]
+    pub kind: String,
+    pub id: String,
+    pub title: String,
+    pub input_message_content: InputMessageContent,
+    pub reply_markup: Option<InlineKeyboardMarkup>,
+    pub url: Option<String>,
+    pub hide_url: Option<bool>,
+    pub description: Option<String>,
+    pub thumbnail_url: Option<String>,
+    pub thumbnail_width: Option<i64>,
+    pub thumbnail_height: Option<i64>,
 }

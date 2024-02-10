@@ -7,17 +7,18 @@ use serde::{Deserialize, Serialize};
 /// Represents a link to a photo. By default, this photo will be sent by the user with optional caption. Alternatively, you can use input_message_content to send a message with the specified content instead of the photo.
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct InlineQueryResultPhoto {
-    // type: String,
-    id: String,
-    photo_url: String,
-    thumbnail_url: String,
-    photo_width: Option<i64>,
-    photo_height: Option<i64>,
-    title: Option<String>,
-    description: Option<String>,
-    caption: Option<String>,
-    parse_mode: Option<String>,
-    caption_entities: Option<Vec<MessageEntity>>,
-    reply_markup: Option<InlineKeyboardMarkup>,
-    input_message_content: Option<InputMessageContent>,
+    #[serde(rename(serialize = "type", deserialize = "type"))]
+    pub kind: String,
+    pub id: String,
+    pub photo_url: String,
+    pub thumbnail_url: String,
+    pub photo_width: Option<i64>,
+    pub photo_height: Option<i64>,
+    pub title: Option<String>,
+    pub description: Option<String>,
+    pub caption: Option<String>,
+    pub parse_mode: Option<String>,
+    pub caption_entities: Option<Vec<MessageEntity>>,
+    pub reply_markup: Option<InlineKeyboardMarkup>,
+    pub input_message_content: Option<InputMessageContent>,
 }

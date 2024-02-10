@@ -6,17 +6,18 @@ use serde::{Deserialize, Serialize};
 /// This object contains information about a poll.
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct Poll {
-    id: String,
-    question: String,
-    options: Vec<PollOption>,
-    total_voter_count: i64,
-    is_closed: bool,
-    is_anonymous: bool,
-    // type: String,
-    allows_multiple_answers: bool,
-    correct_option_id: Option<i64>,
-    explanation: Option<String>,
-    explanation_entities: Option<Vec<MessageEntity>>,
-    open_period: Option<i64>,
-    close_date: Option<i64>,
+    #[serde(rename(serialize = "type", deserialize = "type"))]
+    pub kind: String,
+    pub id: String,
+    pub question: String,
+    pub options: Vec<PollOption>,
+    pub total_voter_count: i64,
+    pub is_closed: bool,
+    pub is_anonymous: bool,
+    pub allows_multiple_answers: bool,
+    pub correct_option_id: Option<i64>,
+    pub explanation: Option<String>,
+    pub explanation_entities: Option<Vec<MessageEntity>>,
+    pub open_period: Option<i64>,
+    pub close_date: Option<i64>,
 }

@@ -1,3 +1,4 @@
+use crate::api::enums::file_input::FileInput;
 use crate::api::types::mask_position::MaskPosition;
 use serde::{Deserialize, Serialize};
 
@@ -5,8 +6,8 @@ use serde::{Deserialize, Serialize};
 /// This object describes a sticker to be added to a sticker set.
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct InputSticker {
-    // sticker: InputFile or String,
-    emoji_list: Vec<String>,
-    mask_position: Option<MaskPosition>,
-    keywords: Option<Vec<String>>,
+    pub sticker: FileInput,
+    pub emoji_list: Vec<String>,
+    pub mask_position: Option<MaskPosition>,
+    pub keywords: Option<Vec<String>>,
 }

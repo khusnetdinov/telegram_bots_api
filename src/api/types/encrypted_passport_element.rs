@@ -5,14 +5,15 @@ use serde::{Deserialize, Serialize};
 /// Describes documents or other Telegram Passport elements shared with the bot by the user.
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct EncryptedPassportElement {
-    // type: String,
-    data: Option<String>,
-    phone_number: Option<String>,
-    email: Option<String>,
-    files: Option<Vec<PassportFile>>,
-    front_side: Option<PassportFile>,
-    reverse_side: Option<PassportFile>,
-    selfie: Option<PassportFile>,
-    translation: Option<Vec<PassportFile>>,
-    hash: String,
+    #[serde(rename(serialize = "type", deserialize = "type"))]
+    pub kind: String,
+    pub data: Option<String>,
+    pub phone_number: Option<String>,
+    pub email: Option<String>,
+    pub files: Option<Vec<PassportFile>>,
+    pub front_side: Option<PassportFile>,
+    pub reverse_side: Option<PassportFile>,
+    pub selfie: Option<PassportFile>,
+    pub translation: Option<Vec<PassportFile>>,
+    pub hash: String,
 }

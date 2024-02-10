@@ -4,6 +4,7 @@ use serde::{Deserialize, Serialize};
 /// The reaction is based on an emoji.
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct ReactionTypeEmoji {
-    // type: String,
-    emoji: String,
+    #[serde(rename(serialize = "type", deserialize = "type"))]
+    pub kind: String,
+    pub emoji: String,
 }

@@ -4,9 +4,10 @@ use serde::{Deserialize, Serialize};
 /// Represents an issue in one of the data fields that was provided by the user. The error is considered resolved when the field's value changes.
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct PassportElementErrorDataField {
-    source: String,
-    // type: String,
-    field_name: String,
-    data_hash: String,
-    message: String,
+    #[serde(rename(serialize = "type", deserialize = "type"))]
+    pub kind: String,
+    pub source: String,
+    pub field_name: String,
+    pub data_hash: String,
+    pub message: String,
 }

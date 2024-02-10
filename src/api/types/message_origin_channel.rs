@@ -6,9 +6,10 @@ use serde::{Deserialize, Serialize};
 /// The message was originally sent to a channel chat.
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct MessageOriginChannel {
-    // type: String,
-    date: i64,
-    chat: Chat,
-    message_id: MessageId,
-    author_signature: Option<String>,
+    #[serde(rename(serialize = "type", deserialize = "type"))]
+    pub kind: String,
+    pub date: i64,
+    pub chat: Chat,
+    pub message_id: MessageId,
+    pub author_signature: Option<String>,
 }

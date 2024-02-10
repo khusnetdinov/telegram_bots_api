@@ -4,5 +4,6 @@ use serde::{Deserialize, Serialize};
 /// Represents the scope of bot commands, covering all private chats.
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct BotCommandScopeAllPrivateChats {
-    // type: String,
+    #[serde(rename(serialize = "type", deserialize = "type"))]
+    pub kind: String,
 }

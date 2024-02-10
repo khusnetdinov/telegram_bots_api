@@ -1,3 +1,4 @@
+use crate::api::enums::file_input::FileInput;
 use crate::api::types::message_entity::MessageEntity;
 use serde::{Deserialize, Serialize};
 
@@ -5,13 +6,14 @@ use serde::{Deserialize, Serialize};
 /// Represents an audio file to be treated as music to be sent.
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct InputMediaAudio {
-    // type: String,
-    media: String,
-    // thumbnail: Option<InputFile or String>,
-    caption: Option<String>,
-    parse_mode: Option<String>,
-    caption_entities: Option<Vec<MessageEntity>>,
-    duration: Option<i64>,
-    performer: Option<String>,
-    title: Option<String>,
+    #[serde(rename(serialize = "type", deserialize = "type"))]
+    pub kind: String,
+    pub thumbnail: Option<FileInput>,
+    pub media: String,
+    pub caption: Option<String>,
+    pub parse_mode: Option<String>,
+    pub caption_entities: Option<Vec<MessageEntity>>,
+    pub duration: Option<i64>,
+    pub performer: Option<String>,
+    pub title: Option<String>,
 }

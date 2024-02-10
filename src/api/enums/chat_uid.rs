@@ -1,7 +1,7 @@
 use crate::api::types::chat_id::ChatId;
-use serde::Serialize;
+use serde::{Deserialize, Serialize};
 
-#[derive(Debug, Serialize)]
+#[derive(Debug, Serialize, Deserialize, PartialEq)]
 #[serde(untagged)]
 pub enum ChatUId {
     I64(ChatId),

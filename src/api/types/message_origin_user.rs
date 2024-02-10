@@ -5,7 +5,8 @@ use serde::{Deserialize, Serialize};
 /// The message was originally sent by a known user.
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct MessageOriginUser {
-    // type: String,
-    date: i64,
-    sender_user: User,
+    #[serde(rename(serialize = "type", deserialize = "type"))]
+    pub kind: String,
+    pub date: i64,
+    pub sender_user: User,
 }

@@ -4,5 +4,6 @@ use serde::{Deserialize, Serialize};
 /// Represents a menu button, which opens the bot's list of commands.
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct MenuButtonCommands {
-    // type: String,
+    #[serde(rename(serialize = "type", deserialize = "type"))]
+    pub kind: String,
 }

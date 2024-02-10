@@ -5,8 +5,9 @@ use serde::{Deserialize, Serialize};
 /// Represents a Game.
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct InlineQueryResultGame {
-    // type: String,
-    id: String,
-    game_short_name: String,
-    reply_markup: Option<InlineKeyboardMarkup>,
+    #[serde(rename(serialize = "type", deserialize = "type"))]
+    pub kind: String,
+    pub id: String,
+    pub game_short_name: String,
+    pub reply_markup: Option<InlineKeyboardMarkup>,
 }

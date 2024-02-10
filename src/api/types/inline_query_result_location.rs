@@ -6,18 +6,19 @@ use serde::{Deserialize, Serialize};
 /// Represents a location on a map. By default, the location will be sent by the user. Alternatively, you can use input_message_content to send a message with the specified content instead of the location.
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct InlineQueryResultLocation {
-    // type: String,
-    id: String,
-    latitude: f64,
-    longitude: f64,
-    title: String,
-    horizontal_accuracy: Option<f64>,
-    live_period: Option<i64>,
-    heading: Option<i64>,
-    proximity_alert_radius: Option<i64>,
-    reply_markup: Option<InlineKeyboardMarkup>,
-    input_message_content: Option<InputMessageContent>,
-    thumbnail_url: Option<String>,
-    thumbnail_width: Option<i64>,
-    thumbnail_height: Option<i64>,
+    #[serde(rename(serialize = "type", deserialize = "type"))]
+    pub kind: String,
+    pub id: String,
+    pub latitude: f64,
+    pub longitude: f64,
+    pub title: String,
+    pub horizontal_accuracy: Option<f64>,
+    pub live_period: Option<i64>,
+    pub heading: Option<i64>,
+    pub proximity_alert_radius: Option<i64>,
+    pub reply_markup: Option<InlineKeyboardMarkup>,
+    pub input_message_content: Option<InputMessageContent>,
+    pub thumbnail_url: Option<String>,
+    pub thumbnail_width: Option<i64>,
+    pub thumbnail_height: Option<i64>,
 }

@@ -32,6 +32,7 @@ mod tests {
             limit: 100,
             offset: 249563340,
             timeout: 0,
+            ..Default::default()
         };
         let real_result = mocked.client.sync.get_updates(&params).unwrap();
 
@@ -52,6 +53,7 @@ mod tests {
             limit: 100,
             offset: 249563340,
             timeout: 0,
+            ..Default::default()
         };
         if let Error::Response(real_error) = mocked.client.sync.get_updates(&params).unwrap_err() {
             assert_eq!(mock_error, real_error);

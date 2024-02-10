@@ -4,8 +4,9 @@ use serde::{Deserialize, Serialize};
 /// Represents an issue with the reverse side of a document. The error is considered resolved when the file with reverse side of the document changes.
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct PassportElementErrorReverseSide {
-    source: String,
-    // type: String,
-    file_hash: String,
-    message: String,
+    #[serde(rename(serialize = "type", deserialize = "type"))]
+    pub kind: String,
+    pub source: String,
+    pub file_hash: String,
+    pub message: String,
 }

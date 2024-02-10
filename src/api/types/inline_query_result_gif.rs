@@ -7,18 +7,19 @@ use serde::{Deserialize, Serialize};
 /// Represents a link to an animated GIF file. By default, this animated GIF file will be sent by the user with optional caption. Alternatively, you can use input_message_content to send a message with the specified content instead of the animation.
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct InlineQueryResultGif {
-    // type: String,
-    id: String,
-    gif_url: String,
-    gif_width: Option<i64>,
-    gif_height: Option<i64>,
-    gif_duration: Option<i64>,
-    thumbnail_url: String,
-    thumbnail_mime_type: Option<String>,
-    title: Option<String>,
-    caption: Option<String>,
-    parse_mode: Option<String>,
-    caption_entities: Option<Vec<MessageEntity>>,
-    reply_markup: Option<InlineKeyboardMarkup>,
-    input_message_content: Option<InputMessageContent>,
+    #[serde(rename(serialize = "type", deserialize = "type"))]
+    pub kind: String,
+    pub id: String,
+    pub gif_url: String,
+    pub gif_width: Option<i64>,
+    pub gif_height: Option<i64>,
+    pub gif_duration: Option<i64>,
+    pub thumbnail_url: String,
+    pub thumbnail_mime_type: Option<String>,
+    pub title: Option<String>,
+    pub caption: Option<String>,
+    pub parse_mode: Option<String>,
+    pub caption_entities: Option<Vec<MessageEntity>>,
+    pub reply_markup: Option<InlineKeyboardMarkup>,
+    pub input_message_content: Option<InputMessageContent>,
 }

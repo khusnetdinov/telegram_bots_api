@@ -5,10 +5,11 @@ use serde::{Deserialize, Serialize};
 /// Represents a photo to be sent.
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct InputMediaPhoto {
-    // type: String,
-    media: String,
-    caption: Option<String>,
-    parse_mode: Option<String>,
-    caption_entities: Option<Vec<MessageEntity>>,
-    has_spoiler: Option<bool>,
+    #[serde(rename(serialize = "type", deserialize = "type"))]
+    pub kind: String,
+    pub media: String,
+    pub caption: Option<String>,
+    pub parse_mode: Option<String>,
+    pub caption_entities: Option<Vec<MessageEntity>>,
+    pub has_spoiler: Option<bool>,
 }

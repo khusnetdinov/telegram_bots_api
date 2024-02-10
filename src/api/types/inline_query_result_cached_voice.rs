@@ -7,13 +7,14 @@ use serde::{Deserialize, Serialize};
 /// Represents a link to a voice message stored on the Telegram servers. By default, this voice message will be sent by the user. Alternatively, you can use input_message_content to send a message with the specified content instead of the voice message.
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct InlineQueryResultCachedVoice {
-    // type: String,
-    id: String,
-    voice_file_id: String,
-    title: String,
-    caption: Option<String>,
-    parse_mode: Option<String>,
-    caption_entities: Option<Vec<MessageEntity>>,
-    reply_markup: Option<InlineKeyboardMarkup>,
-    input_message_content: Option<InputMessageContent>,
+    #[serde(rename(serialize = "type", deserialize = "type"))]
+    pub kind: String,
+    pub id: String,
+    pub voice_file_id: String,
+    pub title: String,
+    pub caption: Option<String>,
+    pub parse_mode: Option<String>,
+    pub caption_entities: Option<Vec<MessageEntity>>,
+    pub reply_markup: Option<InlineKeyboardMarkup>,
+    pub input_message_content: Option<InputMessageContent>,
 }

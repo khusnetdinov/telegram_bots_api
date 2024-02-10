@@ -4,6 +4,7 @@ use serde::{Deserialize, Serialize};
 /// Represents the scope of bot commands, covering all administrators of a specific group or supergroup chat.
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct BotCommandScopeChatAdministrators {
-    // type: String,
-    chat_id: i64,
+    #[serde(rename(serialize = "type", deserialize = "type"))]
+    pub kind: String,
+    pub chat_id: i64,
 }

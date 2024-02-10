@@ -1,3 +1,4 @@
+use crate::api::enums::file_input::FileInput;
 use crate::api::types::message_entity::MessageEntity;
 use serde::{Deserialize, Serialize};
 
@@ -5,14 +6,15 @@ use serde::{Deserialize, Serialize};
 /// Represents an animation file (GIF or H.264/MPEG-4 AVC video without sound) to be sent.
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct InputMediaAnimation {
-    // type: String,
-    media: String,
-    // thumbnail: Option<InputFile or String>,
-    caption: Option<String>,
-    parse_mode: Option<String>,
-    caption_entities: Option<Vec<MessageEntity>>,
-    width: Option<i64>,
-    height: Option<i64>,
-    duration: Option<i64>,
-    has_spoiler: Option<bool>,
+    #[serde(rename(serialize = "type", deserialize = "type"))]
+    pub kind: String,
+    pub thumbnail: Option<FileInput>,
+    pub media: String,
+    pub caption: Option<String>,
+    pub parse_mode: Option<String>,
+    pub caption_entities: Option<Vec<MessageEntity>>,
+    pub width: Option<i64>,
+    pub height: Option<i64>,
+    pub duration: Option<i64>,
+    pub has_spoiler: Option<bool>,
 }

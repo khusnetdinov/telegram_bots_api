@@ -7,14 +7,15 @@ use serde::{Deserialize, Serialize};
 /// Represents a link to a voice recording in an .OGG container encoded with OPUS. By default, this voice recording will be sent by the user. Alternatively, you can use input_message_content to send a message with the specified content instead of the the voice message.
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct InlineQueryResultVoice {
-    // type: String,
-    id: String,
-    voice_url: String,
-    title: String,
-    caption: Option<String>,
-    parse_mode: Option<String>,
-    caption_entities: Option<Vec<MessageEntity>>,
-    voice_duration: Option<i64>,
-    reply_markup: Option<InlineKeyboardMarkup>,
-    input_message_content: Option<InputMessageContent>,
+    #[serde(rename(serialize = "type", deserialize = "type"))]
+    pub kind: String,
+    pub id: String,
+    pub voice_url: String,
+    pub title: String,
+    pub caption: Option<String>,
+    pub parse_mode: Option<String>,
+    pub caption_entities: Option<Vec<MessageEntity>>,
+    pub voice_duration: Option<i64>,
+    pub reply_markup: Option<InlineKeyboardMarkup>,
+    pub input_message_content: Option<InputMessageContent>,
 }

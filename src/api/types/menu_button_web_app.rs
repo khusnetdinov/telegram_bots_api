@@ -5,7 +5,8 @@ use serde::{Deserialize, Serialize};
 /// Represents a menu button, which launches a Web App.
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct MenuButtonWebApp {
-    // type: String,
-    text: String,
-    web_app: WebAppInfo,
+    #[serde(rename(serialize = "type", deserialize = "type"))]
+    pub kind: String,
+    pub text: String,
+    pub web_app: WebAppInfo,
 }

@@ -9,5 +9,5 @@ pub struct AnswerCallbackQuery {
     pub text: Option<String>,
     pub show_alert: Option<bool>,
     pub url: Option<String>,
-    pub cache_time: Option<i64>
+    pub cache_time: Option<i64>,
 }

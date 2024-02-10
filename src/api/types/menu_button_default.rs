@@ -4,5 +4,6 @@ use serde::{Deserialize, Serialize};
 /// Describes that no specific value for the menu button was set.
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct MenuButtonDefault {
-    // type: String,
+    #[serde(rename(serialize = "type", deserialize = "type"))]
+    pub kind: String,
 }

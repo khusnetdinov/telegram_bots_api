@@ -4,8 +4,9 @@ use serde::{Deserialize, Serialize};
 /// Represents an issue with the translated version of a document. The error is considered resolved when a file with the document translation change.
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct PassportElementErrorTranslationFiles {
-    source: String,
-    // type: String,
-    file_hashes: Vec<String>,
-    message: String,
+    #[serde(rename(serialize = "type", deserialize = "type"))]
+    pub kind: String,
+    pub source: String,
+    pub file_hashes: Vec<String>,
+    pub message: String,
 }
