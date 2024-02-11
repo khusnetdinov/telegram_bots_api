@@ -1,0 +1,12 @@
+github:
+- dependabot:
+- codecov:
+- workflows:
+    - checks: fmt
+    - checks: clippy
+    - checks: doc
+    - checks: hack
+    - checks: msrv
+    - scheduled: nightly
+    - scheduled: updates
+    - tests: *
