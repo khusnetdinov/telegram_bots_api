@@ -1,8 +1,12 @@
 # Telegram
 
-![Static Badge](https://img.shields.io/badge/Project_Status-development-red)
 ![Static Badge](https://img.shields.io/badge/Telegram_Bot_API-7.0-green)
+![Static Badge](https://img.shields.io/badge/Project_Status-development-red)
 [![codecov](https://codecov.io/gh/khusnetdinov/telegram/graph/badge.svg?token=HODA8WDALK)](https://codecov.io/gh/khusnetdinov/telegram)
+
+[//]: # (![https://github.com/khusnetdinov/telegram/actions/workflows/tests/badge.svg]&#40;https://github.com/khusnetdinov/telegram/actions/workflows/test.yml/badge.svg&#41;)
+[//]: # (![https://github.com/khusnetdinov/telegram/actions/workflows/checks/badge.svg]&#40;https://github.com/khusnetdinov/telegram/actions/workflows/check.yml/badge.svg&#41;)
+[//]: # (![https://github.com/khusnetdinov/telegram/actions/workflows/schedules/badge.svg]&#40;https://github.com/khusnetdinov/telegram/actions/workflows/scheduled.yml/badge.svg&#41;)
 
 ### Description
 

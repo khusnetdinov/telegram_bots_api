@@ -1,20 +1,15 @@
-# ref: https://docs.codecov.com/docs/codecovyml-reference
 coverage:
-  range: 85..100
+  range: 85..95
   round: down
-  precision: 1
+  precision: 2
   status:
-    # ref: https://docs.codecov.com/docs/commit-status
     project:
       default:
-        # Avoid false negatives
         threshold: 1%
 
-# Test files aren't important for coverage
 ignore:
-  - "tests"
+  - "tests/**/*"
 
-# Make comments less noisy
 comment:
   layout: "files"
   require_changes: true
