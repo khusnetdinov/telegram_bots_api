@@ -1,8 +1,6 @@
 # Telegram
 
-### Project Status
-
-- TODO
+[![codecov](https://codecov.io/gh/khusnetdinov/telegram/graph/badge.svg?token=HODA8WDALK)](https://codecov.io/gh/khusnetdinov/telegram)
 
 ### Description
 
