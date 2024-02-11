@@ -1,5 +1,7 @@
 # Telegram
 
+![Static Badge](https://img.shields.io/badge/Project_Status-development-red)
+![Static Badge](https://img.shields.io/badge/Telegram_Bot_API-7.0-green)
 [![codecov](https://codecov.io/gh/khusnetdinov/telegram/graph/badge.svg?token=HODA8WDALK)](https://codecov.io/gh/khusnetdinov/telegram)
 
 ### Description
