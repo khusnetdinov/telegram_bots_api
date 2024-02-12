@@ -5,9 +5,12 @@
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fkhusnetdinov%2Ftelegram.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fkhusnetdinov%2Ftelegram?ref=badge_shield)
 [![codecov](https://codecov.io/gh/khusnetdinov/telegram/graph/badge.svg?token=HODA8WDALK)](https://codecov.io/gh/khusnetdinov/telegram)
 
-[//]: # (![https://github.com/khusnetdinov/telegram/actions/codecob/badge.svg]&#40;https://github.com/khusnetdinov/telegram/actions/workflows/test.yml/badge.svg&#41;)
-[//]: # (![https://github.com/khusnetdinov/telegram/actions/workflows/checks/badge.svg]&#40;https://github.com/khusnetdinov/telegram/actions/workflows/check.yml/badge.svg&#41;)
-[//]: # (![https://github.com/khusnetdinov/telegram/actions/workflows/schedules/badge.svg]&#40;https://github.com/khusnetdinov/telegram/actions/workflows/scheduled.yml/badge.svg&#41;)
+![https://github.com/khusnetdinov/telegram/actions/workflows/codecov_report/badge.svg](https://github.com/khusnetdinov/telegram/actions/workflows/codecov_report.yml/badge.svg)
+![https://github.com/khusnetdinov/telegram/actions/workflows/lints/badge.svg](https://github.com/khusnetdinov/telegram/actions/workflows/lints.yml/badge.svg)
+![https://github.com/khusnetdinov/telegram/actions/workflows/msrv/badge.svg](https://github.com/khusnetdinov/telegram/actions/workflows/msrv.yml/badge.svg)
+![https://github.com/khusnetdinov/telegram/actions/workflows/features/badge.svg](https://github.com/khusnetdinov/telegram/actions/workflows/features.yml/badge.svg)
+![https://github.com/khusnetdinov/telegram/actions/workflows/tests/badge.svg](https://github.com/khusnetdinov/telegram/actions/workflows/tests.yml/badge.svg)
+![https://github.com/khusnetdinov/telegram/actions/workflows/rolling/badge.svg](https://github.com/khusnetdinov/telegram/actions/workflows/rolling.yml/badge.svg)
 
 ### Description
 
