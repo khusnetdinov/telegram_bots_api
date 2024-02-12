@@ -54,3 +54,21 @@
 - Examples
 - Docker
 - FFI
+
+### CI (TODO)
+  + dependabot
+  + codecov
+  + codecov_report
+  - lints
+    - fmt
+    - clippy
+    - docs
+  - msrv (Build with min version of cargo)
+  - Every day checks for updates:
+      ???[ubuntu, osx, windows]
+      [nightly]
+  - hack (feature flags)
+  - tests:
+      [ubuntu, osx, windows]
+      [stable, beta, ???nightly]
+  - Check examples (Run on test bot?)
