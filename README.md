@@ -59,10 +59,10 @@
   + dependabot
   + codecov
   + codecov_report
-  - lints
-    - fmt
-    - clippy
-    - docs
+  + lints
+    + fmt
+    + clippy
+    +docs
   - msrv (Build with min version of cargo)
   - Every day checks for updates:
       ???[ubuntu, osx, windows]
