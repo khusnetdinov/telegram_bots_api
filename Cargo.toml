@@ -24,6 +24,9 @@ serde_with_macros = "3.6.0"
 structopt = "0.3.26"
 tokio = { version = "1", features = ["full"] }
 
+[target.'cfg(any())'.dependencies]
+openssl = { version = "0.10.55", optional = true }
 
 [dev-dependencies]
 cargo-edit = "0.12.2"
+
