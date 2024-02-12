@@ -87,7 +87,7 @@ jobs:
         os: [macos-latest, windows-latest]
         # run on stable and beta to ensure that tests won't break on the next version of the rust
         # toolchain
-        toolchain: [ stable, beta ]
+        toolchain: [stable, beta]
     steps:
       # if your project needs OpenSSL, uncomment this to fix Windows builds.
       # it's commented out by default as the install command takes 5-10m.
