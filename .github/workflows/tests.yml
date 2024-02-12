@@ -16,14 +16,15 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
   cancel-in-progress: true
 
-name: test
+name: tests
 
 jobs:
   required:
-    runs-on: ubuntu-latest
-    name: ubuntu / ${{ matrix.toolchain }}
+    runs-on: ${{ matrix.os }}
+    name: ${{ matrix.os }} / ${{ matrix.toolchain }}
     strategy:
       matrix:
+        os: [ubuntu-latest]
         # run on stable and beta to ensure that tests won't break on the next version of the rust
         # toolchain
         toolchain: [stable, beta]
@@ -87,11 +88,14 @@ jobs:
   os-check:
     # run cargo test on mac and windows
     runs-on: ${{ matrix.os }}
-    name: ${{ matrix.os }} / stable
+    name: ${{ matrix.os }} / ${{ matrix.toolchain }}
     strategy:
       fail-fast: false
       matrix:
         os: [macos-latest, windows-latest]
+        # run on stable and beta to ensure that tests won't break on the next version of the rust
+        # toolchain
+        toolchain: [ stable, beta ]
     steps:
       # if your project needs OpenSSL, uncomment this to fix Windows builds.
       # it's commented out by default as the install command takes 5-10m.
