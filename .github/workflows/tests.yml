@@ -69,14 +69,14 @@ jobs:
           submodules: true
       - name: Install stable
         uses: dtolnay/rust-toolchain@stable
-      - name: Install nightly for -Zminimal-versions
+      - name: Install nightly for -Z minimal-versions
         uses: dtolnay/rust-toolchain@nightly
       - name: rustup default stable
         run: rustup default stable
-      - name: cargo update -Zminimal-versions
-        run: cargo +nightly update -Zminimal-versions
+      - name: cargo update -Z minimal-versions
+        run: cargo +nightly update -Z minimal-versions
       - name: cargo test
-        run: cargo test --locked --all-features --all-targets
+        run: cargo test --locked --all-features --all-targets -Z minimal-versions
   os-check:
     # run cargo test on mac and windows
     runs-on: ${{ matrix.os }}
