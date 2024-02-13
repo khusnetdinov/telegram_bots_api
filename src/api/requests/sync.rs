@@ -4,6 +4,7 @@ use crate::api::params::delete_webhook::DeleteWebhook;
 use crate::api::params::forward_message::ForwardMessage;
 use crate::api::params::forward_messages::ForwardMessages;
 use crate::api::params::get_update::GetUpdate;
+use crate::api::params::send_dice::SendDice;
 use crate::api::params::send_message::SendMessage;
 use crate::api::params::set_webhook::SetWebhook;
 use crate::api::types::message::Message;
@@ -65,55 +66,55 @@ pub trait Requests {
 
     // https://core.telegram.org/bots/api#sendphoto
     // Use this method to send photos. On success, the sent Message is returned.
-    // fn send_photo(&self)
+    // fn send_photo(&self, params: &SendPhoto) -> Result<Message, Error>;
 
     // https://core.telegram.org/bots/api#sendaudio
     // Use this method to send audio files, if you want Telegram clients to display them in the music player. Your audio must be in the .MP3 or .M4A format. On success, the sent Message is returned. Bots can currently send audio files of up to 50 MB in size, this limit may be changed in the future.
-    // fn send_audio(&self)
+    // fn send_audio(&self, params: &SendAudio) -> Result<Message, Error>;
 
     // https://core.telegram.org/bots/api#senddocument
     // Use this method to send general files. On success, the sent Message is returned. Bots can currently send files of any type of up to 50 MB in size, this limit may be changed in the future.
-    // fn send_document(&self)
+    // fn send_document(&self, params: &SendDocument) -> Result<Message, Error>;
 
     // https://core.telegram.org/bots/api#sendvideo
     // Use this method to send video files, Telegram clients support MPEG4 videos (other formats may be sent as Document). On success, the sent Message is returned. Bots can currently send video files of up to 50 MB in size, this limit may be changed in the future.
-    // fn send_video(&self)
+    // fn send_video(&self, params: &SendVideo) -> Result<Message, Error>;
 
     // https://core.telegram.org/bots/api#sendanimation
     // Use this method to send animation files (GIF or H.264/MPEG-4 AVC video without sound). On success, the sent Message is returned. Bots can currently send animation files of up to 50 MB in size, this limit may be changed in the future.
-    // fn send_animation(&self)
+    // fn send_animation(&self, params: &SendAnimation) -> Result<Message, Error>;
 
     // https://core.telegram.org/bots/api#sendvoice
     // Use this method to send audio files, if you want Telegram clients to display the file as a playable voice message. For this to work, your audio must be in an .OGG file encoded with OPUS (other formats may be sent as Audio or Document). On success, the sent Message is returned. Bots can currently send voice messages of up to 50 MB in size, this limit may be changed in the future.
-    // fn send_voice(&self)
+    // fn send_voice(&self, params: &SendVoice) -> Result<Message, Error>;
 
     // https://core.telegram.org/bots/api#sendvideonote
     // As of v.4.0, Telegram clients support rounded square MPEG4 videos of up to 1 minute long. Use this method to send video messages. On success, the sent Message is returned.
-    // fn send_video_note(&self)
+    // fn send_video_note(&self, params: &SendVideoNote) -> Result<Message, Error>;
 
     // https://core.telegram.org/bots/api#sendmediagroup
     // Use this method to send a group of photos, videos, documents or audios as an album. Documents and audio files can be only grouped in an album with messages of the same type. On success, an array of Messages that were sent is returned.
-    // fn send_media_group(&self)
+    // fn send_media_group(&self, params: &SendMediaGroup) -> Result<Message, Error>;
 
     // https://core.telegram.org/bots/api#sendlocation
     // Use this method to send point on the map. On success, the sent Message is returned.
-    // fn send_location(&self)
+    // fn send_location(&self, params: &SendLocation) -> Result<Message, Error>;
 
     // https://core.telegram.org/bots/api#sendvenue
     // Use this method to send information about a venue. On success, the sent Message is returned.
-    // fn send_venue(&self)
+    // fn send_venue(&self, params: &SendVenue) -> Result<Message, Error>;
 
     // https://core.telegram.org/bots/api#sendcontact
     // Use this method to send phone contacts. On success, the sent Message is returned.
-    // fn send_contact(&self)
+    // fn send_contact(&self, params: &SendContact) -> Result<Message, Error>;
 
     // https://core.telegram.org/bots/api#sendpoll
     // Use this method to send a native poll. On success, the sent Message is returned.
-    // fn send_poll(&self)
+    // fn send_poll(&self, params: &SendPoll) -> Result<Message, Error>;
 
-    // https://core.telegram.org/bots/api#senddice
-    // Use this method to send an animated emoji that will display a random value. On success, the sent Message is returned.
-    // fn send_dice(&self)
+    /// https://core.telegram.org/bots/api#senddice
+    /// Use this method to send an animated emoji that will display a random value. On success, the sent Message is returned.
+    fn send_dice(&self, params: &SendDice) -> Result<Message, Error>;
 
     // https://core.telegram.org/bots/api#sendchataction
     // Use this method when you need to tell the user that something is happening on the bot's side. The status is set for 5 seconds or less (when a message arrives from your bot, Telegram clients clear its typing status). Returns True on success.

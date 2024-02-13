@@ -4,6 +4,7 @@ use crate::api::params::delete_webhook::DeleteWebhook;
 use crate::api::params::forward_message::ForwardMessage;
 use crate::api::params::forward_messages::ForwardMessages;
 use crate::api::params::get_update::GetUpdate;
+use crate::api::params::send_dice::SendDice;
 use crate::api::params::send_message::SendMessage;
 use crate::api::params::set_webhook::SetWebhook;
 use crate::api::requests::sync::Requests;
@@ -133,4 +134,12 @@ impl Requests for Sync {
     fn copy_messages(&self, params: &CopyMessages) -> Result<Vec<MessageId>, Error> {
         self.respond_with::<Vec<MessageId>>(self.request_for("copyMessages").json(params).send())
     }
+
+    // ...
+
+    fn send_dice(&self, params: &SendDice) -> Result<Message, Error> {
+        self.respond_with::<Message>(self.request_for("sendDice").json(params).send())
+    }
+
+    // ...
 }

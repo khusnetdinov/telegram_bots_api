@@ -62,6 +62,7 @@ pub mod reopen_general_forum_topic;
 pub mod restrict_chat_member;
 pub mod revoke_chat_invite_link;
 pub mod send_animation;
+pub mod send_audio;
 pub mod send_contact;
 pub mod send_dice;
 pub mod send_document;
