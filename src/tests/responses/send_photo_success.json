@@ -1,0 +1,36 @@
+{
+  "ok": true,
+  "result": {
+    "message_id": 514,
+    "from": {
+      "id": 6591790550,
+      "is_bot": true,
+      "first_name": "development_telegrapha",
+      "username": "development_telegrapha_bot"
+    },
+    "chat": {
+      "id": 147951145,
+      "first_name": "Marat",
+      "last_name": "Khusnetdinov",
+      "username": "khusnetdinov",
+      "type": "private"
+    },
+    "date": 1707769896,
+    "photo": [
+      {
+        "file_id": "AgACAgIAAxkDAAICAmXKgChrVFF_ITlz0K4X7sQaQSL1AALE2TEb3VpRSvjB-SeN-2GhAQADAgADcwADNAQ",
+        "file_unique_id": "AQADxNkxG91aUUp4",
+        "file_size": 1277,
+        "width": 58,
+        "height": 90
+      },
+      {
+        "file_id": "AgACAgIAAxkDAAICAmXKgChrVFF_ITlz0K4X7sQaQSL1AALE2TEb3VpRSvjB-SeN-2GhAQADAgADbQADNAQ",
+        "file_unique_id": "AQADxNkxG91aUUpy",
+        "file_size": 9872,
+        "width": 180,
+        "height": 280
+      }
+    ]
+  }
+}
