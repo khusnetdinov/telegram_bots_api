@@ -4,6 +4,7 @@ use crate::api::types::reply_keyboard_markup::ReplyKeyboardMarkup;
 use crate::api::types::reply_keyboard_remove::ReplyKeyboardRemove;
 use serde::Serialize;
 
+/// Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove reply keyboard or to force a reply from the user.
 #[derive(Debug, Serialize)]
 pub enum ReplyMarkup {
     InlineKeyboardMarkup(InlineKeyboardMarkup),

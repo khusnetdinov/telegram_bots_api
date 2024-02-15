@@ -11,6 +11,7 @@ pub mod maybe_inaccessible_message;
 pub mod media_input;
 pub mod menu_button;
 pub mod message_origin;
+pub mod message_result;
 pub mod passport_element_error;
 pub mod reaction_type;
 pub mod reply_markup;

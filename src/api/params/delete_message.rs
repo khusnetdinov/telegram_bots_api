@@ -14,7 +14,7 @@ use serde::Serialize;
 /// - If the bot has can_delete_messages permission in a supergroup or a channel, it can delete any message there.
 /// Returns True on success.
 #[derive(Debug, Serialize)]
-struct DeleteMessage {
+pub struct DeleteMessage {
     #[serde(flatten)]
     pub message_id: MessageId,
     pub chat_id: ChatUId,
