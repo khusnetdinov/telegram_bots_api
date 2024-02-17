@@ -9,6 +9,7 @@ use crate::api::params::answer_shipping_query::AnswerShippingQuery;
 use crate::api::params::answer_web_app_query::AnswerWebAppQuery;
 use crate::api::params::approve_chat_join_request::ApproveChatJoinRequest;
 use crate::api::params::ban_chat_member::BanChatMember;
+use crate::api::params::ban_chat_sender_chat::BanChatSenderChat;
 use crate::api::params::close_forum_topic::CloseForumTopic;
 use crate::api::params::close_general_forum_topic::CloseGeneralForumTopic;
 use crate::api::params::copy_message::CopyMessage;
@@ -108,6 +109,7 @@ use crate::api::params::set_webhook::SetWebhook;
 use crate::api::params::stop_message_live_location::StopMessageLiveLocation;
 use crate::api::params::stop_poll::StopPoll;
 use crate::api::params::unban_chat_member::UnbanChatMember;
+use crate::api::params::unban_chat_sender_chat::UnbanChatSenderChat;
 use crate::api::params::unhide_general_forum_topic::UnhideGeneralForumTopic;
 use crate::api::params::unpin_all_chat_messages::UnpinAllChatMessages;
 use crate::api::params::unpin_all_forum_topic_messages::UnpinAllForumTopicMessages;
@@ -254,7 +256,7 @@ pub trait Requests {
 
     /// https://core.telegram.org/bots/api#getfile
     /// Use this method to get basic information about a file and prepare it for downloading. For the moment, bots can download files of up to 20MB in size. On success, a File object is returned. The file can then be downloaded via the link https://api.telegram.org/file/bot<token>/<file_path>, where <file_path> is taken from the response. It is guaranteed that the link will be valid for at least 1 hour. When the link expires, a new one can be requested by calling getFile again.
-    fn get_file(&self, params: GetFile) -> Result<File, Error>;
+    fn get_file(&self, params: &GetFile) -> Result<File, Error>;
 
     /// https://core.telegram.org/bots/api#banchatmember
     /// Use this method to ban a user in a group, a supergroup or a channel. In the case of supergroups and channels, the user will not be able to return to the chat on their own using invite links, etc., unless unbanned first. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Returns True on success.
@@ -281,11 +283,11 @@ pub trait Requests {
 
     /// https://core.telegram.org/bots/api#banchatsenderchat
     /// Use this method to ban a channel chat in a supergroup or a channel. Until the chat is unbanned, the owner of the banned chat won't be able to send messages on behalf of any of their channels. The bot must be an administrator in the supergroup or channel for this to work and must have the appropriate administrator rights. Returns True on success.
-    fn ban_chat_sender_chat(&self, params: &BanChatMember) -> Result<bool, Error>;
+    fn ban_chat_sender_chat(&self, params: &BanChatSenderChat) -> Result<bool, Error>;
 
     /// https://core.telegram.org/bots/api#unbanchatsenderchat
     /// Use this method to unban a previously banned channel chat in a supergroup or channel. The bot must be an administrator for this to work and must have the appropriate administrator rights. Returns True on success.
-    fn unban_chat_sender_chat(&self, params: &UnbanChatMember) -> Result<bool, Error>;
+    fn unban_chat_sender_chat(&self, params: &UnbanChatSenderChat) -> Result<bool, Error>;
 
     /// https://core.telegram.org/bots/api#setchatpermissions
     /// Use this method to set default chat permissions for all members. The bot must be an administrator in the group or a supergroup for this to work and must have the can_restrict_members administrator rights. Returns True on success.

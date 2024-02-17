@@ -9,6 +9,7 @@ use crate::api::params::answer_shipping_query::AnswerShippingQuery;
 use crate::api::params::answer_web_app_query::AnswerWebAppQuery;
 use crate::api::params::approve_chat_join_request::ApproveChatJoinRequest;
 use crate::api::params::ban_chat_member::BanChatMember;
+use crate::api::params::ban_chat_sender_chat::BanChatSenderChat;
 use crate::api::params::close_forum_topic::CloseForumTopic;
 use crate::api::params::close_general_forum_topic::CloseGeneralForumTopic;
 use crate::api::params::copy_message::CopyMessage;
@@ -142,6 +143,7 @@ use crate::errors::Error;
 use reqwest::blocking::{ClientBuilder, RequestBuilder, Response};
 use serde::de::DeserializeOwned;
 use std::time::Duration;
+use crate::api::params::unban_chat_sender_chat::UnbanChatSenderChat;
 
 #[derive(Debug)]
 pub struct Sync {
@@ -257,51 +259,51 @@ impl Requests for Sync {
     }
 
     fn send_photo(&self, params: &SendPhoto) -> Result<Message, Error> {
-        todo!()
+        self.respond_with::<Message>(self.request_for("sendPhoto").json(params).send())
     }
 
     fn send_audio(&self, params: &SendAudio) -> Result<Message, Error> {
-        todo!()
+        self.respond_with::<Message>(self.request_for("sendAudio").json(params).send())
     }
 
     fn send_document(&self, params: &SendDocument) -> Result<Message, Error> {
-        todo!()
+        self.respond_with::<Message>(self.request_for("sendDocument").json(params).send())
     }
 
     fn send_video(&self, params: &SendVideo) -> Result<Message, Error> {
-        todo!()
+        self.respond_with::<Message>(self.request_for("sendVideo").json(params).send())
     }
 
     fn send_animation(&self, params: &SendAnimation) -> Result<Message, Error> {
-        todo!()
+        self.respond_with::<Message>(self.request_for("sendAnimation").json(params).send())
     }
 
     fn send_voice(&self, params: &SendVoice) -> Result<Message, Error> {
-        todo!()
+        self.respond_with::<Message>(self.request_for("sendVoice").json(params).send())
     }
 
     fn send_video_note(&self, params: &SendVideoNote) -> Result<Message, Error> {
-        todo!()
+        self.respond_with::<Message>(self.request_for("sendVoiceNote").json(params).send())
     }
 
     fn send_media_group(&self, params: &SendMediaGroup) -> Result<Message, Error> {
-        todo!()
+        self.respond_with::<Message>(self.request_for("sendMediaGroup").json(params).send())
     }
 
     fn send_location(&self, params: &SendLocation) -> Result<Message, Error> {
-        todo!()
+        self.respond_with::<Message>(self.request_for("sendLocation").json(params).send())
     }
 
     fn send_venue(&self, params: &SendVenue) -> Result<Message, Error> {
-        todo!()
+        self.respond_with::<Message>(self.request_for("sendVenue").json(params).send())
     }
 
     fn send_contact(&self, params: &SendContact) -> Result<Message, Error> {
-        todo!()
+        self.respond_with::<Message>(self.request_for("sendContact").json(params).send())
     }
 
     fn send_poll(&self, params: &SendPoll) -> Result<Message, Error> {
-        todo!()
+        self.respond_with::<Message>(self.request_for("sendPoll").json(params).send())
     }
 
     fn send_dice(&self, params: &SendDice) -> Result<Message, Error> {
@@ -309,422 +311,566 @@ impl Requests for Sync {
     }
 
     fn send_chat_action(&self, params: &SendChatAction) -> Result<bool, Error> {
-        todo!()
+        self.respond_with::<bool>(self.request_for("sendChatAction").json(params).send())
     }
 
     fn set_message_reaction(&self, params: &SetMessageReaction) -> Result<bool, Error> {
-        todo!()
+        self.respond_with::<bool>(self.request_for("setMessageReaction").json(params).send())
     }
 
     fn get_user_profile_photos(
         &self,
         params: &GetUserProfilePhotos,
     ) -> Result<UserProfilePhotos, Error> {
-        todo!()
+        self.respond_with::<UserProfilePhotos>(
+            self.request_for("getUserProfilePhotos").json(params).send(),
+        )
     }
 
-    fn get_file(&self, params: GetFile) -> Result<File, Error> {
-        todo!()
+    fn get_file(&self, params: &GetFile) -> Result<File, Error> {
+        self.respond_with::<File>(self.request_for("getFile").json(&params).send())
     }
 
     fn ban_chat_member(&self, params: &BanChatMember) -> Result<bool, Error> {
-        todo!()
+        self.respond_with::<bool>(self.request_for("banChatMember").json(&params).send())
     }
 
     fn unban_chat_member(&self, params: &UnbanChatMember) -> Result<bool, Error> {
-        todo!()
+        self.respond_with::<bool>(self.request_for("unbanChatMember").json(&params).send())
     }
 
     fn restrict_chat_member(&self, params: &RestrictChatMember) -> Result<bool, Error> {
-        todo!()
+        self.respond_with::<bool>(self.request_for("restrictChatMember").json(&params).send())
     }
 
     fn promote_chat_member(&self, params: &PromoteChatMember) -> Result<bool, Error> {
-        todo!()
+        self.respond_with::<bool>(self.request_for("promoteChatMember").json(&params).send())
     }
 
     fn set_chat_administrator_custom_title(
         &self,
         params: &SetChatAdministratorCustomTitle,
     ) -> Result<bool, Error> {
-        todo!()
+        self.respond_with::<bool>(
+            self.request_for("setChatAdministratorCustomTitle")
+                .json(&params)
+                .send(),
+        )
     }
 
-    fn ban_chat_sender_chat(&self, params: &BanChatMember) -> Result<bool, Error> {
-        todo!()
+    fn ban_chat_sender_chat(&self, params: &BanChatSenderChat) -> Result<bool, Error> {
+        self.respond_with::<bool>(self.request_for("banChatSenderChat").json(&params).send())
     }
 
-    fn unban_chat_sender_chat(&self, params: &UnbanChatMember) -> Result<bool, Error> {
-        todo!()
+    fn unban_chat_sender_chat(&self, params: &UnbanChatSenderChat) -> Result<bool, Error> {
+        self.respond_with::<bool>(self.request_for("unbanChatSenderChat").json(&params).send())
     }
 
     fn set_chat_permissions(&self, params: &SetChatPermissions) -> Result<bool, Error> {
-        todo!()
+        self.respond_with::<bool>(self.request_for("setChatPermissions").json(&params).send())
     }
 
     fn export_chat_invite_link(&self, params: &ExportChatInviteLink) -> Result<String, Error> {
-        todo!()
+        self.respond_with::<String>(
+            self.request_for("exportChatInviteLink")
+                .json(&params)
+                .send(),
+        )
     }
 
     fn create_chat_invite_link(
         &self,
         params: &CreateChatInviteLink,
     ) -> Result<ChatInviteLink, Error> {
-        todo!()
+        self.respond_with::<ChatInviteLink>(
+            self.request_for("createChatInviteLink")
+                .json(&params)
+                .send(),
+        )
     }
 
     fn edit_chat_invite_link(&self, params: &EditChatInviteLink) -> Result<ChatInviteLink, Error> {
-        todo!()
+        self.respond_with::<ChatInviteLink>(
+            self.request_for("editChatInviteLink").json(&params).send(),
+        )
     }
 
     fn revoke_chat_invite_link(
         &self,
         params: &RevokeChatInviteLink,
     ) -> Result<ChatInviteLink, Error> {
-        todo!()
+        self.respond_with::<ChatInviteLink>(
+            self.request_for("revokeChatInviteLink")
+                .json(&params)
+                .send(),
+        )
     }
 
     fn approve_chat_join_request(&self, params: &ApproveChatJoinRequest) -> Result<bool, Error> {
-        todo!()
+        self.respond_with::<bool>(
+            self.request_for("approveChatJoinRequest")
+                .json(&params)
+                .send(),
+        )
     }
 
     fn decline_chat_join_request(&self, params: &DeclineChatJoinRequest) -> Result<bool, Error> {
-        todo!()
+        self.respond_with::<bool>(
+            self.request_for("declineChatJoinRequest")
+                .json(&params)
+                .send(),
+        )
     }
 
     fn set_chat_photo(&self, params: &SetChatPhoto) -> Result<bool, Error> {
-        todo!()
+        self.respond_with::<bool>(self.request_for("setChatPhoto").json(&params).send())
     }
 
     fn delete_chat_photo(&self, params: &DeleteChatPhoto) -> Result<bool, Error> {
-        todo!()
+        self.respond_with::<bool>(self.request_for("deleteChatPhoto").json(&params).send())
     }
 
     fn set_chat_title(&self, params: &SetChatTitle) -> Result<bool, Error> {
-        todo!()
+        self.respond_with::<bool>(self.request_for("setChatTitle").json(&params).send())
     }
 
     fn set_chat_description(&self, params: &SetChatDescription) -> Result<bool, Error> {
-        todo!()
+        self.respond_with::<bool>(self.request_for("setChatDescription").json(&params).send())
     }
 
     fn pin_chat_message(&self, params: &PinChatMessage) -> Result<bool, Error> {
-        todo!()
+        self.respond_with::<bool>(self.request_for("pinChatMessage").json(&params).send())
     }
 
     fn unpin_chat_message(&self, params: &UnbanChatMember) -> Result<bool, Error> {
-        todo!()
+        self.respond_with::<bool>(self.request_for("unbanChatMember").json(&params).send())
     }
 
     fn unpin_all_chat_messages(&self, params: &UnpinAllChatMessages) -> Result<bool, Error> {
-        todo!()
+        self.respond_with::<bool>(
+            self.request_for("unpinAllChatMessages")
+                .json(&params)
+                .send(),
+        )
     }
 
     fn leave_chat(&self, params: &LeaveChat) -> Result<bool, Error> {
-        todo!()
+        self.respond_with::<bool>(self.request_for("leaveChat").json(&params).send())
     }
 
     fn get_chat(&self, params: &GetChat) -> Result<Chat, Error> {
-        todo!()
+        self.respond_with::<Chat>(self.request_for("getChat").json(&params).send())
     }
 
     fn get_chat_administrators(
         &self,
         params: &GetChatAdministrators,
     ) -> Result<Vec<ChatMember>, Error> {
-        todo!()
+        self.respond_with::<Vec<ChatMember>>(
+            self.request_for("getChatAdministrators")
+                .json(&params)
+                .send(),
+        )
     }
 
     fn get_chat_member_count(&self, params: &GetChatMemberCount) -> Result<i64, Error> {
-        todo!()
+        self.respond_with::<i64>(self.request_for("getChatMemberCount").json(&params).send())
     }
 
     fn get_chat_member(&self, params: &GetChatMember) -> Result<ChatMember, Error> {
-        todo!()
+        self.respond_with::<ChatMember>(self.request_for("getChatMember").json(&params).send())
     }
 
     fn set_chat_sticker_set(&self, params: &SetChatStickerSet) -> Result<bool, Error> {
-        todo!()
+        self.respond_with::<bool>(self.request_for("setChatStickerSet").json(&params).send())
     }
 
     fn delete_chat_sticker_set(&self, params: &DeleteChatStickerSet) -> Result<bool, Error> {
-        todo!()
+        self.respond_with::<bool>(
+            self.request_for("deleteChatStickerSet")
+                .json(&params)
+                .send(),
+        )
     }
 
     fn get_forum_topic_icon_stickers(
         &self,
         params: &GetForumTopicIconStickers,
     ) -> Result<Vec<Sticker>, Error> {
-        todo!()
+        self.respond_with::<Vec<Sticker>>(
+            self.request_for("getForumTopicIconStickers")
+                .json(&params)
+                .send(),
+        )
     }
 
     fn create_forum_topic(&self, params: &CreateForumTopic) -> Result<ForumTopic, Error> {
-        todo!()
+        self.respond_with::<ForumTopic>(self.request_for("createForumTopic").json(&params).send())
     }
 
     fn edit_forum_topic(&self, params: &EditForumTopic) -> Result<bool, Error> {
-        todo!()
+        self.respond_with::<bool>(self.request_for("editForumTopic").json(&params).send())
     }
 
     fn close_forum_topic(&self, params: &CloseForumTopic) -> Result<bool, Error> {
-        todo!()
+        self.respond_with::<bool>(self.request_for("closeForumTopic").json(&params).send())
     }
 
     fn reopen_forum_topic(&self, params: &ReopenForumTopic) -> Result<bool, Error> {
-        todo!()
+        self.respond_with::<bool>(self.request_for("reopenForumTopic").json(&params).send())
     }
 
     fn delete_forum_topic(&self, params: &DeleteForumTopic) -> Result<bool, Error> {
-        todo!()
+        self.respond_with::<bool>(self.request_for("deleteForumTopic").json(&params).send())
     }
 
     fn unpin_all_forum_topic_messages(
         &self,
         params: &UnpinAllForumTopicMessages,
     ) -> Result<bool, Error> {
-        todo!()
+        self.respond_with::<bool>(
+            self.request_for("unpinAllForumTopicMessages")
+                .json(&params)
+                .send(),
+        )
     }
 
     fn edit_general_forum_topic(&self, params: &EditGeneralForumTopic) -> Result<bool, Error> {
-        todo!()
+        self.respond_with::<bool>(
+            self.request_for("editGeneralForumTopic")
+                .json(&params)
+                .send(),
+        )
     }
 
     fn close_general_forum_topic(&self, params: &CloseGeneralForumTopic) -> Result<bool, Error> {
-        todo!()
+        self.respond_with::<bool>(
+            self.request_for("closeGeneralForumTopic")
+                .json(&params)
+                .send(),
+        )
     }
 
     fn reopen_general_forum_topic(&self, params: &ReopenGeneralForumTopic) -> Result<bool, Error> {
-        todo!()
+        self.respond_with::<bool>(
+            self.request_for("reopenGeneralForumTopic")
+                .json(&params)
+                .send(),
+        )
     }
 
     fn hide_general_forum_topic(&self, params: &HideGeneralForumTopic) -> Result<bool, Error> {
-        todo!()
+        self.respond_with::<bool>(
+            self.request_for("hideGeneralForumTopic")
+                .json(&params)
+                .send(),
+        )
     }
 
     fn unhide_general_forum_topic(&self, params: &UnhideGeneralForumTopic) -> Result<bool, Error> {
-        todo!()
+        self.respond_with::<bool>(
+            self.request_for("unhideGeneralForumTopic")
+                .json(&params)
+                .send(),
+        )
     }
 
     fn unpin_all_general_forum_topic_messages(
         &self,
         params: &UnpinAllGeneralForumTopicMessages,
     ) -> Result<bool, Error> {
-        todo!()
+        self.respond_with::<bool>(
+            self.request_for("unpinAllGeneralForumTopicMessages")
+                .json(&params)
+                .send(),
+        )
     }
 
     fn answer_callback_query(&self, params: &AnswerCallbackQuery) -> Result<bool, Error> {
-        todo!()
+        self.respond_with::<bool>(self.request_for("answerCallbackQuery").json(&params).send())
     }
 
     fn get_user_chat_boosts(&self, params: &GetUserChatBoosts) -> Result<UserChatBoosts, Error> {
-        todo!()
+        self.respond_with::<UserChatBoosts>(
+            self.request_for("getUserChatBoosts").json(&params).send(),
+        )
     }
 
     fn set_my_commands(&self, params: &SetMyCommands) -> Result<bool, Error> {
-        todo!()
+        self.respond_with::<bool>(self.request_for("setMyCommands").json(&params).send())
     }
 
     fn delete_my_commands(&self, params: &DeleteMyCommands) -> Result<bool, Error> {
-        todo!()
+        self.respond_with::<bool>(self.request_for("deleteMyCommands").json(&params).send())
     }
 
     fn get_my_commands(&self, params: &GetMyCommands) -> Result<Vec<BotCommand>, Error> {
-        todo!()
+        self.respond_with::<Vec<BotCommand>>(self.request_for("getMyCommands").json(&params).send())
     }
 
     fn set_my_name(&self, params: &SetMyName) -> Result<bool, Error> {
-        todo!()
+        self.respond_with::<bool>(self.request_for("setMyName").json(&params).send())
     }
 
     fn get_my_name(&self, params: &GetMyName) -> Result<BotName, Error> {
-        todo!()
+        self.respond_with::<BotName>(self.request_for("getMyName").json(&params).send())
     }
 
     fn set_my_description(&self, params: &SetMyDescription) -> Result<bool, Error> {
-        todo!()
+        self.respond_with::<bool>(self.request_for("setMyDescription").json(&params).send())
     }
 
     fn get_my_description(&self, params: &GetMyDescription) -> Result<BotDescription, Error> {
-        todo!()
+        self.respond_with::<BotDescription>(
+            self.request_for("getMyDescription").json(&params).send(),
+        )
     }
 
     fn set_my_short_description(&self, params: &SetMyShortDescription) -> Result<bool, Error> {
-        todo!()
+        self.respond_with::<bool>(
+            self.request_for("setMyShortDescription")
+                .json(&params)
+                .send(),
+        )
     }
 
     fn get_my_short_description(
         &self,
         params: &GetMyShortDescription,
     ) -> Result<BotShortDescription, Error> {
-        todo!()
+        self.respond_with::<BotShortDescription>(
+            self.request_for("getMyShortDescription")
+                .json(&params)
+                .send(),
+        )
     }
 
     fn set_chat_menu_button(&self, params: &SetChatMenuButton) -> Result<bool, Error> {
-        todo!()
+        self.respond_with::<bool>(self.request_for("setChatMenuButton").json(&params).send())
     }
 
     fn get_chat_menu_button(&self, params: &GetChatMenuButton) -> Result<MenuButton, Error> {
-        todo!()
+        self.respond_with::<MenuButton>(self.request_for("getChatMenuButton").json(&params).send())
     }
 
     fn set_my_default_administrator_rights(
         &self,
         params: &SetMyDefaultAdministratorRights,
     ) -> Result<bool, Error> {
-        todo!()
+        self.respond_with::<bool>(
+            self.request_for("setMyDefaultAdministratorRights")
+                .json(&params)
+                .send(),
+        )
     }
 
     fn get_my_default_administrator_rights(
         &self,
         params: &GetMyDefaultAdministratorRights,
     ) -> Result<ChatAdministratorRights, Error> {
-        todo!()
+        self.respond_with::<ChatAdministratorRights>(
+            self.request_for("getMyDefaultAdministratorRights")
+                .json(&params)
+                .send(),
+        )
     }
 
     fn edit_message_text(&self, params: &EditMessageText) -> Result<MessageResult, Error> {
-        todo!()
+        self.respond_with::<MessageResult>(self.request_for("editMessageText").json(&params).send())
     }
 
     fn edit_message_caption(&self, params: &EditMessageCaption) -> Result<MessageResult, Error> {
-        todo!()
+        self.respond_with::<MessageResult>(
+            self.request_for("editMessageCaption").json(&params).send(),
+        )
     }
 
     fn edit_message_media(&self, params: &EditMessageMedia) -> Result<MessageResult, Error> {
-        todo!()
+        self.respond_with::<MessageResult>(
+            self.request_for("editMessageMedia").json(&params).send(),
+        )
     }
 
     fn edit_message_live_location(
         &self,
         params: &EditMessageLiveLocation,
     ) -> Result<MessageResult, Error> {
-        todo!()
+        self.respond_with::<MessageResult>(
+            self.request_for("editMessageLiveLocation")
+                .json(&params)
+                .send(),
+        )
     }
 
     fn stop_message_live_location(
         &self,
         params: &StopMessageLiveLocation,
     ) -> Result<MessageResult, Error> {
-        todo!()
+        self.respond_with::<MessageResult>(
+            self.request_for("stopMessageLiveLocation")
+                .json(&params)
+                .send(),
+        )
     }
 
     fn edit_message_reply_markup(
         &self,
         params: &EditMessageReplyMarkup,
     ) -> Result<MessageResult, Error> {
-        todo!()
+        self.respond_with::<MessageResult>(
+            self.request_for("EditMessageReplyMarkup")
+                .json(&params)
+                .send(),
+        )
     }
 
     fn stop_poll(&self, params: &StopPoll) -> Result<Poll, Error> {
-        todo!()
+        self.respond_with::<Poll>(self.request_for("stopPoll").json(&params).send())
     }
 
     fn delete_message(&self, params: &DeleteMessage) -> Result<bool, Error> {
-        todo!()
+        self.respond_with::<bool>(self.request_for("deleteMessage").json(&params).send())
     }
 
     fn delete_messages(&self, params: &DeleteMessages) -> Result<bool, Error> {
-        todo!()
+        self.respond_with::<bool>(self.request_for("deleteMessages").json(&params).send())
     }
 
     fn send_sticker(&self, params: &SendSticker) -> Result<Message, Error> {
-        todo!()
+        self.respond_with::<Message>(self.request_for("sendSticker").json(&params).send())
     }
 
     fn get_sticker_set(&self, params: &GetStickerSet) -> Result<StickerSet, Error> {
-        todo!()
+        self.respond_with::<StickerSet>(self.request_for("getStickerSet").json(&params).send())
     }
 
     fn get_custom_emoji_stickers(&self, params: &GetCustomEmojiStickers) -> Result<Sticker, Error> {
-        todo!()
+        self.respond_with::<Sticker>(
+            self.request_for("getCustomEmojiStickers")
+                .json(&params)
+                .send(),
+        )
     }
 
     fn upload_sticker_file(&self, params: &UploadStickerFile) -> Result<File, Error> {
-        todo!()
+        self.respond_with::<File>(self.request_for("uploadStickerFile").json(&params).send())
     }
 
     fn create_new_sticker_set(&self, params: &CreateNewStickerSet) -> Result<bool, Error> {
-        todo!()
+        self.respond_with::<bool>(self.request_for("createNewStickerSet").json(&params).send())
     }
 
     fn add_sticker_to_set(&self, params: &AddStickerToSet) -> Result<bool, Error> {
-        todo!()
+        self.respond_with::<bool>(self.request_for("addStickerToSet").json(&params).send())
     }
 
     fn set_sticker_position_in_set(&self, params: &SetStickerPositionInSet) -> Result<bool, Error> {
-        todo!()
+        self.respond_with::<bool>(
+            self.request_for("setStickerPositionInSet")
+                .json(&params)
+                .send(),
+        )
     }
 
     fn delete_sticker_from_set(&self, params: &DeleteStickerFromSet) -> Result<bool, Error> {
-        todo!()
+        self.respond_with::<bool>(
+            self.request_for("deleteStickerFromSet")
+                .json(&params)
+                .send(),
+        )
     }
 
     fn set_sticker_emoji_list(&self, params: &SetStickerEmojiList) -> Result<bool, Error> {
-        todo!()
+        self.respond_with::<bool>(self.request_for("setStickerEmojiList").json(&params).send())
     }
 
     fn set_sticker_keywords(&self, params: &SetStickerKeywords) -> Result<bool, Error> {
-        todo!()
+        self.respond_with::<bool>(self.request_for("setStickerKeywords").json(&params).send())
     }
 
     fn set_sticker_mask_position(&self, params: &SetStickerMaskPosition) -> Result<bool, Error> {
-        todo!()
+        self.respond_with::<bool>(
+            self.request_for("setStickerMaskPosition")
+                .json(&params)
+                .send(),
+        )
     }
 
     fn set_sticker_set_title(&self, params: &SetStickerSetTitle) -> Result<bool, Error> {
-        todo!()
+        self.respond_with::<bool>(self.request_for("setStickerSetTitle").json(&params).send())
     }
     fn set_sticker_set_thumbnail(&self, params: &SetStickerSetThumbnail) -> Result<bool, Error> {
-        todo!()
+        self.respond_with::<bool>(
+            self.request_for("setStickerSetThumbnail")
+                .json(&params)
+                .send(),
+        )
     }
 
     fn set_custom_emoji_sticker_set_thumbnail(
         &self,
         params: &SetCustomEmojiStickerSetThumbnail,
     ) -> Result<bool, Error> {
-        todo!()
+        self.respond_with::<bool>(
+            self.request_for("setCustomEmojiStickerSetThumbnail")
+                .json(&params)
+                .send(),
+        )
     }
 
     fn delete_sticker_set(&self, params: &DeleteStickerSet) -> Result<bool, Error> {
-        todo!()
+        self.respond_with::<bool>(self.request_for("deleteStickerSet").json(&params).send())
     }
 
     fn answer_inline_query(&self, params: &AnswerInlineQuery) -> Result<bool, Error> {
-        todo!()
+        self.respond_with::<bool>(self.request_for("answerInlineQuery").json(&params).send())
     }
 
     fn answer_web_app_query(&self, params: &AnswerWebAppQuery) -> Result<SentWebAppMessage, Error> {
-        todo!()
+        self.respond_with::<SentWebAppMessage>(
+            self.request_for("answerWebAppQuery").json(&params).send(),
+        )
     }
 
     fn send_invoice(&self, params: &SendInvoice) -> Result<Message, Error> {
-        todo!()
+        self.respond_with::<Message>(self.request_for("sendInvoice").json(&params).send())
     }
 
     fn create_invoice_link(&self, params: &CreateInvoiceLink) -> Result<String, Error> {
-        todo!()
+        self.respond_with::<String>(self.request_for("createInvoiceLink").json(&params).send())
     }
 
     fn answer_shipping_query(&self, params: &AnswerShippingQuery) -> Result<bool, Error> {
-        todo!()
+        self.respond_with::<bool>(self.request_for("answerShippingQuery").json(&params).send())
     }
 
     fn answer_pre_checkout_query(&self, params: &AnswerPreCheckoutQuery) -> Result<bool, Error> {
-        todo!()
+        self.respond_with::<bool>(
+            self.request_for("answerPreCheckoutQuery")
+                .json(&params)
+                .send(),
+        )
     }
 
     fn set_passport_data_errors(&self, params: &SetPassportDataErrors) -> Result<bool, Error> {
-        todo!()
+        self.respond_with::<bool>(
+            self.request_for("setPassportDataErrors")
+                .json(&params)
+                .send(),
+        )
     }
 
     fn send_game(&self, params: &SendGame) -> Result<Message, Error> {
-        todo!()
+        self.respond_with::<Message>(self.request_for("sendGame").json(&params).send())
     }
 
     fn set_game_score(&self, params: &SetGameScore) -> Result<MessageResult, Error> {
-        todo!()
+        self.respond_with::<MessageResult>(self.request_for("setGameScore").json(&params).send())
     }
 
     fn get_game_high_scores(&self, params: &GetGameHighScores) -> Result<GetGameHighScores, Error> {
-        todo!()
+        self.respond_with::<GetGameHighScores>(
+            self.request_for("getGameHighScores").json(&params).send(),
+        )
     }
 }
