@@ -109,6 +109,7 @@ use crate::api::params::set_webhook::SetWebhook;
 use crate::api::params::stop_message_live_location::StopMessageLiveLocation;
 use crate::api::params::stop_poll::StopPoll;
 use crate::api::params::unban_chat_member::UnbanChatMember;
+use crate::api::params::unban_chat_sender_chat::UnbanChatSenderChat;
 use crate::api::params::unhide_general_forum_topic::UnhideGeneralForumTopic;
 use crate::api::params::unpin_all_chat_messages::UnpinAllChatMessages;
 use crate::api::params::unpin_all_forum_topic_messages::UnpinAllForumTopicMessages;
@@ -143,7 +144,6 @@ use crate::errors::Error;
 use reqwest::blocking::{ClientBuilder, RequestBuilder, Response};
 use serde::de::DeserializeOwned;
 use std::time::Duration;
-use crate::api::params::unban_chat_sender_chat::UnbanChatSenderChat;
 
 #[derive(Debug)]
 pub struct Sync {
