@@ -114,6 +114,7 @@ use crate::api::params::unhide_general_forum_topic::UnhideGeneralForumTopic;
 use crate::api::params::unpin_all_chat_messages::UnpinAllChatMessages;
 use crate::api::params::unpin_all_forum_topic_messages::UnpinAllForumTopicMessages;
 use crate::api::params::unpin_all_general_forum_topic_messages::UnpinAllGeneralForumTopicMessages;
+use crate::api::params::unpin_chat_message::UnpinChatMessage;
 use crate::api::params::upload_sticker_file::UploadStickerFile;
 use crate::api::types::bot_command::BotCommand;
 use crate::api::types::bot_description::BotDescription;
@@ -124,6 +125,7 @@ use crate::api::types::chat_administrator_rights::ChatAdministratorRights;
 use crate::api::types::chat_invite_link::ChatInviteLink;
 use crate::api::types::file::File;
 use crate::api::types::forum_topic::ForumTopic;
+use crate::api::types::game_high_score::GameHighScore;
 use crate::api::types::message::Message;
 use crate::api::types::message_id::MessageId;
 use crate::api::types::poll::Poll;
@@ -345,7 +347,7 @@ pub trait Requests {
 
     /// https://core.telegram.org/bots/api#unpinchatmessage
     /// Use this method to remove a message from the list of pinned messages in a chat. If the chat is not a private chat, the bot must be an administrator in the chat for this to work and must have the 'can_pin_messages' administrator right in a supergroup or 'can_edit_messages' administrator right in a channel. Returns True on success.
-    fn unpin_chat_message(&self, params: &UnbanChatMember) -> Result<bool, Error>;
+    fn unpin_chat_message(&self, params: &UnpinChatMessage) -> Result<bool, Error>;
 
     /// https://core.telegram.org/bots/api#unpinallchatmessages
     /// Use this method to clear the list of pinned messages in a chat. If the chat is not a private chat, the bot must be an administrator in the chat for this to work and must have the 'can_pin_messages' administrator right in a supergroup or 'can_edit_messages' administrator right in a channel. Returns True on success.
@@ -669,5 +671,5 @@ pub trait Requests {
 
     /// https://core.telegram.org/bots/api#getgamehighscores
     /// Use this method to get data for high score tables. Will return the score of the specified user and several of their neighbors in a game. Returns an Array of GameHighScore objects.
-    fn get_game_high_scores(&self, params: &GetGameHighScores) -> Result<GetGameHighScores, Error>;
+    fn get_game_high_scores(&self, params: &GetGameHighScores) -> Result<GameHighScore, Error>;
 }

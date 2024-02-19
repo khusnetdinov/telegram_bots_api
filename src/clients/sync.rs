@@ -114,6 +114,7 @@ use crate::api::params::unhide_general_forum_topic::UnhideGeneralForumTopic;
 use crate::api::params::unpin_all_chat_messages::UnpinAllChatMessages;
 use crate::api::params::unpin_all_forum_topic_messages::UnpinAllForumTopicMessages;
 use crate::api::params::unpin_all_general_forum_topic_messages::UnpinAllGeneralForumTopicMessages;
+use crate::api::params::unpin_chat_message::UnpinChatMessage;
 use crate::api::params::upload_sticker_file::UploadStickerFile;
 use crate::api::requests::sync::Requests;
 use crate::api::responses::error::ResponseError;
@@ -127,6 +128,7 @@ use crate::api::types::chat_administrator_rights::ChatAdministratorRights;
 use crate::api::types::chat_invite_link::ChatInviteLink;
 use crate::api::types::file::File;
 use crate::api::types::forum_topic::ForumTopic;
+use crate::api::types::game_high_score::GameHighScore;
 use crate::api::types::message::Message;
 use crate::api::types::message_id::MessageId;
 use crate::api::types::poll::Poll;
@@ -442,8 +444,8 @@ impl Requests for Sync {
         self.respond_with::<bool>(self.request_for("pinChatMessage").json(&params).send())
     }
 
-    fn unpin_chat_message(&self, params: &UnbanChatMember) -> Result<bool, Error> {
-        self.respond_with::<bool>(self.request_for("unbanChatMember").json(&params).send())
+    fn unpin_chat_message(&self, params: &UnpinChatMessage) -> Result<bool, Error> {
+        self.respond_with::<bool>(self.request_for("unpinChatMessage").json(&params).send())
     }
 
     fn unpin_all_chat_messages(&self, params: &UnpinAllChatMessages) -> Result<bool, Error> {
@@ -868,8 +870,8 @@ impl Requests for Sync {
         self.respond_with::<MessageResult>(self.request_for("setGameScore").json(&params).send())
     }
 
-    fn get_game_high_scores(&self, params: &GetGameHighScores) -> Result<GetGameHighScores, Error> {
-        self.respond_with::<GetGameHighScores>(
+    fn get_game_high_scores(&self, params: &GetGameHighScores) -> Result<GameHighScore, Error> {
+        self.respond_with::<GameHighScore>(
             self.request_for("getGameHighScores").json(&params).send(),
         )
     }
