@@ -1,11 +1,13 @@
 use crate::api::enums::chat_uid::ChatUId;
 use crate::api::enums::file_input::FileInput;
+use crate::api::enums::menu_button::MenuButton;
 use crate::api::params::copy_message::CopyMessage;
 use crate::api::params::copy_messages::CopyMessages;
 use crate::api::params::delete_my_commands::DeleteMyCommands;
 use crate::api::params::delete_webhook::DeleteWebhook;
 use crate::api::params::forward_message::ForwardMessage;
 use crate::api::params::forward_messages::ForwardMessages;
+use crate::api::params::get_chat_menu_button::GetChatMenuButton;
 use crate::api::params::get_forum_topic_icon_stickers::GetForumTopicIconStickers;
 use crate::api::params::get_my_default_administrator_rights::GetMyDefaultAdministratorRights;
 use crate::api::params::get_my_description::GetMyDescription;
@@ -1925,22 +1927,21 @@ fn set_chat_menu_button_success() {
     mocked.server.assert();
 }
 
+#[test]
 fn get_chat_menu_button_success() {
-    // let mock_response =
-    //     fs::read_to_string("src/tests/responses/get_chat_menu_button.json").unwrap();
-    // let mut server = mockito::Server::new();
-    // let mocked = Mocked::new(&mut server, "getChatMenuButton", &mock_response);
-    //
-    // let mock_result = mocked.result::<MenuButton>().unwrap();
-    // let params = GetChatMenuButton {
-    //     ..Default::default()
-    // };
-    // let real_result = mocked.client.sync.get_chat_menu_button(&params).unwrap();
-    //
-    // assert_eq!(mock_result, real_result);
-    // mocked.server.assert();
+    let mock_response =
+        fs::read_to_string("src/tests/responses/get_chat_menu_button.json").unwrap();
+    let mut server = mockito::Server::new();
+    let mocked = Mocked::new(&mut server, "getChatMenuButton", &mock_response);
 
-    todo!()
+    let mock_result = mocked.result::<MenuButton>().unwrap();
+    let params = GetChatMenuButton {
+        ..Default::default()
+    };
+    let real_result = mocked.client.sync.get_chat_menu_button(&params).unwrap();
+
+    assert_eq!(mock_result, real_result);
+    mocked.server.assert();
 }
 
 #[test]
