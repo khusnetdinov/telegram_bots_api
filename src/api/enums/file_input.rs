@@ -7,3 +7,9 @@ pub enum FileInput {
     InputFile(InputFile),
     String(String),
 }
+
+impl Default for FileInput {
+    fn default() -> Self {
+        Self::String(String::from(""))
+    }
+}

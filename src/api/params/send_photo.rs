@@ -7,7 +7,7 @@ use serde::Serialize;
 
 /// https://core.telegram.org/bots/api#sendphoto
 /// Use this method to send photos. On success, the sent Message is returned.
-#[derive(Debug, Serialize)]
+#[derive(Debug, Serialize, Default)]
 pub struct SendPhoto {
     pub chat_id: ChatUId,
     pub photo: FileInput,

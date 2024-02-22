@@ -1,145 +1,36 @@
-use crate::api::enums::chat_member::ChatMember;
 use crate::api::enums::chat_uid::ChatUId;
-use crate::api::enums::menu_button::MenuButton;
-use crate::api::enums::message_result::MessageResult;
-use crate::api::params::add_sticker_to_set::AddStickerToSet;
-use crate::api::params::answer_callback_query::AnswerCallbackQuery;
-use crate::api::params::answer_inline_query::AnswerInlineQuery;
-use crate::api::params::answer_pre_checkout_query::AnswerPreCheckoutQuery;
-use crate::api::params::answer_shipping_query::AnswerShippingQuery;
-use crate::api::params::answer_web_app_query::AnswerWebAppQuery;
-use crate::api::params::approve_chat_join_request::ApproveChatJoinRequest;
-use crate::api::params::ban_chat_member::BanChatMember;
-use crate::api::params::ban_chat_sender_chat::BanChatSenderChat;
-use crate::api::params::close_forum_topic::CloseForumTopic;
-use crate::api::params::close_general_forum_topic::CloseGeneralForumTopic;
+use crate::api::enums::file_input::FileInput;
 use crate::api::params::copy_message::CopyMessage;
 use crate::api::params::copy_messages::CopyMessages;
-use crate::api::params::create_chat_invite_link::CreateChatInviteLink;
-use crate::api::params::create_forum_topic::CreateForumTopic;
-use crate::api::params::create_invoice_link::CreateInvoiceLink;
-use crate::api::params::create_new_sticker_set::CreateNewStickerSet;
-use crate::api::params::decline_chat_join_request::DeclineChatJoinRequest;
-use crate::api::params::delete_chat_photo::DeleteChatPhoto;
-use crate::api::params::delete_chat_sticker_set::DeleteChatStickerSet;
-use crate::api::params::delete_forum_topic::DeleteForumTopic;
-use crate::api::params::delete_message::DeleteMessage;
-use crate::api::params::delete_messages::DeleteMessages;
 use crate::api::params::delete_my_commands::DeleteMyCommands;
-use crate::api::params::delete_sticker_from_set::DeleteStickerFromSet;
-use crate::api::params::delete_sticker_set::DeleteStickerSet;
 use crate::api::params::delete_webhook::DeleteWebhook;
-use crate::api::params::edit_chat_invite_link::EditChatInviteLink;
-use crate::api::params::edit_forum_topic::EditForumTopic;
-use crate::api::params::edit_general_forum_topic::EditGeneralForumTopic;
-use crate::api::params::edit_message_caption::EditMessageCaption;
-use crate::api::params::edit_message_live_location::EditMessageLiveLocation;
-use crate::api::params::edit_message_media::EditMessageMedia;
-use crate::api::params::edit_message_reply_markup::EditMessageReplyMarkup;
-use crate::api::params::edit_message_text::EditMessageText;
-use crate::api::params::export_chat_invite_link::ExportChatInviteLink;
 use crate::api::params::forward_message::ForwardMessage;
 use crate::api::params::forward_messages::ForwardMessages;
-use crate::api::params::get_chat::GetChat;
-use crate::api::params::get_chat_administrators::GetChatAdministrators;
-use crate::api::params::get_chat_member::GetChatMember;
-use crate::api::params::get_chat_member_count::GetChatMemberCount;
-use crate::api::params::get_chat_menu_button::GetChatMenuButton;
-use crate::api::params::get_custom_emoji_stickers::GetCustomEmojiStickers;
-use crate::api::params::get_file::GetFile;
 use crate::api::params::get_forum_topic_icon_stickers::GetForumTopicIconStickers;
-use crate::api::params::get_game_high_scores::GetGameHighScores;
-use crate::api::params::get_my_commands::GetMyCommands;
 use crate::api::params::get_my_default_administrator_rights::GetMyDefaultAdministratorRights;
 use crate::api::params::get_my_description::GetMyDescription;
-use crate::api::params::get_my_name::GetMyName;
 use crate::api::params::get_my_short_description::GetMyShortDescription;
-use crate::api::params::get_sticker_set::GetStickerSet;
 use crate::api::params::get_update::GetUpdate;
-use crate::api::params::get_user_chat_boosts::GetUserChatBoosts;
-use crate::api::params::get_user_profile_photos::GetUserProfilePhotos;
-use crate::api::params::hide_general_forum_topic::HideGeneralForumTopic;
-use crate::api::params::leave_chat::LeaveChat;
-use crate::api::params::pin_chat_message::PinChatMessage;
-use crate::api::params::promote_chat_member::PromoteChatMember;
-use crate::api::params::reopen_forum_topic::ReopenForumTopic;
-use crate::api::params::reopen_general_forum_topic::ReopenGeneralForumTopic;
-use crate::api::params::restrict_chat_member::RestrictChatMember;
-use crate::api::params::revoke_chat_invite_link::RevokeChatInviteLink;
-use crate::api::params::send_animation::SendAnimation;
 use crate::api::params::send_audio::SendAudio;
-use crate::api::params::send_chat_action::SendChatAction;
-use crate::api::params::send_contact::SendContact;
 use crate::api::params::send_dice::SendDice;
-use crate::api::params::send_document::SendDocument;
-use crate::api::params::send_game::SendGame;
-use crate::api::params::send_invoice::SendInvoice;
-use crate::api::params::send_location::SendLocation;
-use crate::api::params::send_media_group::SendMediaGroup;
 use crate::api::params::send_message::SendMessage;
 use crate::api::params::send_photo::SendPhoto;
-use crate::api::params::send_poll::SendPoll;
-use crate::api::params::send_sticker::SendSticker;
-use crate::api::params::send_venue::SendVenue;
-use crate::api::params::send_video::SendVideo;
-use crate::api::params::send_video_note::SendVideoNote;
-use crate::api::params::send_voice::SendVoice;
-use crate::api::params::set_chat_administrator_custom_title::SetChatAdministratorCustomTitle;
-use crate::api::params::set_chat_description::SetChatDescription;
 use crate::api::params::set_chat_menu_button::SetChatMenuButton;
-use crate::api::params::set_chat_permissions::SetChatPermissions;
-use crate::api::params::set_chat_photo::SetChatPhoto;
-use crate::api::params::set_chat_sticker_set::SetChatStickerSet;
-use crate::api::params::set_chat_title::SetChatTitle;
-use crate::api::params::set_custom_emoji_sticker_set_thumbnail::SetCustomEmojiStickerSetThumbnail;
-use crate::api::params::set_game_score::SetGameScore;
-use crate::api::params::set_message_reaction::SetMessageReaction;
 use crate::api::params::set_my_commands::SetMyCommands;
 use crate::api::params::set_my_default_administrator_rights::SetMyDefaultAdministratorRights;
 use crate::api::params::set_my_description::SetMyDescription;
-use crate::api::params::set_my_name::SetMyName;
 use crate::api::params::set_my_short_description::SetMyShortDescription;
-use crate::api::params::set_passport_data_errors::SetPassportDataErrors;
-use crate::api::params::set_sticker_emoji_list::SetStickerEmojiList;
-use crate::api::params::set_sticker_keywords::SetStickerKeywords;
-use crate::api::params::set_sticker_mask_position::SetStickerMaskPosition;
-use crate::api::params::set_sticker_position_in_set::SetStickerPositionInSet;
-use crate::api::params::set_sticker_set_thumbnail::SetStickerSetThumbnail;
-use crate::api::params::set_sticker_set_title::SetStickerSetTitle;
 use crate::api::params::set_webhook::SetWebhook;
-use crate::api::params::stop_message_live_location::StopMessageLiveLocation;
-use crate::api::params::stop_poll::StopPoll;
-use crate::api::params::unban_chat_member::UnbanChatMember;
-use crate::api::params::unban_chat_sender_chat::UnbanChatSenderChat;
-use crate::api::params::unhide_general_forum_topic::UnhideGeneralForumTopic;
-use crate::api::params::unpin_all_chat_messages::UnpinAllChatMessages;
-use crate::api::params::unpin_all_forum_topic_messages::UnpinAllForumTopicMessages;
-use crate::api::params::unpin_all_general_forum_topic_messages::UnpinAllGeneralForumTopicMessages;
-use crate::api::params::unpin_chat_message::UnpinChatMessage;
-use crate::api::params::upload_sticker_file::UploadStickerFile;
 use crate::api::requests::sync::Requests;
 use crate::api::responses::error::ResponseError;
-use crate::api::types::bot_command::BotCommand;
 use crate::api::types::bot_description::BotDescription;
-use crate::api::types::bot_name::BotName;
 use crate::api::types::bot_short_description::BotShortDescription;
-use crate::api::types::chat::Chat;
 use crate::api::types::chat_administrator_rights::ChatAdministratorRights;
-use crate::api::types::chat_invite_link::ChatInviteLink;
-use crate::api::types::file::File;
-use crate::api::types::forum_topic::ForumTopic;
-use crate::api::types::game_high_score::GameHighScore;
 use crate::api::types::message::Message;
 use crate::api::types::message_id::MessageId;
-use crate::api::types::message_reaction_updated::MessageReactionUpdated;
-use crate::api::types::poll::Poll;
-use crate::api::types::sent_web_app_message::SentWebAppMessage;
 use crate::api::types::sticker::Sticker;
-use crate::api::types::sticker_set::StickerSet;
 use crate::api::types::update::Update;
 use crate::api::types::user::User;
-use crate::api::types::user_chat_boosts::UserChatBoosts;
-use crate::api::types::user_profile_photos::UserProfilePhotos;
 use crate::api::types::webhook_info::WebhookInfo;
 use crate::errors::Error;
 use crate::tests::helpers::*;
@@ -579,8 +470,23 @@ fn copy_messages_error() {
 //     mocked.server.assert();
 // }
 
+#[test]
+#[should_panic]
 fn send_photo_error() {
-    todo!()
+    let mock_response = fs::read_to_string("src/tests/responses/send_photo_error.json").unwrap();
+    let mut server = mockito::Server::new();
+    let mocked = Mocked::new(&mut server, "sendPhoto", &mock_response);
+
+    let mock_error = mocked.result::<ResponseError>().unwrap();
+    let params = SendPhoto {
+        chat_id: ChatUId::from(147951145),
+        photo: FileInput::String(String::from("")),
+        ..Default::default()
+    };
+    if let Error::Response(real_error) = mocked.client.sync.send_photo(&params).unwrap_err() {
+        assert_eq!(mock_error, real_error);
+        mocked.server.assert();
+    }
 }
 
 // fn send_audio_success() {
@@ -598,8 +504,23 @@ fn send_photo_error() {
 //     mocked.server.assert();
 // }
 
+#[test]
+#[should_panic]
 fn send_audio_error() {
-    todo!()
+    let mock_response = fs::read_to_string("src/tests/responses/send_audio_error.json").unwrap();
+    let mut server = mockito::Server::new();
+    let mocked = Mocked::new(&mut server, "sendAudio", &mock_response);
+
+    let mock_error = mocked.result::<ResponseError>().unwrap();
+    let params = SendAudio {
+        chat_id: ChatUId::from(147951145),
+        audio: FileInput::String(String::from("")),
+        ..Default::default()
+    };
+    if let Error::Response(real_error) = mocked.client.sync.send_audio(&params).unwrap_err() {
+        assert_eq!(mock_error, real_error);
+        mocked.server.assert();
+    }
 }
 
 // fn send_document_success() {
@@ -1487,29 +1408,25 @@ fn delete_chat_sticker_set_error() {
     todo!()
 }
 
-// fn get_forum_topic_icon_stickers_success() {
-//     let mock_response =
-//         fs::read_to_string("src/tests/responses/get_forum_topic_icon_stickers_success.json")
-//             .unwrap();
-//     let mut server = mockito::Server::new();
-//     let mocked = Mocked::new(&mut server, "getForumTopicIconStickers", &mock_response);
-//
-//     let mock_result = mocked.result::<Vec<Sticker>>().unwrap();
-//     let params = GetForumTopicIconStickers {
-//         ..Default::default()
-//     };
-//     let real_result = mocked
-//         .client
-//         .sync
-//         .get_forum_topic_icon_stickers(&params)
-//         .unwrap();
-//
-//     assert_eq!(mock_result, real_result);
-//     mocked.server.assert();
-// }
+#[test]
+fn get_forum_topic_icon_stickers_success() {
+    let mock_response =
+        fs::read_to_string("src/tests/responses/get_forum_topic_icon_stickers.json").unwrap();
+    let mut server = mockito::Server::new();
+    let mocked = Mocked::new(&mut server, "getForumTopicIconStickers", &mock_response);
 
-fn get_forum_topic_icon_stickers_error() {
-    todo!()
+    let mock_result = mocked.result::<Vec<Sticker>>().unwrap();
+    let params = GetForumTopicIconStickers {
+        ..Default::default()
+    };
+    let real_result = mocked
+        .client
+        .sync
+        .get_forum_topic_icon_stickers(&params)
+        .unwrap();
+
+    assert_eq!(mock_result, real_result);
+    mocked.server.assert();
 }
 
 // fn create_forum_topic_success() {
@@ -1827,49 +1744,41 @@ fn get_user_chat_boosts_error() {
     todo!()
 }
 
-// fn set_my_commands_success() {
-//     let mock_response =
-//         fs::read_to_string("src/tests/responses/set_my_commands_success.json").unwrap();
-//     let mut server = mockito::Server::new();
-//     let mocked = Mocked::new(&mut server, "setMyCommands", &mock_response);
-//
-//     let mock_result = mocked.result::<bool>().unwrap();
-//     let params = SetMyCommands {
-//         ..Default::default()
-//     };
-//     let real_result = mocked.client.sync.set_my_commands(&params).unwrap();
-//
-//     assert_eq!(mock_result, real_result);
-//     mocked.server.assert();
-// }
+#[test]
+fn set_my_commands_success() {
+    let mock_response = fs::read_to_string("src/tests/responses/set_my_commands.json").unwrap();
+    let mut server = mockito::Server::new();
+    let mocked = Mocked::new(&mut server, "setMyCommands", &mock_response);
 
-fn set_my_commands_error() {
-    todo!()
+    let mock_result = mocked.result::<bool>().unwrap();
+    let params = SetMyCommands {
+        ..Default::default()
+    };
+    let real_result = mocked.client.sync.set_my_commands(&params).unwrap();
+
+    assert_eq!(mock_result, real_result);
+    mocked.server.assert();
 }
 
-// fn delete_my_commands_success() {
-//     let mock_response =
-//         fs::read_to_string("src/tests/responses/delete_my_commands_success.json").unwrap();
-//     let mut server = mockito::Server::new();
-//     let mocked = Mocked::new(&mut server, "deleteMyCommands", &mock_response);
-//
-//     let mock_result = mocked.result::<bool>().unwrap();
-//     let params = DeleteMyCommands {
-//         ..Default::default()
-//     };
-//     let real_result = mocked.client.sync.delete_my_commands(&params).unwrap();
-//
-//     assert_eq!(mock_result, real_result);
-//     mocked.server.assert();
-// }
+#[test]
+fn delete_my_commands_success() {
+    let mock_response = fs::read_to_string("src/tests/responses/delete_my_commands.json").unwrap();
+    let mut server = mockito::Server::new();
+    let mocked = Mocked::new(&mut server, "deleteMyCommands", &mock_response);
 
-fn delete_my_commands_error() {
-    todo!()
+    let mock_result = mocked.result::<bool>().unwrap();
+    let params = DeleteMyCommands {
+        ..Default::default()
+    };
+    let real_result = mocked.client.sync.delete_my_commands(&params).unwrap();
+
+    assert_eq!(mock_result, real_result);
+    mocked.server.assert();
 }
 
 // fn get_my_commands_success() {
 //     let mock_response =
-//         fs::read_to_string("src/tests/responses/get_my_commands_success.json").unwrap();
+//         fs::read_to_string("src/tests/responses/get_my_commands.json").unwrap();
 //     let mut server = mockito::Server::new();
 //     let mocked = Mocked::new(&mut server, "getMyCommands", &mock_response);
 //
@@ -1925,190 +1834,163 @@ fn get_my_name_error() {
     todo!()
 }
 
-// fn set_my_description_success() {
-//     let mock_response =
-//         fs::read_to_string("src/tests/responses/set_my_description_success.json").unwrap();
-//     let mut server = mockito::Server::new();
-//     let mocked = Mocked::new(&mut server, "setMyDescription", &mock_response);
-//
-//     let mock_result = mocked.result::<bool>().unwrap();
-//     let params = SetMyDescription {
-//         ..Default::default()
-//     };
-//     let real_result = mocked.client.sync.set_my_description(&params).unwrap();
-//
-//     assert_eq!(mock_result, real_result);
-//     mocked.server.assert();
-// }
+#[test]
+fn set_my_description_success() {
+    let mock_response = fs::read_to_string("src/tests/responses/set_my_description.json").unwrap();
+    let mut server = mockito::Server::new();
+    let mocked = Mocked::new(&mut server, "setMyDescription", &mock_response);
 
-fn set_my_description_error() {
+    let mock_result = mocked.result::<bool>().unwrap();
+    let params = SetMyDescription {
+        ..Default::default()
+    };
+    let real_result = mocked.client.sync.set_my_description(&params).unwrap();
+
+    assert_eq!(mock_result, real_result);
+    mocked.server.assert();
+}
+
+#[test]
+fn get_my_description_success() {
+    let mock_response = fs::read_to_string("src/tests/responses/get_my_description.json").unwrap();
+    let mut server = mockito::Server::new();
+    let mocked = Mocked::new(&mut server, "getMyDescription", &mock_response);
+
+    let mock_result = mocked.result::<BotDescription>().unwrap();
+    let params = GetMyDescription {
+        ..Default::default()
+    };
+    let real_result = mocked.client.sync.get_my_description(&params).unwrap();
+
+    assert_eq!(mock_result, real_result);
+    mocked.server.assert();
+}
+
+#[test]
+fn set_my_short_description_success() {
+    let mock_response =
+        fs::read_to_string("src/tests/responses/set_my_short_description.json").unwrap();
+    let mut server = mockito::Server::new();
+    let mocked = Mocked::new(&mut server, "setMyShortDescription", &mock_response);
+
+    let mock_result = mocked.result::<bool>().unwrap();
+    let params = SetMyShortDescription {
+        ..Default::default()
+    };
+    let real_result = mocked
+        .client
+        .sync
+        .set_my_short_description(&params)
+        .unwrap();
+
+    assert_eq!(mock_result, real_result);
+    mocked.server.assert();
+}
+
+#[test]
+fn get_my_short_description_success() {
+    let mock_response =
+        fs::read_to_string("src/tests/responses/get_my_short_description.json").unwrap();
+    let mut server = mockito::Server::new();
+    let mocked = Mocked::new(&mut server, "getMyShortDescription", &mock_response);
+
+    let mock_result = mocked.result::<BotShortDescription>().unwrap();
+    let params = GetMyShortDescription {
+        ..Default::default()
+    };
+    let real_result = mocked
+        .client
+        .sync
+        .get_my_short_description(&params)
+        .unwrap();
+
+    assert_eq!(mock_result, real_result);
+    mocked.server.assert();
+}
+
+#[test]
+fn set_chat_menu_button_success() {
+    let mock_response =
+        fs::read_to_string("src/tests/responses/set_chat_menu_button.json").unwrap();
+    let mut server = mockito::Server::new();
+    let mocked = Mocked::new(&mut server, "setChatMenuButton", &mock_response);
+
+    let mock_result = mocked.result::<bool>().unwrap();
+    let params = SetChatMenuButton {
+        ..Default::default()
+    };
+    let real_result = mocked.client.sync.set_chat_menu_button(&params).unwrap();
+
+    assert_eq!(mock_result, real_result);
+    mocked.server.assert();
+}
+
+fn get_chat_menu_button_success() {
+    // let mock_response =
+    //     fs::read_to_string("src/tests/responses/get_chat_menu_button.json").unwrap();
+    // let mut server = mockito::Server::new();
+    // let mocked = Mocked::new(&mut server, "getChatMenuButton", &mock_response);
+    //
+    // let mock_result = mocked.result::<MenuButton>().unwrap();
+    // let params = GetChatMenuButton {
+    //     ..Default::default()
+    // };
+    // let real_result = mocked.client.sync.get_chat_menu_button(&params).unwrap();
+    //
+    // assert_eq!(mock_result, real_result);
+    // mocked.server.assert();
+
     todo!()
 }
 
-// fn get_my_description_success() {
-//     let mock_response =
-//         fs::read_to_string("src/tests/responses/get_my_description_success.json").unwrap();
-//     let mut server = mockito::Server::new();
-//     let mocked = Mocked::new(&mut server, "getMyDescription", &mock_response);
-//
-//     let mock_result = mocked.result::<BotDescription>().unwrap();
-//     let params = GetMyDescription {
-//         ..Default::default()
-//     };
-//     let real_result = mocked.client.sync.get_my_description(&params).unwrap();
-//
-//     assert_eq!(mock_result, real_result);
-//     mocked.server.assert();
-// }
+#[test]
+fn set_my_default_administrator_rights_success() {
+    let mock_response =
+        fs::read_to_string("src/tests/responses/set_my_default_administrator_rights.json").unwrap();
+    let mut server = mockito::Server::new();
+    let mocked = Mocked::new(
+        &mut server,
+        "setMyDefaultAdministratorRights",
+        &mock_response,
+    );
 
-fn get_my_description_error() {
-    todo!()
+    let mock_result = mocked.result::<bool>().unwrap();
+    let params = SetMyDefaultAdministratorRights {
+        ..Default::default()
+    };
+    let real_result = mocked
+        .client
+        .sync
+        .set_my_default_administrator_rights(&params)
+        .unwrap();
+
+    assert_eq!(mock_result, real_result);
+    mocked.server.assert();
 }
 
-// fn set_my_short_description_success() {
-//     let mock_response =
-//         fs::read_to_string("src/tests/responses/set_my_short_description_success.json").unwrap();
-//     let mut server = mockito::Server::new();
-//     let mocked = Mocked::new(&mut server, "setMyShortDescription", &mock_response);
-//
-//     let mock_result = mocked.result::<bool>().unwrap();
-//     let params = SetMyShortDescription {
-//         ..Default::default()
-//     };
-//     let real_result = mocked
-//         .client
-//         .sync
-//         .set_my_short_description(&params)
-//         .unwrap();
-//
-//     assert_eq!(mock_result, real_result);
-//     mocked.server.assert();
-// }
+#[test]
+fn get_my_default_administrator_rights_success() {
+    let mock_response =
+        fs::read_to_string("src/tests/responses/get_my_default_administrator_rights.json").unwrap();
+    let mut server = mockito::Server::new();
+    let mocked = Mocked::new(
+        &mut server,
+        "getMyDefaultAdministratorRights",
+        &mock_response,
+    );
 
-fn set_my_short_description_error() {
-    todo!()
-}
+    let mock_result = mocked.result::<ChatAdministratorRights>().unwrap();
+    let params = GetMyDefaultAdministratorRights {
+        ..Default::default()
+    };
+    let real_result = mocked
+        .client
+        .sync
+        .get_my_default_administrator_rights(&params)
+        .unwrap();
 
-// fn get_my_short_description_success() {
-//     let mock_response =
-//         fs::read_to_string("src/tests/responses/get_my_short_description_success.json").unwrap();
-//     let mut server = mockito::Server::new();
-//     let mocked = Mocked::new(&mut server, "getMyShortDescription", &mock_response);
-//
-//     let mock_result = mocked.result::<BotShortDescription>().unwrap();
-//     let params = GetMyShortDescription {
-//         ..Default::default()
-//     };
-//     let real_result = mocked
-//         .client
-//         .sync
-//         .get_my_short_description(&params)
-//         .unwrap();
-//
-//     assert_eq!(mock_result, real_result);
-//     mocked.server.assert();
-// }
-
-fn get_my_short_description_error() {
-    todo!()
-}
-
-// fn set_chat_menu_button_success() {
-//     let mock_response =
-//         fs::read_to_string("src/tests/responses/set_chat_menu_button_success.json").unwrap();
-//     let mut server = mockito::Server::new();
-//     let mocked = Mocked::new(&mut server, "setChatMenuButton", &mock_response);
-//
-//     let mock_result = mocked.result::<bool>().unwrap();
-//     let params = SetChatMenuButton {
-//         ..Default::default()
-//     };
-//     let real_result = mocked.client.sync.set_chat_menu_button(&params).unwrap();
-//
-//     assert_eq!(mock_result, real_result);
-//     mocked.server.assert();
-// }
-
-fn set_chat_menu_button_error() {
-    todo!()
-}
-
-// fn get_chat_menu_button_success() {
-//     let mock_response =
-//         fs::read_to_string("src/tests/responses/get_chat_menu_button_success.json").unwrap();
-//     let mut server = mockito::Server::new();
-//     let mocked = Mocked::new(&mut server, "getChatMenuButton", &mock_response);
-//
-//     let mock_result = mocked.result::<MenuButton>().unwrap();
-//     let params = GetChatMenuButton {
-//         ..Default::default()
-//     };
-//     let real_result = mocked.client.sync.get_chat_menu_button(&params).unwrap();
-//
-//     assert_eq!(mock_result, real_result);
-//     mocked.server.assert();
-// }
-
-fn get_chat_menu_button_error() {
-    todo!()
-}
-
-// fn set_my_default_administrator_rights_success() {
-//     let mock_response =
-//         fs::read_to_string("src/tests/responses/set_my_default_administrator_rights_success.json")
-//             .unwrap();
-//     let mut server = mockito::Server::new();
-//     let mocked = Mocked::new(
-//         &mut server,
-//         "setMyDefaultAdministratorRights",
-//         &mock_response,
-//     );
-//
-//     let mock_result = mocked.result::<bool>().unwrap();
-//     let params = SetMyDefaultAdministratorRights {
-//         ..Default::default()
-//     };
-//     let real_result = mocked
-//         .client
-//         .sync
-//         .set_my_default_administrator_rights(&params)
-//         .unwrap();
-//
-//     assert_eq!(mock_result, real_result);
-//     mocked.server.assert();
-// }
-
-fn set_my_default_administrator_rights_error() {
-    todo!()
-}
-
-// fn get_my_default_administrator_rights_success() {
-//     let mock_response =
-//         fs::read_to_string("src/tests/responses/get_my_default_administrator_rights_success.json")
-//             .unwrap();
-//     let mut server = mockito::Server::new();
-//     let mocked = Mocked::new(
-//         &mut server,
-//         "getMyDefaultAdministratorRights",
-//         &mock_response,
-//     );
-//
-//     let mock_result = mocked.result::<ChatAdministratorRights>().unwrap();
-//     let params = GetMyDefaultAdministratorRights {
-//         ..Default::default()
-//     };
-//     let real_result = mocked
-//         .client
-//         .sync
-//         .get_my_default_administrator_rights(&params)
-//         .unwrap();
-//
-//     assert_eq!(mock_result, real_result);
-//     mocked.server.assert();
-// }
-
-fn get_my_default_administrator_rights_error() {
-    todo!()
+    assert_eq!(mock_result, real_result);
+    mocked.server.assert();
 }
 
 // fn edit_message_text_success() {

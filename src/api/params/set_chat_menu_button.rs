@@ -4,7 +4,7 @@ use serde::Serialize;
 
 /// https://core.telegram.org/bots/api#setchatmenubutton
 /// Use this method to change the bot's menu button in a private chat, or the default menu button. Returns True on success.
-#[derive(Debug, Serialize)]
+#[derive(Debug, Serialize, Default)]
 pub struct SetChatMenuButton {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub chat_id: Option<ChatUId>,
