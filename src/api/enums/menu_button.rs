@@ -15,5 +15,3 @@ pub enum MenuButton {
     WebApp { text: String, web_app: WebAppInfo },
     Default,
 }
-
-
