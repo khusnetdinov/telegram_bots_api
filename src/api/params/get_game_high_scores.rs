@@ -5,12 +5,12 @@ use serde::{Deserialize, Serialize};
 /// https://core.telegram.org/bots/api#getgamehighscores
 /// Use this method to get data for high score tables. Will return the score of the specified user and several of their neighbors in a game. Returns an Array of GameHighScore objects.
 /// This method will currently return scores for the target user, plus two of their closest neighbors on each side. Will also return the top three users if the user and their neighbors are not among them. Please note that this behavior is subject to change.
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct GetGameHighScores {
-    user_id: i64,
-    chat_id: ChatUId,
+    pub user_id: i64,
+    pub chat_id: ChatUId,
     #[serde(skip_serializing_if = "Option::is_none")]
-    message_id: Option<MessageId>,
+    pub message_id: Option<MessageId>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    inline_message_id: Option<String>,
+    pub inline_message_id: Option<String>,
 }

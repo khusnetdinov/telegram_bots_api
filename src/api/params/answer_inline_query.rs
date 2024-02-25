@@ -5,7 +5,7 @@ use serde::Serialize;
 /// https://core.telegram.org/bots/api#answerinlinequery
 /// Use this method to send answers to an inline query. On success, True is returned.
 /// No more than 50 results per query are allowed.
-#[derive(Debug, Serialize)]
+#[derive(Debug, Serialize, Default)]
 pub struct AnswerInlineQuery {
     pub inline_query_id: String,
     pub results: Vec<InlineQueryResult>,

@@ -4,7 +4,7 @@ use serde::{Deserialize, Serialize};
 
 /// https://core.telegram.org/bots/api#inputtextmessagecontent
 /// Represents the content of a text message to be sent as the result of an inline query.
-#[derive(Debug, Serialize, Deserialize, PartialEq)]
+#[derive(Debug, Serialize, Deserialize, Default, PartialEq)]
 pub struct InputTextMessageContent {
     pub message_text: String,
     #[serde(skip_serializing_if = "Option::is_none")]

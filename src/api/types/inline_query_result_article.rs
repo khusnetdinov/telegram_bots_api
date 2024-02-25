@@ -4,7 +4,7 @@ use serde::{Deserialize, Serialize};
 
 /// https://core.telegram.org/bots/api#inlinequeryresultarticle
 /// Represents a link to an article or web page.
-#[derive(Debug, Serialize, Deserialize, PartialEq)]
+#[derive(Debug, Serialize, Deserialize, Default, PartialEq)]
 pub struct InlineQueryResultArticle {
     #[serde(rename(serialize = "type", deserialize = "type"))]
     pub kind: String,

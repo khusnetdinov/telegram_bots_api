@@ -5,7 +5,7 @@ use serde::Serialize;
 
 /// https://core.telegram.org/bots/api#sendlocation
 /// Use this method to send point on the map. On success, the sent Message is returned.
-#[derive(Debug, Serialize)]
+#[derive(Debug, Serialize, Default)]
 pub struct SendLocation {
     pub chat_id: ChatUId,
     pub latitude: f64,

@@ -20,3 +20,11 @@ pub enum InputMedia {
     InputMediaPhoto(InputMediaPhoto),
     InputMediaVideo(InputMediaVideo),
 }
+
+impl Default for InputMedia {
+    fn default() -> Self {
+        Self::InputMediaAnimation(InputMediaAnimation {
+            ..Default::default()
+        })
+    }
+}

@@ -2,7 +2,7 @@ use serde::{Deserialize, Serialize};
 
 /// https://core.telegram.org/bots/api#inputlocationmessagecontent
 /// Represents the content of a location message to be sent as the result of an inline query.
-#[derive(Debug, Serialize, Deserialize, PartialEq)]
+#[derive(Debug, Serialize, Deserialize, Default, PartialEq)]
 pub struct InputLocationMessageContent {
     pub latitude: f64,
     pub longitude: f64,

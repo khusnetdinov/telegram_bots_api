@@ -65,3 +65,11 @@ pub enum InlineQueryResult {
     InlineQueryResultVideo(InlineQueryResultVideo),
     InlineQueryResultVoice(InlineQueryResultVoice),
 }
+
+impl Default for InlineQueryResult {
+    fn default() -> Self {
+        Self::InlineQueryResultCachedAudio(InlineQueryResultCachedAudio {
+            ..Default::default()
+        })
+    }
+}

@@ -3,7 +3,7 @@ use serde::Serialize;
 
 /// https://core.telegram.org/bots/api#getchat
 /// Use this method to get up to date information about the chat. Returns a Chat object on success.
-#[derive(Debug, Serialize)]
+#[derive(Debug, Serialize, Default)]
 pub struct GetChat {
     pub chat_id: ChatUId,
 }

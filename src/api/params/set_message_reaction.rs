@@ -5,7 +5,7 @@ use serde::Serialize;
 
 /// https://core.telegram.org/bots/api#setmessagereaction
 /// Use this method to change the chosen reactions on a message. Service messages can't be reacted to. Automatically forwarded messages from a channel to its discussion group have the same available reactions as messages in the channel. Returns True on success.
-#[derive(Debug, Serialize)]
+#[derive(Debug, Serialize, Default)]
 pub struct SetMessageReaction {
     #[serde(flatten)]
     pub message_id: MessageId,

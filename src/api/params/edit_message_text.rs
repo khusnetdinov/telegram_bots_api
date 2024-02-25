@@ -6,7 +6,7 @@ use serde::Serialize;
 
 /// https://core.telegram.org/bots/api#editmessagetext
 /// Use this method to edit text and game messages. On success, if the edited message is not an inline message, the edited Message is returned, otherwise True is returned.
-#[derive(Debug, Serialize)]
+#[derive(Debug, Serialize, Default)]
 pub struct EditMessageText {
     pub text: String,
     #[serde(skip_serializing_if = "Option::is_none")]

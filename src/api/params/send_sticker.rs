@@ -6,7 +6,7 @@ use serde::Serialize;
 
 /// https://core.telegram.org/bots/api#sendsticker
 /// Use this method to send static .WEBP, animated .TGS, or video .WEBM stickers. On success, the sent Message is returned.
-#[derive(Debug, Serialize)]
+#[derive(Debug, Serialize, Default)]
 pub struct SendSticker {
     pub chat_id: ChatUId,
     pub sticker: FileInput,

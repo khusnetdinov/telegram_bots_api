@@ -8,7 +8,6 @@ pub mod inline_query_result;
 pub mod input_media;
 pub mod input_message_content;
 pub mod maybe_inaccessible_message;
-pub mod media_input;
 pub mod menu_button;
 pub mod message_origin;
 pub mod message_result;

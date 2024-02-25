@@ -3,7 +3,7 @@ use serde::{Deserialize, Serialize};
 
 /// https://core.telegram.org/bots/api#inlinequeryresultgame
 /// Represents a Game.
-#[derive(Debug, Serialize, Deserialize, PartialEq)]
+#[derive(Debug, Serialize, Deserialize, Default, PartialEq)]
 pub struct InlineQueryResultGame {
     #[serde(rename(serialize = "type", deserialize = "type"))]
     pub kind: String,

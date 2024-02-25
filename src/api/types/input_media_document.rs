@@ -4,7 +4,7 @@ use serde::{Deserialize, Serialize};
 
 /// https://core.telegram.org/bots/api#inputmediadocument
 /// Represents a general file to be sent.
-#[derive(Debug, Serialize, Deserialize, PartialEq)]
+#[derive(Debug, Serialize, Deserialize, Default, PartialEq)]
 pub struct InputMediaDocument {
     #[serde(rename(serialize = "type", deserialize = "type"))]
     pub kind: String,
