@@ -1,7 +1,7 @@
 use crate::config::Config;
 
 #[test]
-fn create_with_default() {
+fn new_with_default() {
     let config = Config::default();
 
     assert!(!config.debug);

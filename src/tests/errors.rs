@@ -1,6 +1,6 @@
 use crate::errors::Error;
 
-fn error_request() {
+fn request_error() {
     todo!()
 }
 
