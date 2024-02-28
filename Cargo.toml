@@ -1,7 +1,11 @@
 [package]
 name = "telegram"
 edition = "2021"
+rust-version = "1.70.0"
 version = "0.0.1"
+license = "MIT"
+
+[package.metadata]
 talegram-version = "7.0"
 
 [[example]]
@@ -26,5 +30,5 @@ tokio = { version = "1", features = ["full"] }
 
 # [minimal]
 openssl = { version = "0.10.55", optional = true }
-libgit2-sys = {  version = "^0.16.2", optional = true }
-cargo-minimal-versions = "0.1.25"
+libgit2-sys = { version = "^0.16.2", optional = true }
+cargo-minimal-versions = { version = "0.1.25", optional = true }

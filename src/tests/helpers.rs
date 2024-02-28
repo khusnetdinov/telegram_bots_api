@@ -1,3 +1,4 @@
+use crate::api::responses::error::ResponseError;
 use crate::api::responses::result::ResponseResult;
 use crate::clients::r#async::Async;
 use crate::clients::sync::Sync;
@@ -28,18 +29,25 @@ impl Mocked {
         }
     }
 
-    fn mock_server(server: &mut ServerGuard, token: &str, method: &str, response: &str) -> Mock {
+    fn mock_server(
+        server: &mut ServerGuard,
+        token: &str,
+        method: &str,
+        status: usize,
+        response: &str,
+    ) -> Mock {
         server
             .mock("POST", format!("/bot{}/{}", token, method).as_str())
             .match_header("content-type", "application/json")
             .with_body(response)
+            .with_status(status)
             .create()
     }
 
-    pub fn new(server: &mut ServerGuard, method: &str, response: &str) -> Self {
+    pub fn new(server: &mut ServerGuard, method: &str, status: usize, response: &str) -> Self {
         let token = "0000000000:XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
         let mocked_client = Self::mock_api(server, token);
-        let mocked_server = Self::mock_server(server, token, method, response);
+        let mocked_server = Self::mock_server(server, token, method, status, response);
 
         Self {
             client: mocked_client,
@@ -51,6 +59,13 @@ impl Mocked {
     pub fn result<T: DeserializeOwned>(&self) -> Result<T, Error> {
         match serde_json::from_str::<ResponseResult<T>>(&self.response) {
             Ok(success) => Ok(success.result),
+            Err(error) => Err(Error::Decode(error)),
+        }
+    }
+
+    pub fn result_error(&self) -> Result<ResponseError, Error> {
+        match serde_json::from_str::<ResponseError>(&self.response) {
+            Ok(error) => Ok(error),
             Err(error) => Err(Error::Decode(error)),
         }
     }

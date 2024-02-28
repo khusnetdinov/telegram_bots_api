@@ -285,7 +285,7 @@ impl Requests for Sync {
     }
 
     fn send_video_note(&self, params: &SendVideoNote) -> Result<Message, Error> {
-        self.respond_with::<Message>(self.request_for("sendVoiceNote").json(params).send())
+        self.respond_with::<Message>(self.request_for("sendVideoNote").json(params).send())
     }
 
     fn send_media_group(&self, params: &SendMediaGroup) -> Result<Message, Error> {
@@ -720,7 +720,7 @@ impl Requests for Sync {
         params: &EditMessageReplyMarkup,
     ) -> Result<MessageResult, Error> {
         self.respond_with::<MessageResult>(
-            self.request_for("EditMessageReplyMarkup")
+            self.request_for("editMessageReplyMarkup")
                 .json(&params)
                 .send(),
         )
