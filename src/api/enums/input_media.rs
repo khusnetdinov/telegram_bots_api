@@ -14,16 +14,16 @@ use serde::{Deserialize, Serialize};
 /// InputMediaVideo
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub enum InputMedia {
-    InputMediaAnimation(InputMediaAnimation),
-    InputMediaDocument(InputMediaDocument),
-    InputMediaAudio(InputMediaAudio),
-    InputMediaPhoto(InputMediaPhoto),
-    InputMediaVideo(InputMediaVideo),
+    Animation(InputMediaAnimation),
+    Document(InputMediaDocument),
+    Audio(InputMediaAudio),
+    Photo(InputMediaPhoto),
+    Video(InputMediaVideo),
 }
 
 impl Default for InputMedia {
     fn default() -> Self {
-        Self::InputMediaAnimation(InputMediaAnimation {
+        Self::Animation(InputMediaAnimation {
             ..Default::default()
         })
     }

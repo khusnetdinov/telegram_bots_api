@@ -22,13 +22,13 @@ use serde::{Deserialize, Serialize};
 /// PassportElementErrorUnspecified
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub enum PassportElementError {
-    PassportElementErrorDataField(PassportElementErrorDataField),
-    PassportElementErrorFrontSide(PassportElementErrorFrontSide),
-    PassportElementErrorReverseSide(PassportElementErrorReverseSide),
-    PassportElementErrorSelfie(PassportElementErrorSelfie),
-    PassportElementErrorFile(PassportElementErrorFile),
-    PassportElementErrorFiles(PassportElementErrorFiles),
-    PassportElementErrorTranslationFile(PassportElementErrorTranslationFile),
-    PassportElementErrorTranslationFiles(PassportElementErrorTranslationFiles),
-    PassportElementErrorUnspecified(PassportElementErrorUnspecified),
+    DataField(PassportElementErrorDataField),
+    FrontSide(PassportElementErrorFrontSide),
+    ReverseSide(PassportElementErrorReverseSide),
+    Selfie(PassportElementErrorSelfie),
+    File(PassportElementErrorFile),
+    Files(PassportElementErrorFiles),
+    TranslationFile(PassportElementErrorTranslationFile),
+    TranslationFiles(PassportElementErrorTranslationFiles),
+    Unspecified(PassportElementErrorUnspecified),
 }

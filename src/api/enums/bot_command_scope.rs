@@ -18,11 +18,11 @@ use serde::{Deserialize, Serialize};
 /// BotCommandScopeChatMember
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub enum BotCommandScope {
-    BotCommandScopeDefault(BotCommandScopeDefault),
-    BotCommandScopeAllPrivateChats(BotCommandScopeAllPrivateChats),
-    BotCommandScopeAllGroupChats(BotCommandScopeAllGroupChats),
-    BotCommandScopeAllChatAdministrators(BotCommandScopeAllChatAdministrators),
-    BotCommandScopeChat(BotCommandScopeChat),
-    BotCommandScopeChatAdministrators(BotCommandScopeChatAdministrators),
-    BotCommandScopeChatMember(BotCommandScopeChatMember),
+    Default(BotCommandScopeDefault),
+    AllPrivateChats(BotCommandScopeAllPrivateChats),
+    AllGroupChats(BotCommandScopeAllGroupChats),
+    AllChatAdministrators(BotCommandScopeAllChatAdministrators),
+    Chat(BotCommandScopeChat),
+    ChatAdministrators(BotCommandScopeChatAdministrators),
+    ChatMember(BotCommandScopeChatMember),
 }

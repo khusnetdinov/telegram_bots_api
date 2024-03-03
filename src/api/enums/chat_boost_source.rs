@@ -10,7 +10,7 @@ use serde::{Deserialize, Serialize};
 /// ChatBoostSourceGiveaway
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub enum ChatBoostSource {
-    ChatBoostSourcePremium(ChatBoostSourcePremium),
-    ChatBoostSourceGiftCode(ChatBoostSourceGiftCode),
-    ChatBoostSourceGiveaway(ChatBoostSourceGiveaway),
+    Premium(ChatBoostSourcePremium),
+    GiftCode(ChatBoostSourceGiftCode),
+    Giveaway(ChatBoostSourceGiveaway),
 }
