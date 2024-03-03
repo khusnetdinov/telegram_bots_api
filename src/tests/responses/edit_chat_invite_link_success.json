@@ -5,8 +5,8 @@
     "creator": {
       "id": 1276618370,
       "is_bot": true,
-      "first_name": "test_el_bot",
-      "username": "el_mon_test_bot"
+      "first_name": "FirstName",
+      "username": "username"
     },
     "creates_join_request": false,
     "is_primary": false,

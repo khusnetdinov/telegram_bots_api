@@ -5,16 +5,16 @@
     "from": {
       "id": 1276618370,
       "is_bot": true,
-      "first_name": "test_el_bot",
-      "username": "el_mon_test_bot"
+      "first_name": "FirstName",
+      "username": "username"
     },
     "date": 1619158127,
     "chat": {
       "id": 275808073,
       "type": "private",
-      "username": "Ayrat555",
-      "first_name": "Ayrat",
-      "last_name": "Badykov"
+      "username": "username",
+      "first_name": "FirstName",
+      "last_name": "LastName"
     },
     "edit_date": 1619158446,
     "text": "Hi!!"

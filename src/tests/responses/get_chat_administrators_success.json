@@ -6,8 +6,8 @@
       "user": {
         "id": 1276618370,
         "is_bot": true,
-        "first_name": "test_el_bot",
-        "username": "el_mon_test_bot"
+        "first_name": "FirstName",
+        "username": "username"
       },
       "can_be_edited": false,
       "is_anonymous": true,
@@ -25,9 +25,9 @@
       "user": {
         "id": 275808073,
         "is_bot": false,
-        "first_name": "Ayrat",
-        "last_name": "Badykov",
-        "username": "Ayrat555",
+        "first_name": "FirstName",
+        "last_name": "LastName",
+        "username": "username",
         "language_code": "en"
       },
       "is_anonymous": false
