@@ -1,6 +1,8 @@
+use crate::api::enums::chat_member::ChatMember;
 use crate::api::enums::chat_uid::ChatUId;
 use crate::api::enums::file_input::FileInput;
 use crate::api::enums::menu_button::MenuButton;
+use crate::api::enums::message_result::MessageResult;
 use crate::api::params::add_sticker_to_set::AddStickerToSet;
 use crate::api::params::answer_callback_query::AnswerCallbackQuery;
 use crate::api::params::answer_inline_query::AnswerInlineQuery;
@@ -48,8 +50,10 @@ use crate::api::params::get_custom_emoji_stickers::GetCustomEmojiStickers;
 use crate::api::params::get_file::GetFile;
 use crate::api::params::get_forum_topic_icon_stickers::GetForumTopicIconStickers;
 use crate::api::params::get_game_high_scores::GetGameHighScores;
+use crate::api::params::get_my_commands::GetMyCommands;
 use crate::api::params::get_my_default_administrator_rights::GetMyDefaultAdministratorRights;
 use crate::api::params::get_my_description::GetMyDescription;
+use crate::api::params::get_my_name::GetMyName;
 use crate::api::params::get_my_short_description::GetMyShortDescription;
 use crate::api::params::get_sticker_set::GetStickerSet;
 use crate::api::params::get_update::GetUpdate;
@@ -115,14 +119,26 @@ use crate::api::params::unpin_all_general_forum_topic_messages::UnpinAllGeneralF
 use crate::api::params::unpin_chat_message::UnpinChatMessage;
 use crate::api::params::upload_sticker_file::UploadStickerFile;
 use crate::api::requests::sync::Requests;
+use crate::api::types::bot_command::BotCommand;
 use crate::api::types::bot_description::BotDescription;
+use crate::api::types::bot_name::BotName;
 use crate::api::types::bot_short_description::BotShortDescription;
+use crate::api::types::chat::Chat;
 use crate::api::types::chat_administrator_rights::ChatAdministratorRights;
+use crate::api::types::chat_invite_link::ChatInviteLink;
+use crate::api::types::file::File;
+use crate::api::types::forum_topic::ForumTopic;
+use crate::api::types::game_high_score::GameHighScore;
 use crate::api::types::message::Message;
 use crate::api::types::message_id::MessageId;
+use crate::api::types::poll::Poll;
+use crate::api::types::sent_web_app_message::SentWebAppMessage;
 use crate::api::types::sticker::Sticker;
+use crate::api::types::sticker_set::StickerSet;
 use crate::api::types::update::Update;
 use crate::api::types::user::User;
+use crate::api::types::user_chat_boosts::UserChatBoosts;
+use crate::api::types::user_profile_photos::UserProfilePhotos;
 use crate::api::types::webhook_info::WebhookInfo;
 use crate::errors::Error;
 use crate::tests::helpers::*;
@@ -174,7 +190,7 @@ fn set_webhook_success() {
 
     let mock_result = mocked.result::<bool>().unwrap();
     let params = SetWebhook {
-        url: String::from("https://78b3-91-202-26-13.ngrok-free.app"),
+        url: String::from("https:78b3-91-202-26-13.ngrok-free.app"),
         ..Default::default()
     };
     let real_result = mocked.client.sync.set_webhook(&params).unwrap();
@@ -191,7 +207,7 @@ fn set_webhook_error() {
 
     let mock_error = mocked.result_error().unwrap();
     let params = SetWebhook {
-        url: String::from("https://78b3-91-202-26-13.ngrok-free.app"),
+        url: String::from("https:78b3-91-202-26-13.ngrok-free.app"),
         ..Default::default()
     };
     if let Error::Response(real_error) = mocked.client.sync.set_webhook(&params).unwrap_err() {
@@ -535,20 +551,21 @@ fn copy_messages_error() {
     }
 }
 
-// fn send_photo_success() {
-//     let mock_response = fs::read_to_string("src/tests/responses/send_photo_success.json").unwrap();
-//     let mut server = mockito::Server::new();
-//     let mocked = Mocked::new(&mut server, "sendPhoto", 200, &mock_response);
-//
-//     let mock_result = mocked.result::<Message>().unwrap();
-//     let params = SendPhoto {
-//         ..Default::default()
-//     };
-//     let real_result = mocked.client.sync.send_photo(&params).unwrap();
-//
-//     assert_eq!(mock_result, real_result);
-//     mocked.server.assert();
-// }
+#[test]
+fn send_photo_success() {
+    let mock_response = fs::read_to_string("src/tests/responses/send_photo_success.json").unwrap();
+    let mut server = mockito::Server::new();
+    let mocked = Mocked::new(&mut server, "sendPhoto", 200, &mock_response);
+
+    let mock_result = mocked.result::<Message>().unwrap();
+    let params = SendPhoto {
+        ..Default::default()
+    };
+    let real_result = mocked.client.sync.send_photo(&params).unwrap();
+
+    assert_eq!(mock_result, real_result);
+    mocked.server.assert();
+}
 
 #[test]
 fn send_photo_error() {
@@ -568,20 +585,21 @@ fn send_photo_error() {
     }
 }
 
-// fn send_audio_success() {
-//     let mock_response = fs::read_to_string("src/tests/responses/send_audio_success.json").unwrap();
-//     let mut server = mockito::Server::new();
-//     let mocked = Mocked::new(&mut server, "sendAudio", 200, &mock_response);
-//
-//     let mock_result = mocked.result::<Message>().unwrap();
-//     let params = SendAudio {
-//         ..Default::default()
-//     };
-//     let real_result = mocked.client.sync.send_audio(&params).unwrap();
-//
-//     assert_eq!(mock_result, real_result);
-//     mocked.server.assert();
-// }
+#[test]
+fn send_audio_success() {
+    let mock_response = fs::read_to_string("src/tests/responses/send_audio_success.json").unwrap();
+    let mut server = mockito::Server::new();
+    let mocked = Mocked::new(&mut server, "sendAudio", 200, &mock_response);
+
+    let mock_result = mocked.result::<Message>().unwrap();
+    let params = SendAudio {
+        ..Default::default()
+    };
+    let real_result = mocked.client.sync.send_audio(&params).unwrap();
+
+    assert_eq!(mock_result, real_result);
+    mocked.server.assert();
+}
 
 #[test]
 fn send_audio_error() {
@@ -601,21 +619,22 @@ fn send_audio_error() {
     }
 }
 
-// fn send_document_success() {
-//     let mock_response =
-//         fs::read_to_string("src/tests/responses/send_document_success.json").unwrap();
-//     let mut server = mockito::Server::new();
-//     let mocked = Mocked::new(&mut server, "sendDocument", 200, &mock_response);
-//
-//     let mock_result = mocked.result::<Message>().unwrap();
-//     let params = SendDocument {
-//         ..Default::default()
-//     };
-//     let real_result = mocked.client.sync.send_document(&params).unwrap();
-//
-//     assert_eq!(mock_result, real_result);
-//     mocked.server.assert();
-// }
+#[test]
+fn send_document_success() {
+    let mock_response =
+        fs::read_to_string("src/tests/responses/send_document_success.json").unwrap();
+    let mut server = mockito::Server::new();
+    let mocked = Mocked::new(&mut server, "sendDocument", 200, &mock_response);
+
+    let mock_result = mocked.result::<Message>().unwrap();
+    let params = SendDocument {
+        ..Default::default()
+    };
+    let real_result = mocked.client.sync.send_document(&params).unwrap();
+
+    assert_eq!(mock_result, real_result);
+    mocked.server.assert();
+}
 
 #[test]
 fn send_document_error() {
@@ -635,20 +654,21 @@ fn send_document_error() {
     }
 }
 
-// fn send_video_success() {
-//     let mock_response = fs::read_to_string("src/tests/responses/send_video_success.json").unwrap();
-//     let mut server = mockito::Server::new();
-//     let mocked = Mocked::new(&mut server, "sendVideo", 200, &mock_response);
-//
-//     let mock_result = mocked.result::<Message>().unwrap();
-//     let params = SendVideo {
-//         ..Default::default()
-//     };
-//     let real_result = mocked.client.sync.send_video(&params).unwrap();
-//
-//     assert_eq!(mock_result, real_result);
-//     mocked.server.assert();
-// }
+#[test]
+fn send_video_success() {
+    let mock_response = fs::read_to_string("src/tests/responses/send_video_success.json").unwrap();
+    let mut server = mockito::Server::new();
+    let mocked = Mocked::new(&mut server, "sendVideo", 200, &mock_response);
+
+    let mock_result = mocked.result::<Message>().unwrap();
+    let params = SendVideo {
+        ..Default::default()
+    };
+    let real_result = mocked.client.sync.send_video(&params).unwrap();
+
+    assert_eq!(mock_result, real_result);
+    mocked.server.assert();
+}
 
 #[test]
 fn send_video_error() {
@@ -668,21 +688,22 @@ fn send_video_error() {
     }
 }
 
-// fn send_animation_success() {
-//     let mock_response =
-//         fs::read_to_string("src/tests/responses/send_animation_success.json").unwrap();
-//     let mut server = mockito::Server::new();
-//     let mocked = Mocked::new(&mut server, "sendAnimation", 200, &mock_response);
-//
-//     let mock_result = mocked.result::<Message>().unwrap();
-//     let params = SendAnimation {
-//         ..Default::default()
-//     };
-//     let real_result = mocked.client.sync.send_animation(&params).unwrap();
-//
-//     assert_eq!(mock_result, real_result);
-//     mocked.server.assert();
-// }
+#[test]
+fn send_animation_success() {
+    let mock_response =
+        fs::read_to_string("src/tests/responses/send_animation_success.json").unwrap();
+    let mut server = mockito::Server::new();
+    let mocked = Mocked::new(&mut server, "sendAnimation", 200, &mock_response);
+
+    let mock_result = mocked.result::<Message>().unwrap();
+    let params = SendAnimation {
+        ..Default::default()
+    };
+    let real_result = mocked.client.sync.send_animation(&params).unwrap();
+
+    assert_eq!(mock_result, real_result);
+    mocked.server.assert();
+}
 
 #[test]
 fn send_animation_error() {
@@ -703,20 +724,21 @@ fn send_animation_error() {
     }
 }
 
-// fn send_voice_success() {
-//     let mock_response = fs::read_to_string("src/tests/responses/send_voice_success.json").unwrap();
-//     let mut server = mockito::Server::new();
-//     let mocked = Mocked::new(&mut server, "sendVoice", 200, &mock_response);
-//
-//     let mock_result = mocked.result::<Message>().unwrap();
-//     let params = SendVoice {
-//         ..Default::default()
-//     };
-//     let real_result = mocked.client.sync.send_voice(&params).unwrap();
-//
-//     assert_eq!(mock_result, real_result);
-//     mocked.server.assert();
-// }
+#[test]
+fn send_voice_success() {
+    let mock_response = fs::read_to_string("src/tests/responses/send_voice_success.json").unwrap();
+    let mut server = mockito::Server::new();
+    let mocked = Mocked::new(&mut server, "sendVoice", 200, &mock_response);
+
+    let mock_result = mocked.result::<Message>().unwrap();
+    let params = SendVoice {
+        ..Default::default()
+    };
+    let real_result = mocked.client.sync.send_voice(&params).unwrap();
+
+    assert_eq!(mock_result, real_result);
+    mocked.server.assert();
+}
 
 #[test]
 fn send_voice_error() {
@@ -736,21 +758,22 @@ fn send_voice_error() {
     }
 }
 
-// fn send_video_note_success() {
-//     let mock_response =
-//         fs::read_to_string("src/tests/responses/send_video_note_success.json").unwrap();
-//     let mut server = mockito::Server::new();
-//     let mocked = Mocked::new(&mut server, "sendVideoNote", 200, &mock_response);
-//
-//     let mock_result = mocked.result::<Message>().unwrap();
-//     let params = SendVideoNote {
-//         ..Default::default()
-//     };
-//     let real_result = mocked.client.sync.send_video_note(&params).unwrap();
-//
-//     assert_eq!(mock_result, real_result);
-//     mocked.server.assert();
-// }
+#[test]
+fn send_video_note_success() {
+    let mock_response =
+        fs::read_to_string("src/tests/responses/send_video_note_success.json").unwrap();
+    let mut server = mockito::Server::new();
+    let mocked = Mocked::new(&mut server, "sendVideoNote", 200, &mock_response);
+
+    let mock_result = mocked.result::<Message>().unwrap();
+    let params = SendVideoNote {
+        ..Default::default()
+    };
+    let real_result = mocked.client.sync.send_video_note(&params).unwrap();
+
+    assert_eq!(mock_result, real_result);
+    mocked.server.assert();
+}
 
 #[test]
 fn send_video_note_error() {
@@ -769,21 +792,22 @@ fn send_video_note_error() {
     }
 }
 
-// fn send_media_group_success() {
-//     let mock_response =
-//         fs::read_to_string("src/tests/responses/send_media_group_success.json").unwrap();
-//     let mut server = mockito::Server::new();
-//     let mocked = Mocked::new(&mut server, "sendMediaGroup", 200, &mock_response);
-//
-//     let mock_result = mocked.result::<Message>().unwrap();
-//     let params = SendMediaGroup {
-//         ..Default::default()
-//     };
-//     let real_result = mocked.client.sync.send_media_group(&params).unwrap();
-//
-//     assert_eq!(mock_result, real_result);
-//     mocked.server.assert();
-// }
+#[test]
+fn send_media_group_success() {
+    let mock_response =
+        fs::read_to_string("src/tests/responses/send_media_group_success.json").unwrap();
+    let mut server = mockito::Server::new();
+    let mocked = Mocked::new(&mut server, "sendMediaGroup", 200, &mock_response);
+
+    let mock_result = mocked.result::<Vec<Message>>().unwrap();
+    let params = SendMediaGroup {
+        ..Default::default()
+    };
+    let real_result = mocked.client.sync.send_media_group(&params).unwrap();
+
+    assert_eq!(mock_result, real_result);
+    mocked.server.assert();
+}
 
 #[test]
 fn send_media_group_error() {
@@ -802,21 +826,22 @@ fn send_media_group_error() {
     }
 }
 
-// fn send_location_success() {
-//     let mock_response =
-//         fs::read_to_string("src/tests/responses/send_location_success.json").unwrap();
-//     let mut server = mockito::Server::new();
-//     let mocked = Mocked::new(&mut server, "sendLocation", 200, &mock_response);
-//
-//     let mock_result = mocked.result::<Message>().unwrap();
-//     let params = SendLocation {
-//         ..Default::default()
-//     };
-//     let real_result = mocked.client.sync.send_location(&params).unwrap();
-//
-//     assert_eq!(mock_result, real_result);
-//     mocked.server.assert();
-// }
+#[test]
+fn send_location_success() {
+    let mock_response =
+        fs::read_to_string("src/tests/responses/send_location_success.json").unwrap();
+    let mut server = mockito::Server::new();
+    let mocked = Mocked::new(&mut server, "sendLocation", 200, &mock_response);
+
+    let mock_result = mocked.result::<Message>().unwrap();
+    let params = SendLocation {
+        ..Default::default()
+    };
+    let real_result = mocked.client.sync.send_location(&params).unwrap();
+
+    assert_eq!(mock_result, real_result);
+    mocked.server.assert();
+}
 
 #[test]
 fn send_location_error() {
@@ -834,20 +859,21 @@ fn send_location_error() {
     }
 }
 
-// fn send_venue_success() {
-//     let mock_response = fs::read_to_string("src/tests/responses/send_venue_success.json").unwrap();
-//     let mut server = mockito::Server::new();
-//     let mocked = Mocked::new(&mut server, "sendVenue", 200, &mock_response);
-//
-//     let mock_result = mocked.result::<Message>().unwrap();
-//     let params = SendVenue {
-//         ..Default::default()
-//     };
-//     let real_result = mocked.client.sync.send_venue(&params).unwrap();
-//
-//     assert_eq!(mock_result, real_result);
-//     mocked.server.assert();
-// }
+#[test]
+fn send_venue_success() {
+    let mock_response = fs::read_to_string("src/tests/responses/send_venue_success.json").unwrap();
+    let mut server = mockito::Server::new();
+    let mocked = Mocked::new(&mut server, "sendVenue", 200, &mock_response);
+
+    let mock_result = mocked.result::<Message>().unwrap();
+    let params = SendVenue {
+        ..Default::default()
+    };
+    let real_result = mocked.client.sync.send_venue(&params).unwrap();
+
+    assert_eq!(mock_result, real_result);
+    mocked.server.assert();
+}
 
 #[test]
 fn send_venue_error() {
@@ -865,21 +891,21 @@ fn send_venue_error() {
     }
 }
 
-// fn send_contact_success() {
-//     let mock_response =
-//         fs::read_to_string("src/tests/responses/send_contact_success.json").unwrap();
-//     let mut server = mockito::Server::new();
-//     let mocked = Mocked::new(&mut server, "sendContact", 200, &mock_response);
-//
-//     let mock_result = mocked.result::<Message>().unwrap();
-//     let params = SendContact {
-//         ..Default::default()
-//     };
-//     let real_result = mocked.client.sync.send_contact(&params).unwrap();
-//
-//     assert_eq!(mock_result, real_result);
-//     mocked.server.assert();
-// }
+fn send_contact_success() {
+    let mock_response =
+        fs::read_to_string("src/tests/responses/send_contact_success.json").unwrap();
+    let mut server = mockito::Server::new();
+    let mocked = Mocked::new(&mut server, "sendContact", 200, &mock_response);
+
+    let mock_result = mocked.result::<Message>().unwrap();
+    let params = SendContact {
+        ..Default::default()
+    };
+    let real_result = mocked.client.sync.send_contact(&params).unwrap();
+
+    assert_eq!(mock_result, real_result);
+    mocked.server.assert();
+}
 
 #[test]
 fn send_contact_error() {
@@ -897,20 +923,20 @@ fn send_contact_error() {
     }
 }
 
-// fn send_poll_success() {
-//     let mock_response = fs::read_to_string("src/tests/responses/send_poll_success.json").unwrap();
-//     let mut server = mockito::Server::new();
-//     let mocked = Mocked::new(&mut server, "sendPoll", 200, &mock_response);
-//
-//     let mock_result = mocked.result::<Message>().unwrap();
-//     let params = SendPoll {
-//         ..Default::default()
-//     };
-//     let real_result = mocked.client.sync.send_poll(&params).unwrap();
-//
-//     assert_eq!(mock_result, real_result);
-//     mocked.server.assert();
-// }
+fn send_poll_success() {
+    let mock_response = fs::read_to_string("src/tests/responses/send_poll_success.json").unwrap();
+    let mut server = mockito::Server::new();
+    let mocked = Mocked::new(&mut server, "sendPoll", 200, &mock_response);
+
+    let mock_result = mocked.result::<Message>().unwrap();
+    let params = SendPoll {
+        ..Default::default()
+    };
+    let real_result = mocked.client.sync.send_poll(&params).unwrap();
+
+    assert_eq!(mock_result, real_result);
+    mocked.server.assert();
+}
 
 #[test]
 fn send_poll_error() {
@@ -962,21 +988,22 @@ fn send_dice_error() {
     }
 }
 
-// fn send_chat_action_success() {
-//     let mock_response =
-//         fs::read_to_string("src/tests/responses/send_chat_action_success.json").unwrap();
-//     let mut server = mockito::Server::new();
-//     let mocked = Mocked::new(&mut server, "sendChatAction", 200, &mock_response);
-//
-//     let mock_result = mocked.result::<bool>().unwrap();
-//     let params = SendChatAction {
-//         ..Default::default()
-//     };
-//     let real_result = mocked.client.sync.send_chat_action(&params).unwrap();
-//
-//     assert_eq!(mock_result, real_result);
-//     mocked.server.assert();
-// }
+#[test]
+fn send_chat_action_success() {
+    let mock_response =
+        fs::read_to_string("src/tests/responses/send_chat_action_success.json").unwrap();
+    let mut server = mockito::Server::new();
+    let mocked = Mocked::new(&mut server, "sendChatAction", 200, &mock_response);
+
+    let mock_result = mocked.result::<bool>().unwrap();
+    let params = SendChatAction {
+        ..Default::default()
+    };
+    let real_result = mocked.client.sync.send_chat_action(&params).unwrap();
+
+    assert_eq!(mock_result, real_result);
+    mocked.server.assert();
+}
 
 #[test]
 fn send_chat_action_error() {
@@ -995,21 +1022,22 @@ fn send_chat_action_error() {
     }
 }
 
-// fn set_message_reaction_success() {
-//     let mock_response =
-//         fs::read_to_string("src/tests/responses/set_message_reaction_success.json").unwrap();
-//     let mut server = mockito::Server::new();
-//     let mocked = Mocked::new(&mut server, "setMessageReaction", 200, &mock_response);
-//
-//     let mock_result = mocked.result::<bool>().unwrap();
-//     let params = SetMessageReaction {
-//         ..Default::default()
-//     };
-//     let real_result = mocked.client.sync.set_message_reaction(&params).unwrap();
-//
-//     assert_eq!(mock_result, real_result);
-//     mocked.server.assert();
-// }
+#[test]
+fn set_message_reaction_success() {
+    let mock_response =
+        fs::read_to_string("src/tests/responses/set_message_reaction_success.json").unwrap();
+    let mut server = mockito::Server::new();
+    let mocked = Mocked::new(&mut server, "setMessageReaction", 200, &mock_response);
+
+    let mock_result = mocked.result::<bool>().unwrap();
+    let params = SetMessageReaction {
+        ..Default::default()
+    };
+    let real_result = mocked.client.sync.set_message_reaction(&params).unwrap();
+
+    assert_eq!(mock_result, real_result);
+    mocked.server.assert();
+}
 
 #[test]
 fn set_message_reaction_error() {
@@ -1033,21 +1061,22 @@ fn set_message_reaction_error() {
     }
 }
 
-// fn get_user_profile_photos_success() {
-//     let mock_response =
-//         fs::read_to_string("src/tests/responses/get_user_profile_photos_success.json").unwrap();
-//     let mut server = mockito::Server::new();
-//     let mocked = Mocked::new(&mut server, "getUserProfilePhotos ", 200, &mock_response);
-//
-//     let mock_result = mocked.result::<UserProfilePhotos>().unwrap();
-//     let params = GetUserProfilePhotos {
-//         ..Default::default()
-//     };
-//     let real_result = mocked.client.sync.get_user_profile_photos(&params).unwrap();
-//
-//     assert_eq!(mock_result, real_result);
-//     mocked.server.assert();
-// }
+#[test]
+fn get_user_profile_photos_success() {
+    let mock_response =
+        fs::read_to_string("src/tests/responses/get_user_profile_photos_success.json").unwrap();
+    let mut server = mockito::Server::new();
+    let mocked = Mocked::new(&mut server, "getUserProfilePhotos", 200, &mock_response);
+
+    let mock_result = mocked.result::<UserProfilePhotos>().unwrap();
+    let params = GetUserProfilePhotos {
+        ..Default::default()
+    };
+    let real_result = mocked.client.sync.get_user_profile_photos(&params).unwrap();
+
+    assert_eq!(mock_result, real_result);
+    mocked.server.assert();
+}
 
 #[test]
 fn get_user_profile_photos_error() {
@@ -1071,20 +1100,21 @@ fn get_user_profile_photos_error() {
     }
 }
 
-// fn get_file_success() {
-//     let mock_response = fs::read_to_string("src/tests/responses/get_file_success.json").unwrap();
-//     let mut server = mockito::Server::new();
-//     let mocked = Mocked::new(&mut server, "getFile ", 200, &mock_response);
-//
-//     let mock_result = mocked.result::<File>().unwrap();
-//     let params = GetFile {
-//         ..Default::default()
-//     };
-//     let real_result = mocked.client.sync.get_file(&params).unwrap();
-//
-//     assert_eq!(mock_result, real_result);
-//     mocked.server.assert();
-// }
+#[test]
+fn get_file_success() {
+    let mock_response = fs::read_to_string("src/tests/responses/get_file_success.json").unwrap();
+    let mut server = mockito::Server::new();
+    let mocked = Mocked::new(&mut server, "getFile", 200, &mock_response);
+
+    let mock_result = mocked.result::<File>().unwrap();
+    let params = GetFile {
+        ..Default::default()
+    };
+    let real_result = mocked.client.sync.get_file(&params).unwrap();
+
+    assert_eq!(mock_result, real_result);
+    mocked.server.assert();
+}
 
 #[test]
 fn get_file_error() {
@@ -1102,21 +1132,22 @@ fn get_file_error() {
     }
 }
 
-// fn ban_chat_member_success() {
-//     let mock_response =
-//         fs::read_to_string("src/tests/responses/ban_chat_member_success.json").unwrap();
-//     let mut server = mockito::Server::new();
-//     let mocked = Mocked::new(&mut server, "banChatMember", 200, &mock_response);
-//
-//     let mock_result = mocked.result::<bool>().unwrap();
-//     let params = BanChatMember {
-//         ..Default::default()
-//     };
-//     let real_result = mocked.client.sync.ban_chat_member(&params).unwrap();
-//
-//     assert_eq!(mock_result, real_result);
-//     mocked.server.assert();
-// }
+#[test]
+fn ban_chat_member_success() {
+    let mock_response =
+        fs::read_to_string("src/tests/responses/ban_chat_member_success.json").unwrap();
+    let mut server = mockito::Server::new();
+    let mocked = Mocked::new(&mut server, "banChatMember", 200, &mock_response);
+
+    let mock_result = mocked.result::<bool>().unwrap();
+    let params = BanChatMember {
+        ..Default::default()
+    };
+    let real_result = mocked.client.sync.ban_chat_member(&params).unwrap();
+
+    assert_eq!(mock_result, real_result);
+    mocked.server.assert();
+}
 
 #[test]
 fn ban_chat_member_error() {
@@ -1135,21 +1166,22 @@ fn ban_chat_member_error() {
     }
 }
 
-// fn unban_chat_member_success() {
-//     let mock_response =
-//         fs::read_to_string("src/tests/responses/unban_chat_member_success.json").unwrap();
-//     let mut server = mockito::Server::new();
-//     let mocked = Mocked::new(&mut server, "unbanChatMember", 200, &mock_response);
-//
-//     let mock_result = mocked.result::<bool>().unwrap();
-//     let params = UnbanChatMember {
-//         ..Default::default()
-//     };
-//     let real_result = mocked.client.sync.unban_chat_member(&params).unwrap();
-//
-//     assert_eq!(mock_result, real_result);
-//     mocked.server.assert();
-// }
+#[test]
+fn unban_chat_member_success() {
+    let mock_response =
+        fs::read_to_string("src/tests/responses/unban_chat_member_success.json").unwrap();
+    let mut server = mockito::Server::new();
+    let mocked = Mocked::new(&mut server, "unbanChatMember", 200, &mock_response);
+
+    let mock_result = mocked.result::<bool>().unwrap();
+    let params = UnbanChatMember {
+        ..Default::default()
+    };
+    let real_result = mocked.client.sync.unban_chat_member(&params).unwrap();
+
+    assert_eq!(mock_result, real_result);
+    mocked.server.assert();
+}
 
 #[test]
 fn unban_chat_member_error() {
@@ -1169,21 +1201,22 @@ fn unban_chat_member_error() {
     }
 }
 
-// fn restrict_chat_member_success() {
-//     let mock_response =
-//         fs::read_to_string("src/tests/responses/restrict_chat_member_success.json").unwrap();
-//     let mut server = mockito::Server::new();
-//     let mocked = Mocked::new(&mut server, "restrictChatMember", 200, &mock_response);
-//
-//     let mock_result = mocked.result::<bool>().unwrap();
-//     let params = RestrictChatMember {
-//         ..Default::default()
-//     };
-//     let real_result = mocked.client.sync.restrict_chat_member(&params).unwrap();
-//
-//     assert_eq!(mock_result, real_result);
-//     mocked.server.assert();
-// }
+#[test]
+fn restrict_chat_member_success() {
+    let mock_response =
+        fs::read_to_string("src/tests/responses/restrict_chat_member_success.json").unwrap();
+    let mut server = mockito::Server::new();
+    let mocked = Mocked::new(&mut server, "restrictChatMember", 200, &mock_response);
+
+    let mock_result = mocked.result::<bool>().unwrap();
+    let params = RestrictChatMember {
+        ..Default::default()
+    };
+    let real_result = mocked.client.sync.restrict_chat_member(&params).unwrap();
+
+    assert_eq!(mock_result, real_result);
+    mocked.server.assert();
+}
 
 #[test]
 fn restrict_chat_member_error() {
@@ -1207,21 +1240,22 @@ fn restrict_chat_member_error() {
     }
 }
 
-// fn promote_chat_member_success() {
-//     let mock_response =
-//         fs::read_to_string("src/tests/responses/promote_chat_member_success.json").unwrap();
-//     let mut server = mockito::Server::new();
-//     let mocked = Mocked::new(&mut server, "promoteChatMember", 200, &mock_response);
-//
-//     let mock_result = mocked.result::<bool>().unwrap();
-//     let params = PromoteChatMember {
-//         ..Default::default()
-//     };
-//     let real_result = mocked.client.sync.promote_chat_member(&params).unwrap();
-//
-//     assert_eq!(mock_result, real_result);
-//     mocked.server.assert();
-// }
+#[test]
+fn promote_chat_member_success() {
+    let mock_response =
+        fs::read_to_string("src/tests/responses/promote_chat_member_success.json").unwrap();
+    let mut server = mockito::Server::new();
+    let mocked = Mocked::new(&mut server, "promoteChatMember", 200, &mock_response);
+
+    let mock_result = mocked.result::<bool>().unwrap();
+    let params = PromoteChatMember {
+        ..Default::default()
+    };
+    let real_result = mocked.client.sync.promote_chat_member(&params).unwrap();
+
+    assert_eq!(mock_result, real_result);
+    mocked.server.assert();
+}
 
 #[test]
 fn promote_chat_member_error() {
@@ -1242,30 +1276,32 @@ fn promote_chat_member_error() {
     }
 }
 
-// fn set_chat_administrator_custom_title_success() {
-//     let mock_response =
-//         fs::read_to_string("src/tests/responses/set_chat_administrator_custom_title_success.json")
-//             .unwrap();
-//     let mut server = mockito::Server::new();
-//     let mocked = Mocked::new(
-//         &mut server,
-//         "setChatAdministratorCustomTitle",
-//         &mock_response,
-//     );
-//
-//     let mock_result = mocked.result::<bool>().unwrap();
-//     let params = SetChatAdministratorCustomTitle {
-//         ..Default::default()
-//     };
-//     let real_result = mocked
-//         .client
-//         .sync
-//         .set_chat_administrator_custom_title(&params)
-//         .unwrap();
-//
-//     assert_eq!(mock_result, real_result);
-//     mocked.server.assert();
-// }
+#[test]
+fn set_chat_administrator_custom_title_success() {
+    let mock_response =
+        fs::read_to_string("src/tests/responses/set_chat_administrator_custom_title_success.json")
+            .unwrap();
+    let mut server = mockito::Server::new();
+    let mocked = Mocked::new(
+        &mut server,
+        "setChatAdministratorCustomTitle",
+        200,
+        &mock_response,
+    );
+
+    let mock_result = mocked.result::<bool>().unwrap();
+    let params = SetChatAdministratorCustomTitle {
+        ..Default::default()
+    };
+    let real_result = mocked
+        .client
+        .sync
+        .set_chat_administrator_custom_title(&params)
+        .unwrap();
+
+    assert_eq!(mock_result, real_result);
+    mocked.server.assert();
+}
 
 #[test]
 fn set_chat_administrator_custom_title_error() {
@@ -1295,21 +1331,22 @@ fn set_chat_administrator_custom_title_error() {
     }
 }
 
-// fn ban_chat_sender_chat_success() {
-//     let mock_response =
-//         fs::read_to_string("src/tests/responses/ban_chat_sender_chat_success.json").unwrap();
-//     let mut server = mockito::Server::new();
-//     let mocked = Mocked::new(&mut server, "banChatSenderChat", 200, &mock_response);
-//
-//     let mock_result = mocked.result::<bool>().unwrap();
-//     let params = BanChatSenderChat {
-//         ..Default::default()
-//     };
-//     let real_result = mocked.client.sync.ban_chat_sender_chat(&params).unwrap();
-//
-//     assert_eq!(mock_result, real_result);
-//     mocked.server.assert();
-// }
+#[test]
+fn ban_chat_sender_chat_success() {
+    let mock_response =
+        fs::read_to_string("src/tests/responses/ban_chat_sender_chat_success.json").unwrap();
+    let mut server = mockito::Server::new();
+    let mocked = Mocked::new(&mut server, "banChatSenderChat", 200, &mock_response);
+
+    let mock_result = mocked.result::<bool>().unwrap();
+    let params = BanChatSenderChat {
+        ..Default::default()
+    };
+    let real_result = mocked.client.sync.ban_chat_sender_chat(&params).unwrap();
+
+    assert_eq!(mock_result, real_result);
+    mocked.server.assert();
+}
 
 #[test]
 fn ban_chat_sender_chat_error() {
@@ -1333,21 +1370,22 @@ fn ban_chat_sender_chat_error() {
     }
 }
 
-// fn unban_chat_sender_chat_success() {
-//     let mock_response =
-//         fs::read_to_string("src/tests/responses/unban_chat_sender_chat_success.json").unwrap();
-//     let mut server = mockito::Server::new();
-//     let mocked = Mocked::new(&mut server, "unbanChatSenderChat", 200, &mock_response);
-//
-//     let mock_result = mocked.result::<bool>().unwrap();
-//     let params = UnbanChatSenderChat {
-//         ..Default::default()
-//     };
-//     let real_result = mocked.client.sync.unban_chat_sender_chat(&params).unwrap();
-//
-//     assert_eq!(mock_result, real_result);
-//     mocked.server.assert();
-// }
+#[test]
+fn unban_chat_sender_chat_success() {
+    let mock_response =
+        fs::read_to_string("src/tests/responses/unban_chat_sender_chat_success.json").unwrap();
+    let mut server = mockito::Server::new();
+    let mocked = Mocked::new(&mut server, "unbanChatSenderChat", 200, &mock_response);
+
+    let mock_result = mocked.result::<bool>().unwrap();
+    let params = UnbanChatSenderChat {
+        ..Default::default()
+    };
+    let real_result = mocked.client.sync.unban_chat_sender_chat(&params).unwrap();
+
+    assert_eq!(mock_result, real_result);
+    mocked.server.assert();
+}
 
 #[test]
 fn unban_chat_sender_chat_error() {
@@ -1371,21 +1409,22 @@ fn unban_chat_sender_chat_error() {
     }
 }
 
-// fn set_chat_permissions_success() {
-//     let mock_response =
-//         fs::read_to_string("src/tests/responses/set_chat_permissions_success.json").unwrap();
-//     let mut server = mockito::Server::new();
-//     let mocked = Mocked::new(&mut server, "setChatPermissions", 200, &mock_response);
-//
-//     let mock_result = mocked.result::<bool>().unwrap();
-//     let params = SetChatPermissions {
-//         ..Default::default()
-//     };
-//     let real_result = mocked.client.sync.set_chat_permissions(&params).unwrap();
-//
-//     assert_eq!(mock_result, real_result);
-//     mocked.server.assert();
-// }
+#[test]
+fn set_chat_permissions_success() {
+    let mock_response =
+        fs::read_to_string("src/tests/responses/set_chat_permissions_success.json").unwrap();
+    let mut server = mockito::Server::new();
+    let mocked = Mocked::new(&mut server, "setChatPermissions", 200, &mock_response);
+
+    let mock_result = mocked.result::<bool>().unwrap();
+    let params = SetChatPermissions {
+        ..Default::default()
+    };
+    let real_result = mocked.client.sync.set_chat_permissions(&params).unwrap();
+
+    assert_eq!(mock_result, real_result);
+    mocked.server.assert();
+}
 
 #[test]
 fn set_chat_permissions_error() {
@@ -1409,21 +1448,22 @@ fn set_chat_permissions_error() {
     }
 }
 
-// fn export_chat_invite_link_success() {
-//     let mock_response =
-//         fs::read_to_string("src/tests/responses/export_chat_invite_link_success.json").unwrap();
-//     let mut server = mockito::Server::new();
-//     let mocked = Mocked::new(&mut server, "exportChatInviteLink", 200, &mock_response);
-//
-//     let mock_result = mocked.result::<String>().unwrap();
-//     let params = ExportChatInviteLink {
-//         ..Default::default()
-//     };
-//     let real_result = mocked.client.sync.export_chat_invite_link(&params).unwrap();
-//
-//     assert_eq!(mock_result, real_result);
-//     mocked.server.assert();
-// }
+#[test]
+fn export_chat_invite_link_success() {
+    let mock_response =
+        fs::read_to_string("src/tests/responses/export_chat_invite_link_success.json").unwrap();
+    let mut server = mockito::Server::new();
+    let mocked = Mocked::new(&mut server, "exportChatInviteLink", 200, &mock_response);
+
+    let mock_result = mocked.result::<String>().unwrap();
+    let params = ExportChatInviteLink {
+        ..Default::default()
+    };
+    let real_result = mocked.client.sync.export_chat_invite_link(&params).unwrap();
+
+    assert_eq!(mock_result, real_result);
+    mocked.server.assert();
+}
 
 #[test]
 fn export_chat_invite_link_error() {
@@ -1447,21 +1487,22 @@ fn export_chat_invite_link_error() {
     }
 }
 
-// fn create_chat_invite_link_success() {
-//     let mock_response =
-//         fs::read_to_string("src/tests/responses/create_chat_invite_link_success.json").unwrap();
-//     let mut server = mockito::Server::new();
-//     let mocked = Mocked::new(&mut server, "createChatInviteLink", 200, &mock_response);
-//
-//     let mock_result = mocked.result::<ChatInviteLink>().unwrap();
-//     let params = CreateChatInviteLink {
-//         ..Default::default()
-//     };
-//     let real_result = mocked.client.sync.create_chat_invite_link(&params).unwrap();
-//
-//     assert_eq!(mock_result, real_result);
-//     mocked.server.assert();
-// }
+#[test]
+fn create_chat_invite_link_success() {
+    let mock_response =
+        fs::read_to_string("src/tests/responses/create_chat_invite_link_success.json").unwrap();
+    let mut server = mockito::Server::new();
+    let mocked = Mocked::new(&mut server, "createChatInviteLink", 200, &mock_response);
+
+    let mock_result = mocked.result::<ChatInviteLink>().unwrap();
+    let params = CreateChatInviteLink {
+        ..Default::default()
+    };
+    let real_result = mocked.client.sync.create_chat_invite_link(&params).unwrap();
+
+    assert_eq!(mock_result, real_result);
+    mocked.server.assert();
+}
 
 #[test]
 fn create_chat_invite_link_error() {
@@ -1485,21 +1526,22 @@ fn create_chat_invite_link_error() {
     }
 }
 
-// fn edit_chat_invite_link_success() {
-//     let mock_response =
-//         fs::read_to_string("src/tests/responses/edit_chat_invite_link_success.json").unwrap();
-//     let mut server = mockito::Server::new();
-//     let mocked = Mocked::new(&mut server, "editChatInviteLink", 200, &mock_response);
-//
-//     let mock_result = mocked.result::<ChatInviteLink>().unwrap();
-//     let params = EditChatInviteLink {
-//         ..Default::default()
-//     };
-//     let real_result = mocked.client.sync.edit_chat_invite_link(&params).unwrap();
-//
-//     assert_eq!(mock_result, real_result);
-//     mocked.server.assert();
-// }
+#[test]
+fn edit_chat_invite_link_success() {
+    let mock_response =
+        fs::read_to_string("src/tests/responses/edit_chat_invite_link_success.json").unwrap();
+    let mut server = mockito::Server::new();
+    let mocked = Mocked::new(&mut server, "editChatInviteLink", 200, &mock_response);
+
+    let mock_result = mocked.result::<ChatInviteLink>().unwrap();
+    let params = EditChatInviteLink {
+        ..Default::default()
+    };
+    let real_result = mocked.client.sync.edit_chat_invite_link(&params).unwrap();
+
+    assert_eq!(mock_result, real_result);
+    mocked.server.assert();
+}
 
 #[test]
 fn edit_chat_invite_link_error() {
@@ -1523,21 +1565,22 @@ fn edit_chat_invite_link_error() {
     }
 }
 
-// fn revoke_chat_invite_link_success() {
-//     let mock_response =
-//         fs::read_to_string("src/tests/responses/revoke_chat_invite_link_success.json").unwrap();
-//     let mut server = mockito::Server::new();
-//     let mocked = Mocked::new(&mut server, "revokeChatInviteLink", 200, &mock_response);
-//
-//     let mock_result = mocked.result::<ChatInviteLink>().unwrap();
-//     let params = RevokeChatInviteLink {
-//         ..Default::default()
-//     };
-//     let real_result = mocked.client.sync.revoke_chat_invite_link(&params).unwrap();
-//
-//     assert_eq!(mock_result, real_result);
-//     mocked.server.assert();
-// }
+#[test]
+fn revoke_chat_invite_link_success() {
+    let mock_response =
+        fs::read_to_string("src/tests/responses/revoke_chat_invite_link_success.json").unwrap();
+    let mut server = mockito::Server::new();
+    let mocked = Mocked::new(&mut server, "revokeChatInviteLink", 200, &mock_response);
+
+    let mock_result = mocked.result::<ChatInviteLink>().unwrap();
+    let params = RevokeChatInviteLink {
+        ..Default::default()
+    };
+    let real_result = mocked.client.sync.revoke_chat_invite_link(&params).unwrap();
+
+    assert_eq!(mock_result, real_result);
+    mocked.server.assert();
+}
 
 #[test]
 fn revoke_chat_invite_link_error() {
@@ -1561,25 +1604,26 @@ fn revoke_chat_invite_link_error() {
     }
 }
 
-// fn approve_chat_join_request_success() {
-//     let mock_response =
-//         fs::read_to_string("src/tests/responses/approve_chat_join_request_success.json").unwrap();
-//     let mut server = mockito::Server::new();
-//     let mocked = Mocked::new(&mut server, "approveChatJoinRequest", 200, &mock_response);
-//
-//     let mock_result = mocked.result::<bool>().unwrap();
-//     let params = ApproveChatJoinRequest {
-//         ..Default::default()
-//     };
-//     let real_result = mocked
-//         .client
-//         .sync
-//         .approve_chat_join_request(&params)
-//         .unwrap();
-//
-//     assert_eq!(mock_result, real_result);
-//     mocked.server.assert();
-// }
+#[test]
+fn approve_chat_join_request_success() {
+    let mock_response =
+        fs::read_to_string("src/tests/responses/approve_chat_join_request_success.json").unwrap();
+    let mut server = mockito::Server::new();
+    let mocked = Mocked::new(&mut server, "approveChatJoinRequest", 200, &mock_response);
+
+    let mock_result = mocked.result::<bool>().unwrap();
+    let params = ApproveChatJoinRequest {
+        ..Default::default()
+    };
+    let real_result = mocked
+        .client
+        .sync
+        .approve_chat_join_request(&params)
+        .unwrap();
+
+    assert_eq!(mock_result, real_result);
+    mocked.server.assert();
+}
 
 #[test]
 fn approve_chat_join_request_error() {
@@ -1603,25 +1647,26 @@ fn approve_chat_join_request_error() {
     }
 }
 
-// fn decline_chat_join_request_success() {
-//     let mock_response =
-//         fs::read_to_string("src/tests/responses/decline_chat_join_request_success.json").unwrap();
-//     let mut server = mockito::Server::new();
-//     let mocked = Mocked::new(&mut server, "declineChatJoinRequest", 200, &mock_response);
-//
-//     let mock_result = mocked.result::<bool>().unwrap();
-//     let params = DeclineChatJoinRequest {
-//         ..Default::default()
-//     };
-//     let real_result = mocked
-//         .client
-//         .sync
-//         .decline_chat_join_request(&params)
-//         .unwrap();
-//
-//     assert_eq!(mock_result, real_result);
-//     mocked.server.assert();
-// }
+#[test]
+fn decline_chat_join_request_success() {
+    let mock_response =
+        fs::read_to_string("src/tests/responses/decline_chat_join_request_success.json").unwrap();
+    let mut server = mockito::Server::new();
+    let mocked = Mocked::new(&mut server, "declineChatJoinRequest", 200, &mock_response);
+
+    let mock_result = mocked.result::<bool>().unwrap();
+    let params = DeclineChatJoinRequest {
+        ..Default::default()
+    };
+    let real_result = mocked
+        .client
+        .sync
+        .decline_chat_join_request(&params)
+        .unwrap();
+
+    assert_eq!(mock_result, real_result);
+    mocked.server.assert();
+}
 
 #[test]
 fn decline_chat_join_request_error() {
@@ -1645,21 +1690,22 @@ fn decline_chat_join_request_error() {
     }
 }
 
-// fn set_chat_photo_success() {
-//     let mock_response =
-//         fs::read_to_string("src/tests/responses/set_chat_photo_success.json").unwrap();
-//     let mut server = mockito::Server::new();
-//     let mocked = Mocked::new(&mut server, "setChatPhoto", 200, &mock_response);
-//
-//     let mock_result = mocked.result::<bool>().unwrap();
-//     let params = SetChatPhoto {
-//         ..Default::default()
-//     };
-//     let real_result = mocked.client.sync.set_chat_photo(&params).unwrap();
-//
-//     assert_eq!(mock_result, real_result);
-//     mocked.server.assert();
-// }
+#[test]
+fn set_chat_photo_success() {
+    let mock_response =
+        fs::read_to_string("src/tests/responses/set_chat_photo_success.json").unwrap();
+    let mut server = mockito::Server::new();
+    let mocked = Mocked::new(&mut server, "setChatPhoto", 200, &mock_response);
+
+    let mock_result = mocked.result::<bool>().unwrap();
+    let params = SetChatPhoto {
+        ..Default::default()
+    };
+    let real_result = mocked.client.sync.set_chat_photo(&params).unwrap();
+
+    assert_eq!(mock_result, real_result);
+    mocked.server.assert();
+}
 
 #[test]
 fn set_chat_photo_error() {
@@ -1678,21 +1724,22 @@ fn set_chat_photo_error() {
     }
 }
 
-// fn delete_chat_photo_success() {
-//     let mock_response =
-//         fs::read_to_string("src/tests/responses/delete_chat_photo_success.json").unwrap();
-//     let mut server = mockito::Server::new();
-//     let mocked = Mocked::new(&mut server, "deleteChatPhoto", 200, &mock_response);
-//
-//     let mock_result = mocked.result::<bool>().unwrap();
-//     let params = DeleteChatPhoto {
-//         ..Default::default()
-//     };
-//     let real_result = mocked.client.sync.delete_chat_photo(&params).unwrap();
-//
-//     assert_eq!(mock_result, real_result);
-//     mocked.server.assert();
-// }
+#[test]
+fn delete_chat_photo_success() {
+    let mock_response =
+        fs::read_to_string("src/tests/responses/delete_chat_photo_success.json").unwrap();
+    let mut server = mockito::Server::new();
+    let mocked = Mocked::new(&mut server, "deleteChatPhoto", 200, &mock_response);
+
+    let mock_result = mocked.result::<bool>().unwrap();
+    let params = DeleteChatPhoto {
+        ..Default::default()
+    };
+    let real_result = mocked.client.sync.delete_chat_photo(&params).unwrap();
+
+    assert_eq!(mock_result, real_result);
+    mocked.server.assert();
+}
 
 #[test]
 fn delete_chat_photo_error() {
@@ -1712,21 +1759,22 @@ fn delete_chat_photo_error() {
     }
 }
 
-// fn set_chat_title_success() {
-//     let mock_response =
-//         fs::read_to_string("src/tests/responses/set_chat_title_success.json").unwrap();
-//     let mut server = mockito::Server::new();
-//     let mocked = Mocked::new(&mut server, "setChatTitle", 200, &mock_response);
-//
-//     let mock_result = mocked.result::<bool>().unwrap();
-//     let params = SetChatTitle {
-//         ..Default::default()
-//     };
-//     let real_result = mocked.client.sync.set_chat_title(&params).unwrap();
-//
-//     assert_eq!(mock_result, real_result);
-//     mocked.server.assert();
-// }
+#[test]
+fn set_chat_title_success() {
+    let mock_response =
+        fs::read_to_string("src/tests/responses/set_chat_title_success.json").unwrap();
+    let mut server = mockito::Server::new();
+    let mocked = Mocked::new(&mut server, "setChatTitle", 200, &mock_response);
+
+    let mock_result = mocked.result::<bool>().unwrap();
+    let params = SetChatTitle {
+        ..Default::default()
+    };
+    let real_result = mocked.client.sync.set_chat_title(&params).unwrap();
+
+    assert_eq!(mock_result, real_result);
+    mocked.server.assert();
+}
 
 #[test]
 fn set_chat_title_error() {
@@ -1745,21 +1793,22 @@ fn set_chat_title_error() {
     }
 }
 
-// fn set_chat_description_success() {
-//     let mock_response =
-//         fs::read_to_string("src/tests/responses/set_chat_description_success.json").unwrap();
-//     let mut server = mockito::Server::new();
-//     let mocked = Mocked::new(&mut server, "setChatDescription", 200, &mock_response);
-//
-//     let mock_result = mocked.result::<bool>().unwrap();
-//     let params = SetChatDescription {
-//         ..Default::default()
-//     };
-//     let real_result = mocked.client.sync.set_chat_description(&params).unwrap();
-//
-//     assert_eq!(mock_result, real_result);
-//     mocked.server.assert();
-// }
+#[test]
+fn set_chat_description_success() {
+    let mock_response =
+        fs::read_to_string("src/tests/responses/set_chat_description_success.json").unwrap();
+    let mut server = mockito::Server::new();
+    let mocked = Mocked::new(&mut server, "setChatDescription", 200, &mock_response);
+
+    let mock_result = mocked.result::<bool>().unwrap();
+    let params = SetChatDescription {
+        ..Default::default()
+    };
+    let real_result = mocked.client.sync.set_chat_description(&params).unwrap();
+
+    assert_eq!(mock_result, real_result);
+    mocked.server.assert();
+}
 
 #[test]
 fn set_chat_description_error() {
@@ -1783,21 +1832,22 @@ fn set_chat_description_error() {
     }
 }
 
-// fn pin_chat_message_success() {
-//     let mock_response =
-//         fs::read_to_string("src/tests/responses/pin_chat_message_success.json").unwrap();
-//     let mut server = mockito::Server::new();
-//     let mocked = Mocked::new(&mut server, "pinChatMessage ", 200, &mock_response);
-//
-//     let mock_result = mocked.result::<bool>().unwrap();
-//     let params = PinChatMessage {
-//         ..Default::default()
-//     };
-//     let real_result = mocked.client.sync.pin_chat_message(&params).unwrap();
-//
-//     assert_eq!(mock_result, real_result);
-//     mocked.server.assert();
-// }
+#[test]
+fn pin_chat_message_success() {
+    let mock_response =
+        fs::read_to_string("src/tests/responses/pin_chat_message_success.json").unwrap();
+    let mut server = mockito::Server::new();
+    let mocked = Mocked::new(&mut server, "pinChatMessage", 200, &mock_response);
+
+    let mock_result = mocked.result::<bool>().unwrap();
+    let params = PinChatMessage {
+        ..Default::default()
+    };
+    let real_result = mocked.client.sync.pin_chat_message(&params).unwrap();
+
+    assert_eq!(mock_result, real_result);
+    mocked.server.assert();
+}
 
 #[test]
 fn pin_chat_message_error() {
@@ -1816,21 +1866,22 @@ fn pin_chat_message_error() {
     }
 }
 
-// fn unpin_chat_message_success() {
-//     let mock_response =
-//         fs::read_to_string("src/tests/responses/unpin_chat_message_success.json").unwrap();
-//     let mut server = mockito::Server::new();
-//     let mocked = Mocked::new(&mut server, "unpinChatMessage", 200, &mock_response);
-//
-//     let mock_result = mocked.result::<bool>().unwrap();
-//     let params = UnpinChatMessage {
-//         ..Default::default()
-//     };
-//     let real_result = mocked.client.sync.unpin_chat_message(&params).unwrap();
-//
-//     assert_eq!(mock_result, real_result);
-//     mocked.server.assert();
-// }
+#[test]
+fn unpin_chat_message_success() {
+    let mock_response =
+        fs::read_to_string("src/tests/responses/unpin_chat_message_success.json").unwrap();
+    let mut server = mockito::Server::new();
+    let mocked = Mocked::new(&mut server, "unpinChatMessage", 200, &mock_response);
+
+    let mock_result = mocked.result::<bool>().unwrap();
+    let params = UnpinChatMessage {
+        ..Default::default()
+    };
+    let real_result = mocked.client.sync.unpin_chat_message(&params).unwrap();
+
+    assert_eq!(mock_result, real_result);
+    mocked.server.assert();
+}
 
 #[test]
 fn unpin_chat_message_error() {
@@ -1850,21 +1901,22 @@ fn unpin_chat_message_error() {
     }
 }
 
-// fn unpin_all_chat_messages_success() {
-//     let mock_response =
-//         fs::read_to_string("src/tests/responses/unpin_all_chat_messages_success.json").unwrap();
-//     let mut server = mockito::Server::new();
-//     let mocked = Mocked::new(&mut server, "unpinAllChatMessages", 200, &mock_response);
-//
-//     let mock_result = mocked.result::<bool>().unwrap();
-//     let params = UnpinAllChatMessages {
-//         ..Default::default()
-//     };
-//     let real_result = mocked.client.sync.unpin_all_chat_messages(&params).unwrap();
-//
-//     assert_eq!(mock_result, real_result);
-//     mocked.server.assert();
-// }
+#[test]
+fn unpin_all_chat_messages_success() {
+    let mock_response =
+        fs::read_to_string("src/tests/responses/unpin_all_chat_messages_success.json").unwrap();
+    let mut server = mockito::Server::new();
+    let mocked = Mocked::new(&mut server, "unpinAllChatMessages", 200, &mock_response);
+
+    let mock_result = mocked.result::<bool>().unwrap();
+    let params = UnpinAllChatMessages {
+        ..Default::default()
+    };
+    let real_result = mocked.client.sync.unpin_all_chat_messages(&params).unwrap();
+
+    assert_eq!(mock_result, real_result);
+    mocked.server.assert();
+}
 
 #[test]
 fn unpin_all_chat_messages_error() {
@@ -1888,20 +1940,21 @@ fn unpin_all_chat_messages_error() {
     }
 }
 
-// fn leave_chat_success() {
-//     let mock_response = fs::read_to_string("src/tests/responses/leave_chat_success.json").unwrap();
-//     let mut server = mockito::Server::new();
-//     let mocked = Mocked::new(&mut server, "leaveChat", 200, &mock_response);
-//
-//     let mock_result = mocked.result::<bool>().unwrap();
-//     let params = LeaveChat {
-//         ..Default::default()
-//     };
-//     let real_result = mocked.client.sync.leave_chat(&params).unwrap();
-//
-//     assert_eq!(mock_result, real_result);
-//     mocked.server.assert();
-// }
+#[test]
+fn leave_chat_success() {
+    let mock_response = fs::read_to_string("src/tests/responses/leave_chat_success.json").unwrap();
+    let mut server = mockito::Server::new();
+    let mocked = Mocked::new(&mut server, "leaveChat", 200, &mock_response);
+
+    let mock_result = mocked.result::<bool>().unwrap();
+    let params = LeaveChat {
+        ..Default::default()
+    };
+    let real_result = mocked.client.sync.leave_chat(&params).unwrap();
+
+    assert_eq!(mock_result, real_result);
+    mocked.server.assert();
+}
 
 #[test]
 fn leave_chat_error() {
@@ -1919,20 +1972,21 @@ fn leave_chat_error() {
     }
 }
 
-// fn get_chat_success() {
-//     let mock_response = fs::read_to_string("src/tests/responses/get_chat_success.json").unwrap();
-//     let mut server = mockito::Server::new();
-//     let mocked = Mocked::new(&mut server, "getChat", 200, &mock_response);
-//
-//     let mock_result = mocked.result::<Chat>().unwrap();
-//     let params = GetChat {
-//         ..Default::default()
-//     };
-//     let real_result = mocked.client.sync.get_chat(&params).unwrap();
-//
-//     assert_eq!(mock_result, real_result);
-//     mocked.server.assert();
-// }
+#[test]
+fn get_chat_success() {
+    let mock_response = fs::read_to_string("src/tests/responses/get_chat_success.json").unwrap();
+    let mut server = mockito::Server::new();
+    let mocked = Mocked::new(&mut server, "getChat", 200, &mock_response);
+
+    let mock_result = mocked.result::<Chat>().unwrap();
+    let params = GetChat {
+        ..Default::default()
+    };
+    let real_result = mocked.client.sync.get_chat(&params).unwrap();
+
+    assert_eq!(mock_result, real_result);
+    mocked.server.assert();
+}
 
 #[test]
 fn get_chat_error() {
@@ -1950,21 +2004,22 @@ fn get_chat_error() {
     }
 }
 
-// fn get_chat_administrators_success() {
-//     let mock_response =
-//         fs::read_to_string("src/tests/responses/get_chat_administrators_success.json").unwrap();
-//     let mut server = mockito::Server::new();
-//     let mocked = Mocked::new(&mut server, "getChatAdministrators", 200, &mock_response);
-//
-//     let mock_result = mocked.result::<Vec<ChatMember>>().unwrap();
-//     let params = GetChatAdministrators {
-//         ..Default::default()
-//     };
-//     let real_result = mocked.client.sync.get_chat_administrators(&params).unwrap();
-//
-//     assert_eq!(mock_result, real_result);
-//     mocked.server.assert();
-// }
+#[test]
+fn get_chat_administrators_success() {
+    let mock_response =
+        fs::read_to_string("src/tests/responses/get_chat_administrators_success.json").unwrap();
+    let mut server = mockito::Server::new();
+    let mocked = Mocked::new(&mut server, "getChatAdministrators", 200, &mock_response);
+
+    let mock_result = mocked.result::<Vec<ChatMember>>().unwrap();
+    let params = GetChatAdministrators {
+        ..Default::default()
+    };
+    let real_result = mocked.client.sync.get_chat_administrators(&params).unwrap();
+
+    assert_eq!(mock_result, real_result);
+    mocked.server.assert();
+}
 
 #[test]
 fn get_chat_administrators_error() {
@@ -1988,21 +2043,22 @@ fn get_chat_administrators_error() {
     }
 }
 
-// fn get_chat_member_count_success() {
-//     let mock_response =
-//         fs::read_to_string("src/tests/responses/get_chat_member_count_success.json").unwrap();
-//     let mut server = mockito::Server::new();
-//     let mocked = Mocked::new(&mut server, "getChatMemberCount", 200, &mock_response);
-//
-//     let mock_result = mocked.result::<i64>().unwrap();
-//     let params = GetChatMemberCount {
-//         ..Default::default()
-//     };
-//     let real_result = mocked.client.sync.get_chat_member_count(&params).unwrap();
-//
-//     assert_eq!(mock_result, real_result);
-//     mocked.server.assert();
-// }
+#[test]
+fn get_chat_member_count_success() {
+    let mock_response =
+        fs::read_to_string("src/tests/responses/get_chat_member_count_success.json").unwrap();
+    let mut server = mockito::Server::new();
+    let mocked = Mocked::new(&mut server, "getChatMemberCount", 200, &mock_response);
+
+    let mock_result = mocked.result::<i64>().unwrap();
+    let params = GetChatMemberCount {
+        ..Default::default()
+    };
+    let real_result = mocked.client.sync.get_chat_member_count(&params).unwrap();
+
+    assert_eq!(mock_result, real_result);
+    mocked.server.assert();
+}
 
 #[test]
 fn get_chat_member_count_error() {
@@ -2026,21 +2082,22 @@ fn get_chat_member_count_error() {
     }
 }
 
-// fn get_chat_member_success() {
-//     let mock_response =
-//         fs::read_to_string("src/tests/responses/get_chat_member_success.json").unwrap();
-//     let mut server = mockito::Server::new();
-//     let mocked = Mocked::new(&mut server, "getChatMember", 200, &mock_response);
-//
-//     let mock_result = mocked.result::<ChatMember>().unwrap();
-//     let params = GetChatMember {
-//         ..Default::default()
-//     };
-//     let real_result = mocked.client.sync.get_chat_member(&params).unwrap();
-//
-//     assert_eq!(mock_result, real_result);
-//     mocked.server.assert();
-// }
+#[test]
+fn get_chat_member_success() {
+    let mock_response =
+        fs::read_to_string("src/tests/responses/get_chat_member_success.json").unwrap();
+    let mut server = mockito::Server::new();
+    let mocked = Mocked::new(&mut server, "getChatMember", 200, &mock_response);
+
+    let mock_result = mocked.result::<ChatMember>().unwrap();
+    let params = GetChatMember {
+        ..Default::default()
+    };
+    let real_result = mocked.client.sync.get_chat_member(&params).unwrap();
+
+    assert_eq!(mock_result, real_result);
+    mocked.server.assert();
+}
 
 #[test]
 fn get_chat_member_error() {
@@ -2059,21 +2116,22 @@ fn get_chat_member_error() {
     }
 }
 
-// fn set_chat_sticker_set_success() {
-//     let mock_response =
-//         fs::read_to_string("src/tests/responses/set_chat_sticker_set_success.json").unwrap();
-//     let mut server = mockito::Server::new();
-//     let mocked = Mocked::new(&mut server, "setChatStickerSet", 200, &mock_response);
-//
-//     let mock_result = mocked.result::<bool>().unwrap();
-//     let params = SetChatStickerSet {
-//         ..Default::default()
-//     };
-//     let real_result = mocked.client.sync.set_chat_sticker_set(&params).unwrap();
-//
-//     assert_eq!(mock_result, real_result);
-//     mocked.server.assert();
-// }
+#[test]
+fn set_chat_sticker_set_success() {
+    let mock_response =
+        fs::read_to_string("src/tests/responses/set_chat_sticker_set_success.json").unwrap();
+    let mut server = mockito::Server::new();
+    let mocked = Mocked::new(&mut server, "setChatStickerSet", 200, &mock_response);
+
+    let mock_result = mocked.result::<bool>().unwrap();
+    let params = SetChatStickerSet {
+        ..Default::default()
+    };
+    let real_result = mocked.client.sync.set_chat_sticker_set(&params).unwrap();
+
+    assert_eq!(mock_result, real_result);
+    mocked.server.assert();
+}
 
 #[test]
 fn set_chat_sticker_set_error() {
@@ -2097,21 +2155,22 @@ fn set_chat_sticker_set_error() {
     }
 }
 
-// fn delete_chat_sticker_set_success() {
-//     let mock_response =
-//         fs::read_to_string("src/tests/responses/delete_chat_sticker_set_success.json").unwrap();
-//     let mut server = mockito::Server::new();
-//     let mocked = Mocked::new(&mut server, "deleteChatStickerSet", 200, &mock_response);
-//
-//     let mock_result = mocked.result::<bool>().unwrap();
-//     let params = DeleteChatStickerSet {
-//         ..Default::default()
-//     };
-//     let real_result = mocked.client.sync.delete_chat_sticker_set(&params).unwrap();
-//
-//     assert_eq!(mock_result, real_result);
-//     mocked.server.assert();
-// }
+#[test]
+fn delete_chat_sticker_set_success() {
+    let mock_response =
+        fs::read_to_string("src/tests/responses/delete_chat_sticker_set_success.json").unwrap();
+    let mut server = mockito::Server::new();
+    let mocked = Mocked::new(&mut server, "deleteChatStickerSet", 200, &mock_response);
+
+    let mock_result = mocked.result::<bool>().unwrap();
+    let params = DeleteChatStickerSet {
+        ..Default::default()
+    };
+    let real_result = mocked.client.sync.delete_chat_sticker_set(&params).unwrap();
+
+    assert_eq!(mock_result, real_result);
+    mocked.server.assert();
+}
 
 #[test]
 fn delete_chat_sticker_set_error() {
@@ -2161,21 +2220,22 @@ fn get_forum_topic_icon_stickers_success() {
     mocked.server.assert();
 }
 
-// fn create_forum_topic_success() {
-//     let mock_response =
-//         fs::read_to_string("src/tests/responses/create_forum_topic_success.json").unwrap();
-//     let mut server = mockito::Server::new();
-//     let mocked = Mocked::new(&mut server, "createForumTopic", 200, &mock_response);
-//
-//     let mock_result = mocked.result::<ForumTopic>().unwrap();
-//     let params = CreateForumTopic {
-//         ..Default::default()
-//     };
-//     let real_result = mocked.client.sync.create_forum_topic(&params).unwrap();
-//
-//     assert_eq!(mock_result, real_result);
-//     mocked.server.assert();
-// }
+// #[test]
+fn create_forum_topic_success() {
+    let mock_response =
+        fs::read_to_string("src/tests/responses/create_forum_topic_success.json").unwrap();
+    let mut server = mockito::Server::new();
+    let mocked = Mocked::new(&mut server, "createForumTopic", 200, &mock_response);
+
+    let mock_result = mocked.result::<ForumTopic>().unwrap();
+    let params = CreateForumTopic {
+        ..Default::default()
+    };
+    let real_result = mocked.client.sync.create_forum_topic(&params).unwrap();
+
+    assert_eq!(mock_result, real_result);
+    mocked.server.assert();
+}
 
 #[test]
 fn create_forum_topic_error() {
@@ -2195,21 +2255,22 @@ fn create_forum_topic_error() {
     }
 }
 
-// fn edit_forum_topic_success() {
-//     let mock_response =
-//         fs::read_to_string("src/tests/responses/edit_forum_topic_success.json").unwrap();
-//     let mut server = mockito::Server::new();
-//     let mocked = Mocked::new(&mut server, "editForumTopic", 200, &mock_response);
-//
-//     let mock_result = mocked.result::<bool>().unwrap();
-//     let params = EditForumTopic {
-//         ..Default::default()
-//     };
-//     let real_result = mocked.client.sync.edit_forum_topic(&params).unwrap();
-//
-//     assert_eq!(mock_result, real_result);
-//     mocked.server.assert();
-// }
+#[test]
+fn edit_forum_topic_success() {
+    let mock_response =
+        fs::read_to_string("src/tests/responses/edit_forum_topic_success.json").unwrap();
+    let mut server = mockito::Server::new();
+    let mocked = Mocked::new(&mut server, "editForumTopic", 200, &mock_response);
+
+    let mock_result = mocked.result::<bool>().unwrap();
+    let params = EditForumTopic {
+        ..Default::default()
+    };
+    let real_result = mocked.client.sync.edit_forum_topic(&params).unwrap();
+
+    assert_eq!(mock_result, real_result);
+    mocked.server.assert();
+}
 
 #[test]
 fn edit_forum_topic_error() {
@@ -2228,21 +2289,22 @@ fn edit_forum_topic_error() {
     }
 }
 
-// fn close_forum_topic_success() {
-//     let mock_response =
-//         fs::read_to_string("src/tests/responses/close_forum_topic_success.json").unwrap();
-//     let mut server = mockito::Server::new();
-//     let mocked = Mocked::new(&mut server, "closeForumTopic", 200, &mock_response);
-//
-//     let mock_result = mocked.result::<bool>().unwrap();
-//     let params = CloseForumTopic {
-//         ..Default::default()
-//     };
-//     let real_result = mocked.client.sync.close_forum_topic(&params).unwrap();
-//
-//     assert_eq!(mock_result, real_result);
-//     mocked.server.assert();
-// }
+#[test]
+fn close_forum_topic_success() {
+    let mock_response =
+        fs::read_to_string("src/tests/responses/close_forum_topic_success.json").unwrap();
+    let mut server = mockito::Server::new();
+    let mocked = Mocked::new(&mut server, "closeForumTopic", 200, &mock_response);
+
+    let mock_result = mocked.result::<bool>().unwrap();
+    let params = CloseForumTopic {
+        ..Default::default()
+    };
+    let real_result = mocked.client.sync.close_forum_topic(&params).unwrap();
+
+    assert_eq!(mock_result, real_result);
+    mocked.server.assert();
+}
 
 #[test]
 fn close_forum_topic_error() {
@@ -2262,21 +2324,22 @@ fn close_forum_topic_error() {
     }
 }
 
-// fn reopen_forum_topic_success() {
-//     let mock_response =
-//         fs::read_to_string("src/tests/responses/reopen_forum_topic_success.json").unwrap();
-//     let mut server = mockito::Server::new();
-//     let mocked = Mocked::new(&mut server, "reopenForumTopic", 200, &mock_response);
-//
-//     let mock_result = mocked.result::<bool>().unwrap();
-//     let params = ReopenForumTopic {
-//         ..Default::default()
-//     };
-//     let real_result = mocked.client.sync.reopen_forum_topic(&params).unwrap();
-//
-//     assert_eq!(mock_result, real_result);
-//     mocked.server.assert();
-// }
+#[test]
+fn reopen_forum_topic_success() {
+    let mock_response =
+        fs::read_to_string("src/tests/responses/reopen_forum_topic_success.json").unwrap();
+    let mut server = mockito::Server::new();
+    let mocked = Mocked::new(&mut server, "reopenForumTopic", 200, &mock_response);
+
+    let mock_result = mocked.result::<bool>().unwrap();
+    let params = ReopenForumTopic {
+        ..Default::default()
+    };
+    let real_result = mocked.client.sync.reopen_forum_topic(&params).unwrap();
+
+    assert_eq!(mock_result, real_result);
+    mocked.server.assert();
+}
 
 #[test]
 fn reopen_forum_topic_error() {
@@ -2296,21 +2359,22 @@ fn reopen_forum_topic_error() {
     }
 }
 
-// fn delete_forum_topic_success() {
-//     let mock_response =
-//         fs::read_to_string("src/tests/responses/delete_forum_topic_success.json").unwrap();
-//     let mut server = mockito::Server::new();
-//     let mocked = Mocked::new(&mut server, "deleteForumTopic", 200, &mock_response);
-//
-//     let mock_result = mocked.result::<bool>().unwrap();
-//     let params = DeleteForumTopic {
-//         ..Default::default()
-//     };
-//     let real_result = mocked.client.sync.delete_forum_topic(&params).unwrap();
-//
-//     assert_eq!(mock_result, real_result);
-//     mocked.server.assert();
-// }
+#[test]
+fn delete_forum_topic_success() {
+    let mock_response =
+        fs::read_to_string("src/tests/responses/delete_forum_topic_success.json").unwrap();
+    let mut server = mockito::Server::new();
+    let mocked = Mocked::new(&mut server, "deleteForumTopic", 200, &mock_response);
+
+    let mock_result = mocked.result::<bool>().unwrap();
+    let params = DeleteForumTopic {
+        ..Default::default()
+    };
+    let real_result = mocked.client.sync.delete_forum_topic(&params).unwrap();
+
+    assert_eq!(mock_result, real_result);
+    mocked.server.assert();
+}
 
 #[test]
 fn delete_forum_topic_error() {
@@ -2330,26 +2394,32 @@ fn delete_forum_topic_error() {
     }
 }
 
-// fn unpin_all_forum_topic_messages_success() {
-//     let mock_response =
-//         fs::read_to_string("src/tests/responses/unpin_all_forum_topic_messages_success.json")
-//             .unwrap();
-//     let mut server = mockito::Server::new();
-//     let mocked = Mocked::new(&mut server, "unpinAllForumTopicMessages", 200, &mock_response);
-//
-//     let mock_result = mocked.result::<bool>().unwrap();
-//     let params = UnpinAllForumTopicMessages {
-//         ..Default::default()
-//     };
-//     let real_result = mocked
-//         .client
-//         .sync
-//         .unpin_all_forum_topic_messages(&params)
-//         .unwrap();
-//
-//     assert_eq!(mock_result, real_result);
-//     mocked.server.assert();
-// }
+#[test]
+fn unpin_all_forum_topic_messages_success() {
+    let mock_response =
+        fs::read_to_string("src/tests/responses/unpin_all_forum_topic_messages_success.json")
+            .unwrap();
+    let mut server = mockito::Server::new();
+    let mocked = Mocked::new(
+        &mut server,
+        "unpinAllForumTopicMessages",
+        200,
+        &mock_response,
+    );
+
+    let mock_result = mocked.result::<bool>().unwrap();
+    let params = UnpinAllForumTopicMessages {
+        ..Default::default()
+    };
+    let real_result = mocked
+        .client
+        .sync
+        .unpin_all_forum_topic_messages(&params)
+        .unwrap();
+
+    assert_eq!(mock_result, real_result);
+    mocked.server.assert();
+}
 
 #[test]
 fn unpin_all_forum_topic_messages_error() {
@@ -2379,25 +2449,26 @@ fn unpin_all_forum_topic_messages_error() {
     }
 }
 
-// fn edit_general_forum_topic_success() {
-//     let mock_response =
-//         fs::read_to_string("src/tests/responses/edit_general_forum_topic_success.json").unwrap();
-//     let mut server = mockito::Server::new();
-//     let mocked = Mocked::new(&mut server, "editGeneralForumTopic", 200, &mock_response);
-//
-//     let mock_result = mocked.result::<bool>().unwrap();
-//     let params = EditGeneralForumTopic {
-//         ..Default::default()
-//     };
-//     let real_result = mocked
-//         .client
-//         .sync
-//         .edit_general_forum_topic(&params)
-//         .unwrap();
-//
-//     assert_eq!(mock_result, real_result);
-//     mocked.server.assert();
-// }
+#[test]
+fn edit_general_forum_topic_success() {
+    let mock_response =
+        fs::read_to_string("src/tests/responses/edit_general_forum_topic_success.json").unwrap();
+    let mut server = mockito::Server::new();
+    let mocked = Mocked::new(&mut server, "editGeneralForumTopic", 200, &mock_response);
+
+    let mock_result = mocked.result::<bool>().unwrap();
+    let params = EditGeneralForumTopic {
+        ..Default::default()
+    };
+    let real_result = mocked
+        .client
+        .sync
+        .edit_general_forum_topic(&params)
+        .unwrap();
+
+    assert_eq!(mock_result, real_result);
+    mocked.server.assert();
+}
 
 #[test]
 fn edit_general_forum_topic_error() {
@@ -2420,26 +2491,26 @@ fn edit_general_forum_topic_error() {
         mocked.server.assert();
     }
 }
+#[test]
+fn close_general_forum_topic_success() {
+    let mock_response =
+        fs::read_to_string("src/tests/responses/close_general_forum_topic_success.json").unwrap();
+    let mut server = mockito::Server::new();
+    let mocked = Mocked::new(&mut server, "closeGeneralForumTopic", 200, &mock_response);
 
-// fn close_general_forum_topic_success() {
-//     let mock_response =
-//         fs::read_to_string("src/tests/responses/close_general_forum_topic_success.json").unwrap();
-//     let mut server = mockito::Server::new();
-//     let mocked = Mocked::new(&mut server, "closeGeneralForumTopic", 200, &mock_response);
-//
-//     let mock_result = mocked.result::<bool>().unwrap();
-//     let params = CloseGeneralForumTopic {
-//         ..Default::default()
-//     };
-//     let real_result = mocked
-//         .client
-//         .sync
-//         .close_general_forum_topic(&params)
-//         .unwrap();
-//
-//     assert_eq!(mock_result, real_result);
-//     mocked.server.assert();
-// }
+    let mock_result = mocked.result::<bool>().unwrap();
+    let params = CloseGeneralForumTopic {
+        ..Default::default()
+    };
+    let real_result = mocked
+        .client
+        .sync
+        .close_general_forum_topic(&params)
+        .unwrap();
+
+    assert_eq!(mock_result, real_result);
+    mocked.server.assert();
+}
 
 #[test]
 fn close_general_forum_topic_error() {
@@ -2463,25 +2534,26 @@ fn close_general_forum_topic_error() {
     }
 }
 
-// fn reopen_general_forum_topic_success() {
-//     let mock_response =
-//         fs::read_to_string("src/tests/responses/reopen_general_forum_topic_success.json").unwrap();
-//     let mut server = mockito::Server::new();
-//     let mocked = Mocked::new(&mut server, "reopenGeneralForumTopic", 200, &mock_response);
-//
-//     let mock_result = mocked.result::<bool>().unwrap();
-//     let params = ReopenGeneralForumTopic {
-//         ..Default::default()
-//     };
-//     let real_result = mocked
-//         .client
-//         .sync
-//         .reopen_general_forum_topic(&params)
-//         .unwrap();
-//
-//     assert_eq!(mock_result, real_result);
-//     mocked.server.assert();
-// }
+#[test]
+fn reopen_general_forum_topic_success() {
+    let mock_response =
+        fs::read_to_string("src/tests/responses/reopen_general_forum_topic_success.json").unwrap();
+    let mut server = mockito::Server::new();
+    let mocked = Mocked::new(&mut server, "reopenGeneralForumTopic", 200, &mock_response);
+
+    let mock_result = mocked.result::<bool>().unwrap();
+    let params = ReopenGeneralForumTopic {
+        ..Default::default()
+    };
+    let real_result = mocked
+        .client
+        .sync
+        .reopen_general_forum_topic(&params)
+        .unwrap();
+
+    assert_eq!(mock_result, real_result);
+    mocked.server.assert();
+}
 
 #[test]
 fn reopen_general_forum_topic_error() {
@@ -2505,25 +2577,26 @@ fn reopen_general_forum_topic_error() {
     }
 }
 
-// fn hide_general_forum_topic_success() {
-//     let mock_response =
-//         fs::read_to_string("src/tests/responses/hide_general_forum_topic_success.json").unwrap();
-//     let mut server = mockito::Server::new();
-//     let mocked = Mocked::new(&mut server, "hideGeneralForumTopic", 200, &mock_response);
-//
-//     let mock_result = mocked.result::<bool>().unwrap();
-//     let params = HideGeneralForumTopic {
-//         ..Default::default()
-//     };
-//     let real_result = mocked
-//         .client
-//         .sync
-//         .hide_general_forum_topic(&params)
-//         .unwrap();
-//
-//     assert_eq!(mock_result, real_result);
-//     mocked.server.assert();
-// }
+#[test]
+fn hide_general_forum_topic_success() {
+    let mock_response =
+        fs::read_to_string("src/tests/responses/hide_general_forum_topic_success.json").unwrap();
+    let mut server = mockito::Server::new();
+    let mocked = Mocked::new(&mut server, "hideGeneralForumTopic", 200, &mock_response);
+
+    let mock_result = mocked.result::<bool>().unwrap();
+    let params = HideGeneralForumTopic {
+        ..Default::default()
+    };
+    let real_result = mocked
+        .client
+        .sync
+        .hide_general_forum_topic(&params)
+        .unwrap();
+
+    assert_eq!(mock_result, real_result);
+    mocked.server.assert();
+}
 
 #[test]
 fn hide_general_forum_topic_error() {
@@ -2547,25 +2620,26 @@ fn hide_general_forum_topic_error() {
     }
 }
 
-// fn unhide_general_forum_topic_success() {
-//     let mock_response =
-//         fs::read_to_string("src/tests/responses/unhide_general_forum_topic_success.json").unwrap();
-//     let mut server = mockito::Server::new();
-//     let mocked = Mocked::new(&mut server, "unhideGeneralForumTopic", 200, &mock_response);
-//
-//     let mock_result = mocked.result::<bool>().unwrap();
-//     let params = UnhideGeneralForumTopic {
-//         ..Default::default()
-//     };
-//     let real_result = mocked
-//         .client
-//         .sync
-//         .unhide_general_forum_topic(&params)
-//         .unwrap();
-//
-//     assert_eq!(mock_result, real_result);
-//     mocked.server.assert();
-// }
+#[test]
+fn unhide_general_forum_topic_success() {
+    let mock_response =
+        fs::read_to_string("src/tests/responses/unhide_general_forum_topic_success.json").unwrap();
+    let mut server = mockito::Server::new();
+    let mocked = Mocked::new(&mut server, "unhideGeneralForumTopic", 200, &mock_response);
+
+    let mock_result = mocked.result::<bool>().unwrap();
+    let params = UnhideGeneralForumTopic {
+        ..Default::default()
+    };
+    let real_result = mocked
+        .client
+        .sync
+        .unhide_general_forum_topic(&params)
+        .unwrap();
+
+    assert_eq!(mock_result, real_result);
+    mocked.server.assert();
+}
 
 #[test]
 fn unhide_general_forum_topic_error() {
@@ -2589,31 +2663,33 @@ fn unhide_general_forum_topic_error() {
     }
 }
 
-// fn unpin_all_general_forum_topic_messages_success() {
-//     let mock_response = fs::read_to_string(
-//         "src/tests/responses/unpin_all_general_forum_topic_messages_success.json",
-//     )
-//     .unwrap();
-//     let mut server = mockito::Server::new();
-//     let mocked = Mocked::new(
-//         &mut server,
-//         "unpinAllGeneralForumTopicMessages",
-//         &mock_response,
-//     );
-//
-//     let mock_result = mocked.result::<bool>().unwrap();
-//     let params = UnpinAllGeneralForumTopicMessages {
-//         ..Default::default()
-//     };
-//     let real_result = mocked
-//         .client
-//         .sync
-//         .unpin_all_general_forum_topic_messages(&params)
-//         .unwrap();
-//
-//     assert_eq!(mock_result, real_result);
-//     mocked.server.assert();
-// }
+#[test]
+fn unpin_all_general_forum_topic_messages_success() {
+    let mock_response = fs::read_to_string(
+        "src/tests/responses/unpin_all_general_forum_topic_messages_success.json",
+    )
+    .unwrap();
+    let mut server = mockito::Server::new();
+    let mocked = Mocked::new(
+        &mut server,
+        "unpinAllGeneralForumTopicMessages",
+        200,
+        &mock_response,
+    );
+
+    let mock_result = mocked.result::<bool>().unwrap();
+    let params = UnpinAllGeneralForumTopicMessages {
+        ..Default::default()
+    };
+    let real_result = mocked
+        .client
+        .sync
+        .unpin_all_general_forum_topic_messages(&params)
+        .unwrap();
+
+    assert_eq!(mock_result, real_result);
+    mocked.server.assert();
+}
 
 #[test]
 fn unpin_all_general_forum_topic_messages_error() {
@@ -2643,21 +2719,22 @@ fn unpin_all_general_forum_topic_messages_error() {
     }
 }
 
-// fn answer_callback_query_success() {
-//     let mock_response =
-//         fs::read_to_string("src/tests/responses/answer_callback_query_success.json").unwrap();
-//     let mut server = mockito::Server::new();
-//     let mocked = Mocked::new(&mut server, "answerCallbackQuery", 200, &mock_response);
-//
-//     let mock_result = mocked.result::<bool>().unwrap();
-//     let params = AnswerCallbackQuery {
-//         ..Default::default()
-//     };
-//     let real_result = mocked.client.sync.answer_callback_query(&params).unwrap();
-//
-//     assert_eq!(mock_result, real_result);
-//     mocked.server.assert();
-// }
+#[test]
+fn answer_callback_query_success() {
+    let mock_response =
+        fs::read_to_string("src/tests/responses/answer_callback_query_success.json").unwrap();
+    let mut server = mockito::Server::new();
+    let mocked = Mocked::new(&mut server, "answerCallbackQuery", 200, &mock_response);
+
+    let mock_result = mocked.result::<bool>().unwrap();
+    let params = AnswerCallbackQuery {
+        ..Default::default()
+    };
+    let real_result = mocked.client.sync.answer_callback_query(&params).unwrap();
+
+    assert_eq!(mock_result, real_result);
+    mocked.server.assert();
+}
 
 #[test]
 fn answer_callback_query_error() {
@@ -2681,21 +2758,22 @@ fn answer_callback_query_error() {
     }
 }
 
-// fn get_user_chat_boosts_success() {
-//     let mock_response =
-//         fs::read_to_string("src/tests/responses/get_user_chat_boosts_success.json").unwrap();
-//     let mut server = mockito::Server::new();
-//     let mocked = Mocked::new(&mut server, "getUserChatBoosts", 200, &mock_response);
-//
-//     let mock_result = mocked.result::<UserChatBoosts>().unwrap();
-//     let params = GetUserChatBoosts {
-//         ..Default::default()
-//     };
-//     let real_result = mocked.client.sync.get_user_chat_boosts(&params).unwrap();
-//
-//     assert_eq!(mock_result, real_result);
-//     mocked.server.assert();
-// }
+// #[test]
+fn get_user_chat_boosts_success() {
+    let mock_response =
+        fs::read_to_string("src/tests/responses/get_user_chat_boosts_success.json").unwrap();
+    let mut server = mockito::Server::new();
+    let mocked = Mocked::new(&mut server, "getUserChatBoosts", 200, &mock_response);
+
+    let mock_result = mocked.result::<UserChatBoosts>().unwrap();
+    let params = GetUserChatBoosts {
+        ..Default::default()
+    };
+    let real_result = mocked.client.sync.get_user_chat_boosts(&params).unwrap();
+
+    assert_eq!(mock_result, real_result);
+    mocked.server.assert();
+}
 
 #[test]
 fn get_user_chat_boosts_error() {
@@ -2751,36 +2829,37 @@ fn delete_my_commands_success() {
     mocked.server.assert();
 }
 
-// fn get_my_commands_success() {
-//     let mock_response =
-//         fs::read_to_string("src/tests/responses/get_my_commands.json").unwrap();
-//     let mut server = mockito::Server::new();
-//     let mocked = Mocked::new(&mut server, "getMyCommands", 200, &mock_response);
-//
-//     let mock_result = mocked.result::<Vec<BotCommand>>().unwrap();
-//     let params = GetMyCommands {
-//         ..Default::default()
-//     };
-//     let real_result = mocked.client.sync.get_my_commands(&params).unwrap();
-//
-//     assert_eq!(mock_result, real_result);
-//     mocked.server.assert();
-// }
+#[test]
+fn get_my_commands_success() {
+    let mock_response = fs::read_to_string("src/tests/responses/get_my_commands.json").unwrap();
+    let mut server = mockito::Server::new();
+    let mocked = Mocked::new(&mut server, "getMyCommands", 200, &mock_response);
 
-// fn set_my_name_success() {
-//     let mock_response = fs::read_to_string("src/tests/responses/set_my_name_success.json").unwrap();
-//     let mut server = mockito::Server::new();
-//     let mocked = Mocked::new(&mut server, "setMyName", 200, &mock_response);
-//
-//     let mock_result = mocked.result::<bool>().unwrap();
-//     let params = SetMyName {
-//         ..Default::default()
-//     };
-//     let real_result = mocked.client.sync.set_my_name(&params).unwrap();
-//
-//     assert_eq!(mock_result, real_result);
-//     mocked.server.assert();
-// }
+    let mock_result = mocked.result::<Vec<BotCommand>>().unwrap();
+    let params = GetMyCommands {
+        ..Default::default()
+    };
+    let real_result = mocked.client.sync.get_my_commands(&params).unwrap();
+
+    assert_eq!(mock_result, real_result);
+    mocked.server.assert();
+}
+
+#[test]
+fn set_my_name_success() {
+    let mock_response = fs::read_to_string("src/tests/responses/set_my_name_success.json").unwrap();
+    let mut server = mockito::Server::new();
+    let mocked = Mocked::new(&mut server, "setMyName", 200, &mock_response);
+
+    let mock_result = mocked.result::<bool>().unwrap();
+    let params = SetMyName {
+        ..Default::default()
+    };
+    let real_result = mocked.client.sync.set_my_name(&params).unwrap();
+
+    assert_eq!(mock_result, real_result);
+    mocked.server.assert();
+}
 
 #[test]
 fn set_my_name_error() {
@@ -2798,20 +2877,21 @@ fn set_my_name_error() {
     }
 }
 
-// fn get_my_name_success() {
-//     let mock_response = fs::read_to_string("src/tests/responses/get_my_name_success.json").unwrap();
-//     let mut server = mockito::Server::new();
-//     let mocked = Mocked::new(&mut server, "getMyName", 200, &mock_response);
-//
-//     let mock_result = mocked.result::<BotName>().unwrap();
-//     let params = GetMyName {
-//         ..Default::default()
-//     };
-//     let real_result = mocked.client.sync.get_my_name(&params).unwrap();
-//
-//     assert_eq!(mock_result, real_result);
-//     mocked.server.assert();
-// }
+#[test]
+fn get_my_name_success() {
+    let mock_response = fs::read_to_string("src/tests/responses/get_my_name_success.json").unwrap();
+    let mut server = mockito::Server::new();
+    let mocked = Mocked::new(&mut server, "getMyName", 200, &mock_response);
+
+    let mock_result = mocked.result::<BotName>().unwrap();
+    let params = GetMyName {
+        ..Default::default()
+    };
+    let real_result = mocked.client.sync.get_my_name(&params).unwrap();
+
+    assert_eq!(mock_result, real_result);
+    mocked.server.assert();
+}
 
 #[test]
 fn set_my_description_success() {
@@ -2973,23 +3053,24 @@ fn get_my_default_administrator_rights_success() {
     mocked.server.assert();
 }
 
-// fn edit_message_text_success() {
-//     let mock_response =
-//         fs::read_to_string("src/tests/responses/edit_message_text_success.json").unwrap();
-//     let mut server = mockito::Server::new();
-//     let mocked = Mocked::new(&mut server, "editMessageText", 200, &mock_response);
-//
-//     let mock_result = mocked.result::<MessageResult>().unwrap();
-//     let params = EditMessageText {
-//         ..Default::default()
-//     };
-//     let real_result = mocked.client.sync.edit_message_text(&params).unwrap();
-//
-//     assert_eq!(mock_result, real_result);
-//     mocked.server.assert();
-// }
+// #[test]
+fn edit_message_text_success() {
+    let mock_response =
+        fs::read_to_string("src/tests/responses/edit_message_text_success.json").unwrap();
+    let mut server = mockito::Server::new();
+    let mocked = Mocked::new(&mut server, "editMessageText", 200, &mock_response);
 
-#[test]
+    let mock_result = mocked.result::<MessageResult>().unwrap();
+    let params = EditMessageText {
+        ..Default::default()
+    };
+    let real_result = mocked.client.sync.edit_message_text(&params).unwrap();
+
+    assert_eq!(mock_result, real_result);
+    mocked.server.assert();
+}
+
+// #[test]
 fn edit_message_text_error() {
     let mock_response =
         fs::read_to_string("src/tests/responses/edit_message_text_error.json").unwrap();
@@ -3007,21 +3088,22 @@ fn edit_message_text_error() {
     }
 }
 
-// fn edit_message_caption_success() {
-//     let mock_response =
-//         fs::read_to_string("src/tests/responses/edit_message_caption_success.json").unwrap();
-//     let mut server = mockito::Server::new();
-//     let mocked = Mocked::new(&mut server, "editMessageCaption", 200, &mock_response);
-//
-//     let mock_result = mocked.result::<MessageResult>().unwrap();
-//     let params = EditMessageCaption {
-//         ..Default::default()
-//     };
-//     let real_result = mocked.client.sync.edit_message_caption(&params).unwrap();
-//
-//     assert_eq!(mock_result, real_result);
-//     mocked.server.assert();
-// }
+#[test]
+fn edit_message_caption_success() {
+    let mock_response =
+        fs::read_to_string("src/tests/responses/edit_message_caption_success.json").unwrap();
+    let mut server = mockito::Server::new();
+    let mocked = Mocked::new(&mut server, "editMessageCaption", 200, &mock_response);
+
+    let mock_result = mocked.result::<MessageResult>().unwrap();
+    let params = EditMessageCaption {
+        ..Default::default()
+    };
+    let real_result = mocked.client.sync.edit_message_caption(&params).unwrap();
+
+    assert_eq!(mock_result, real_result);
+    mocked.server.assert();
+}
 
 #[test]
 fn edit_message_caption_error() {
@@ -3045,21 +3127,22 @@ fn edit_message_caption_error() {
     }
 }
 
-// fn edit_message_media_success() {
-//     let mock_response =
-//         fs::read_to_string("src/tests/responses/edit_message_media_success.json").unwrap();
-//     let mut server = mockito::Server::new();
-//     let mocked = Mocked::new(&mut server, "editMessageMedia", 200, &mock_response);
-//
-//     let mock_result = mocked.result::<MessageResult>().unwrap();
-//     let params = EditMessageMedia {
-//         ..Default::default()
-//     };
-//     let real_result = mocked.client.sync.edit_message_media(&params).unwrap();
-//
-//     assert_eq!(mock_result, real_result);
-//     mocked.server.assert();
-// }
+#[test]
+fn edit_message_media_success() {
+    let mock_response =
+        fs::read_to_string("src/tests/responses/edit_message_media_success.json").unwrap();
+    let mut server = mockito::Server::new();
+    let mocked = Mocked::new(&mut server, "editMessageMedia", 200, &mock_response);
+
+    let mock_result = mocked.result::<MessageResult>().unwrap();
+    let params = EditMessageMedia {
+        ..Default::default()
+    };
+    let real_result = mocked.client.sync.edit_message_media(&params).unwrap();
+
+    assert_eq!(mock_result, real_result);
+    mocked.server.assert();
+}
 
 #[test]
 fn edit_message_media_error() {
@@ -3079,25 +3162,26 @@ fn edit_message_media_error() {
     }
 }
 
-// fn edit_message_live_location_success() {
-//     let mock_response =
-//         fs::read_to_string("src/tests/responses/edit_message_live_location_success.json").unwrap();
-//     let mut server = mockito::Server::new();
-//     let mocked = Mocked::new(&mut server, "editMessageLiveLocation", 200, &mock_response);
-//
-//     let mock_result = mocked.result::<MessageResult>().unwrap();
-//     let params = EditMessageLiveLocation {
-//         ..Default::default()
-//     };
-//     let real_result = mocked
-//         .client
-//         .sync
-//         .edit_message_live_location(&params)
-//         .unwrap();
-//
-//     assert_eq!(mock_result, real_result);
-//     mocked.server.assert();
-// }
+#[test]
+fn edit_message_live_location_success() {
+    let mock_response =
+        fs::read_to_string("src/tests/responses/edit_message_live_location_success.json").unwrap();
+    let mut server = mockito::Server::new();
+    let mocked = Mocked::new(&mut server, "editMessageLiveLocation", 200, &mock_response);
+
+    let mock_result = mocked.result::<MessageResult>().unwrap();
+    let params = EditMessageLiveLocation {
+        ..Default::default()
+    };
+    let real_result = mocked
+        .client
+        .sync
+        .edit_message_live_location(&params)
+        .unwrap();
+
+    assert_eq!(mock_result, real_result);
+    mocked.server.assert();
+}
 
 #[test]
 fn edit_message_live_location_error() {
@@ -3121,25 +3205,26 @@ fn edit_message_live_location_error() {
     }
 }
 
-// fn stop_message_live_location_success() {
-//     let mock_response =
-//         fs::read_to_string("src/tests/responses/stop_message_live_location_success.json").unwrap();
-//     let mut server = mockito::Server::new();
-//     let mocked = Mocked::new(&mut server, "stopMessageLiveLocation", 200, &mock_response);
-//
-//     let mock_result = mocked.result::<MessageResult>().unwrap();
-//     let params = StopMessageLiveLocation {
-//         ..Default::default()
-//     };
-//     let real_result = mocked
-//         .client
-//         .sync
-//         .stop_message_live_location(&params)
-//         .unwrap();
-//
-//     assert_eq!(mock_result, real_result);
-//     mocked.server.assert();
-// }
+#[test]
+fn stop_message_live_location_success() {
+    let mock_response =
+        fs::read_to_string("src/tests/responses/stop_message_live_location_success.json").unwrap();
+    let mut server = mockito::Server::new();
+    let mocked = Mocked::new(&mut server, "stopMessageLiveLocation", 200, &mock_response);
+
+    let mock_result = mocked.result::<MessageResult>().unwrap();
+    let params = StopMessageLiveLocation {
+        ..Default::default()
+    };
+    let real_result = mocked
+        .client
+        .sync
+        .stop_message_live_location(&params)
+        .unwrap();
+
+    assert_eq!(mock_result, real_result);
+    mocked.server.assert();
+}
 
 #[test]
 fn stop_message_live_location_error() {
@@ -3163,25 +3248,26 @@ fn stop_message_live_location_error() {
     }
 }
 
-// fn edit_message_reply_markup_success() {
-//     let mock_response =
-//         fs::read_to_string("src/tests/responses/edit_message_reply_markup_success.json").unwrap();
-//     let mut server = mockito::Server::new();
-//     let mocked = Mocked::new(&mut server, "editMessageReplyMarkup", 200, &mock_response);
-//
-//     let mock_result = mocked.result::<MessageResult>().unwrap();
-//     let params = EditMessageReplyMarkup {
-//         ..Default::default()
-//     };
-//     let real_result = mocked
-//         .client
-//         .sync
-//         .edit_message_reply_markup(&params)
-//         .unwrap();
-//
-//     assert_eq!(mock_result, real_result);
-//     mocked.server.assert();
-// }
+// #[test]
+fn edit_message_reply_markup_success() {
+    let mock_response =
+        fs::read_to_string("src/tests/responses/edit_message_reply_markup_success.json").unwrap();
+    let mut server = mockito::Server::new();
+    let mocked = Mocked::new(&mut server, "editMessageReplyMarkup", 200, &mock_response);
+
+    let mock_result = mocked.result::<MessageResult>().unwrap();
+    let params = EditMessageReplyMarkup {
+        ..Default::default()
+    };
+    let real_result = mocked
+        .client
+        .sync
+        .edit_message_reply_markup(&params)
+        .unwrap();
+
+    assert_eq!(mock_result, real_result);
+    mocked.server.assert();
+}
 
 #[test]
 fn edit_message_reply_markup_error() {
@@ -3205,20 +3291,21 @@ fn edit_message_reply_markup_error() {
     }
 }
 
-// fn stop_poll_success() {
-//     let mock_response = fs::read_to_string("src/tests/responses/stop_poll_success.json").unwrap();
-//     let mut server = mockito::Server::new();
-//     let mocked = Mocked::new(&mut server, "stopPoll", 200, &mock_response);
-//
-//     let mock_result = mocked.result::<Poll>().unwrap();
-//     let params = StopPoll {
-//         ..Default::default()
-//     };
-//     let real_result = mocked.client.sync.stop_poll(&params).unwrap();
-//
-//     assert_eq!(mock_result, real_result);
-//     mocked.server.assert();
-// }
+#[test]
+fn stop_poll_success() {
+    let mock_response = fs::read_to_string("src/tests/responses/stop_poll_success.json").unwrap();
+    let mut server = mockito::Server::new();
+    let mocked = Mocked::new(&mut server, "stopPoll", 200, &mock_response);
+
+    let mock_result = mocked.result::<Poll>().unwrap();
+    let params = StopPoll {
+        ..Default::default()
+    };
+    let real_result = mocked.client.sync.stop_poll(&params).unwrap();
+
+    assert_eq!(mock_result, real_result);
+    mocked.server.assert();
+}
 
 #[test]
 fn stop_poll_error() {
@@ -3236,21 +3323,22 @@ fn stop_poll_error() {
     }
 }
 
-// fn delete_message_success() {
-//     let mock_response =
-//         fs::read_to_string("src/tests/responses/delete_message_success.json").unwrap();
-//     let mut server = mockito::Server::new();
-//     let mocked = Mocked::new(&mut server, "deleteMessage", 200, &mock_response);
-//
-//     let mock_result = mocked.result::<bool>().unwrap();
-//     let params = DeleteMessage {
-//         ..Default::default()
-//     };
-//     let real_result = mocked.client.sync.delete_message(&params).unwrap();
-//
-//     assert_eq!(mock_result, real_result);
-//     mocked.server.assert();
-// }
+#[test]
+fn delete_message_success() {
+    let mock_response =
+        fs::read_to_string("src/tests/responses/delete_message_success.json").unwrap();
+    let mut server = mockito::Server::new();
+    let mocked = Mocked::new(&mut server, "deleteMessage", 200, &mock_response);
+
+    let mock_result = mocked.result::<bool>().unwrap();
+    let params = DeleteMessage {
+        ..Default::default()
+    };
+    let real_result = mocked.client.sync.delete_message(&params).unwrap();
+
+    assert_eq!(mock_result, real_result);
+    mocked.server.assert();
+}
 
 #[test]
 fn delete_message_error() {
@@ -3269,21 +3357,22 @@ fn delete_message_error() {
     }
 }
 
-// fn delete_messages_success() {
-//     let mock_response =
-//         fs::read_to_string("src/tests/responses/delete_messages_success.json").unwrap();
-//     let mut server = mockito::Server::new();
-//     let mocked = Mocked::new(&mut server, "deleteMessages", 200, &mock_response);
-//
-//     let mock_result = mocked.result::<bool>().unwrap();
-//     let params = DeleteMessages {
-//         ..Default::default()
-//     };
-//     let real_result = mocked.client.sync.delete_messages(&params).unwrap();
-//
-//     assert_eq!(mock_result, real_result);
-//     mocked.server.assert();
-// }
+#[test]
+fn delete_messages_success() {
+    let mock_response =
+        fs::read_to_string("src/tests/responses/delete_messages_success.json").unwrap();
+    let mut server = mockito::Server::new();
+    let mocked = Mocked::new(&mut server, "deleteMessages", 200, &mock_response);
+
+    let mock_result = mocked.result::<bool>().unwrap();
+    let params = DeleteMessages {
+        ..Default::default()
+    };
+    let real_result = mocked.client.sync.delete_messages(&params).unwrap();
+
+    assert_eq!(mock_result, real_result);
+    mocked.server.assert();
+}
 
 #[test]
 fn delete_messages_error() {
@@ -3302,21 +3391,22 @@ fn delete_messages_error() {
     }
 }
 
-// fn send_sticker_success() {
-//     let mock_response =
-//         fs::read_to_string("src/tests/responses/send_sticker_success.json").unwrap();
-//     let mut server = mockito::Server::new();
-//     let mocked = Mocked::new(&mut server, "sendSticker", 200, &mock_response);
-//
-//     let mock_result = mocked.result::<Message>().unwrap();
-//     let params = SendSticker {
-//         ..Default::default()
-//     };
-//     let real_result = mocked.client.sync.send_sticker(&params).unwrap();
-//
-//     assert_eq!(mock_result, real_result);
-//     mocked.server.assert();
-// }
+#[test]
+fn send_sticker_success() {
+    let mock_response =
+        fs::read_to_string("src/tests/responses/send_sticker_success.json").unwrap();
+    let mut server = mockito::Server::new();
+    let mocked = Mocked::new(&mut server, "sendSticker", 200, &mock_response);
+
+    let mock_result = mocked.result::<Message>().unwrap();
+    let params = SendSticker {
+        ..Default::default()
+    };
+    let real_result = mocked.client.sync.send_sticker(&params).unwrap();
+
+    assert_eq!(mock_result, real_result);
+    mocked.server.assert();
+}
 
 #[test]
 fn send_sticker_error() {
@@ -3334,21 +3424,22 @@ fn send_sticker_error() {
     }
 }
 
-// fn get_sticker_set_success() {
-//     let mock_response =
-//         fs::read_to_string("src/tests/responses/get_sticker_set_success.json").unwrap();
-//     let mut server = mockito::Server::new();
-//     let mocked = Mocked::new(&mut server, "getStickerSet", 200, &mock_response);
-//
-//     let mock_result = mocked.result::<StickerSet>().unwrap();
-//     let params = GetStickerSet {
-//         ..Default::default()
-//     };
-//     let real_result = mocked.client.sync.get_sticker_set(&params).unwrap();
-//
-//     assert_eq!(mock_result, real_result);
-//     mocked.server.assert();
-// }
+#[test]
+fn get_sticker_set_success() {
+    let mock_response =
+        fs::read_to_string("src/tests/responses/get_sticker_set_success.json").unwrap();
+    let mut server = mockito::Server::new();
+    let mocked = Mocked::new(&mut server, "getStickerSet", 200, &mock_response);
+
+    let mock_result = mocked.result::<StickerSet>().unwrap();
+    let params = GetStickerSet {
+        ..Default::default()
+    };
+    let real_result = mocked.client.sync.get_sticker_set(&params).unwrap();
+
+    assert_eq!(mock_result, real_result);
+    mocked.server.assert();
+}
 
 #[test]
 fn get_sticker_set_error() {
@@ -3367,25 +3458,26 @@ fn get_sticker_set_error() {
     }
 }
 
-// fn get_custom_emoji_stickers_success() {
-//     let mock_response =
-//         fs::read_to_string("src/tests/responses/get_custom_emoji_stickers_success.json").unwrap();
-//     let mut server = mockito::Server::new();
-//     let mocked = Mocked::new(&mut server, "getCustomEmojiStickers", 200, &mock_response);
-//
-//     let mock_result = mocked.result::<Sticker>().unwrap();
-//     let params = GetCustomEmojiStickers {
-//         ..Default::default()
-//     };
-//     let real_result = mocked
-//         .client
-//         .sync
-//         .get_custom_emoji_stickers(&params)
-//         .unwrap();
-//
-//     assert_eq!(mock_result, real_result);
-//     mocked.server.assert();
-// }
+// #[test]
+fn get_custom_emoji_stickers_success() {
+    let mock_response =
+        fs::read_to_string("src/tests/responses/get_custom_emoji_stickers_success.json").unwrap();
+    let mut server = mockito::Server::new();
+    let mocked = Mocked::new(&mut server, "getCustomEmojiStickers", 200, &mock_response);
+
+    let mock_result = mocked.result::<Sticker>().unwrap();
+    let params = GetCustomEmojiStickers {
+        ..Default::default()
+    };
+    let real_result = mocked
+        .client
+        .sync
+        .get_custom_emoji_stickers(&params)
+        .unwrap();
+
+    assert_eq!(mock_result, real_result);
+    mocked.server.assert();
+}
 
 #[test]
 fn get_custom_emoji_stickers_error() {
@@ -3409,21 +3501,22 @@ fn get_custom_emoji_stickers_error() {
     }
 }
 
-// fn upload_sticker_file_success() {
-//     let mock_response =
-//         fs::read_to_string("src/tests/responses/upload_sticker_file_success.json").unwrap();
-//     let mut server = mockito::Server::new();
-//     let mocked = Mocked::new(&mut server, "uploadStickerFile", 200, &mock_response);
-//
-//     let mock_result = mocked.result::<File>().unwrap();
-//     let params = UploadStickerFile {
-//         ..Default::default()
-//     };
-//     let real_result = mocked.client.sync.upload_sticker_file(&params).unwrap();
-//
-//     assert_eq!(mock_result, real_result);
-//     mocked.server.assert();
-// }
+// #[test]
+fn upload_sticker_file_success() {
+    let mock_response =
+        fs::read_to_string("src/tests/responses/upload_sticker_file_success.json").unwrap();
+    let mut server = mockito::Server::new();
+    let mocked = Mocked::new(&mut server, "uploadStickerFile", 200, &mock_response);
+
+    let mock_result = mocked.result::<File>().unwrap();
+    let params = UploadStickerFile {
+        ..Default::default()
+    };
+    let real_result = mocked.client.sync.upload_sticker_file(&params).unwrap();
+
+    assert_eq!(mock_result, real_result);
+    mocked.server.assert();
+}
 
 #[test]
 fn upload_sticker_file_error() {
@@ -3444,21 +3537,22 @@ fn upload_sticker_file_error() {
     }
 }
 
-// fn create_new_sticker_set_success() {
-//     let mock_response =
-//         fs::read_to_string("src/tests/responses/create_new_sticker_set_success.json").unwrap();
-//     let mut server = mockito::Server::new();
-//     let mocked = Mocked::new(&mut server, "createNewStickerSet", 200, &mock_response);
-//
-//     let mock_result = mocked.result::<bool>().unwrap();
-//     let params = CreateNewStickerSet {
-//         ..Default::default()
-//     };
-//     let real_result = mocked.client.sync.create_new_sticker_set(&params).unwrap();
-//
-//     assert_eq!(mock_result, real_result);
-//     mocked.server.assert();
-// }
+// #[test]
+fn create_new_sticker_set_success() {
+    let mock_response =
+        fs::read_to_string("src/tests/responses/create_new_sticker_set_success.json").unwrap();
+    let mut server = mockito::Server::new();
+    let mocked = Mocked::new(&mut server, "createNewStickerSet", 200, &mock_response);
+
+    let mock_result = mocked.result::<bool>().unwrap();
+    let params = CreateNewStickerSet {
+        ..Default::default()
+    };
+    let real_result = mocked.client.sync.create_new_sticker_set(&params).unwrap();
+
+    assert_eq!(mock_result, real_result);
+    mocked.server.assert();
+}
 
 #[test]
 fn create_new_sticker_set_error() {
@@ -3482,21 +3576,22 @@ fn create_new_sticker_set_error() {
     }
 }
 
-// fn add_sticker_to_set_success() {
-//     let mock_response =
-//         fs::read_to_string("src/tests/responses/add_sticker_to_set_success.json").unwrap();
-//     let mut server = mockito::Server::new();
-//     let mocked = Mocked::new(&mut server, "addStickerToSet", 200, &mock_response);
-//
-//     let mock_result = mocked.result::<bool>().unwrap();
-//     let params = AddStickerToSet {
-//         ..Default::default()
-//     };
-//     let real_result = mocked.client.sync.add_sticker_to_set(&params).unwrap();
-//
-//     assert_eq!(mock_result, real_result);
-//     mocked.server.assert();
-// }
+// #[test]
+fn add_sticker_to_set_success() {
+    let mock_response =
+        fs::read_to_string("src/tests/responses/add_sticker_to_set_success.json").unwrap();
+    let mut server = mockito::Server::new();
+    let mocked = Mocked::new(&mut server, "addStickerToSet", 200, &mock_response);
+
+    let mock_result = mocked.result::<bool>().unwrap();
+    let params = AddStickerToSet {
+        ..Default::default()
+    };
+    let real_result = mocked.client.sync.add_sticker_to_set(&params).unwrap();
+
+    assert_eq!(mock_result, real_result);
+    mocked.server.assert();
+}
 
 #[test]
 fn add_sticker_to_set_error() {
@@ -3516,25 +3611,26 @@ fn add_sticker_to_set_error() {
     }
 }
 
-// fn set_sticker_position_in_set_success() {
-//     let mock_response =
-//         fs::read_to_string("src/tests/responses/set_sticker_position_in_set_success.json").unwrap();
-//     let mut server = mockito::Server::new();
-//     let mocked = Mocked::new(&mut server, "setStickerPositionInSet", 200, &mock_response);
-//
-//     let mock_result = mocked.result::<bool>().unwrap();
-//     let params = SetStickerPositionInSet {
-//         ..Default::default()
-//     };
-//     let real_result = mocked
-//         .client
-//         .sync
-//         .set_sticker_position_in_set(&params)
-//         .unwrap();
-//
-//     assert_eq!(mock_result, real_result);
-//     mocked.server.assert();
-// }
+#[test]
+fn set_sticker_position_in_set_success() {
+    let mock_response =
+        fs::read_to_string("src/tests/responses/set_sticker_position_in_set_success.json").unwrap();
+    let mut server = mockito::Server::new();
+    let mocked = Mocked::new(&mut server, "setStickerPositionInSet", 200, &mock_response);
+
+    let mock_result = mocked.result::<bool>().unwrap();
+    let params = SetStickerPositionInSet {
+        ..Default::default()
+    };
+    let real_result = mocked
+        .client
+        .sync
+        .set_sticker_position_in_set(&params)
+        .unwrap();
+
+    assert_eq!(mock_result, real_result);
+    mocked.server.assert();
+}
 
 #[test]
 fn set_sticker_position_in_set_error() {
@@ -3558,21 +3654,22 @@ fn set_sticker_position_in_set_error() {
     }
 }
 
-// fn delete_sticker_from_set_success() {
-//     let mock_response =
-//         fs::read_to_string("src/tests/responses/delete_sticker_from_set_success.json").unwrap();
-//     let mut server = mockito::Server::new();
-//     let mocked = Mocked::new(&mut server, "deleteStickerFromSet", 200, &mock_response);
-//
-//     let mock_result = mocked.result::<bool>().unwrap();
-//     let params = DeleteStickerFromSet {
-//         ..Default::default()
-//     };
-//     let real_result = mocked.client.sync.delete_sticker_from_set(&params).unwrap();
-//
-//     assert_eq!(mock_result, real_result);
-//     mocked.server.assert();
-// }
+#[test]
+fn delete_sticker_from_set_success() {
+    let mock_response =
+        fs::read_to_string("src/tests/responses/delete_sticker_from_set_success.json").unwrap();
+    let mut server = mockito::Server::new();
+    let mocked = Mocked::new(&mut server, "deleteStickerFromSet", 200, &mock_response);
+
+    let mock_result = mocked.result::<bool>().unwrap();
+    let params = DeleteStickerFromSet {
+        ..Default::default()
+    };
+    let real_result = mocked.client.sync.delete_sticker_from_set(&params).unwrap();
+
+    assert_eq!(mock_result, real_result);
+    mocked.server.assert();
+}
 
 #[test]
 fn delete_sticker_from_set_error() {
@@ -3596,21 +3693,22 @@ fn delete_sticker_from_set_error() {
     }
 }
 
-// fn set_sticker_emoji_list_success() {
-//     let mock_response =
-//         fs::read_to_string("src/tests/responses/set_sticker_emoji_list_success.json").unwrap();
-//     let mut server = mockito::Server::new();
-//     let mocked = Mocked::new(&mut server, "setStickerEmojiList", 200, &mock_response);
-//
-//     let mock_result = mocked.result::<bool>().unwrap();
-//     let params = SetStickerEmojiList {
-//         ..Default::default()
-//     };
-//     let real_result = mocked.client.sync.set_sticker_emoji_list(&params).unwrap();
-//
-//     assert_eq!(mock_result, real_result);
-//     mocked.server.assert();
-// }
+#[test]
+fn set_sticker_emoji_list_success() {
+    let mock_response =
+        fs::read_to_string("src/tests/responses/set_sticker_emoji_list_success.json").unwrap();
+    let mut server = mockito::Server::new();
+    let mocked = Mocked::new(&mut server, "setStickerEmojiList", 200, &mock_response);
+
+    let mock_result = mocked.result::<bool>().unwrap();
+    let params = SetStickerEmojiList {
+        ..Default::default()
+    };
+    let real_result = mocked.client.sync.set_sticker_emoji_list(&params).unwrap();
+
+    assert_eq!(mock_result, real_result);
+    mocked.server.assert();
+}
 
 #[test]
 fn set_sticker_emoji_list_error() {
@@ -3634,21 +3732,22 @@ fn set_sticker_emoji_list_error() {
     }
 }
 
-// fn set_sticker_keywords_success() {
-//     let mock_response =
-//         fs::read_to_string("src/tests/responses/set_sticker_keywords_success.json").unwrap();
-//     let mut server = mockito::Server::new();
-//     let mocked = Mocked::new(&mut server, "setStickerKeywords", 200, &mock_response);
-//
-//     let mock_result = mocked.result::<bool>().unwrap();
-//     let params = SetStickerKeywords {
-//         ..Default::default()
-//     };
-//     let real_result = mocked.client.sync.set_sticker_keywords(&params).unwrap();
-//
-//     assert_eq!(mock_result, real_result);
-//     mocked.server.assert();
-// }
+#[test]
+fn set_sticker_keywords_success() {
+    let mock_response =
+        fs::read_to_string("src/tests/responses/set_sticker_keywords_success.json").unwrap();
+    let mut server = mockito::Server::new();
+    let mocked = Mocked::new(&mut server, "setStickerKeywords", 200, &mock_response);
+
+    let mock_result = mocked.result::<bool>().unwrap();
+    let params = SetStickerKeywords {
+        ..Default::default()
+    };
+    let real_result = mocked.client.sync.set_sticker_keywords(&params).unwrap();
+
+    assert_eq!(mock_result, real_result);
+    mocked.server.assert();
+}
 
 #[test]
 fn set_sticker_keywords_error() {
@@ -3672,25 +3771,26 @@ fn set_sticker_keywords_error() {
     }
 }
 
-// fn set_sticker_mask_position_success() {
-//     let mock_response =
-//         fs::read_to_string("src/tests/responses/set_sticker_mask_position_success.json").unwrap();
-//     let mut server = mockito::Server::new();
-//     let mocked = Mocked::new(&mut server, "setStickerMaskPosition", 200, &mock_response);
-//
-//     let mock_result = mocked.result::<bool>().unwrap();
-//     let params = SetStickerMaskPosition {
-//         ..Default::default()
-//     };
-//     let real_result = mocked
-//         .client
-//         .sync
-//         .set_sticker_mask_position(&params)
-//         .unwrap();
-//
-//     assert_eq!(mock_result, real_result);
-//     mocked.server.assert();
-// }
+#[test]
+fn set_sticker_mask_position_success() {
+    let mock_response =
+        fs::read_to_string("src/tests/responses/set_sticker_mask_position_success.json").unwrap();
+    let mut server = mockito::Server::new();
+    let mocked = Mocked::new(&mut server, "setStickerMaskPosition", 200, &mock_response);
+
+    let mock_result = mocked.result::<bool>().unwrap();
+    let params = SetStickerMaskPosition {
+        ..Default::default()
+    };
+    let real_result = mocked
+        .client
+        .sync
+        .set_sticker_mask_position(&params)
+        .unwrap();
+
+    assert_eq!(mock_result, real_result);
+    mocked.server.assert();
+}
 
 #[test]
 fn set_sticker_mask_position_error() {
@@ -3714,21 +3814,22 @@ fn set_sticker_mask_position_error() {
     }
 }
 
-// fn set_sticker_set_title_success() {
-//     let mock_response =
-//         fs::read_to_string("src/tests/responses/set_sticker_set_title_success.json").unwrap();
-//     let mut server = mockito::Server::new();
-//     let mocked = Mocked::new(&mut server, "setStickerSetTitle", 200, &mock_response);
-//
-//     let mock_result = mocked.result::<bool>().unwrap();
-//     let params = SetStickerSetTitle {
-//         ..Default::default()
-//     };
-//     let real_result = mocked.client.sync.set_sticker_set_title(&params).unwrap();
-//
-//     assert_eq!(mock_result, real_result);
-//     mocked.server.assert();
-// }
+#[test]
+fn set_sticker_set_title_success() {
+    let mock_response =
+        fs::read_to_string("src/tests/responses/set_sticker_set_title_success.json").unwrap();
+    let mut server = mockito::Server::new();
+    let mocked = Mocked::new(&mut server, "setStickerSetTitle", 200, &mock_response);
+
+    let mock_result = mocked.result::<bool>().unwrap();
+    let params = SetStickerSetTitle {
+        ..Default::default()
+    };
+    let real_result = mocked.client.sync.set_sticker_set_title(&params).unwrap();
+
+    assert_eq!(mock_result, real_result);
+    mocked.server.assert();
+}
 
 #[test]
 fn set_sticker_set_title_error() {
@@ -3752,25 +3853,26 @@ fn set_sticker_set_title_error() {
     }
 }
 
-// fn set_sticker_set_thumbnail_success() {
-//     let mock_response =
-//         fs::read_to_string("src/tests/responses/set_sticker_set_thumbnail_success.json").unwrap();
-//     let mut server = mockito::Server::new();
-//     let mocked = Mocked::new(&mut server, "setStickerSetThumbnail", 200, &mock_response);
-//
-//     let mock_result = mocked.result::<bool>().unwrap();
-//     let params = SetStickerSetThumbnail {
-//         ..Default::default()
-//     };
-//     let real_result = mocked
-//         .client
-//         .sync
-//         .set_sticker_set_thumbnail(&params)
-//         .unwrap();
-//
-//     assert_eq!(mock_result, real_result);
-//     mocked.server.assert();
-// }
+#[test]
+fn set_sticker_set_thumbnail_success() {
+    let mock_response =
+        fs::read_to_string("src/tests/responses/set_sticker_set_thumbnail_success.json").unwrap();
+    let mut server = mockito::Server::new();
+    let mocked = Mocked::new(&mut server, "setStickerSetThumbnail", 200, &mock_response);
+
+    let mock_result = mocked.result::<bool>().unwrap();
+    let params = SetStickerSetThumbnail {
+        ..Default::default()
+    };
+    let real_result = mocked
+        .client
+        .sync
+        .set_sticker_set_thumbnail(&params)
+        .unwrap();
+
+    assert_eq!(mock_result, real_result);
+    mocked.server.assert();
+}
 
 #[test]
 fn set_sticker_set_thumbnail_error() {
@@ -3794,31 +3896,33 @@ fn set_sticker_set_thumbnail_error() {
     }
 }
 
-// fn set_custom_emoji_sticker_set_thumbnail_success() {
-//     let mock_response = fs::read_to_string(
-//         "src/tests/responses/set_custom_emoji_sticker_set_thumbnail_success.json",
-//     )
-//     .unwrap();
-//     let mut server = mockito::Server::new();
-//     let mocked = Mocked::new(
-//         &mut server,
-//         "setCustomEmojiStickerSetThumbnail",
-//         &mock_response,
-//     );
-//
-//     let mock_result = mocked.result::<bool>().unwrap();
-//     let params = SetCustomEmojiStickerSetThumbnail {
-//         ..Default::default()
-//     };
-//     let real_result = mocked
-//         .client
-//         .sync
-//         .set_custom_emoji_sticker_set_thumbnail(&params)
-//         .unwrap();
-//
-//     assert_eq!(mock_result, real_result);
-//     mocked.server.assert();
-// }
+#[test]
+fn set_custom_emoji_sticker_set_thumbnail_success() {
+    let mock_response = fs::read_to_string(
+        "src/tests/responses/set_custom_emoji_sticker_set_thumbnail_success.json",
+    )
+    .unwrap();
+    let mut server = mockito::Server::new();
+    let mocked = Mocked::new(
+        &mut server,
+        "setCustomEmojiStickerSetThumbnail",
+        200,
+        &mock_response,
+    );
+
+    let mock_result = mocked.result::<bool>().unwrap();
+    let params = SetCustomEmojiStickerSetThumbnail {
+        ..Default::default()
+    };
+    let real_result = mocked
+        .client
+        .sync
+        .set_custom_emoji_sticker_set_thumbnail(&params)
+        .unwrap();
+
+    assert_eq!(mock_result, real_result);
+    mocked.server.assert();
+}
 
 #[test]
 fn set_custom_emoji_sticker_set_thumbnail_error() {
@@ -3848,21 +3952,22 @@ fn set_custom_emoji_sticker_set_thumbnail_error() {
     }
 }
 
-// fn delete_sticker_set_success() {
-//     let mock_response =
-//         fs::read_to_string("src/tests/responses/delete_sticker_set_success.json").unwrap();
-//     let mut server = mockito::Server::new();
-//     let mocked = Mocked::new(&mut server, "deleteStickerSet", 200, &mock_response);
-//
-//     let mock_result = mocked.result::<bool>().unwrap();
-//     let params = DeleteStickerSet {
-//         ..Default::default()
-//     };
-//     let real_result = mocked.client.sync.delete_sticker_set(&params).unwrap();
-//
-//     assert_eq!(mock_result, real_result);
-//     mocked.server.assert();
-// }
+#[test]
+fn delete_sticker_set_success() {
+    let mock_response =
+        fs::read_to_string("src/tests/responses/delete_sticker_set_success.json").unwrap();
+    let mut server = mockito::Server::new();
+    let mocked = Mocked::new(&mut server, "deleteStickerSet", 200, &mock_response);
+
+    let mock_result = mocked.result::<bool>().unwrap();
+    let params = DeleteStickerSet {
+        ..Default::default()
+    };
+    let real_result = mocked.client.sync.delete_sticker_set(&params).unwrap();
+
+    assert_eq!(mock_result, real_result);
+    mocked.server.assert();
+}
 
 #[test]
 fn delete_sticker_set_error() {
@@ -3882,21 +3987,22 @@ fn delete_sticker_set_error() {
     }
 }
 
-// fn answer_inline_query_success() {
-//     let mock_response =
-//         fs::read_to_string("src/tests/responses/answer_inline_query_success.json").unwrap();
-//     let mut server = mockito::Server::new();
-//     let mocked = Mocked::new(&mut server, "answerInlineQuery", 200, &mock_response);
-//
-//     let mock_result = mocked.result::<bool>().unwrap();
-//     let params = AnswerInlineQuery {
-//         ..Default::default()
-//     };
-//     let real_result = mocked.client.sync.answer_inline_query(&params).unwrap();
-//
-//     assert_eq!(mock_result, real_result);
-//     mocked.server.assert();
-// }
+#[test]
+fn answer_inline_query_success() {
+    let mock_response =
+        fs::read_to_string("src/tests/responses/answer_inline_query_success.json").unwrap();
+    let mut server = mockito::Server::new();
+    let mocked = Mocked::new(&mut server, "answerInlineQuery", 200, &mock_response);
+
+    let mock_result = mocked.result::<bool>().unwrap();
+    let params = AnswerInlineQuery {
+        ..Default::default()
+    };
+    let real_result = mocked.client.sync.answer_inline_query(&params).unwrap();
+
+    assert_eq!(mock_result, real_result);
+    mocked.server.assert();
+}
 
 #[test]
 fn answer_inline_query_error() {
@@ -3918,21 +4024,22 @@ fn answer_inline_query_error() {
     }
 }
 
-// fn answer_web_app_query_success() {
-//     let mock_response =
-//         fs::read_to_string("src/tests/responses/answer_web_app_query_success.json").unwrap();
-//     let mut server = mockito::Server::new();
-//     let mocked = Mocked::new(&mut server, "answerWebAppQuery", 200, &mock_response);
-//
-//     let mock_result = mocked.result::<SentWebAppMessage>().unwrap();
-//     let params = AnswerWebAppQuery {
-//         ..Default::default()
-//     };
-//     let real_result = mocked.client.sync.answer_web_app_query(&params).unwrap();
-//
-//     assert_eq!(mock_result, real_result);
-//     mocked.server.assert();
-// }
+// #[test]
+fn answer_web_app_query_success() {
+    let mock_response =
+        fs::read_to_string("src/tests/responses/answer_web_app_query_success.json").unwrap();
+    let mut server = mockito::Server::new();
+    let mocked = Mocked::new(&mut server, "answerWebAppQuery", 200, &mock_response);
+
+    let mock_result = mocked.result::<SentWebAppMessage>().unwrap();
+    let params = AnswerWebAppQuery {
+        ..Default::default()
+    };
+    let real_result = mocked.client.sync.answer_web_app_query(&params).unwrap();
+
+    assert_eq!(mock_result, real_result);
+    mocked.server.assert();
+}
 
 #[test]
 fn answer_web_app_query_error() {
@@ -3956,21 +4063,22 @@ fn answer_web_app_query_error() {
     }
 }
 
-// fn send_invoice_success() {
-//     let mock_response =
-//         fs::read_to_string("src/tests/responses/send_invoice_success.json").unwrap();
-//     let mut server = mockito::Server::new();
-//     let mocked = Mocked::new(&mut server, "sendInvoice", 200, &mock_response);
-//
-//     let mock_result = mocked.result::<Message>().unwrap();
-//     let params = SendInvoice {
-//         ..Default::default()
-//     };
-//     let real_result = mocked.client.sync.send_invoice(&params).unwrap();
-//
-//     assert_eq!(mock_result, real_result);
-//     mocked.server.assert();
-// }
+// #[test]
+fn send_invoice_success() {
+    let mock_response =
+        fs::read_to_string("src/tests/responses/send_invoice_success.json").unwrap();
+    let mut server = mockito::Server::new();
+    let mocked = Mocked::new(&mut server, "sendInvoice", 200, &mock_response);
+
+    let mock_result = mocked.result::<Message>().unwrap();
+    let params = SendInvoice {
+        ..Default::default()
+    };
+    let real_result = mocked.client.sync.send_invoice(&params).unwrap();
+
+    assert_eq!(mock_result, real_result);
+    mocked.server.assert();
+}
 
 #[test]
 fn send_invoice_error() {
@@ -3988,21 +4096,22 @@ fn send_invoice_error() {
     }
 }
 
-// fn create_invoice_link_success() {
-//     let mock_response =
-//         fs::read_to_string("src/tests/responses/create_invoice_link_success.json").unwrap();
-//     let mut server = mockito::Server::new();
-//     let mocked = Mocked::new(&mut server, "createInvoiceLink", 200, &mock_response);
-//
-//     let mock_result = mocked.result::<String>().unwrap();
-//     let params = CreateInvoiceLink {
-//         ..Default::default()
-//     };
-//     let real_result = mocked.client.sync.create_invoice_link(&params).unwrap();
-//
-//     assert_eq!(mock_result, real_result);
-//     mocked.server.assert();
-// }
+#[test]
+fn create_invoice_link_success() {
+    let mock_response =
+        fs::read_to_string("src/tests/responses/create_invoice_link_success.json").unwrap();
+    let mut server = mockito::Server::new();
+    let mocked = Mocked::new(&mut server, "createInvoiceLink", 200, &mock_response);
+
+    let mock_result = mocked.result::<String>().unwrap();
+    let params = CreateInvoiceLink {
+        ..Default::default()
+    };
+    let real_result = mocked.client.sync.create_invoice_link(&params).unwrap();
+
+    assert_eq!(mock_result, real_result);
+    mocked.server.assert();
+}
 
 #[test]
 fn create_invoice_link_error() {
@@ -4023,21 +4132,22 @@ fn create_invoice_link_error() {
     }
 }
 
-// fn answer_shipping_query_success() {
-//     let mock_response =
-//         fs::read_to_string("src/tests/responses/answer_shipping_query_success.json").unwrap();
-//     let mut server = mockito::Server::new();
-//     let mocked = Mocked::new(&mut server, "answerShippingQuery", 200, &mock_response);
-//
-//     let mock_result = mocked.result::<bool>().unwrap();
-//     let params = AnswerShippingQuery {
-//         ..Default::default()
-//     };
-//     let real_result = mocked.client.sync.answer_shipping_query(&params).unwrap();
-//
-//     assert_eq!(mock_result, real_result);
-//     mocked.server.assert();
-// }
+#[test]
+fn answer_shipping_query_success() {
+    let mock_response =
+        fs::read_to_string("src/tests/responses/answer_shipping_query_success.json").unwrap();
+    let mut server = mockito::Server::new();
+    let mocked = Mocked::new(&mut server, "answerShippingQuery", 200, &mock_response);
+
+    let mock_result = mocked.result::<bool>().unwrap();
+    let params = AnswerShippingQuery {
+        ..Default::default()
+    };
+    let real_result = mocked.client.sync.answer_shipping_query(&params).unwrap();
+
+    assert_eq!(mock_result, real_result);
+    mocked.server.assert();
+}
 
 #[test]
 fn answer_shipping_query_error() {
@@ -4061,25 +4171,26 @@ fn answer_shipping_query_error() {
     }
 }
 
-// fn answer_pre_checkout_query_success() {
-//     let mock_response =
-//         fs::read_to_string("src/tests/responses/answer_pre_checkout_query_success.json").unwrap();
-//     let mut server = mockito::Server::new();
-//     let mocked = Mocked::new(&mut server, "answerPreCheckoutQuery", 200, &mock_response);
-//
-//     let mock_result = mocked.result::<bool>().unwrap();
-//     let params = AnswerPreCheckoutQuery {
-//         ..Default::default()
-//     };
-//     let real_result = mocked
-//         .client
-//         .sync
-//         .answer_pre_checkout_query(&params)
-//         .unwrap();
-//
-//     assert_eq!(mock_result, real_result);
-//     mocked.server.assert();
-// }
+#[test]
+fn answer_pre_checkout_query_success() {
+    let mock_response =
+        fs::read_to_string("src/tests/responses/answer_pre_checkout_query_success.json").unwrap();
+    let mut server = mockito::Server::new();
+    let mocked = Mocked::new(&mut server, "answerPreCheckoutQuery", 200, &mock_response);
+
+    let mock_result = mocked.result::<bool>().unwrap();
+    let params = AnswerPreCheckoutQuery {
+        ..Default::default()
+    };
+    let real_result = mocked
+        .client
+        .sync
+        .answer_pre_checkout_query(&params)
+        .unwrap();
+
+    assert_eq!(mock_result, real_result);
+    mocked.server.assert();
+}
 
 #[test]
 fn answer_pre_checkout_query_error() {
@@ -4103,25 +4214,26 @@ fn answer_pre_checkout_query_error() {
     }
 }
 
-// fn set_passport_data_errors_success() {
-//     let mock_response =
-//         fs::read_to_string("src/tests/responses/set_passport_data_errors_success.json").unwrap();
-//     let mut server = mockito::Server::new();
-//     let mocked = Mocked::new(&mut server, "setPassportDataErrors", 200, &mock_response);
-//
-//     let mock_result = mocked.result::<bool>().unwrap();
-//     let params = SetPassportDataErrors {
-//         ..Default::default()
-//     };
-//     let real_result = mocked
-//         .client
-//         .sync
-//         .set_passport_data_errors(&params)
-//         .unwrap();
-//
-//     assert_eq!(mock_result, real_result);
-//     mocked.server.assert();
-// }
+#[test]
+fn set_passport_data_errors_success() {
+    let mock_response =
+        fs::read_to_string("src/tests/responses/set_passport_data_errors_success.json").unwrap();
+    let mut server = mockito::Server::new();
+    let mocked = Mocked::new(&mut server, "setPassportDataErrors", 200, &mock_response);
+
+    let mock_result = mocked.result::<bool>().unwrap();
+    let params = SetPassportDataErrors {
+        ..Default::default()
+    };
+    let real_result = mocked
+        .client
+        .sync
+        .set_passport_data_errors(&params)
+        .unwrap();
+
+    assert_eq!(mock_result, real_result);
+    mocked.server.assert();
+}
 
 #[test]
 fn set_passport_data_errors_error() {
@@ -4145,20 +4257,21 @@ fn set_passport_data_errors_error() {
     }
 }
 
-// fn send_game_success() {
-//     let mock_response = fs::read_to_string("src/tests/responses/send_game_success.json").unwrap();
-//     let mut server = mockito::Server::new();
-//     let mocked = Mocked::new(&mut server, "sendGame", 200, &mock_response);
-//
-//     let mock_result = mocked.result::<Message>().unwrap();
-//     let params = SendGame {
-//         ..Default::default()
-//     };
-//     let real_result = mocked.client.sync.send_game(&params).unwrap();
-//
-//     assert_eq!(mock_result, real_result);
-//     mocked.server.assert();
-// }
+// #[test]
+fn send_game_success() {
+    let mock_response = fs::read_to_string("src/tests/responses/send_game_success.json").unwrap();
+    let mut server = mockito::Server::new();
+    let mocked = Mocked::new(&mut server, "sendGame", 200, &mock_response);
+
+    let mock_result = mocked.result::<Message>().unwrap();
+    let params = SendGame {
+        ..Default::default()
+    };
+    let real_result = mocked.client.sync.send_game(&params).unwrap();
+
+    assert_eq!(mock_result, real_result);
+    mocked.server.assert();
+}
 
 #[test]
 fn send_game_error() {
@@ -4176,21 +4289,22 @@ fn send_game_error() {
     }
 }
 
-// fn set_game_score_success() {
-//     let mock_response =
-//         fs::read_to_string("src/tests/responses/set_game_score_success.json").unwrap();
-//     let mut server = mockito::Server::new();
-//     let mocked = Mocked::new(&mut server, "setGameScore", 200, &mock_response);
-//
-//     let mock_result = mocked.result::<MessageResult>().unwrap();
-//     let params = SetGameScore {
-//         ..Default::default()
-//     };
-//     let real_result = mocked.client.sync.set_game_score(&params).unwrap();
-//
-//     assert_eq!(mock_result, real_result);
-//     mocked.server.assert();
-// }
+// #[test]
+fn set_game_score_success() {
+    let mock_response =
+        fs::read_to_string("src/tests/responses/set_game_score_success.json").unwrap();
+    let mut server = mockito::Server::new();
+    let mocked = Mocked::new(&mut server, "setGameScore", 200, &mock_response);
+
+    let mock_result = mocked.result::<MessageResult>().unwrap();
+    let params = SetGameScore {
+        ..Default::default()
+    };
+    let real_result = mocked.client.sync.set_game_score(&params).unwrap();
+
+    assert_eq!(mock_result, real_result);
+    mocked.server.assert();
+}
 
 #[test]
 fn set_game_score_error() {
@@ -4209,21 +4323,22 @@ fn set_game_score_error() {
     }
 }
 
-// fn get_game_high_scores_success() {
-//     let mock_response =
-//         fs::read_to_string("src/tests/responses/get_game_high_scores_success.json").unwrap();
-//     let mut server = mockito::Server::new();
-//     let mocked = Mocked::new(&mut server, "setGameScore", 200, &mock_response);
-//
-//     let mock_result = mocked.result::<GameHighScore>().unwrap();
-//     let params = GetGameHighScores {
-//         ..Default::default()
-//     };
-//     let real_result = mocked.client.sync.get_game_high_scores(&params).unwrap();
-//
-//     assert_eq!(mock_result, real_result);
-//     mocked.server.assert();
-// }
+// #[test]
+fn get_game_high_scores_success() {
+    let mock_response =
+        fs::read_to_string("src/tests/responses/get_game_high_scores_success.json").unwrap();
+    let mut server = mockito::Server::new();
+    let mocked = Mocked::new(&mut server, "setGameScore", 200, &mock_response);
+
+    let mock_result = mocked.result::<GameHighScore>().unwrap();
+    let params = GetGameHighScores {
+        ..Default::default()
+    };
+    let real_result = mocked.client.sync.get_game_high_scores(&params).unwrap();
+
+    assert_eq!(mock_result, real_result);
+    mocked.server.assert();
+}
 
 #[test]
 fn get_game_high_scores_error() {

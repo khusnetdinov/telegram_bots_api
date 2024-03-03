@@ -1,0 +1,29 @@
+{
+  "ok": true,
+  "result": {
+    "message_id": 2770,
+    "from": {
+      "id": 1276618370,
+      "is_bot": true,
+      "first_name": "test_el_bot",
+      "username": "el_mon_test_bot"
+    },
+    "date": 1618737593,
+    "chat": {
+      "id": 275808073,
+      "type": "private",
+      "username": "Ayrat555",
+      "first_name": "Ayrat",
+      "last_name": "Badykov"
+    },
+    "audio": {
+      "file_id": "CQACAgIAAxkDAAIK0mB7-bnnewABfdaFKK4NzVLQ7BvgCwAC6gwAAjkS4Et_njaNR8IUMB8E",
+      "file_unique_id": "AgAD6gwAAjkS4Es",
+      "duration": 123,
+      "title": "Way Back Home",
+      "file_name": "animation.gif",
+      "mime_type": "image/gif",
+      "file_size": 2957092
+    }
+  }
+}

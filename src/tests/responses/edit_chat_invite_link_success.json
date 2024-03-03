@@ -1,0 +1,15 @@
+{
+  "ok": true,
+  "result": {
+    "invite_link": "https://t.me/joinchat/O458bA8hQ0MzNmQy",
+    "creator": {
+      "id": 1276618370,
+      "is_bot": true,
+      "first_name": "test_el_bot",
+      "username": "el_mon_test_bot"
+    },
+    "creates_join_request": false,
+    "is_primary": false,
+    "is_revoked": false
+  }
+}

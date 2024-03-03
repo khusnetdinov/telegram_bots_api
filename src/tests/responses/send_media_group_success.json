@@ -1,0 +1,83 @@
+{
+  "ok": true,
+  "result": [
+    {
+      "message_id": 510,
+      "from": {
+        "id": 1276618370,
+        "is_bot": true,
+        "first_name": "test_el_bot",
+        "username": "el_mon_test_bot"
+      },
+      "date": 1619267462,
+      "chat": {
+        "id": -1001368460856,
+        "type": "supergroup",
+        "title": "Frankenstein"
+      },
+      "media_group_id": "12954139699368426",
+      "photo": [
+        {
+          "file_id": "AgACAgIAAx0EUZEOOAACAf5ghA-GtOaBIP2NOmtXdze-Un7PGgAC_q8xG0cfEUgpwpFo17XTfWTS5p8uAAMBAAMCAANtAANYQgACHwQ",
+          "file_unique_id": "AQADZNLmny4AA1hCAAI",
+          "width": 320,
+          "height": 320,
+          "file_size": 19162
+        },
+        {
+          "file_id": "AgACAgIAAx0EUZEOOAACAf5ghA-GtOaBIP2NOmtXdze-Un7PGgAC_q8xG0cfEUgpwpFo17XTfWTS5p8uAAMBAAMCAAN4AANZQgACHwQ",
+          "file_unique_id": "AQADZNLmny4AA1lCAAI",
+          "width": 800,
+          "height": 800,
+          "file_size": 65697
+        },
+        {
+          "file_id": "AgACAgIAAx0EUZEOOAACAf5ghA-GtOaBIP2NOmtXdze-Un7PGgAC_q8xG0cfEUgpwpFo17XTfWTS5p8uAAMBAAMCAAN5AANaQgACHwQ",
+          "file_unique_id": "AQADZNLmny4AA1pCAAI",
+          "width": 1146,
+          "height": 1146,
+          "file_size": 101324
+        }
+      ]
+    },
+    {
+      "message_id": 511,
+      "from": {
+        "id": 1276618370,
+        "is_bot": true,
+        "first_name": "test_el_bot",
+        "username": "el_mon_test_bot"
+      },
+      "date": 1619267462,
+      "chat": {
+        "id": -1001368460856,
+        "type": "supergroup",
+        "title": "Frankenstein"
+      },
+      "media_group_id": "12954139699368426",
+      "photo": [
+        {
+          "file_id": "AgACAgIAAx0EUZEOOAACAf9ghA-GeFo0B7v78UyXoOD9drjEGgAC_q8xG0cfEUgpwpFo17XTfWTS5p8uAAMBAAMCAANtAANYQgACHwQ",
+          "file_unique_id": "AQADZNLmny4AA1hCAAI",
+          "width": 320,
+          "height": 320,
+          "file_size": 19162
+        },
+        {
+          "file_id": "AgACAgIAAx0EUZEOOAACAf9ghA-GeFo0B7v78UyXoOD9drjEGgAC_q8xG0cfEUgpwpFo17XTfWTS5p8uAAMBAAMCAAN4AANZQgACHwQ",
+          "file_unique_id": "AQADZNLmny4AA1lCAAI",
+          "width": 800,
+          "height": 800,
+          "file_size": 65697
+        },
+        {
+          "file_id": "AgACAgIAAx0EUZEOOAACAf9ghA-GeFo0B7v78UyXoOD9drjEGgAC_q8xG0cfEUgpwpFo17XTfWTS5p8uAAMBAAMCAAN5AANaQgACHwQ",
+          "file_unique_id": "AQADZNLmny4AA1pCAAI",
+          "width": 1146,
+          "height": 1146,
+          "file_size": 101324
+        }
+      ]
+    }
+  ]
+}

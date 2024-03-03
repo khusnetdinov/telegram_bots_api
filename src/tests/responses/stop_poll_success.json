@@ -1,0 +1,22 @@
+{
+  "ok": true,
+  "result": {
+    "id": "5195109123171024927",
+    "question": "are you?",
+    "options": [
+      {
+        "text": "1",
+        "voter_count": 1
+      },
+      {
+        "text": "2",
+        "voter_count": 0
+      }
+    ],
+    "total_voter_count": 1,
+    "is_closed": true,
+    "is_anonymous": true,
+    "type": "regular",
+    "allows_multiple_answers": false
+  }
+}

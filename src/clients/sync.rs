@@ -200,11 +200,22 @@ impl Responder for Sync {
         response: Result<Response, reqwest::Error>,
     ) -> Result<T, Error> {
         match response {
+            // Ok(response) => match response.status().as_u16() {
+            //     200 => self.decode::<T>(response),
+            //     _ => Err(Error::Response(ResponseError::new(
+            //         &response.text().unwrap(),
+            //     ))),
+            // },
             Ok(response) => match response.status().as_u16() {
                 200 => self.decode::<T>(response),
-                _ => Err(Error::Response(ResponseError::new(
+                400 | 401 | 429 => Err(Error::Response(ResponseError::new(
                     &response.text().unwrap(),
                 ))),
+                _ => {
+                    dbg!(&response);
+
+                    Err(Error::Unexpected("".to_string()))
+                }
             },
             Err(error) => Err(Error::Request(error)),
         }
@@ -288,8 +299,8 @@ impl Requests for Sync {
         self.respond_with::<Message>(self.request_for("sendVideoNote").json(params).send())
     }
 
-    fn send_media_group(&self, params: &SendMediaGroup) -> Result<Message, Error> {
-        self.respond_with::<Message>(self.request_for("sendMediaGroup").json(params).send())
+    fn send_media_group(&self, params: &SendMediaGroup) -> Result<Vec<Message>, Error> {
+        self.respond_with::<Vec<Message>>(self.request_for("sendMediaGroup").json(params).send())
     }
 
     fn send_location(&self, params: &SendLocation) -> Result<Message, Error> {

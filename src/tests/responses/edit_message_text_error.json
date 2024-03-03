@@ -1,5 +1,22 @@
 {
-  "ok": false,
-  "error_code": 400,
-  "description": "Bad Request: message text is empty"
+  "ok": true,
+  "result": {
+    "message_id": 2782,
+    "from": {
+      "id": 1276618370,
+      "is_bot": true,
+      "first_name": "test_el_bot",
+      "username": "el_mon_test_bot"
+    },
+    "date": 1619158127,
+    "chat": {
+      "id": 275808073,
+      "type": "private",
+      "username": "Ayrat555",
+      "first_name": "Ayrat",
+      "last_name": "Badykov"
+    },
+    "edit_date": 1619158446,
+    "text": "Hi!!"
+  }
 }

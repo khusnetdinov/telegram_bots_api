@@ -1,0 +1,24 @@
+{
+  "ok": true,
+  "result": {
+    "message_id": 2750,
+    "from": {
+      "id": 1276618370,
+      "is_bot": true,
+      "first_name": "test_el_bot",
+      "username": "el_mon_test_bot"
+    },
+    "date": 1618382060,
+    "chat": {
+      "id": 275808073,
+      "type": "private",
+      "username": "Ayrat555",
+      "first_name": "Ayrat",
+      "last_name": "Badykov"
+    },
+    "location": {
+      "longitude": 6.949981,
+      "latitude": 49.700002
+    }
+  }
+}

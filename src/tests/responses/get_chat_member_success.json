@@ -1,0 +1,15 @@
+{
+  "ok": true,
+  "result": {
+    "status": "creator",
+    "user": {
+      "id": 275808073,
+      "is_bot": false,
+      "first_name": "Ayrat",
+      "last_name": "Badykov",
+      "username": "Ayrat555",
+      "language_code": "en"
+    },
+    "is_anonymous": false
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "ok": true,
+  "result": {
+    "message_id": 513,
+    "from": {
+      "id": 1276618370,
+      "is_bot": true,
+      "first_name": "test_el_bot",
+      "username": "el_mon_test_bot"
+    },
+    "date": 1619336672,
+    "chat": {
+      "id": -1001368460856,
+      "type": "supergroup",
+      "title": "Frankenstein"
+    },
+    "edit_date": 1619336788,
+    "photo": [
+      {
+        "file_id": "AgACAgIAAx0EUZEOOAACAgFghR5URaBN41jx7VNgLPi29xmfQgAC_q8xG0cfEUgpwpFo17XTfWTS5p8uAAMBAAMCAANtAANYQgACHwQ",
+        "file_unique_id": "AQADZNLmny4AA1hCAAI",
+        "width": 320,
+        "height": 320,
+        "file_size": 19162
+      },
+      {
+        "file_id": "AgACAgIAAx0EUZEOOAACAgFghR5URaBN41jx7VNgLPi29xmfQgAC_q8xG0cfEUgpwpFo17XTfWTS5p8uAAMBAAMCAAN4AANZQgACHwQ",
+        "file_unique_id": "AQADZNLmny4AA1lCAAI",
+        "width": 800,
+        "height": 800,
+        "file_size": 65697
+      },
+      {
+        "file_id": "AgACAgIAAx0EUZEOOAACAgFghR5URaBN41jx7VNgLPi29xmfQgAC_q8xG0cfEUgpwpFo17XTfWTS5p8uAAMBAAMCAAN5AANaQgACHwQ",
+        "file_unique_id": "AQADZNLmny4AA1pCAAI",
+        "width": 1146,
+        "height": 1146,
+        "file_size": 101324
+      }
+    ]
+  }
+}

@@ -219,7 +219,7 @@ pub trait Requests {
 
     /// https://core.telegram.org/bots/api#sendmediagroup
     /// Use this method to send a group of photos, videos, documents or audios as an album. Documents and audio files can be only grouped in an album with messages of the same type. On success, an array of Messages that were sent is returned.
-    fn send_media_group(&self, params: &SendMediaGroup) -> Result<Message, Error>;
+    fn send_media_group(&self, params: &SendMediaGroup) -> Result<Vec<Message>, Error>;
 
     /// https://core.telegram.org/bots/api#sendlocation
     /// Use this method to send point on the map. On success, the sent Message is returned.
