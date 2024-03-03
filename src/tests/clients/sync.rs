@@ -2220,7 +2220,7 @@ fn get_forum_topic_icon_stickers_success() {
     mocked.server.assert();
 }
 
-// #[test]
+#[test]
 fn create_forum_topic_success() {
     let mock_response =
         fs::read_to_string("src/tests/responses/create_forum_topic_success.json").unwrap();
@@ -2758,7 +2758,7 @@ fn answer_callback_query_error() {
     }
 }
 
-// #[test]
+#[test]
 fn get_user_chat_boosts_success() {
     let mock_response =
         fs::read_to_string("src/tests/responses/get_user_chat_boosts_success.json").unwrap();
@@ -3053,7 +3053,7 @@ fn get_my_default_administrator_rights_success() {
     mocked.server.assert();
 }
 
-// #[test]
+#[test]
 fn edit_message_text_success() {
     let mock_response =
         fs::read_to_string("src/tests/responses/edit_message_text_success.json").unwrap();
