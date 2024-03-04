@@ -2,8 +2,8 @@ use crate::api::types::input_sticker::InputSticker;
 use serde::Serialize;
 
 /// https://core.telegram.org/bots/api#createnewstickerset
-#[derive(Debug, Serialize)]
-struct CreateNewStickerSet {
+#[derive(Debug, Serialize, Default)]
+pub struct CreateNewStickerSet {
     pub user_id: i64,
     pub name: String,
     pub title: String,

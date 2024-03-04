@@ -8,6 +8,6 @@ use serde::{Deserialize, Serialize};
 /// ReactionTypeCustomEmoji
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub enum ReactionType {
-    ReactionTypeEmoji(ReactionTypeEmoji),
-    ReactionTypeCustomEmoji(ReactionTypeCustomEmoji),
+    Emoji(ReactionTypeEmoji),
+    CustomEmoji(ReactionTypeCustomEmoji),
 }

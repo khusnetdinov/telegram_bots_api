@@ -5,7 +5,7 @@ use serde::Serialize;
 
 /// https://core.telegram.org/bots/api#senddice
 /// Use this method to send an animated emoji that will display a random value. On success, the sent Message is returned.
-#[derive(Debug, Serialize)]
+#[derive(Debug, Serialize, Default)]
 pub struct SendDice {
     pub chat_id: ChatUId,
     #[serde(skip_serializing_if = "Option::is_none")]

@@ -1,13 +1,10 @@
 use std::error::Error;
-use std::fs;
-use telegram::api::responses::result::ResponseResult;
-use telegram::api::types::update::Update;
+use telegram::api::requests::sync::Requests;
+use telegram::Client;
 
 fn main() -> Result<(), Box<dyn Error>> {
-    let mock_response = fs::read_to_string("src/tests/responses/get_updates_success.json").unwrap();
-    let mock_struct = serde_json::from_str::<ResponseResult<Vec<Update>>>(&mock_response).unwrap();
-
-    println!("{:#?}", mock_struct);
+    let request_error = Client::new().sync.get_me().unwrap_err();
+    println!("{:#?}", request_error);
 
     Ok(())
 }

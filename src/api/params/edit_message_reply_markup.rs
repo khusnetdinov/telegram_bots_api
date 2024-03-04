@@ -4,7 +4,7 @@ use serde::Serialize;
 
 /// https://core.telegram.org/bots/api#editmessagereplymarkup
 /// Use this method to edit only the reply markup of messages. On success, if the edited message is not an inline message, the edited Message is returned, otherwise True is returned.
-#[derive(Debug, Serialize)]
+#[derive(Debug, Serialize, Default)]
 pub struct EditMessageReplyMarkup {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub chat_id: Option<ChatUId>,

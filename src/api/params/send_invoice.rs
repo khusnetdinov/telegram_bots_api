@@ -6,7 +6,7 @@ use serde::Serialize;
 
 /// https://core.telegram.org/bots/api#sendinvoice
 /// Use this method to send invoices. On success, the sent Message is returned.
-#[derive(Debug, Serialize)]
+#[derive(Debug, Serialize, Default)]
 pub struct SendInvoice {
     pub chat_id: ChatUId,
     pub title: String,

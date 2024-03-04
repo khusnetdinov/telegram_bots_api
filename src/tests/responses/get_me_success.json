@@ -3,8 +3,8 @@
   "result": {
     "id": 6591790550,
     "is_bot": true,
-    "first_name": "development",
-    "username": "development_bot",
+    "first_name": "FirstName",
+    "username": "username",
     "can_join_groups": true,
     "can_read_all_group_messages": false,
     "supports_inline_queries": false

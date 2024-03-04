@@ -4,7 +4,7 @@ use serde::{Deserialize, Serialize};
 
 /// https://core.telegram.org/bots/api#inputmediavideo
 /// Represents a video to be sent.
-#[derive(Debug, Serialize, Deserialize, PartialEq)]
+#[derive(Debug, Serialize, Deserialize, Default, PartialEq)]
 pub struct InputMediaVideo {
     #[serde(rename(serialize = "type", deserialize = "type"))]
     pub kind: String,

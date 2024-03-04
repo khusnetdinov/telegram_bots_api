@@ -3,7 +3,7 @@ use serde::Serialize;
 
 /// https://core.telegram.org/bots/api#editforumtopic
 /// Use this method to edit name and icon of a topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have can_manage_topics administrator rights, unless it is the creator of the topic. Returns True on success.
-#[derive(Debug, Serialize)]
+#[derive(Debug, Serialize, Default)]
 pub struct EditForumTopic {
     pub chat_id: ChatUId,
     pub message_thread_id: i64,

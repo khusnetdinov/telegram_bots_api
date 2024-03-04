@@ -4,7 +4,7 @@ use serde::Serialize;
 
 /// https://core.telegram.org/bots/api#setchatpermissions
 /// Use this method to set default chat permissions for all members. The bot must be an administrator in the group or a supergroup for this to work and must have the can_restrict_members administrator rights. Returns True on success.
-#[derive(Debug, Serialize)]
+#[derive(Debug, Serialize, Default)]
 pub struct SetChatPermissions {
     pub chat_id: ChatUId,
     pub permissions: ChatPermissions,

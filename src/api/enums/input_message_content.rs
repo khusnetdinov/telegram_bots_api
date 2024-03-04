@@ -20,3 +20,11 @@ pub enum InputMessageContent {
     InputContactMessageContent(InputContactMessageContent),
     InputInvoiceMessageContent(InputInvoiceMessageContent),
 }
+
+impl Default for InputMessageContent {
+    fn default() -> Self {
+        Self::InputTextMessageContent(InputTextMessageContent {
+            ..Default::default()
+        })
+    }
+}

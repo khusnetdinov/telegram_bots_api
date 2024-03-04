@@ -15,11 +15,12 @@ use serde::{Deserialize, Serialize};
 /// ChatMemberLeft
 /// ChatMemberBanned
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
+#[serde(untagged)]
 pub enum ChatMember {
-    ChatMemberOwner(ChatMemberOwner),
-    ChatMemberAdministrator(ChatMemberAdministrator),
-    ChatMemberMember(ChatMemberMember),
-    ChatMemberRestricted(ChatMemberRestricted),
-    ChatMemberLeft(ChatMemberLeft),
-    ChatMemberBanned(ChatMemberBanned),
+    Owner(ChatMemberOwner),
+    Administrator(ChatMemberAdministrator),
+    Member(ChatMemberMember),
+    Restricted(ChatMemberRestricted),
+    Left(ChatMemberLeft),
+    Banned(ChatMemberBanned),
 }

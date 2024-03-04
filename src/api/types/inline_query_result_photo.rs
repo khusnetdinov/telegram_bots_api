@@ -5,7 +5,7 @@ use serde::{Deserialize, Serialize};
 
 /// https://core.telegram.org/bots/api#inlinequeryresultphoto
 /// Represents a link to a photo. By default, this photo will be sent by the user with optional caption. Alternatively, you can use input_message_content to send a message with the specified content instead of the photo.
-#[derive(Debug, Serialize, Deserialize, PartialEq)]
+#[derive(Debug, Serialize, Deserialize, Default, PartialEq)]
 pub struct InlineQueryResultPhoto {
     #[serde(rename(serialize = "type", deserialize = "type"))]
     pub kind: String,

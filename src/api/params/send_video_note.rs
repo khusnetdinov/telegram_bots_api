@@ -6,7 +6,7 @@ use serde::Serialize;
 
 /// https://core.telegram.org/bots/api#sendvideonote
 /// As of v.4.0, Telegram clients support rounded square MPEG4 videos of up to 1 minute long. Use this method to send video messages. On success, the sent Message is returned.
-#[derive(Debug, Serialize)]
+#[derive(Debug, Serialize, Default)]
 pub struct SendVideoNote {
     pub chat_id: ChatUId,
     pub video_note: FileInput,

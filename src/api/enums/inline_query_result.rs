@@ -44,24 +44,32 @@ use serde::{Deserialize, Serialize};
 /// InlineQueryResultVoice
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub enum InlineQueryResult {
-    InlineQueryResultCachedAudio(InlineQueryResultCachedAudio),
-    InlineQueryResultCachedDocument(InlineQueryResultCachedDocument),
-    InlineQueryResultCachedGif(InlineQueryResultCachedGif),
-    InlineQueryResultCachedMpeg4Gif(InlineQueryResultCachedMpeg4Gif),
-    InlineQueryResultCachedPhoto(InlineQueryResultCachedPhoto),
-    InlineQueryResultCachedSticker(InlineQueryResultCachedSticker),
-    InlineQueryResultCachedVideo(InlineQueryResultCachedVideo),
-    InlineQueryResultCachedVoice(InlineQueryResultCachedVoice),
-    InlineQueryResultArticle(InlineQueryResultArticle),
-    InlineQueryResultAudio(InlineQueryResultAudio),
-    InlineQueryResultContact(InlineQueryResultContact),
-    InlineQueryResultGame(InlineQueryResultGame),
-    InlineQueryResultDocument(InlineQueryResultDocument),
-    InlineQueryResultGif(InlineQueryResultGif),
-    InlineQueryResultLocation(InlineQueryResultLocation),
-    InlineQueryResultMpeg4Gif(InlineQueryResultMpeg4Gif),
-    InlineQueryResultPhoto(InlineQueryResultPhoto),
-    InlineQueryResultVenue(InlineQueryResultVenue),
-    InlineQueryResultVideo(InlineQueryResultVideo),
-    InlineQueryResultVoice(InlineQueryResultVoice),
+    CachedAudio(InlineQueryResultCachedAudio),
+    CachedDocument(InlineQueryResultCachedDocument),
+    CachedGif(InlineQueryResultCachedGif),
+    CachedMpeg4Gif(InlineQueryResultCachedMpeg4Gif),
+    CachedPhoto(InlineQueryResultCachedPhoto),
+    CachedSticker(InlineQueryResultCachedSticker),
+    CachedVideo(InlineQueryResultCachedVideo),
+    CachedVoice(InlineQueryResultCachedVoice),
+    Article(InlineQueryResultArticle),
+    Audio(InlineQueryResultAudio),
+    Contact(InlineQueryResultContact),
+    Game(InlineQueryResultGame),
+    Document(InlineQueryResultDocument),
+    Gif(InlineQueryResultGif),
+    Location(InlineQueryResultLocation),
+    Mpeg4Gif(InlineQueryResultMpeg4Gif),
+    Photo(InlineQueryResultPhoto),
+    Venue(InlineQueryResultVenue),
+    Video(InlineQueryResultVideo),
+    Voice(InlineQueryResultVoice),
+}
+
+impl Default for InlineQueryResult {
+    fn default() -> Self {
+        Self::CachedAudio(InlineQueryResultCachedAudio {
+            ..Default::default()
+        })
+    }
 }

@@ -1,0 +1,45 @@
+{
+  "ok": true,
+  "result": {
+    "message_id": 2784,
+    "from": {
+      "id": 1276618370,
+      "is_bot": true,
+      "first_name": "FirstName",
+      "username": "username"
+    },
+    "date": 1619159414,
+    "chat": {
+      "id": 275808073,
+      "type": "private",
+      "username": "username",
+      "first_name": "FirstName",
+      "last_name": "LastName"
+    },
+    "edit_date": 1619159461,
+    "photo": [
+      {
+        "file_id": "AgACAgIAAxkDAAIK4GCCaaWDayYgzQ-BykVy8LYkW0wzAAL-rzEbRx8RSCnCkWjXtdN9ZNLmny4AAwEAAwIAA20AA1hCAAIfBA",
+        "file_unique_id": "AQADZNLmny4AA1hCAAI",
+        "width": 320,
+        "height": 320,
+        "file_size": 19162
+      },
+      {
+        "file_id": "AgACAgIAAxkDAAIK4GCCaaWDayYgzQ-BykVy8LYkW0wzAAL-rzEbRx8RSCnCkWjXtdN9ZNLmny4AAwEAAwIAA3gAA1lCAAIfBA",
+        "file_unique_id": "AQADZNLmny4AA1lCAAI",
+        "width": 800,
+        "height": 800,
+        "file_size": 65697
+      },
+      {
+        "file_id": "AgACAgIAAxkDAAIK4GCCaaWDayYgzQ-BykVy8LYkW0wzAAL-rzEbRx8RSCnCkWjXtdN9ZNLmny4AAwEAAwIAA3kAA1pCAAIfBA",
+        "file_unique_id": "AQADZNLmny4AA1pCAAI",
+        "width": 1146,
+        "height": 1146,
+        "file_size": 101324
+      }
+    ],
+    "caption": "Caption"
+  }
+}

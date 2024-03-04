@@ -1,0 +1,22 @@
+{
+  "ok": true,
+  "result": {
+    "message_id": 2782,
+    "from": {
+      "id": 1276618370,
+      "is_bot": true,
+      "first_name": "FirstName",
+      "username": "username"
+    },
+    "date": 1619158127,
+    "chat": {
+      "id": 275808073,
+      "type": "private",
+      "username": "username",
+      "first_name": "FirstName",
+      "last_name": "LastName"
+    },
+    "edit_date": 1619158446,
+    "text": "Hi!!"
+  }
+}

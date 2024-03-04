@@ -6,5 +6,5 @@ use serde::{Deserialize, Serialize};
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct UserProfilePhotos {
     pub total_count: i64,
-    pub photos: Vec<PhotoSize>,
+    pub photos: Vec<Vec<PhotoSize>>,
 }
