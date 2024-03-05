@@ -6,13 +6,13 @@ use crate::errors::Error;
 use mockito::{Mock, ServerGuard};
 use serde::de::DeserializeOwned;
 
-pub struct Mocked {
+pub struct MockedSync {
     pub client: Sync,
     pub server: Mock,
     pub response: String,
 }
 
-impl Mocked {
+impl MockedSync {
     fn mock_api(server: &ServerGuard, token: &str) -> Sync {
         let config = Config {
             url: server.url(),

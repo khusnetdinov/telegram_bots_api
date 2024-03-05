@@ -193,22 +193,12 @@ impl Sync {
         response: Result<Response, reqwest::Error>,
     ) -> Result<T, Error> {
         match response {
-            // Ok(response) => match response.status().as_u16() {
-            //     200 => self.decode::<T>(response),
-            //     _ => Err(Error::Response(ResponseError::new(
-            //         &response.text().unwrap(),
-            //     ))),
-            // },
             Ok(response) => match response.status().as_u16() {
                 200 => self.decode::<T>(response),
                 400..=429 => Err(Error::Response(ResponseError::new(
                     &response.text().unwrap(),
                 ))),
-                _ => {
-                    dbg!(&response);
-
-                    Err(Error::Unexpected("".to_string()))
-                }
+                _ => Err(Error::Unexpected("".to_string())),
             },
             Err(error) => Err(Error::Request(error)),
         }

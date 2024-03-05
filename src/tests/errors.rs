@@ -10,7 +10,7 @@ fn request_error() {
 }
 
 #[test]
-fn response_error() {
+fn response_sync_error() {
     let config = Config {
         ..Default::default()
     };
