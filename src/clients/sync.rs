@@ -140,7 +140,6 @@ use crate::api::types::user::User;
 use crate::api::types::user_chat_boosts::UserChatBoosts;
 use crate::api::types::user_profile_photos::UserProfilePhotos;
 use crate::api::types::webhook_info::WebhookInfo;
-use crate::clients::traits::{Decoder, Requester, Responder};
 use crate::config::Config;
 use crate::errors::Error;
 use reqwest::blocking::{ClientBuilder, RequestBuilder, Response};
@@ -157,7 +156,67 @@ pub struct Sync {
 }
 
 impl Sync {
-    pub fn new(config: &Config) -> Self {
+    pub fn new() -> Self {
+        let config = Config::new();
+        let offset = config.updates_offset;
+        let limit = config.updates_limit;
+        let timeout = config.updates_timeout;
+        let url = config.build_url();
+        let client = ClientBuilder::new()
+            .timeout(Duration::from_secs(config.timeout))
+            .connect_timeout(Duration::from_secs(config.connect_timeout))
+            .build()
+            .unwrap();
+
+        Self {
+            client,
+            offset,
+            limit,
+            timeout,
+            url,
+        }
+    }
+
+    fn decode<T: DeserializeOwned>(&self, response: Response) -> Result<T, Error> {
+        match serde_json::from_str::<ResponseResult<T>>(&response.text().unwrap()) {
+            Ok(success) => Ok(success.result),
+            Err(error) => Err(Error::Decode(error)),
+        }
+    }
+
+    fn request_for(&self, method: &str) -> RequestBuilder {
+        self.client.post(format!("{}{}", self.url, method))
+    }
+
+    fn respond_with<T: DeserializeOwned>(
+        &self,
+        response: Result<Response, reqwest::Error>,
+    ) -> Result<T, Error> {
+        match response {
+            // Ok(response) => match response.status().as_u16() {
+            //     200 => self.decode::<T>(response),
+            //     _ => Err(Error::Response(ResponseError::new(
+            //         &response.text().unwrap(),
+            //     ))),
+            // },
+            Ok(response) => match response.status().as_u16() {
+                200 => self.decode::<T>(response),
+                400..=429 => Err(Error::Response(ResponseError::new(
+                    &response.text().unwrap(),
+                ))),
+                _ => {
+                    dbg!(&response);
+
+                    Err(Error::Unexpected("".to_string()))
+                }
+            },
+            Err(error) => Err(Error::Request(error)),
+        }
+    }
+}
+
+impl From<&Config> for Sync {
+    fn from(config: &Config) -> Self {
         let client = ClientBuilder::new()
             .timeout(Duration::from_secs(config.timeout))
             .connect_timeout(Duration::from_secs(config.connect_timeout))
@@ -175,49 +234,6 @@ impl Sync {
             limit,
             timeout,
             url,
-        }
-    }
-}
-
-impl Decoder for Sync {
-    fn decode<T: DeserializeOwned>(&self, response: Response) -> Result<T, Error> {
-        match serde_json::from_str::<ResponseResult<T>>(&response.text().unwrap()) {
-            Ok(success) => Ok(success.result),
-            Err(error) => Err(Error::Decode(error)),
-        }
-    }
-}
-
-impl Requester for Sync {
-    fn request_for(&self, method: &str) -> RequestBuilder {
-        self.client.post(format!("{}{}", self.url, method))
-    }
-}
-
-impl Responder for Sync {
-    fn respond_with<T: DeserializeOwned>(
-        &self,
-        response: Result<Response, reqwest::Error>,
-    ) -> Result<T, Error> {
-        match response {
-            // Ok(response) => match response.status().as_u16() {
-            //     200 => self.decode::<T>(response),
-            //     _ => Err(Error::Response(ResponseError::new(
-            //         &response.text().unwrap(),
-            //     ))),
-            // },
-            Ok(response) => match response.status().as_u16() {
-                200 => self.decode::<T>(response),
-                400 | 401 | 429 => Err(Error::Response(ResponseError::new(
-                    &response.text().unwrap(),
-                ))),
-                _ => {
-                    dbg!(&response);
-
-                    Err(Error::Unexpected("".to_string()))
-                }
-            },
-            Err(error) => Err(Error::Request(error)),
         }
     }
 }

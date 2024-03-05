@@ -1,32 +1,26 @@
 use crate::api::responses::error::ResponseError;
 use crate::api::responses::result::ResponseResult;
-use crate::clients::r#async::Async;
 use crate::clients::sync::Sync;
 use crate::config::Config;
 use crate::errors::Error;
-use crate::Client;
 use mockito::{Mock, ServerGuard};
 use serde::de::DeserializeOwned;
 
 pub struct Mocked {
-    pub client: Client,
+    pub client: Sync,
     pub server: Mock,
     pub response: String,
 }
 
 impl Mocked {
-    fn mock_api(server: &ServerGuard, token: &str) -> Client {
+    fn mock_api(server: &ServerGuard, token: &str) -> Sync {
         let config = Config {
             url: server.url(),
             token: token.to_string(),
             ..Default::default()
         };
 
-        Client {
-            sync: Sync::new(&config),
-            r#async: Async::new(&config),
-            config,
-        }
+        Sync::from(&config)
     }
 
     fn mock_server(

@@ -1,6 +1,4 @@
 #[cfg(test)]
-mod client;
-#[cfg(test)]
 mod clients;
 #[cfg(test)]
 mod config;

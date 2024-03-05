@@ -157,7 +157,7 @@ fn get_updates_success() {
         timeout: 0,
         ..Default::default()
     };
-    let real_result = mocked.client.sync.get_updates(&params).unwrap();
+    let real_result = mocked.client.get_updates(&params).unwrap();
 
     assert_eq!(mock_result, real_result);
     mocked.server.assert();
@@ -176,7 +176,7 @@ fn get_updates_error() {
         timeout: 0,
         ..Default::default()
     };
-    if let Error::Response(real_error) = mocked.client.sync.get_updates(&params).unwrap_err() {
+    if let Error::Response(real_error) = mocked.client.get_updates(&params).unwrap_err() {
         assert_eq!(mock_error, real_error);
         mocked.server.assert();
     }
@@ -193,7 +193,7 @@ fn set_webhook_success() {
         url: String::from("https:78b3-91-202-26-13.ngrok-free.app"),
         ..Default::default()
     };
-    let real_result = mocked.client.sync.set_webhook(&params).unwrap();
+    let real_result = mocked.client.set_webhook(&params).unwrap();
 
     assert_eq!(mock_result, real_result);
     mocked.server.assert();
@@ -210,7 +210,7 @@ fn set_webhook_error() {
         url: String::from("https:78b3-91-202-26-13.ngrok-free.app"),
         ..Default::default()
     };
-    if let Error::Response(real_error) = mocked.client.sync.set_webhook(&params).unwrap_err() {
+    if let Error::Response(real_error) = mocked.client.set_webhook(&params).unwrap_err() {
         assert_eq!(mock_error, real_error);
         mocked.server.assert();
     }
@@ -227,7 +227,7 @@ fn delete_webhook_success() {
     let params = DeleteWebhook {
         ..Default::default()
     };
-    let real_result = mocked.client.sync.delete_webhook(&params).unwrap();
+    let real_result = mocked.client.delete_webhook(&params).unwrap();
 
     assert_eq!(mock_result, real_result);
     mocked.server.assert();
@@ -244,7 +244,7 @@ fn delete_webhook_error() {
     let params = DeleteWebhook {
         ..Default::default()
     };
-    if let Error::Response(real_error) = mocked.client.sync.delete_webhook(&params).unwrap_err() {
+    if let Error::Response(real_error) = mocked.client.delete_webhook(&params).unwrap_err() {
         assert_eq!(mock_error, real_error);
         mocked.server.assert();
     }
@@ -258,7 +258,7 @@ fn get_webhook_info_success() {
     let mocked = Mocked::new(&mut server, "getWebhookInfo", 200, &mock_response);
 
     let mock_result = mocked.result::<WebhookInfo>().unwrap();
-    let real_result = mocked.client.sync.get_webhook_info().unwrap();
+    let real_result = mocked.client.get_webhook_info().unwrap();
 
     assert_eq!(mock_result, real_result);
     mocked.server.assert();
@@ -272,7 +272,7 @@ fn get_webhook_info_error() {
     let mocked = Mocked::new(&mut server, "getWebhookInfo", 400, &mock_response);
 
     let mock_error = mocked.result_error().unwrap();
-    if let Error::Response(real_error) = mocked.client.sync.get_webhook_info().unwrap_err() {
+    if let Error::Response(real_error) = mocked.client.get_webhook_info().unwrap_err() {
         assert_eq!(mock_error, real_error);
         mocked.server.assert();
     }
@@ -285,7 +285,7 @@ fn get_me_success() {
     let mocked = Mocked::new(&mut server, "getMe", 200, &mock_response);
 
     let mock_result = mocked.result::<User>().unwrap();
-    let real_result = mocked.client.sync.get_me().unwrap();
+    let real_result = mocked.client.get_me().unwrap();
 
     assert_eq!(mock_result, real_result);
     mocked.server.assert();
@@ -298,7 +298,7 @@ fn get_me_error() {
     let mocked = Mocked::new(&mut server, "getMe", 401, &mock_response);
 
     let mock_error = mocked.result_error().unwrap();
-    if let Error::Response(real_error) = mocked.client.sync.get_me().unwrap_err() {
+    if let Error::Response(real_error) = mocked.client.get_me().unwrap_err() {
         assert_eq!(mock_error, real_error);
         mocked.server.assert();
     }
@@ -311,7 +311,7 @@ fn log_out_success() {
     let mocked = Mocked::new(&mut server, "logOut", 200, &mock_response);
 
     let mock_result = mocked.result::<bool>().unwrap();
-    let real_result = mocked.client.sync.log_out().unwrap();
+    let real_result = mocked.client.log_out().unwrap();
 
     assert_eq!(mock_result, real_result);
     mocked.server.assert();
@@ -324,7 +324,7 @@ fn log_out_error() {
     let mocked = Mocked::new(&mut server, "logOut", 400, &mock_response);
 
     let mock_error = mocked.result_error().unwrap();
-    if let Error::Response(real_error) = mocked.client.sync.log_out().unwrap_err() {
+    if let Error::Response(real_error) = mocked.client.log_out().unwrap_err() {
         assert_eq!(mock_error, real_error);
         mocked.server.assert();
     }
@@ -337,7 +337,7 @@ fn close_success() {
     let mocked = Mocked::new(&mut server, "close", 200, &mock_response);
 
     let mock_result = mocked.result::<bool>().unwrap();
-    let real_result = mocked.client.sync.close().unwrap();
+    let real_result = mocked.client.close().unwrap();
 
     assert_eq!(mock_result, real_result);
     mocked.server.assert();
@@ -350,7 +350,7 @@ fn close_error() {
     let mocked = Mocked::new(&mut server, "close", 400, &mock_response);
 
     let mock_error = mocked.result_error().unwrap();
-    if let Error::Response(real_error) = mocked.client.sync.close().unwrap_err() {
+    if let Error::Response(real_error) = mocked.client.close().unwrap_err() {
         assert_eq!(mock_error, real_error);
         mocked.server.assert();
     }
@@ -369,7 +369,7 @@ fn send_message_success() {
         text: "Hello World".to_string(),
         ..Default::default()
     };
-    let real_result = mocked.client.sync.send_message(&params).unwrap();
+    let real_result = mocked.client.send_message(&params).unwrap();
 
     assert_eq!(mock_result, real_result);
     mocked.server.assert();
@@ -387,7 +387,7 @@ fn send_message_error() {
         text: "Hello World".to_string(),
         ..Default::default()
     };
-    if let Error::Response(real_error) = mocked.client.sync.send_message(&params).unwrap_err() {
+    if let Error::Response(real_error) = mocked.client.send_message(&params).unwrap_err() {
         assert_eq!(mock_error, real_error);
         mocked.server.assert();
     }
@@ -407,7 +407,7 @@ fn forward_message_success() {
         from_chat_id: ChatUId::from(147951145),
         ..Default::default()
     };
-    let real_result = mocked.client.sync.forward_message(&params).unwrap();
+    let real_result = mocked.client.forward_message(&params).unwrap();
 
     assert_eq!(mock_result, real_result);
     mocked.server.assert();
@@ -427,7 +427,7 @@ fn forward_message_error() {
         from_chat_id: ChatUId::from(147951145),
         ..Default::default()
     };
-    if let Error::Response(real_error) = mocked.client.sync.forward_message(&params).unwrap_err() {
+    if let Error::Response(real_error) = mocked.client.forward_message(&params).unwrap_err() {
         assert_eq!(mock_error, real_error);
         mocked.server.assert();
     }
@@ -447,7 +447,7 @@ fn forward_messages_success() {
         from_chat_id: ChatUId::from(147951145),
         ..Default::default()
     };
-    let real_result = mocked.client.sync.forward_messages(&params).unwrap();
+    let real_result = mocked.client.forward_messages(&params).unwrap();
 
     assert_eq!(mock_result, real_result);
     mocked.server.assert();
@@ -467,7 +467,7 @@ fn forward_messages_error() {
         from_chat_id: ChatUId::from(147951145),
         ..Default::default()
     };
-    if let Error::Response(real_error) = mocked.client.sync.forward_messages(&params).unwrap_err() {
+    if let Error::Response(real_error) = mocked.client.forward_messages(&params).unwrap_err() {
         assert_eq!(mock_error, real_error);
         mocked.server.assert();
     }
@@ -487,7 +487,7 @@ fn copy_message_success() {
         from_chat_id: ChatUId::from(147951145),
         ..Default::default()
     };
-    let real_result = mocked.client.sync.copy_message(&params).unwrap();
+    let real_result = mocked.client.copy_message(&params).unwrap();
 
     assert_eq!(mock_result, real_result);
     mocked.server.assert();
@@ -506,7 +506,7 @@ fn copy_message_error() {
         from_chat_id: ChatUId::from(147951145),
         ..Default::default()
     };
-    if let Error::Response(real_error) = mocked.client.sync.copy_message(&params).unwrap_err() {
+    if let Error::Response(real_error) = mocked.client.copy_message(&params).unwrap_err() {
         assert_eq!(mock_error, real_error);
         mocked.server.assert();
     }
@@ -526,7 +526,7 @@ fn copy_messages_success() {
         from_chat_id: ChatUId::from(147951145),
         ..Default::default()
     };
-    let real_result = mocked.client.sync.copy_messages(&params).unwrap();
+    let real_result = mocked.client.copy_messages(&params).unwrap();
 
     assert_eq!(mock_result, real_result);
     mocked.server.assert();
@@ -545,7 +545,7 @@ fn copy_messages_error() {
         from_chat_id: ChatUId::from(147951145),
         ..Default::default()
     };
-    if let Error::Response(real_error) = mocked.client.sync.copy_messages(&params).unwrap_err() {
+    if let Error::Response(real_error) = mocked.client.copy_messages(&params).unwrap_err() {
         assert_eq!(mock_error, real_error);
         mocked.server.assert();
     }
@@ -561,7 +561,7 @@ fn send_photo_success() {
     let params = SendPhoto {
         ..Default::default()
     };
-    let real_result = mocked.client.sync.send_photo(&params).unwrap();
+    let real_result = mocked.client.send_photo(&params).unwrap();
 
     assert_eq!(mock_result, real_result);
     mocked.server.assert();
@@ -579,7 +579,7 @@ fn send_photo_error() {
         photo: FileInput::String(String::from("")),
         ..Default::default()
     };
-    if let Error::Response(real_error) = mocked.client.sync.send_photo(&params).unwrap_err() {
+    if let Error::Response(real_error) = mocked.client.send_photo(&params).unwrap_err() {
         assert_eq!(mock_error, real_error);
         mocked.server.assert();
     }
@@ -595,7 +595,7 @@ fn send_audio_success() {
     let params = SendAudio {
         ..Default::default()
     };
-    let real_result = mocked.client.sync.send_audio(&params).unwrap();
+    let real_result = mocked.client.send_audio(&params).unwrap();
 
     assert_eq!(mock_result, real_result);
     mocked.server.assert();
@@ -613,7 +613,7 @@ fn send_audio_error() {
         audio: FileInput::String(String::from("")),
         ..Default::default()
     };
-    if let Error::Response(real_error) = mocked.client.sync.send_audio(&params).unwrap_err() {
+    if let Error::Response(real_error) = mocked.client.send_audio(&params).unwrap_err() {
         assert_eq!(mock_error, real_error);
         mocked.server.assert();
     }
@@ -630,7 +630,7 @@ fn send_document_success() {
     let params = SendDocument {
         ..Default::default()
     };
-    let real_result = mocked.client.sync.send_document(&params).unwrap();
+    let real_result = mocked.client.send_document(&params).unwrap();
 
     assert_eq!(mock_result, real_result);
     mocked.server.assert();
@@ -648,7 +648,7 @@ fn send_document_error() {
         document: FileInput::String(String::from("")),
         ..Default::default()
     };
-    if let Error::Response(real_error) = mocked.client.sync.send_document(&params).unwrap_err() {
+    if let Error::Response(real_error) = mocked.client.send_document(&params).unwrap_err() {
         assert_eq!(mock_error, real_error);
         mocked.server.assert();
     }
@@ -664,7 +664,7 @@ fn send_video_success() {
     let params = SendVideo {
         ..Default::default()
     };
-    let real_result = mocked.client.sync.send_video(&params).unwrap();
+    let real_result = mocked.client.send_video(&params).unwrap();
 
     assert_eq!(mock_result, real_result);
     mocked.server.assert();
@@ -682,7 +682,7 @@ fn send_video_error() {
         video: FileInput::String(String::from("")),
         ..Default::default()
     };
-    if let Error::Response(real_error) = mocked.client.sync.send_video(&params).unwrap_err() {
+    if let Error::Response(real_error) = mocked.client.send_video(&params).unwrap_err() {
         assert_eq!(mock_error, real_error);
         mocked.server.assert();
     }
@@ -699,7 +699,7 @@ fn send_animation_success() {
     let params = SendAnimation {
         ..Default::default()
     };
-    let real_result = mocked.client.sync.send_animation(&params).unwrap();
+    let real_result = mocked.client.send_animation(&params).unwrap();
 
     assert_eq!(mock_result, real_result);
     mocked.server.assert();
@@ -718,7 +718,7 @@ fn send_animation_error() {
         animation: FileInput::String(String::from("")),
         ..Default::default()
     };
-    if let Error::Response(real_error) = mocked.client.sync.send_animation(&params).unwrap_err() {
+    if let Error::Response(real_error) = mocked.client.send_animation(&params).unwrap_err() {
         assert_eq!(mock_error, real_error);
         mocked.server.assert();
     }
@@ -734,7 +734,7 @@ fn send_voice_success() {
     let params = SendVoice {
         ..Default::default()
     };
-    let real_result = mocked.client.sync.send_voice(&params).unwrap();
+    let real_result = mocked.client.send_voice(&params).unwrap();
 
     assert_eq!(mock_result, real_result);
     mocked.server.assert();
@@ -752,7 +752,7 @@ fn send_voice_error() {
         voice: FileInput::String(String::from("")),
         ..Default::default()
     };
-    if let Error::Response(real_error) = mocked.client.sync.send_voice(&params).unwrap_err() {
+    if let Error::Response(real_error) = mocked.client.send_voice(&params).unwrap_err() {
         assert_eq!(mock_error, real_error);
         mocked.server.assert();
     }
@@ -769,7 +769,7 @@ fn send_video_note_success() {
     let params = SendVideoNote {
         ..Default::default()
     };
-    let real_result = mocked.client.sync.send_video_note(&params).unwrap();
+    let real_result = mocked.client.send_video_note(&params).unwrap();
 
     assert_eq!(mock_result, real_result);
     mocked.server.assert();
@@ -786,7 +786,7 @@ fn send_video_note_error() {
     let params = SendVideoNote {
         ..Default::default()
     };
-    if let Error::Response(real_error) = mocked.client.sync.send_video_note(&params).unwrap_err() {
+    if let Error::Response(real_error) = mocked.client.send_video_note(&params).unwrap_err() {
         assert_eq!(mock_error, real_error);
         mocked.server.assert();
     }
@@ -803,7 +803,7 @@ fn send_media_group_success() {
     let params = SendMediaGroup {
         ..Default::default()
     };
-    let real_result = mocked.client.sync.send_media_group(&params).unwrap();
+    let real_result = mocked.client.send_media_group(&params).unwrap();
 
     assert_eq!(mock_result, real_result);
     mocked.server.assert();
@@ -820,7 +820,7 @@ fn send_media_group_error() {
     let params = SendMediaGroup {
         ..Default::default()
     };
-    if let Error::Response(real_error) = mocked.client.sync.send_media_group(&params).unwrap_err() {
+    if let Error::Response(real_error) = mocked.client.send_media_group(&params).unwrap_err() {
         assert_eq!(mock_error, real_error);
         mocked.server.assert();
     }
@@ -837,7 +837,7 @@ fn send_location_success() {
     let params = SendLocation {
         ..Default::default()
     };
-    let real_result = mocked.client.sync.send_location(&params).unwrap();
+    let real_result = mocked.client.send_location(&params).unwrap();
 
     assert_eq!(mock_result, real_result);
     mocked.server.assert();
@@ -853,7 +853,7 @@ fn send_location_error() {
     let params = SendLocation {
         ..Default::default()
     };
-    if let Error::Response(real_error) = mocked.client.sync.send_location(&params).unwrap_err() {
+    if let Error::Response(real_error) = mocked.client.send_location(&params).unwrap_err() {
         assert_eq!(mock_error, real_error);
         mocked.server.assert();
     }
@@ -869,7 +869,7 @@ fn send_venue_success() {
     let params = SendVenue {
         ..Default::default()
     };
-    let real_result = mocked.client.sync.send_venue(&params).unwrap();
+    let real_result = mocked.client.send_venue(&params).unwrap();
 
     assert_eq!(mock_result, real_result);
     mocked.server.assert();
@@ -885,7 +885,7 @@ fn send_venue_error() {
     let params = SendVenue {
         ..Default::default()
     };
-    if let Error::Response(real_error) = mocked.client.sync.send_venue(&params).unwrap_err() {
+    if let Error::Response(real_error) = mocked.client.send_venue(&params).unwrap_err() {
         assert_eq!(mock_error, real_error);
         mocked.server.assert();
     }
@@ -901,7 +901,7 @@ fn send_contact_success() {
     let params = SendContact {
         ..Default::default()
     };
-    let real_result = mocked.client.sync.send_contact(&params).unwrap();
+    let real_result = mocked.client.send_contact(&params).unwrap();
 
     assert_eq!(mock_result, real_result);
     mocked.server.assert();
@@ -917,7 +917,7 @@ fn send_contact_error() {
     let params = SendContact {
         ..Default::default()
     };
-    if let Error::Response(real_error) = mocked.client.sync.send_contact(&params).unwrap_err() {
+    if let Error::Response(real_error) = mocked.client.send_contact(&params).unwrap_err() {
         assert_eq!(mock_error, real_error);
         mocked.server.assert();
     }
@@ -932,7 +932,7 @@ fn send_poll_success() {
     let params = SendPoll {
         ..Default::default()
     };
-    let real_result = mocked.client.sync.send_poll(&params).unwrap();
+    let real_result = mocked.client.send_poll(&params).unwrap();
 
     assert_eq!(mock_result, real_result);
     mocked.server.assert();
@@ -948,7 +948,7 @@ fn send_poll_error() {
     let params = SendPoll {
         ..Default::default()
     };
-    if let Error::Response(real_error) = mocked.client.sync.send_poll(&params).unwrap_err() {
+    if let Error::Response(real_error) = mocked.client.send_poll(&params).unwrap_err() {
         assert_eq!(mock_error, real_error);
         mocked.server.assert();
     }
@@ -965,7 +965,7 @@ fn send_dice_success() {
         chat_id: ChatUId::from(147951145),
         ..Default::default()
     };
-    let real_result = mocked.client.sync.send_dice(&params).unwrap();
+    let real_result = mocked.client.send_dice(&params).unwrap();
 
     assert_eq!(mock_result, real_result);
     mocked.server.assert();
@@ -982,7 +982,7 @@ fn send_dice_error() {
         chat_id: ChatUId::from(147951145),
         ..Default::default()
     };
-    if let Error::Response(real_error) = mocked.client.sync.send_dice(&params).unwrap_err() {
+    if let Error::Response(real_error) = mocked.client.send_dice(&params).unwrap_err() {
         assert_eq!(mock_error, real_error);
         mocked.server.assert();
     }
@@ -999,7 +999,7 @@ fn send_chat_action_success() {
     let params = SendChatAction {
         ..Default::default()
     };
-    let real_result = mocked.client.sync.send_chat_action(&params).unwrap();
+    let real_result = mocked.client.send_chat_action(&params).unwrap();
 
     assert_eq!(mock_result, real_result);
     mocked.server.assert();
@@ -1016,7 +1016,7 @@ fn send_chat_action_error() {
     let params = SendChatAction {
         ..Default::default()
     };
-    if let Error::Response(real_error) = mocked.client.sync.send_chat_action(&params).unwrap_err() {
+    if let Error::Response(real_error) = mocked.client.send_chat_action(&params).unwrap_err() {
         assert_eq!(mock_error, real_error);
         mocked.server.assert();
     }
@@ -1033,7 +1033,7 @@ fn set_message_reaction_success() {
     let params = SetMessageReaction {
         ..Default::default()
     };
-    let real_result = mocked.client.sync.set_message_reaction(&params).unwrap();
+    let real_result = mocked.client.set_message_reaction(&params).unwrap();
 
     assert_eq!(mock_result, real_result);
     mocked.server.assert();
@@ -1050,12 +1050,7 @@ fn set_message_reaction_error() {
     let params = SetMessageReaction {
         ..Default::default()
     };
-    if let Error::Response(real_error) = mocked
-        .client
-        .sync
-        .set_message_reaction(&params)
-        .unwrap_err()
-    {
+    if let Error::Response(real_error) = mocked.client.set_message_reaction(&params).unwrap_err() {
         assert_eq!(mock_error, real_error);
         mocked.server.assert();
     }
@@ -1072,7 +1067,7 @@ fn get_user_profile_photos_success() {
     let params = GetUserProfilePhotos {
         ..Default::default()
     };
-    let real_result = mocked.client.sync.get_user_profile_photos(&params).unwrap();
+    let real_result = mocked.client.get_user_profile_photos(&params).unwrap();
 
     assert_eq!(mock_result, real_result);
     mocked.server.assert();
@@ -1089,11 +1084,7 @@ fn get_user_profile_photos_error() {
     let params = GetUserProfilePhotos {
         ..Default::default()
     };
-    if let Error::Response(real_error) = mocked
-        .client
-        .sync
-        .get_user_profile_photos(&params)
-        .unwrap_err()
+    if let Error::Response(real_error) = mocked.client.get_user_profile_photos(&params).unwrap_err()
     {
         assert_eq!(mock_error, real_error);
         mocked.server.assert();
@@ -1110,7 +1101,7 @@ fn get_file_success() {
     let params = GetFile {
         ..Default::default()
     };
-    let real_result = mocked.client.sync.get_file(&params).unwrap();
+    let real_result = mocked.client.get_file(&params).unwrap();
 
     assert_eq!(mock_result, real_result);
     mocked.server.assert();
@@ -1126,7 +1117,7 @@ fn get_file_error() {
     let params = GetFile {
         ..Default::default()
     };
-    if let Error::Response(real_error) = mocked.client.sync.get_file(&params).unwrap_err() {
+    if let Error::Response(real_error) = mocked.client.get_file(&params).unwrap_err() {
         assert_eq!(mock_error, real_error);
         mocked.server.assert();
     }
@@ -1143,7 +1134,7 @@ fn ban_chat_member_success() {
     let params = BanChatMember {
         ..Default::default()
     };
-    let real_result = mocked.client.sync.ban_chat_member(&params).unwrap();
+    let real_result = mocked.client.ban_chat_member(&params).unwrap();
 
     assert_eq!(mock_result, real_result);
     mocked.server.assert();
@@ -1160,7 +1151,7 @@ fn ban_chat_member_error() {
     let params = BanChatMember {
         ..Default::default()
     };
-    if let Error::Response(real_error) = mocked.client.sync.ban_chat_member(&params).unwrap_err() {
+    if let Error::Response(real_error) = mocked.client.ban_chat_member(&params).unwrap_err() {
         assert_eq!(mock_error, real_error);
         mocked.server.assert();
     }
@@ -1177,7 +1168,7 @@ fn unban_chat_member_success() {
     let params = UnbanChatMember {
         ..Default::default()
     };
-    let real_result = mocked.client.sync.unban_chat_member(&params).unwrap();
+    let real_result = mocked.client.unban_chat_member(&params).unwrap();
 
     assert_eq!(mock_result, real_result);
     mocked.server.assert();
@@ -1194,8 +1185,7 @@ fn unban_chat_member_error() {
     let params = UnbanChatMember {
         ..Default::default()
     };
-    if let Error::Response(real_error) = mocked.client.sync.unban_chat_member(&params).unwrap_err()
-    {
+    if let Error::Response(real_error) = mocked.client.unban_chat_member(&params).unwrap_err() {
         assert_eq!(mock_error, real_error);
         mocked.server.assert();
     }
@@ -1212,7 +1202,7 @@ fn restrict_chat_member_success() {
     let params = RestrictChatMember {
         ..Default::default()
     };
-    let real_result = mocked.client.sync.restrict_chat_member(&params).unwrap();
+    let real_result = mocked.client.restrict_chat_member(&params).unwrap();
 
     assert_eq!(mock_result, real_result);
     mocked.server.assert();
@@ -1229,12 +1219,7 @@ fn restrict_chat_member_error() {
     let params = RestrictChatMember {
         ..Default::default()
     };
-    if let Error::Response(real_error) = mocked
-        .client
-        .sync
-        .restrict_chat_member(&params)
-        .unwrap_err()
-    {
+    if let Error::Response(real_error) = mocked.client.restrict_chat_member(&params).unwrap_err() {
         assert_eq!(mock_error, real_error);
         mocked.server.assert();
     }
@@ -1251,7 +1236,7 @@ fn promote_chat_member_success() {
     let params = PromoteChatMember {
         ..Default::default()
     };
-    let real_result = mocked.client.sync.promote_chat_member(&params).unwrap();
+    let real_result = mocked.client.promote_chat_member(&params).unwrap();
 
     assert_eq!(mock_result, real_result);
     mocked.server.assert();
@@ -1268,9 +1253,7 @@ fn promote_chat_member_error() {
     let params = PromoteChatMember {
         ..Default::default()
     };
-    if let Error::Response(real_error) =
-        mocked.client.sync.promote_chat_member(&params).unwrap_err()
-    {
+    if let Error::Response(real_error) = mocked.client.promote_chat_member(&params).unwrap_err() {
         assert_eq!(mock_error, real_error);
         mocked.server.assert();
     }
@@ -1295,7 +1278,6 @@ fn set_chat_administrator_custom_title_success() {
     };
     let real_result = mocked
         .client
-        .sync
         .set_chat_administrator_custom_title(&params)
         .unwrap();
 
@@ -1322,7 +1304,6 @@ fn set_chat_administrator_custom_title_error() {
     };
     if let Error::Response(real_error) = mocked
         .client
-        .sync
         .set_chat_administrator_custom_title(&params)
         .unwrap_err()
     {
@@ -1342,7 +1323,7 @@ fn ban_chat_sender_chat_success() {
     let params = BanChatSenderChat {
         ..Default::default()
     };
-    let real_result = mocked.client.sync.ban_chat_sender_chat(&params).unwrap();
+    let real_result = mocked.client.ban_chat_sender_chat(&params).unwrap();
 
     assert_eq!(mock_result, real_result);
     mocked.server.assert();
@@ -1359,12 +1340,7 @@ fn ban_chat_sender_chat_error() {
     let params = BanChatSenderChat {
         ..Default::default()
     };
-    if let Error::Response(real_error) = mocked
-        .client
-        .sync
-        .ban_chat_sender_chat(&params)
-        .unwrap_err()
-    {
+    if let Error::Response(real_error) = mocked.client.ban_chat_sender_chat(&params).unwrap_err() {
         assert_eq!(mock_error, real_error);
         mocked.server.assert();
     }
@@ -1381,7 +1357,7 @@ fn unban_chat_sender_chat_success() {
     let params = UnbanChatSenderChat {
         ..Default::default()
     };
-    let real_result = mocked.client.sync.unban_chat_sender_chat(&params).unwrap();
+    let real_result = mocked.client.unban_chat_sender_chat(&params).unwrap();
 
     assert_eq!(mock_result, real_result);
     mocked.server.assert();
@@ -1398,11 +1374,7 @@ fn unban_chat_sender_chat_error() {
     let params = UnbanChatSenderChat {
         ..Default::default()
     };
-    if let Error::Response(real_error) = mocked
-        .client
-        .sync
-        .unban_chat_sender_chat(&params)
-        .unwrap_err()
+    if let Error::Response(real_error) = mocked.client.unban_chat_sender_chat(&params).unwrap_err()
     {
         assert_eq!(mock_error, real_error);
         mocked.server.assert();
@@ -1420,7 +1392,7 @@ fn set_chat_permissions_success() {
     let params = SetChatPermissions {
         ..Default::default()
     };
-    let real_result = mocked.client.sync.set_chat_permissions(&params).unwrap();
+    let real_result = mocked.client.set_chat_permissions(&params).unwrap();
 
     assert_eq!(mock_result, real_result);
     mocked.server.assert();
@@ -1437,12 +1409,7 @@ fn set_chat_permissions_error() {
     let params = SetChatPermissions {
         ..Default::default()
     };
-    if let Error::Response(real_error) = mocked
-        .client
-        .sync
-        .set_chat_permissions(&params)
-        .unwrap_err()
-    {
+    if let Error::Response(real_error) = mocked.client.set_chat_permissions(&params).unwrap_err() {
         assert_eq!(mock_error, real_error);
         mocked.server.assert();
     }
@@ -1459,7 +1426,7 @@ fn export_chat_invite_link_success() {
     let params = ExportChatInviteLink {
         ..Default::default()
     };
-    let real_result = mocked.client.sync.export_chat_invite_link(&params).unwrap();
+    let real_result = mocked.client.export_chat_invite_link(&params).unwrap();
 
     assert_eq!(mock_result, real_result);
     mocked.server.assert();
@@ -1476,11 +1443,7 @@ fn export_chat_invite_link_error() {
     let params = ExportChatInviteLink {
         ..Default::default()
     };
-    if let Error::Response(real_error) = mocked
-        .client
-        .sync
-        .export_chat_invite_link(&params)
-        .unwrap_err()
+    if let Error::Response(real_error) = mocked.client.export_chat_invite_link(&params).unwrap_err()
     {
         assert_eq!(mock_error, real_error);
         mocked.server.assert();
@@ -1498,7 +1461,7 @@ fn create_chat_invite_link_success() {
     let params = CreateChatInviteLink {
         ..Default::default()
     };
-    let real_result = mocked.client.sync.create_chat_invite_link(&params).unwrap();
+    let real_result = mocked.client.create_chat_invite_link(&params).unwrap();
 
     assert_eq!(mock_result, real_result);
     mocked.server.assert();
@@ -1515,11 +1478,7 @@ fn create_chat_invite_link_error() {
     let params = CreateChatInviteLink {
         ..Default::default()
     };
-    if let Error::Response(real_error) = mocked
-        .client
-        .sync
-        .create_chat_invite_link(&params)
-        .unwrap_err()
+    if let Error::Response(real_error) = mocked.client.create_chat_invite_link(&params).unwrap_err()
     {
         assert_eq!(mock_error, real_error);
         mocked.server.assert();
@@ -1537,7 +1496,7 @@ fn edit_chat_invite_link_success() {
     let params = EditChatInviteLink {
         ..Default::default()
     };
-    let real_result = mocked.client.sync.edit_chat_invite_link(&params).unwrap();
+    let real_result = mocked.client.edit_chat_invite_link(&params).unwrap();
 
     assert_eq!(mock_result, real_result);
     mocked.server.assert();
@@ -1554,12 +1513,7 @@ fn edit_chat_invite_link_error() {
     let params = EditChatInviteLink {
         ..Default::default()
     };
-    if let Error::Response(real_error) = mocked
-        .client
-        .sync
-        .edit_chat_invite_link(&params)
-        .unwrap_err()
-    {
+    if let Error::Response(real_error) = mocked.client.edit_chat_invite_link(&params).unwrap_err() {
         assert_eq!(mock_error, real_error);
         mocked.server.assert();
     }
@@ -1576,7 +1530,7 @@ fn revoke_chat_invite_link_success() {
     let params = RevokeChatInviteLink {
         ..Default::default()
     };
-    let real_result = mocked.client.sync.revoke_chat_invite_link(&params).unwrap();
+    let real_result = mocked.client.revoke_chat_invite_link(&params).unwrap();
 
     assert_eq!(mock_result, real_result);
     mocked.server.assert();
@@ -1593,11 +1547,7 @@ fn revoke_chat_invite_link_error() {
     let params = RevokeChatInviteLink {
         ..Default::default()
     };
-    if let Error::Response(real_error) = mocked
-        .client
-        .sync
-        .revoke_chat_invite_link(&params)
-        .unwrap_err()
+    if let Error::Response(real_error) = mocked.client.revoke_chat_invite_link(&params).unwrap_err()
     {
         assert_eq!(mock_error, real_error);
         mocked.server.assert();
@@ -1615,11 +1565,7 @@ fn approve_chat_join_request_success() {
     let params = ApproveChatJoinRequest {
         ..Default::default()
     };
-    let real_result = mocked
-        .client
-        .sync
-        .approve_chat_join_request(&params)
-        .unwrap();
+    let real_result = mocked.client.approve_chat_join_request(&params).unwrap();
 
     assert_eq!(mock_result, real_result);
     mocked.server.assert();
@@ -1638,7 +1584,6 @@ fn approve_chat_join_request_error() {
     };
     if let Error::Response(real_error) = mocked
         .client
-        .sync
         .approve_chat_join_request(&params)
         .unwrap_err()
     {
@@ -1658,11 +1603,7 @@ fn decline_chat_join_request_success() {
     let params = DeclineChatJoinRequest {
         ..Default::default()
     };
-    let real_result = mocked
-        .client
-        .sync
-        .decline_chat_join_request(&params)
-        .unwrap();
+    let real_result = mocked.client.decline_chat_join_request(&params).unwrap();
 
     assert_eq!(mock_result, real_result);
     mocked.server.assert();
@@ -1681,7 +1622,6 @@ fn decline_chat_join_request_error() {
     };
     if let Error::Response(real_error) = mocked
         .client
-        .sync
         .decline_chat_join_request(&params)
         .unwrap_err()
     {
@@ -1701,7 +1641,7 @@ fn set_chat_photo_success() {
     let params = SetChatPhoto {
         ..Default::default()
     };
-    let real_result = mocked.client.sync.set_chat_photo(&params).unwrap();
+    let real_result = mocked.client.set_chat_photo(&params).unwrap();
 
     assert_eq!(mock_result, real_result);
     mocked.server.assert();
@@ -1718,7 +1658,7 @@ fn set_chat_photo_error() {
     let params = SetChatPhoto {
         ..Default::default()
     };
-    if let Error::Response(real_error) = mocked.client.sync.set_chat_photo(&params).unwrap_err() {
+    if let Error::Response(real_error) = mocked.client.set_chat_photo(&params).unwrap_err() {
         assert_eq!(mock_error, real_error);
         mocked.server.assert();
     }
@@ -1735,7 +1675,7 @@ fn delete_chat_photo_success() {
     let params = DeleteChatPhoto {
         ..Default::default()
     };
-    let real_result = mocked.client.sync.delete_chat_photo(&params).unwrap();
+    let real_result = mocked.client.delete_chat_photo(&params).unwrap();
 
     assert_eq!(mock_result, real_result);
     mocked.server.assert();
@@ -1752,8 +1692,7 @@ fn delete_chat_photo_error() {
     let params = DeleteChatPhoto {
         ..Default::default()
     };
-    if let Error::Response(real_error) = mocked.client.sync.delete_chat_photo(&params).unwrap_err()
-    {
+    if let Error::Response(real_error) = mocked.client.delete_chat_photo(&params).unwrap_err() {
         assert_eq!(mock_error, real_error);
         mocked.server.assert();
     }
@@ -1770,7 +1709,7 @@ fn set_chat_title_success() {
     let params = SetChatTitle {
         ..Default::default()
     };
-    let real_result = mocked.client.sync.set_chat_title(&params).unwrap();
+    let real_result = mocked.client.set_chat_title(&params).unwrap();
 
     assert_eq!(mock_result, real_result);
     mocked.server.assert();
@@ -1787,7 +1726,7 @@ fn set_chat_title_error() {
     let params = SetChatTitle {
         ..Default::default()
     };
-    if let Error::Response(real_error) = mocked.client.sync.set_chat_title(&params).unwrap_err() {
+    if let Error::Response(real_error) = mocked.client.set_chat_title(&params).unwrap_err() {
         assert_eq!(mock_error, real_error);
         mocked.server.assert();
     }
@@ -1804,7 +1743,7 @@ fn set_chat_description_success() {
     let params = SetChatDescription {
         ..Default::default()
     };
-    let real_result = mocked.client.sync.set_chat_description(&params).unwrap();
+    let real_result = mocked.client.set_chat_description(&params).unwrap();
 
     assert_eq!(mock_result, real_result);
     mocked.server.assert();
@@ -1821,12 +1760,7 @@ fn set_chat_description_error() {
     let params = SetChatDescription {
         ..Default::default()
     };
-    if let Error::Response(real_error) = mocked
-        .client
-        .sync
-        .set_chat_description(&params)
-        .unwrap_err()
-    {
+    if let Error::Response(real_error) = mocked.client.set_chat_description(&params).unwrap_err() {
         assert_eq!(mock_error, real_error);
         mocked.server.assert();
     }
@@ -1843,7 +1777,7 @@ fn pin_chat_message_success() {
     let params = PinChatMessage {
         ..Default::default()
     };
-    let real_result = mocked.client.sync.pin_chat_message(&params).unwrap();
+    let real_result = mocked.client.pin_chat_message(&params).unwrap();
 
     assert_eq!(mock_result, real_result);
     mocked.server.assert();
@@ -1860,7 +1794,7 @@ fn pin_chat_message_error() {
     let params = PinChatMessage {
         ..Default::default()
     };
-    if let Error::Response(real_error) = mocked.client.sync.pin_chat_message(&params).unwrap_err() {
+    if let Error::Response(real_error) = mocked.client.pin_chat_message(&params).unwrap_err() {
         assert_eq!(mock_error, real_error);
         mocked.server.assert();
     }
@@ -1877,7 +1811,7 @@ fn unpin_chat_message_success() {
     let params = UnpinChatMessage {
         ..Default::default()
     };
-    let real_result = mocked.client.sync.unpin_chat_message(&params).unwrap();
+    let real_result = mocked.client.unpin_chat_message(&params).unwrap();
 
     assert_eq!(mock_result, real_result);
     mocked.server.assert();
@@ -1894,8 +1828,7 @@ fn unpin_chat_message_error() {
     let params = UnpinChatMessage {
         ..Default::default()
     };
-    if let Error::Response(real_error) = mocked.client.sync.unpin_chat_message(&params).unwrap_err()
-    {
+    if let Error::Response(real_error) = mocked.client.unpin_chat_message(&params).unwrap_err() {
         assert_eq!(mock_error, real_error);
         mocked.server.assert();
     }
@@ -1912,7 +1845,7 @@ fn unpin_all_chat_messages_success() {
     let params = UnpinAllChatMessages {
         ..Default::default()
     };
-    let real_result = mocked.client.sync.unpin_all_chat_messages(&params).unwrap();
+    let real_result = mocked.client.unpin_all_chat_messages(&params).unwrap();
 
     assert_eq!(mock_result, real_result);
     mocked.server.assert();
@@ -1929,11 +1862,7 @@ fn unpin_all_chat_messages_error() {
     let params = UnpinAllChatMessages {
         ..Default::default()
     };
-    if let Error::Response(real_error) = mocked
-        .client
-        .sync
-        .unpin_all_chat_messages(&params)
-        .unwrap_err()
+    if let Error::Response(real_error) = mocked.client.unpin_all_chat_messages(&params).unwrap_err()
     {
         assert_eq!(mock_error, real_error);
         mocked.server.assert();
@@ -1950,7 +1879,7 @@ fn leave_chat_success() {
     let params = LeaveChat {
         ..Default::default()
     };
-    let real_result = mocked.client.sync.leave_chat(&params).unwrap();
+    let real_result = mocked.client.leave_chat(&params).unwrap();
 
     assert_eq!(mock_result, real_result);
     mocked.server.assert();
@@ -1966,7 +1895,7 @@ fn leave_chat_error() {
     let params = LeaveChat {
         ..Default::default()
     };
-    if let Error::Response(real_error) = mocked.client.sync.leave_chat(&params).unwrap_err() {
+    if let Error::Response(real_error) = mocked.client.leave_chat(&params).unwrap_err() {
         assert_eq!(mock_error, real_error);
         mocked.server.assert();
     }
@@ -1982,7 +1911,7 @@ fn get_chat_success() {
     let params = GetChat {
         ..Default::default()
     };
-    let real_result = mocked.client.sync.get_chat(&params).unwrap();
+    let real_result = mocked.client.get_chat(&params).unwrap();
 
     assert_eq!(mock_result, real_result);
     mocked.server.assert();
@@ -1998,7 +1927,7 @@ fn get_chat_error() {
     let params = GetChat {
         ..Default::default()
     };
-    if let Error::Response(real_error) = mocked.client.sync.get_chat(&params).unwrap_err() {
+    if let Error::Response(real_error) = mocked.client.get_chat(&params).unwrap_err() {
         assert_eq!(mock_error, real_error);
         mocked.server.assert();
     }
@@ -2015,7 +1944,7 @@ fn get_chat_administrators_success() {
     let params = GetChatAdministrators {
         ..Default::default()
     };
-    let real_result = mocked.client.sync.get_chat_administrators(&params).unwrap();
+    let real_result = mocked.client.get_chat_administrators(&params).unwrap();
 
     assert_eq!(mock_result, real_result);
     mocked.server.assert();
@@ -2032,11 +1961,7 @@ fn get_chat_administrators_error() {
     let params = GetChatAdministrators {
         ..Default::default()
     };
-    if let Error::Response(real_error) = mocked
-        .client
-        .sync
-        .get_chat_administrators(&params)
-        .unwrap_err()
+    if let Error::Response(real_error) = mocked.client.get_chat_administrators(&params).unwrap_err()
     {
         assert_eq!(mock_error, real_error);
         mocked.server.assert();
@@ -2054,7 +1979,7 @@ fn get_chat_member_count_success() {
     let params = GetChatMemberCount {
         ..Default::default()
     };
-    let real_result = mocked.client.sync.get_chat_member_count(&params).unwrap();
+    let real_result = mocked.client.get_chat_member_count(&params).unwrap();
 
     assert_eq!(mock_result, real_result);
     mocked.server.assert();
@@ -2071,12 +1996,7 @@ fn get_chat_member_count_error() {
     let params = GetChatMemberCount {
         ..Default::default()
     };
-    if let Error::Response(real_error) = mocked
-        .client
-        .sync
-        .get_chat_member_count(&params)
-        .unwrap_err()
-    {
+    if let Error::Response(real_error) = mocked.client.get_chat_member_count(&params).unwrap_err() {
         assert_eq!(mock_error, real_error);
         mocked.server.assert();
     }
@@ -2093,7 +2013,7 @@ fn get_chat_member_success() {
     let params = GetChatMember {
         ..Default::default()
     };
-    let real_result = mocked.client.sync.get_chat_member(&params).unwrap();
+    let real_result = mocked.client.get_chat_member(&params).unwrap();
 
     assert_eq!(mock_result, real_result);
     mocked.server.assert();
@@ -2110,7 +2030,7 @@ fn get_chat_member_error() {
     let params = GetChatMember {
         ..Default::default()
     };
-    if let Error::Response(real_error) = mocked.client.sync.get_chat_member(&params).unwrap_err() {
+    if let Error::Response(real_error) = mocked.client.get_chat_member(&params).unwrap_err() {
         assert_eq!(mock_error, real_error);
         mocked.server.assert();
     }
@@ -2127,7 +2047,7 @@ fn set_chat_sticker_set_success() {
     let params = SetChatStickerSet {
         ..Default::default()
     };
-    let real_result = mocked.client.sync.set_chat_sticker_set(&params).unwrap();
+    let real_result = mocked.client.set_chat_sticker_set(&params).unwrap();
 
     assert_eq!(mock_result, real_result);
     mocked.server.assert();
@@ -2144,12 +2064,7 @@ fn set_chat_sticker_set_error() {
     let params = SetChatStickerSet {
         ..Default::default()
     };
-    if let Error::Response(real_error) = mocked
-        .client
-        .sync
-        .set_chat_sticker_set(&params)
-        .unwrap_err()
-    {
+    if let Error::Response(real_error) = mocked.client.set_chat_sticker_set(&params).unwrap_err() {
         assert_eq!(mock_error, real_error);
         mocked.server.assert();
     }
@@ -2166,7 +2081,7 @@ fn delete_chat_sticker_set_success() {
     let params = DeleteChatStickerSet {
         ..Default::default()
     };
-    let real_result = mocked.client.sync.delete_chat_sticker_set(&params).unwrap();
+    let real_result = mocked.client.delete_chat_sticker_set(&params).unwrap();
 
     assert_eq!(mock_result, real_result);
     mocked.server.assert();
@@ -2183,11 +2098,7 @@ fn delete_chat_sticker_set_error() {
     let params = DeleteChatStickerSet {
         ..Default::default()
     };
-    if let Error::Response(real_error) = mocked
-        .client
-        .sync
-        .delete_chat_sticker_set(&params)
-        .unwrap_err()
+    if let Error::Response(real_error) = mocked.client.delete_chat_sticker_set(&params).unwrap_err()
     {
         assert_eq!(mock_error, real_error);
         mocked.server.assert();
@@ -2212,7 +2123,6 @@ fn get_forum_topic_icon_stickers_success() {
     };
     let real_result = mocked
         .client
-        .sync
         .get_forum_topic_icon_stickers(&params)
         .unwrap();
 
@@ -2231,7 +2141,7 @@ fn create_forum_topic_success() {
     let params = CreateForumTopic {
         ..Default::default()
     };
-    let real_result = mocked.client.sync.create_forum_topic(&params).unwrap();
+    let real_result = mocked.client.create_forum_topic(&params).unwrap();
 
     assert_eq!(mock_result, real_result);
     mocked.server.assert();
@@ -2248,8 +2158,7 @@ fn create_forum_topic_error() {
     let params = CreateForumTopic {
         ..Default::default()
     };
-    if let Error::Response(real_error) = mocked.client.sync.create_forum_topic(&params).unwrap_err()
-    {
+    if let Error::Response(real_error) = mocked.client.create_forum_topic(&params).unwrap_err() {
         assert_eq!(mock_error, real_error);
         mocked.server.assert();
     }
@@ -2266,7 +2175,7 @@ fn edit_forum_topic_success() {
     let params = EditForumTopic {
         ..Default::default()
     };
-    let real_result = mocked.client.sync.edit_forum_topic(&params).unwrap();
+    let real_result = mocked.client.edit_forum_topic(&params).unwrap();
 
     assert_eq!(mock_result, real_result);
     mocked.server.assert();
@@ -2283,7 +2192,7 @@ fn edit_forum_topic_error() {
     let params = EditForumTopic {
         ..Default::default()
     };
-    if let Error::Response(real_error) = mocked.client.sync.edit_forum_topic(&params).unwrap_err() {
+    if let Error::Response(real_error) = mocked.client.edit_forum_topic(&params).unwrap_err() {
         assert_eq!(mock_error, real_error);
         mocked.server.assert();
     }
@@ -2300,7 +2209,7 @@ fn close_forum_topic_success() {
     let params = CloseForumTopic {
         ..Default::default()
     };
-    let real_result = mocked.client.sync.close_forum_topic(&params).unwrap();
+    let real_result = mocked.client.close_forum_topic(&params).unwrap();
 
     assert_eq!(mock_result, real_result);
     mocked.server.assert();
@@ -2317,8 +2226,7 @@ fn close_forum_topic_error() {
     let params = CloseForumTopic {
         ..Default::default()
     };
-    if let Error::Response(real_error) = mocked.client.sync.close_forum_topic(&params).unwrap_err()
-    {
+    if let Error::Response(real_error) = mocked.client.close_forum_topic(&params).unwrap_err() {
         assert_eq!(mock_error, real_error);
         mocked.server.assert();
     }
@@ -2335,7 +2243,7 @@ fn reopen_forum_topic_success() {
     let params = ReopenForumTopic {
         ..Default::default()
     };
-    let real_result = mocked.client.sync.reopen_forum_topic(&params).unwrap();
+    let real_result = mocked.client.reopen_forum_topic(&params).unwrap();
 
     assert_eq!(mock_result, real_result);
     mocked.server.assert();
@@ -2352,8 +2260,7 @@ fn reopen_forum_topic_error() {
     let params = ReopenForumTopic {
         ..Default::default()
     };
-    if let Error::Response(real_error) = mocked.client.sync.reopen_forum_topic(&params).unwrap_err()
-    {
+    if let Error::Response(real_error) = mocked.client.reopen_forum_topic(&params).unwrap_err() {
         assert_eq!(mock_error, real_error);
         mocked.server.assert();
     }
@@ -2370,7 +2277,7 @@ fn delete_forum_topic_success() {
     let params = DeleteForumTopic {
         ..Default::default()
     };
-    let real_result = mocked.client.sync.delete_forum_topic(&params).unwrap();
+    let real_result = mocked.client.delete_forum_topic(&params).unwrap();
 
     assert_eq!(mock_result, real_result);
     mocked.server.assert();
@@ -2387,8 +2294,7 @@ fn delete_forum_topic_error() {
     let params = DeleteForumTopic {
         ..Default::default()
     };
-    if let Error::Response(real_error) = mocked.client.sync.delete_forum_topic(&params).unwrap_err()
-    {
+    if let Error::Response(real_error) = mocked.client.delete_forum_topic(&params).unwrap_err() {
         assert_eq!(mock_error, real_error);
         mocked.server.assert();
     }
@@ -2413,7 +2319,6 @@ fn unpin_all_forum_topic_messages_success() {
     };
     let real_result = mocked
         .client
-        .sync
         .unpin_all_forum_topic_messages(&params)
         .unwrap();
 
@@ -2440,7 +2345,6 @@ fn unpin_all_forum_topic_messages_error() {
     };
     if let Error::Response(real_error) = mocked
         .client
-        .sync
         .unpin_all_forum_topic_messages(&params)
         .unwrap_err()
     {
@@ -2460,11 +2364,7 @@ fn edit_general_forum_topic_success() {
     let params = EditGeneralForumTopic {
         ..Default::default()
     };
-    let real_result = mocked
-        .client
-        .sync
-        .edit_general_forum_topic(&params)
-        .unwrap();
+    let real_result = mocked.client.edit_general_forum_topic(&params).unwrap();
 
     assert_eq!(mock_result, real_result);
     mocked.server.assert();
@@ -2481,11 +2381,8 @@ fn edit_general_forum_topic_error() {
     let params = EditGeneralForumTopic {
         ..Default::default()
     };
-    if let Error::Response(real_error) = mocked
-        .client
-        .sync
-        .edit_general_forum_topic(&params)
-        .unwrap_err()
+    if let Error::Response(real_error) =
+        mocked.client.edit_general_forum_topic(&params).unwrap_err()
     {
         assert_eq!(mock_error, real_error);
         mocked.server.assert();
@@ -2502,11 +2399,7 @@ fn close_general_forum_topic_success() {
     let params = CloseGeneralForumTopic {
         ..Default::default()
     };
-    let real_result = mocked
-        .client
-        .sync
-        .close_general_forum_topic(&params)
-        .unwrap();
+    let real_result = mocked.client.close_general_forum_topic(&params).unwrap();
 
     assert_eq!(mock_result, real_result);
     mocked.server.assert();
@@ -2525,7 +2418,6 @@ fn close_general_forum_topic_error() {
     };
     if let Error::Response(real_error) = mocked
         .client
-        .sync
         .close_general_forum_topic(&params)
         .unwrap_err()
     {
@@ -2545,11 +2437,7 @@ fn reopen_general_forum_topic_success() {
     let params = ReopenGeneralForumTopic {
         ..Default::default()
     };
-    let real_result = mocked
-        .client
-        .sync
-        .reopen_general_forum_topic(&params)
-        .unwrap();
+    let real_result = mocked.client.reopen_general_forum_topic(&params).unwrap();
 
     assert_eq!(mock_result, real_result);
     mocked.server.assert();
@@ -2568,7 +2456,6 @@ fn reopen_general_forum_topic_error() {
     };
     if let Error::Response(real_error) = mocked
         .client
-        .sync
         .reopen_general_forum_topic(&params)
         .unwrap_err()
     {
@@ -2588,11 +2475,7 @@ fn hide_general_forum_topic_success() {
     let params = HideGeneralForumTopic {
         ..Default::default()
     };
-    let real_result = mocked
-        .client
-        .sync
-        .hide_general_forum_topic(&params)
-        .unwrap();
+    let real_result = mocked.client.hide_general_forum_topic(&params).unwrap();
 
     assert_eq!(mock_result, real_result);
     mocked.server.assert();
@@ -2609,11 +2492,8 @@ fn hide_general_forum_topic_error() {
     let params = HideGeneralForumTopic {
         ..Default::default()
     };
-    if let Error::Response(real_error) = mocked
-        .client
-        .sync
-        .hide_general_forum_topic(&params)
-        .unwrap_err()
+    if let Error::Response(real_error) =
+        mocked.client.hide_general_forum_topic(&params).unwrap_err()
     {
         assert_eq!(mock_error, real_error);
         mocked.server.assert();
@@ -2631,11 +2511,7 @@ fn unhide_general_forum_topic_success() {
     let params = UnhideGeneralForumTopic {
         ..Default::default()
     };
-    let real_result = mocked
-        .client
-        .sync
-        .unhide_general_forum_topic(&params)
-        .unwrap();
+    let real_result = mocked.client.unhide_general_forum_topic(&params).unwrap();
 
     assert_eq!(mock_result, real_result);
     mocked.server.assert();
@@ -2654,7 +2530,6 @@ fn unhide_general_forum_topic_error() {
     };
     if let Error::Response(real_error) = mocked
         .client
-        .sync
         .unhide_general_forum_topic(&params)
         .unwrap_err()
     {
@@ -2683,7 +2558,6 @@ fn unpin_all_general_forum_topic_messages_success() {
     };
     let real_result = mocked
         .client
-        .sync
         .unpin_all_general_forum_topic_messages(&params)
         .unwrap();
 
@@ -2710,7 +2584,6 @@ fn unpin_all_general_forum_topic_messages_error() {
     };
     if let Error::Response(real_error) = mocked
         .client
-        .sync
         .unpin_all_general_forum_topic_messages(&params)
         .unwrap_err()
     {
@@ -2730,7 +2603,7 @@ fn answer_callback_query_success() {
     let params = AnswerCallbackQuery {
         ..Default::default()
     };
-    let real_result = mocked.client.sync.answer_callback_query(&params).unwrap();
+    let real_result = mocked.client.answer_callback_query(&params).unwrap();
 
     assert_eq!(mock_result, real_result);
     mocked.server.assert();
@@ -2747,12 +2620,7 @@ fn answer_callback_query_error() {
     let params = AnswerCallbackQuery {
         ..Default::default()
     };
-    if let Error::Response(real_error) = mocked
-        .client
-        .sync
-        .answer_callback_query(&params)
-        .unwrap_err()
-    {
+    if let Error::Response(real_error) = mocked.client.answer_callback_query(&params).unwrap_err() {
         assert_eq!(mock_error, real_error);
         mocked.server.assert();
     }
@@ -2769,7 +2637,7 @@ fn get_user_chat_boosts_success() {
     let params = GetUserChatBoosts {
         ..Default::default()
     };
-    let real_result = mocked.client.sync.get_user_chat_boosts(&params).unwrap();
+    let real_result = mocked.client.get_user_chat_boosts(&params).unwrap();
 
     assert_eq!(mock_result, real_result);
     mocked.server.assert();
@@ -2786,12 +2654,7 @@ fn get_user_chat_boosts_error() {
     let params = GetUserChatBoosts {
         ..Default::default()
     };
-    if let Error::Response(real_error) = mocked
-        .client
-        .sync
-        .get_user_chat_boosts(&params)
-        .unwrap_err()
-    {
+    if let Error::Response(real_error) = mocked.client.get_user_chat_boosts(&params).unwrap_err() {
         assert_eq!(mock_error, real_error);
         mocked.server.assert();
     }
@@ -2807,7 +2670,7 @@ fn set_my_commands_success() {
     let params = SetMyCommands {
         ..Default::default()
     };
-    let real_result = mocked.client.sync.set_my_commands(&params).unwrap();
+    let real_result = mocked.client.set_my_commands(&params).unwrap();
 
     assert_eq!(mock_result, real_result);
     mocked.server.assert();
@@ -2823,7 +2686,7 @@ fn delete_my_commands_success() {
     let params = DeleteMyCommands {
         ..Default::default()
     };
-    let real_result = mocked.client.sync.delete_my_commands(&params).unwrap();
+    let real_result = mocked.client.delete_my_commands(&params).unwrap();
 
     assert_eq!(mock_result, real_result);
     mocked.server.assert();
@@ -2839,7 +2702,7 @@ fn get_my_commands_success() {
     let params = GetMyCommands {
         ..Default::default()
     };
-    let real_result = mocked.client.sync.get_my_commands(&params).unwrap();
+    let real_result = mocked.client.get_my_commands(&params).unwrap();
 
     assert_eq!(mock_result, real_result);
     mocked.server.assert();
@@ -2855,7 +2718,7 @@ fn set_my_name_success() {
     let params = SetMyName {
         ..Default::default()
     };
-    let real_result = mocked.client.sync.set_my_name(&params).unwrap();
+    let real_result = mocked.client.set_my_name(&params).unwrap();
 
     assert_eq!(mock_result, real_result);
     mocked.server.assert();
@@ -2871,7 +2734,7 @@ fn set_my_name_error() {
     let params = SetMyName {
         ..Default::default()
     };
-    if let Error::Response(real_error) = mocked.client.sync.set_my_name(&params).unwrap_err() {
+    if let Error::Response(real_error) = mocked.client.set_my_name(&params).unwrap_err() {
         assert_eq!(mock_error, real_error);
         mocked.server.assert();
     }
@@ -2887,7 +2750,7 @@ fn get_my_name_success() {
     let params = GetMyName {
         ..Default::default()
     };
-    let real_result = mocked.client.sync.get_my_name(&params).unwrap();
+    let real_result = mocked.client.get_my_name(&params).unwrap();
 
     assert_eq!(mock_result, real_result);
     mocked.server.assert();
@@ -2903,7 +2766,7 @@ fn set_my_description_success() {
     let params = SetMyDescription {
         ..Default::default()
     };
-    let real_result = mocked.client.sync.set_my_description(&params).unwrap();
+    let real_result = mocked.client.set_my_description(&params).unwrap();
 
     assert_eq!(mock_result, real_result);
     mocked.server.assert();
@@ -2919,7 +2782,7 @@ fn get_my_description_success() {
     let params = GetMyDescription {
         ..Default::default()
     };
-    let real_result = mocked.client.sync.get_my_description(&params).unwrap();
+    let real_result = mocked.client.get_my_description(&params).unwrap();
 
     assert_eq!(mock_result, real_result);
     mocked.server.assert();
@@ -2936,11 +2799,7 @@ fn set_my_short_description_success() {
     let params = SetMyShortDescription {
         ..Default::default()
     };
-    let real_result = mocked
-        .client
-        .sync
-        .set_my_short_description(&params)
-        .unwrap();
+    let real_result = mocked.client.set_my_short_description(&params).unwrap();
 
     assert_eq!(mock_result, real_result);
     mocked.server.assert();
@@ -2957,11 +2816,7 @@ fn get_my_short_description_success() {
     let params = GetMyShortDescription {
         ..Default::default()
     };
-    let real_result = mocked
-        .client
-        .sync
-        .get_my_short_description(&params)
-        .unwrap();
+    let real_result = mocked.client.get_my_short_description(&params).unwrap();
 
     assert_eq!(mock_result, real_result);
     mocked.server.assert();
@@ -2978,7 +2833,7 @@ fn set_chat_menu_button_success() {
     let params = SetChatMenuButton {
         ..Default::default()
     };
-    let real_result = mocked.client.sync.set_chat_menu_button(&params).unwrap();
+    let real_result = mocked.client.set_chat_menu_button(&params).unwrap();
 
     assert_eq!(mock_result, real_result);
     mocked.server.assert();
@@ -2995,7 +2850,7 @@ fn get_chat_menu_button_success() {
     let params = GetChatMenuButton {
         ..Default::default()
     };
-    let real_result = mocked.client.sync.get_chat_menu_button(&params).unwrap();
+    let real_result = mocked.client.get_chat_menu_button(&params).unwrap();
 
     assert_eq!(mock_result, real_result);
     mocked.server.assert();
@@ -3019,7 +2874,6 @@ fn set_my_default_administrator_rights_success() {
     };
     let real_result = mocked
         .client
-        .sync
         .set_my_default_administrator_rights(&params)
         .unwrap();
 
@@ -3045,7 +2899,6 @@ fn get_my_default_administrator_rights_success() {
     };
     let real_result = mocked
         .client
-        .sync
         .get_my_default_administrator_rights(&params)
         .unwrap();
 
@@ -3064,7 +2917,7 @@ fn edit_message_text_success() {
     let params = EditMessageText {
         ..Default::default()
     };
-    let real_result = mocked.client.sync.edit_message_text(&params).unwrap();
+    let real_result = mocked.client.edit_message_text(&params).unwrap();
 
     assert_eq!(mock_result, real_result);
     mocked.server.assert();
@@ -3081,8 +2934,7 @@ fn edit_message_text_error() {
     let params = EditMessageText {
         ..Default::default()
     };
-    if let Error::Response(real_error) = mocked.client.sync.edit_message_text(&params).unwrap_err()
-    {
+    if let Error::Response(real_error) = mocked.client.edit_message_text(&params).unwrap_err() {
         assert_eq!(mock_error, real_error);
         mocked.server.assert();
     }
@@ -3099,7 +2951,7 @@ fn edit_message_caption_success() {
     let params = EditMessageCaption {
         ..Default::default()
     };
-    let real_result = mocked.client.sync.edit_message_caption(&params).unwrap();
+    let real_result = mocked.client.edit_message_caption(&params).unwrap();
 
     assert_eq!(mock_result, real_result);
     mocked.server.assert();
@@ -3116,12 +2968,7 @@ fn edit_message_caption_error() {
     let params = EditMessageCaption {
         ..Default::default()
     };
-    if let Error::Response(real_error) = mocked
-        .client
-        .sync
-        .edit_message_caption(&params)
-        .unwrap_err()
-    {
+    if let Error::Response(real_error) = mocked.client.edit_message_caption(&params).unwrap_err() {
         assert_eq!(mock_error, real_error);
         mocked.server.assert();
     }
@@ -3138,7 +2985,7 @@ fn edit_message_media_success() {
     let params = EditMessageMedia {
         ..Default::default()
     };
-    let real_result = mocked.client.sync.edit_message_media(&params).unwrap();
+    let real_result = mocked.client.edit_message_media(&params).unwrap();
 
     assert_eq!(mock_result, real_result);
     mocked.server.assert();
@@ -3155,8 +3002,7 @@ fn edit_message_media_error() {
     let params = EditMessageMedia {
         ..Default::default()
     };
-    if let Error::Response(real_error) = mocked.client.sync.edit_message_media(&params).unwrap_err()
-    {
+    if let Error::Response(real_error) = mocked.client.edit_message_media(&params).unwrap_err() {
         assert_eq!(mock_error, real_error);
         mocked.server.assert();
     }
@@ -3173,11 +3019,7 @@ fn edit_message_live_location_success() {
     let params = EditMessageLiveLocation {
         ..Default::default()
     };
-    let real_result = mocked
-        .client
-        .sync
-        .edit_message_live_location(&params)
-        .unwrap();
+    let real_result = mocked.client.edit_message_live_location(&params).unwrap();
 
     assert_eq!(mock_result, real_result);
     mocked.server.assert();
@@ -3196,7 +3038,6 @@ fn edit_message_live_location_error() {
     };
     if let Error::Response(real_error) = mocked
         .client
-        .sync
         .edit_message_live_location(&params)
         .unwrap_err()
     {
@@ -3216,11 +3057,7 @@ fn stop_message_live_location_success() {
     let params = StopMessageLiveLocation {
         ..Default::default()
     };
-    let real_result = mocked
-        .client
-        .sync
-        .stop_message_live_location(&params)
-        .unwrap();
+    let real_result = mocked.client.stop_message_live_location(&params).unwrap();
 
     assert_eq!(mock_result, real_result);
     mocked.server.assert();
@@ -3239,7 +3076,6 @@ fn stop_message_live_location_error() {
     };
     if let Error::Response(real_error) = mocked
         .client
-        .sync
         .stop_message_live_location(&params)
         .unwrap_err()
     {
@@ -3259,11 +3095,7 @@ fn edit_message_reply_markup_success() {
     let params = EditMessageReplyMarkup {
         ..Default::default()
     };
-    let real_result = mocked
-        .client
-        .sync
-        .edit_message_reply_markup(&params)
-        .unwrap();
+    let real_result = mocked.client.edit_message_reply_markup(&params).unwrap();
 
     assert_eq!(mock_result, real_result);
     mocked.server.assert();
@@ -3282,7 +3114,6 @@ fn edit_message_reply_markup_error() {
     };
     if let Error::Response(real_error) = mocked
         .client
-        .sync
         .edit_message_reply_markup(&params)
         .unwrap_err()
     {
@@ -3301,7 +3132,7 @@ fn stop_poll_success() {
     let params = StopPoll {
         ..Default::default()
     };
-    let real_result = mocked.client.sync.stop_poll(&params).unwrap();
+    let real_result = mocked.client.stop_poll(&params).unwrap();
 
     assert_eq!(mock_result, real_result);
     mocked.server.assert();
@@ -3317,7 +3148,7 @@ fn stop_poll_error() {
     let params = StopPoll {
         ..Default::default()
     };
-    if let Error::Response(real_error) = mocked.client.sync.stop_poll(&params).unwrap_err() {
+    if let Error::Response(real_error) = mocked.client.stop_poll(&params).unwrap_err() {
         assert_eq!(mock_error, real_error);
         mocked.server.assert();
     }
@@ -3334,7 +3165,7 @@ fn delete_message_success() {
     let params = DeleteMessage {
         ..Default::default()
     };
-    let real_result = mocked.client.sync.delete_message(&params).unwrap();
+    let real_result = mocked.client.delete_message(&params).unwrap();
 
     assert_eq!(mock_result, real_result);
     mocked.server.assert();
@@ -3351,7 +3182,7 @@ fn delete_message_error() {
     let params = DeleteMessage {
         ..Default::default()
     };
-    if let Error::Response(real_error) = mocked.client.sync.delete_message(&params).unwrap_err() {
+    if let Error::Response(real_error) = mocked.client.delete_message(&params).unwrap_err() {
         assert_eq!(mock_error, real_error);
         mocked.server.assert();
     }
@@ -3368,7 +3199,7 @@ fn delete_messages_success() {
     let params = DeleteMessages {
         ..Default::default()
     };
-    let real_result = mocked.client.sync.delete_messages(&params).unwrap();
+    let real_result = mocked.client.delete_messages(&params).unwrap();
 
     assert_eq!(mock_result, real_result);
     mocked.server.assert();
@@ -3385,7 +3216,7 @@ fn delete_messages_error() {
     let params = DeleteMessages {
         ..Default::default()
     };
-    if let Error::Response(real_error) = mocked.client.sync.delete_messages(&params).unwrap_err() {
+    if let Error::Response(real_error) = mocked.client.delete_messages(&params).unwrap_err() {
         assert_eq!(mock_error, real_error);
         mocked.server.assert();
     }
@@ -3402,7 +3233,7 @@ fn send_sticker_success() {
     let params = SendSticker {
         ..Default::default()
     };
-    let real_result = mocked.client.sync.send_sticker(&params).unwrap();
+    let real_result = mocked.client.send_sticker(&params).unwrap();
 
     assert_eq!(mock_result, real_result);
     mocked.server.assert();
@@ -3418,7 +3249,7 @@ fn send_sticker_error() {
     let params = SendSticker {
         ..Default::default()
     };
-    if let Error::Response(real_error) = mocked.client.sync.send_sticker(&params).unwrap_err() {
+    if let Error::Response(real_error) = mocked.client.send_sticker(&params).unwrap_err() {
         assert_eq!(mock_error, real_error);
         mocked.server.assert();
     }
@@ -3435,7 +3266,7 @@ fn get_sticker_set_success() {
     let params = GetStickerSet {
         ..Default::default()
     };
-    let real_result = mocked.client.sync.get_sticker_set(&params).unwrap();
+    let real_result = mocked.client.get_sticker_set(&params).unwrap();
 
     assert_eq!(mock_result, real_result);
     mocked.server.assert();
@@ -3452,7 +3283,7 @@ fn get_sticker_set_error() {
     let params = GetStickerSet {
         ..Default::default()
     };
-    if let Error::Response(real_error) = mocked.client.sync.get_sticker_set(&params).unwrap_err() {
+    if let Error::Response(real_error) = mocked.client.get_sticker_set(&params).unwrap_err() {
         assert_eq!(mock_error, real_error);
         mocked.server.assert();
     }
@@ -3469,11 +3300,7 @@ fn get_custom_emoji_stickers_success() {
     let params = GetCustomEmojiStickers {
         ..Default::default()
     };
-    let real_result = mocked
-        .client
-        .sync
-        .get_custom_emoji_stickers(&params)
-        .unwrap();
+    let real_result = mocked.client.get_custom_emoji_stickers(&params).unwrap();
 
     assert_eq!(mock_result, real_result);
     mocked.server.assert();
@@ -3492,7 +3319,6 @@ fn get_custom_emoji_stickers_error() {
     };
     if let Error::Response(real_error) = mocked
         .client
-        .sync
         .get_custom_emoji_stickers(&params)
         .unwrap_err()
     {
@@ -3512,7 +3338,7 @@ fn upload_sticker_file_success() {
     let params = UploadStickerFile {
         ..Default::default()
     };
-    let real_result = mocked.client.sync.upload_sticker_file(&params).unwrap();
+    let real_result = mocked.client.upload_sticker_file(&params).unwrap();
 
     assert_eq!(mock_result, real_result);
     mocked.server.assert();
@@ -3529,9 +3355,7 @@ fn upload_sticker_file_error() {
     let params = UploadStickerFile {
         ..Default::default()
     };
-    if let Error::Response(real_error) =
-        mocked.client.sync.upload_sticker_file(&params).unwrap_err()
-    {
+    if let Error::Response(real_error) = mocked.client.upload_sticker_file(&params).unwrap_err() {
         assert_eq!(mock_error, real_error);
         mocked.server.assert();
     }
@@ -3548,7 +3372,7 @@ fn create_new_sticker_set_success() {
     let params = CreateNewStickerSet {
         ..Default::default()
     };
-    let real_result = mocked.client.sync.create_new_sticker_set(&params).unwrap();
+    let real_result = mocked.client.create_new_sticker_set(&params).unwrap();
 
     assert_eq!(mock_result, real_result);
     mocked.server.assert();
@@ -3565,11 +3389,7 @@ fn create_new_sticker_set_error() {
     let params = CreateNewStickerSet {
         ..Default::default()
     };
-    if let Error::Response(real_error) = mocked
-        .client
-        .sync
-        .create_new_sticker_set(&params)
-        .unwrap_err()
+    if let Error::Response(real_error) = mocked.client.create_new_sticker_set(&params).unwrap_err()
     {
         assert_eq!(mock_error, real_error);
         mocked.server.assert();
@@ -3587,7 +3407,7 @@ fn add_sticker_to_set_success() {
     let params = AddStickerToSet {
         ..Default::default()
     };
-    let real_result = mocked.client.sync.add_sticker_to_set(&params).unwrap();
+    let real_result = mocked.client.add_sticker_to_set(&params).unwrap();
 
     assert_eq!(mock_result, real_result);
     mocked.server.assert();
@@ -3604,8 +3424,7 @@ fn add_sticker_to_set_error() {
     let params = AddStickerToSet {
         ..Default::default()
     };
-    if let Error::Response(real_error) = mocked.client.sync.add_sticker_to_set(&params).unwrap_err()
-    {
+    if let Error::Response(real_error) = mocked.client.add_sticker_to_set(&params).unwrap_err() {
         assert_eq!(mock_error, real_error);
         mocked.server.assert();
     }
@@ -3622,11 +3441,7 @@ fn set_sticker_position_in_set_success() {
     let params = SetStickerPositionInSet {
         ..Default::default()
     };
-    let real_result = mocked
-        .client
-        .sync
-        .set_sticker_position_in_set(&params)
-        .unwrap();
+    let real_result = mocked.client.set_sticker_position_in_set(&params).unwrap();
 
     assert_eq!(mock_result, real_result);
     mocked.server.assert();
@@ -3645,7 +3460,6 @@ fn set_sticker_position_in_set_error() {
     };
     if let Error::Response(real_error) = mocked
         .client
-        .sync
         .set_sticker_position_in_set(&params)
         .unwrap_err()
     {
@@ -3665,7 +3479,7 @@ fn delete_sticker_from_set_success() {
     let params = DeleteStickerFromSet {
         ..Default::default()
     };
-    let real_result = mocked.client.sync.delete_sticker_from_set(&params).unwrap();
+    let real_result = mocked.client.delete_sticker_from_set(&params).unwrap();
 
     assert_eq!(mock_result, real_result);
     mocked.server.assert();
@@ -3682,11 +3496,7 @@ fn delete_sticker_from_set_error() {
     let params = DeleteStickerFromSet {
         ..Default::default()
     };
-    if let Error::Response(real_error) = mocked
-        .client
-        .sync
-        .delete_sticker_from_set(&params)
-        .unwrap_err()
+    if let Error::Response(real_error) = mocked.client.delete_sticker_from_set(&params).unwrap_err()
     {
         assert_eq!(mock_error, real_error);
         mocked.server.assert();
@@ -3704,7 +3514,7 @@ fn set_sticker_emoji_list_success() {
     let params = SetStickerEmojiList {
         ..Default::default()
     };
-    let real_result = mocked.client.sync.set_sticker_emoji_list(&params).unwrap();
+    let real_result = mocked.client.set_sticker_emoji_list(&params).unwrap();
 
     assert_eq!(mock_result, real_result);
     mocked.server.assert();
@@ -3721,11 +3531,7 @@ fn set_sticker_emoji_list_error() {
     let params = SetStickerEmojiList {
         ..Default::default()
     };
-    if let Error::Response(real_error) = mocked
-        .client
-        .sync
-        .set_sticker_emoji_list(&params)
-        .unwrap_err()
+    if let Error::Response(real_error) = mocked.client.set_sticker_emoji_list(&params).unwrap_err()
     {
         assert_eq!(mock_error, real_error);
         mocked.server.assert();
@@ -3743,7 +3549,7 @@ fn set_sticker_keywords_success() {
     let params = SetStickerKeywords {
         ..Default::default()
     };
-    let real_result = mocked.client.sync.set_sticker_keywords(&params).unwrap();
+    let real_result = mocked.client.set_sticker_keywords(&params).unwrap();
 
     assert_eq!(mock_result, real_result);
     mocked.server.assert();
@@ -3760,12 +3566,7 @@ fn set_sticker_keywords_error() {
     let params = SetStickerKeywords {
         ..Default::default()
     };
-    if let Error::Response(real_error) = mocked
-        .client
-        .sync
-        .set_sticker_keywords(&params)
-        .unwrap_err()
-    {
+    if let Error::Response(real_error) = mocked.client.set_sticker_keywords(&params).unwrap_err() {
         assert_eq!(mock_error, real_error);
         mocked.server.assert();
     }
@@ -3782,11 +3583,7 @@ fn set_sticker_mask_position_success() {
     let params = SetStickerMaskPosition {
         ..Default::default()
     };
-    let real_result = mocked
-        .client
-        .sync
-        .set_sticker_mask_position(&params)
-        .unwrap();
+    let real_result = mocked.client.set_sticker_mask_position(&params).unwrap();
 
     assert_eq!(mock_result, real_result);
     mocked.server.assert();
@@ -3805,7 +3602,6 @@ fn set_sticker_mask_position_error() {
     };
     if let Error::Response(real_error) = mocked
         .client
-        .sync
         .set_sticker_mask_position(&params)
         .unwrap_err()
     {
@@ -3825,7 +3621,7 @@ fn set_sticker_set_title_success() {
     let params = SetStickerSetTitle {
         ..Default::default()
     };
-    let real_result = mocked.client.sync.set_sticker_set_title(&params).unwrap();
+    let real_result = mocked.client.set_sticker_set_title(&params).unwrap();
 
     assert_eq!(mock_result, real_result);
     mocked.server.assert();
@@ -3842,12 +3638,7 @@ fn set_sticker_set_title_error() {
     let params = SetStickerSetTitle {
         ..Default::default()
     };
-    if let Error::Response(real_error) = mocked
-        .client
-        .sync
-        .set_sticker_set_title(&params)
-        .unwrap_err()
-    {
+    if let Error::Response(real_error) = mocked.client.set_sticker_set_title(&params).unwrap_err() {
         assert_eq!(mock_error, real_error);
         mocked.server.assert();
     }
@@ -3864,11 +3655,7 @@ fn set_sticker_set_thumbnail_success() {
     let params = SetStickerSetThumbnail {
         ..Default::default()
     };
-    let real_result = mocked
-        .client
-        .sync
-        .set_sticker_set_thumbnail(&params)
-        .unwrap();
+    let real_result = mocked.client.set_sticker_set_thumbnail(&params).unwrap();
 
     assert_eq!(mock_result, real_result);
     mocked.server.assert();
@@ -3887,7 +3674,6 @@ fn set_sticker_set_thumbnail_error() {
     };
     if let Error::Response(real_error) = mocked
         .client
-        .sync
         .set_sticker_set_thumbnail(&params)
         .unwrap_err()
     {
@@ -3916,7 +3702,6 @@ fn set_custom_emoji_sticker_set_thumbnail_success() {
     };
     let real_result = mocked
         .client
-        .sync
         .set_custom_emoji_sticker_set_thumbnail(&params)
         .unwrap();
 
@@ -3943,7 +3728,6 @@ fn set_custom_emoji_sticker_set_thumbnail_error() {
     };
     if let Error::Response(real_error) = mocked
         .client
-        .sync
         .set_custom_emoji_sticker_set_thumbnail(&params)
         .unwrap_err()
     {
@@ -3963,7 +3747,7 @@ fn delete_sticker_set_success() {
     let params = DeleteStickerSet {
         ..Default::default()
     };
-    let real_result = mocked.client.sync.delete_sticker_set(&params).unwrap();
+    let real_result = mocked.client.delete_sticker_set(&params).unwrap();
 
     assert_eq!(mock_result, real_result);
     mocked.server.assert();
@@ -3980,8 +3764,7 @@ fn delete_sticker_set_error() {
     let params = DeleteStickerSet {
         ..Default::default()
     };
-    if let Error::Response(real_error) = mocked.client.sync.delete_sticker_set(&params).unwrap_err()
-    {
+    if let Error::Response(real_error) = mocked.client.delete_sticker_set(&params).unwrap_err() {
         assert_eq!(mock_error, real_error);
         mocked.server.assert();
     }
@@ -3998,7 +3781,7 @@ fn answer_inline_query_success() {
     let params = AnswerInlineQuery {
         ..Default::default()
     };
-    let real_result = mocked.client.sync.answer_inline_query(&params).unwrap();
+    let real_result = mocked.client.answer_inline_query(&params).unwrap();
 
     assert_eq!(mock_result, real_result);
     mocked.server.assert();
@@ -4016,9 +3799,7 @@ fn answer_inline_query_error() {
         ..Default::default()
     };
 
-    if let Error::Response(real_error) =
-        mocked.client.sync.answer_inline_query(&params).unwrap_err()
-    {
+    if let Error::Response(real_error) = mocked.client.answer_inline_query(&params).unwrap_err() {
         assert_eq!(mock_error, real_error);
         mocked.server.assert();
     }
@@ -4035,7 +3816,7 @@ fn answer_web_app_query_success() {
     let params = AnswerWebAppQuery {
         ..Default::default()
     };
-    let real_result = mocked.client.sync.answer_web_app_query(&params).unwrap();
+    let real_result = mocked.client.answer_web_app_query(&params).unwrap();
 
     assert_eq!(mock_result, real_result);
     mocked.server.assert();
@@ -4052,12 +3833,7 @@ fn answer_web_app_query_error() {
     let params = AnswerWebAppQuery {
         ..Default::default()
     };
-    if let Error::Response(real_error) = mocked
-        .client
-        .sync
-        .answer_web_app_query(&params)
-        .unwrap_err()
-    {
+    if let Error::Response(real_error) = mocked.client.answer_web_app_query(&params).unwrap_err() {
         assert_eq!(mock_error, real_error);
         mocked.server.assert();
     }
@@ -4074,7 +3850,7 @@ fn send_invoice_success() {
     let params = SendInvoice {
         ..Default::default()
     };
-    let real_result = mocked.client.sync.send_invoice(&params).unwrap();
+    let real_result = mocked.client.send_invoice(&params).unwrap();
 
     assert_eq!(mock_result, real_result);
     mocked.server.assert();
@@ -4090,7 +3866,7 @@ fn send_invoice_error() {
     let params = SendInvoice {
         ..Default::default()
     };
-    if let Error::Response(real_error) = mocked.client.sync.send_invoice(&params).unwrap_err() {
+    if let Error::Response(real_error) = mocked.client.send_invoice(&params).unwrap_err() {
         assert_eq!(mock_error, real_error);
         mocked.server.assert();
     }
@@ -4107,7 +3883,7 @@ fn create_invoice_link_success() {
     let params = CreateInvoiceLink {
         ..Default::default()
     };
-    let real_result = mocked.client.sync.create_invoice_link(&params).unwrap();
+    let real_result = mocked.client.create_invoice_link(&params).unwrap();
 
     assert_eq!(mock_result, real_result);
     mocked.server.assert();
@@ -4124,9 +3900,7 @@ fn create_invoice_link_error() {
     let params = CreateInvoiceLink {
         ..Default::default()
     };
-    if let Error::Response(real_error) =
-        mocked.client.sync.create_invoice_link(&params).unwrap_err()
-    {
+    if let Error::Response(real_error) = mocked.client.create_invoice_link(&params).unwrap_err() {
         assert_eq!(mock_error, real_error);
         mocked.server.assert();
     }
@@ -4143,7 +3917,7 @@ fn answer_shipping_query_success() {
     let params = AnswerShippingQuery {
         ..Default::default()
     };
-    let real_result = mocked.client.sync.answer_shipping_query(&params).unwrap();
+    let real_result = mocked.client.answer_shipping_query(&params).unwrap();
 
     assert_eq!(mock_result, real_result);
     mocked.server.assert();
@@ -4160,12 +3934,7 @@ fn answer_shipping_query_error() {
     let params = AnswerShippingQuery {
         ..Default::default()
     };
-    if let Error::Response(real_error) = mocked
-        .client
-        .sync
-        .answer_shipping_query(&params)
-        .unwrap_err()
-    {
+    if let Error::Response(real_error) = mocked.client.answer_shipping_query(&params).unwrap_err() {
         assert_eq!(mock_error, real_error);
         mocked.server.assert();
     }
@@ -4182,11 +3951,7 @@ fn answer_pre_checkout_query_success() {
     let params = AnswerPreCheckoutQuery {
         ..Default::default()
     };
-    let real_result = mocked
-        .client
-        .sync
-        .answer_pre_checkout_query(&params)
-        .unwrap();
+    let real_result = mocked.client.answer_pre_checkout_query(&params).unwrap();
 
     assert_eq!(mock_result, real_result);
     mocked.server.assert();
@@ -4205,7 +3970,6 @@ fn answer_pre_checkout_query_error() {
     };
     if let Error::Response(real_error) = mocked
         .client
-        .sync
         .answer_pre_checkout_query(&params)
         .unwrap_err()
     {
@@ -4225,11 +3989,7 @@ fn set_passport_data_errors_success() {
     let params = SetPassportDataErrors {
         ..Default::default()
     };
-    let real_result = mocked
-        .client
-        .sync
-        .set_passport_data_errors(&params)
-        .unwrap();
+    let real_result = mocked.client.set_passport_data_errors(&params).unwrap();
 
     assert_eq!(mock_result, real_result);
     mocked.server.assert();
@@ -4246,11 +4006,8 @@ fn set_passport_data_errors_error() {
     let params = SetPassportDataErrors {
         ..Default::default()
     };
-    if let Error::Response(real_error) = mocked
-        .client
-        .sync
-        .set_passport_data_errors(&params)
-        .unwrap_err()
+    if let Error::Response(real_error) =
+        mocked.client.set_passport_data_errors(&params).unwrap_err()
     {
         assert_eq!(mock_error, real_error);
         mocked.server.assert();
@@ -4267,7 +4024,7 @@ fn send_game_success() {
     let params = SendGame {
         ..Default::default()
     };
-    let real_result = mocked.client.sync.send_game(&params).unwrap();
+    let real_result = mocked.client.send_game(&params).unwrap();
 
     assert_eq!(mock_result, real_result);
     mocked.server.assert();
@@ -4283,7 +4040,7 @@ fn send_game_error() {
     let params = SendGame {
         ..Default::default()
     };
-    if let Error::Response(real_error) = mocked.client.sync.send_game(&params).unwrap_err() {
+    if let Error::Response(real_error) = mocked.client.send_game(&params).unwrap_err() {
         assert_eq!(mock_error, real_error);
         mocked.server.assert();
     }
@@ -4300,7 +4057,7 @@ fn set_game_score_success() {
     let params = SetGameScore {
         ..Default::default()
     };
-    let real_result = mocked.client.sync.set_game_score(&params).unwrap();
+    let real_result = mocked.client.set_game_score(&params).unwrap();
 
     assert_eq!(mock_result, real_result);
     mocked.server.assert();
@@ -4317,7 +4074,7 @@ fn set_game_score_error() {
     let params = SetGameScore {
         ..Default::default()
     };
-    if let Error::Response(real_error) = mocked.client.sync.set_game_score(&params).unwrap_err() {
+    if let Error::Response(real_error) = mocked.client.set_game_score(&params).unwrap_err() {
         assert_eq!(mock_error, real_error);
         mocked.server.assert();
     }
@@ -4334,7 +4091,7 @@ fn get_game_high_scores_success() {
     let params = GetGameHighScores {
         ..Default::default()
     };
-    let real_result = mocked.client.sync.get_game_high_scores(&params).unwrap();
+    let real_result = mocked.client.get_game_high_scores(&params).unwrap();
 
     assert_eq!(mock_result, real_result);
     mocked.server.assert();
@@ -4351,12 +4108,7 @@ fn get_game_high_scores_error() {
     let params = GetGameHighScores {
         ..Default::default()
     };
-    if let Error::Response(real_error) = mocked
-        .client
-        .sync
-        .get_game_high_scores(&params)
-        .unwrap_err()
-    {
+    if let Error::Response(real_error) = mocked.client.get_game_high_scores(&params).unwrap_err() {
         assert_eq!(mock_error, real_error);
         mocked.server.assert();
     }
