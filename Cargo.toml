@@ -13,8 +13,16 @@ name = "async-playground"
 path = "examples/async/playground.rs"
 
 [[example]]
+name = "async-get-me"
+path = "examples/async/get_me.rs"
+
+[[example]]
 name = "sync-playground"
 path = "examples/sync/playground.rs"
+
+[[example]]
+name = "sync-get-me"
+path = "examples/sync/get_me.rs"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
