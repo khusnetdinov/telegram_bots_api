@@ -10,8 +10,8 @@ pub struct ResponseError {
     pub parameters: Option<ResponseParameters>,
 }
 
-impl ResponseError {
-    pub fn new(body: &str) -> Self {
-        serde_json::from_str::<ResponseError>(body).unwrap()
+impl From<&String> for ResponseError {
+    fn from(error: &String) -> Self {
+        serde_json::from_str::<ResponseError>(error).unwrap()
     }
 }

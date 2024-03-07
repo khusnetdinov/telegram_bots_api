@@ -1,7 +1,8 @@
-pub trait Requests {
-    type Error;
-    type Response<T>;
+use crate::api::types::user::User;
+use crate::errors::Error;
+use std::future::Future;
 
+pub trait Requests {
     // // https://core.telegram.org/bots/api#getupdates
     // async fn get_updates(&self);
 
@@ -14,8 +15,9 @@ pub trait Requests {
     // // https://core.telegram.org/bots/api#getwebhookinfo
     // async fn get_webhook_info(&self);
 
-    // https://core.telegram.org/bots/api#getme
-    // async fn get_me(&self);
+    /// https://core.telegram.org/bots/api#getme
+    /// A simple method for testing your bot's authentication token. Requires no parameters. Returns basic information about the bot in form of a User object.
+    fn get_me(&self) -> impl Future<Output = Result<User, Error>>;
 
     // // https://core.telegram.org/bots/api#logout
     // async fn log_out(&self);

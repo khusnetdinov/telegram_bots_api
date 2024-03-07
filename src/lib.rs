@@ -3,5 +3,5 @@
 pub mod api;
 pub mod clients;
 mod config;
-mod errors;
+pub mod errors;
 mod tests;
