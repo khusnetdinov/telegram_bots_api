@@ -1,6 +1,6 @@
 use std::error::Error;
-use telegram::api::requests::r#async::Requests;
-use telegram::clients::r#async::Async;
+use telegram_bots_api::api::requests::r#async::Requests;
+use telegram_bots_api::clients::r#async::Async;
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn Error>> {

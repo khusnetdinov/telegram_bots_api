@@ -1,5 +1,5 @@
 [package]
-name = "telegram"
+name = "telegram_bots_api"
 edition = "2021"
 rust-version = "1.70.0"
 version = "0.0.1"
@@ -8,6 +8,7 @@ description = "Telegram bots api simple rust wrapper, and no more."
 documentation = "https://docs.rs/telegram_bots_api"
 github = "https://github.com/khusnetdinov/telegram_bots_api"
 keywords = ["telegram", "bots", "api"]
+authors = ["Marat Khusnetdinov <khusnetdinov@gmail.com>"]
 
 [package.metadata]
 talegram-version = "7.0"
