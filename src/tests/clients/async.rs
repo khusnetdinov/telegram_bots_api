@@ -147,8 +147,8 @@ use std::fs;
 #[tokio::test]
 async fn get_updates_success() -> Result<(), Error> {
     let mock_response = fs::read_to_string("src/tests/responses/get_updates_success.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "getUpdates", 200, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "getUpdates", 200, &mock_response).await;
 
     let mock_result = mocked.result::<Vec<Update>>()?;
     let params = GetUpdate {
@@ -168,8 +168,8 @@ async fn get_updates_success() -> Result<(), Error> {
 #[tokio::test]
 async fn get_updates_error() -> Result<(), Error> {
     let mock_response = fs::read_to_string("src/tests/responses/get_updates_error.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "getUpdates", 400, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "getUpdates", 400, &mock_response).await;
 
     let mock_error = mocked.result_error()?;
     let params = GetUpdate {
@@ -189,8 +189,8 @@ async fn get_updates_error() -> Result<(), Error> {
 #[tokio::test]
 async fn set_webhook_success() -> Result<(), Error> {
     let mock_response = fs::read_to_string("src/tests/responses/set_webhook_success.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "setWebhook", 200, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "setWebhook", 200, &mock_response).await;
 
     let mock_result = mocked.result::<bool>()?;
     let params = SetWebhook {
@@ -208,8 +208,8 @@ async fn set_webhook_success() -> Result<(), Error> {
 #[tokio::test]
 async fn set_webhook_error() -> Result<(), Error> {
     let mock_response = fs::read_to_string("src/tests/responses/set_webhook_error.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "setWebhook", 400, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "setWebhook", 400, &mock_response).await;
 
     let mock_error = mocked.result_error()?;
     let params = SetWebhook {
@@ -228,8 +228,8 @@ async fn set_webhook_error() -> Result<(), Error> {
 async fn delete_webhook_success() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/delete_webhook_success.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "deleteWebhook", 200, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "deleteWebhook", 200, &mock_response).await;
 
     let mock_result = mocked.result::<bool>()?;
     let params = DeleteWebhook {
@@ -247,8 +247,8 @@ async fn delete_webhook_success() -> Result<(), Error> {
 async fn delete_webhook_error() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/delete_webhook_error.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "deleteWebhook", 400, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "deleteWebhook", 400, &mock_response).await;
 
     let mock_error = mocked.result_error()?;
     let params = DeleteWebhook {
@@ -266,8 +266,8 @@ async fn delete_webhook_error() -> Result<(), Error> {
 async fn get_webhook_info_success() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/get_webhook_info_success.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "getWebhookInfo", 200, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "getWebhookInfo", 200, &mock_response).await;
 
     let mock_result = mocked.result::<WebhookInfo>()?;
     let real_result = mocked.client.get_webhook_info().await?;
@@ -282,8 +282,8 @@ async fn get_webhook_info_success() -> Result<(), Error> {
 async fn get_webhook_info_error() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/get_webhook_info_error.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "getWebhookInfo", 400, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "getWebhookInfo", 400, &mock_response).await;
 
     let mock_error = mocked.result_error()?;
     if let Error::Response(real_error) = mocked.client.get_webhook_info().await.unwrap_err() {
@@ -298,8 +298,8 @@ async fn get_webhook_info_error() -> Result<(), Error> {
 async fn get_me_success() -> Result<(), Error> {
     let mock_response = fs::read_to_string("src/tests/responses/get_me_success.json").unwrap();
 
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "getMe", 200, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "getMe", 200, &mock_response).await;
 
     let mock_result = mocked.result::<User>()?;
     let real_result = mocked.client.get_me().await?;
@@ -313,8 +313,8 @@ async fn get_me_success() -> Result<(), Error> {
 #[tokio::test]
 async fn get_me_error() -> Result<(), Error> {
     let mock_response = fs::read_to_string("src/tests/responses/get_me_error.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "getMe", 401, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "getMe", 401, &mock_response).await;
 
     let mock_error = mocked.result_error()?;
     if let Error::Response(real_error) = mocked.client.get_me().await.unwrap_err() {
@@ -328,8 +328,8 @@ async fn get_me_error() -> Result<(), Error> {
 #[tokio::test]
 async fn log_out_success() -> Result<(), Error> {
     let mock_response = fs::read_to_string("src/tests/responses/log_out_success.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "logOut", 200, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "logOut", 200, &mock_response).await;
 
     let mock_result = mocked.result::<bool>()?;
     let real_result = mocked.client.log_out().await?;
@@ -343,8 +343,8 @@ async fn log_out_success() -> Result<(), Error> {
 #[tokio::test]
 async fn log_out_error() -> Result<(), Error> {
     let mock_response = fs::read_to_string("src/tests/responses/log_out_error.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "logOut", 400, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "logOut", 400, &mock_response).await;
 
     let mock_error = mocked.result_error()?;
     if let Error::Response(real_error) = mocked.client.log_out().await.unwrap_err() {
@@ -358,8 +358,8 @@ async fn log_out_error() -> Result<(), Error> {
 #[tokio::test]
 async fn close_success() -> Result<(), Error> {
     let mock_response = fs::read_to_string("src/tests/responses/close_success.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "close", 200, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "close", 200, &mock_response).await;
 
     let mock_result = mocked.result::<bool>()?;
     let real_result = mocked.client.close().await?;
@@ -373,8 +373,8 @@ async fn close_success() -> Result<(), Error> {
 #[tokio::test]
 async fn close_error() -> Result<(), Error> {
     let mock_response = fs::read_to_string("src/tests/responses/close_error.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "close", 400, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "close", 400, &mock_response).await;
 
     let mock_error = mocked.result_error()?;
     if let Error::Response(real_error) = mocked.client.close().await.unwrap_err() {
@@ -389,8 +389,8 @@ async fn close_error() -> Result<(), Error> {
 async fn send_message_success() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/send_message_success.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "sendMessage", 200, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "sendMessage", 200, &mock_response).await;
 
     let mock_result = mocked.result::<Message>()?;
     let params = SendMessage {
@@ -409,8 +409,8 @@ async fn send_message_success() -> Result<(), Error> {
 #[tokio::test]
 async fn send_message_error() -> Result<(), Error> {
     let mock_response = fs::read_to_string("src/tests/responses/send_message_error.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "sendMessage", 400, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "sendMessage", 400, &mock_response).await;
 
     let mock_error = mocked.result_error()?;
     let params = SendMessage {
@@ -430,8 +430,8 @@ async fn send_message_error() -> Result<(), Error> {
 async fn forward_message_success() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/forward_message_success.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "forwardMessage", 200, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "forwardMessage", 200, &mock_response).await;
 
     let mock_result = mocked.result::<MessageId>()?;
     let params = ForwardMessage {
@@ -452,8 +452,8 @@ async fn forward_message_success() -> Result<(), Error> {
 async fn forward_message_error() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/forward_message_error.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "forwardMessage", 400, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "forwardMessage", 400, &mock_response).await;
 
     let mock_error = mocked.result_error()?;
     let params = ForwardMessage {
@@ -474,8 +474,8 @@ async fn forward_message_error() -> Result<(), Error> {
 async fn forward_messages_success() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/forward_messages_success.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "forwardMessages", 200, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "forwardMessages", 200, &mock_response).await;
 
     let mock_result = mocked.result::<Vec<MessageId>>()?;
     let params = ForwardMessages {
@@ -496,8 +496,8 @@ async fn forward_messages_success() -> Result<(), Error> {
 async fn forward_messages_error() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/forward_messages_error.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "forwardMessages", 400, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "forwardMessages", 400, &mock_response).await;
 
     let mock_error = mocked.result_error()?;
     let params = ForwardMessages {
@@ -519,8 +519,8 @@ async fn forward_messages_error() -> Result<(), Error> {
 async fn copy_message_success() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/copy_message_success.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "copyMessage", 200, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "copyMessage", 200, &mock_response).await;
 
     let mock_result = mocked.result::<MessageId>()?;
     let params = CopyMessage {
@@ -540,8 +540,8 @@ async fn copy_message_success() -> Result<(), Error> {
 #[tokio::test]
 async fn copy_message_error() -> Result<(), Error> {
     let mock_response = fs::read_to_string("src/tests/responses/copy_message_error.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "copyMessage", 400, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "copyMessage", 400, &mock_response).await;
 
     let mock_error = mocked.result_error()?;
     let params = CopyMessage {
@@ -562,8 +562,8 @@ async fn copy_message_error() -> Result<(), Error> {
 async fn copy_messages_success() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/copy_messages_success.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "copyMessages", 200, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "copyMessages", 200, &mock_response).await;
 
     let mock_result = mocked.result::<Vec<MessageId>>()?;
     let params = CopyMessages {
@@ -583,8 +583,8 @@ async fn copy_messages_success() -> Result<(), Error> {
 #[tokio::test]
 async fn copy_messages_error() -> Result<(), Error> {
     let mock_response = fs::read_to_string("src/tests/responses/copy_messages_error.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "copyMessages", 400, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "copyMessages", 400, &mock_response).await;
 
     let mock_error = mocked.result_error()?;
     let params = CopyMessages {
@@ -604,8 +604,8 @@ async fn copy_messages_error() -> Result<(), Error> {
 #[tokio::test]
 async fn send_photo_success() -> Result<(), Error> {
     let mock_response = fs::read_to_string("src/tests/responses/send_photo_success.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "sendPhoto", 200, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "sendPhoto", 200, &mock_response).await;
 
     let mock_result = mocked.result::<Message>()?;
     let params = SendPhoto {
@@ -622,8 +622,8 @@ async fn send_photo_success() -> Result<(), Error> {
 #[tokio::test]
 async fn send_photo_error() -> Result<(), Error> {
     let mock_response = fs::read_to_string("src/tests/responses/send_photo_error.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "sendPhoto", 400, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "sendPhoto", 400, &mock_response).await;
 
     let mock_error = mocked.result_error()?;
     let params = SendPhoto {
@@ -642,8 +642,8 @@ async fn send_photo_error() -> Result<(), Error> {
 #[tokio::test]
 async fn send_audio_success() -> Result<(), Error> {
     let mock_response = fs::read_to_string("src/tests/responses/send_audio_success.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "sendAudio", 200, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "sendAudio", 200, &mock_response).await;
 
     let mock_result = mocked.result::<Message>()?;
     let params = SendAudio {
@@ -660,8 +660,8 @@ async fn send_audio_success() -> Result<(), Error> {
 #[tokio::test]
 async fn send_audio_error() -> Result<(), Error> {
     let mock_response = fs::read_to_string("src/tests/responses/send_audio_error.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "sendAudio", 400, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "sendAudio", 400, &mock_response).await;
 
     let mock_error = mocked.result_error()?;
     let params = SendAudio {
@@ -681,8 +681,8 @@ async fn send_audio_error() -> Result<(), Error> {
 async fn send_document_success() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/send_document_success.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "sendDocument", 200, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "sendDocument", 200, &mock_response).await;
 
     let mock_result = mocked.result::<Message>()?;
     let params = SendDocument {
@@ -699,8 +699,8 @@ async fn send_document_success() -> Result<(), Error> {
 #[tokio::test]
 async fn send_document_error() -> Result<(), Error> {
     let mock_response = fs::read_to_string("src/tests/responses/send_document_error.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "sendDocument", 400, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "sendDocument", 400, &mock_response).await;
 
     let mock_error = mocked.result_error()?;
     let params = SendDocument {
@@ -719,8 +719,8 @@ async fn send_document_error() -> Result<(), Error> {
 #[tokio::test]
 async fn send_video_success() -> Result<(), Error> {
     let mock_response = fs::read_to_string("src/tests/responses/send_video_success.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "sendVideo", 200, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "sendVideo", 200, &mock_response).await;
 
     let mock_result = mocked.result::<Message>()?;
     let params = SendVideo {
@@ -737,8 +737,8 @@ async fn send_video_success() -> Result<(), Error> {
 #[tokio::test]
 async fn send_video_error() -> Result<(), Error> {
     let mock_response = fs::read_to_string("src/tests/responses/send_video_error.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "sendVideo", 400, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "sendVideo", 400, &mock_response).await;
 
     let mock_error = mocked.result_error()?;
     let params = SendVideo {
@@ -758,8 +758,8 @@ async fn send_video_error() -> Result<(), Error> {
 async fn send_animation_success() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/send_animation_success.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "sendAnimation", 200, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "sendAnimation", 200, &mock_response).await;
 
     let mock_result = mocked.result::<Message>()?;
     let params = SendAnimation {
@@ -777,8 +777,8 @@ async fn send_animation_success() -> Result<(), Error> {
 async fn send_animation_error() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/send_animation_error.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "sendAnimation", 400, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "sendAnimation", 400, &mock_response).await;
 
     let mock_error = mocked.result_error()?;
     let params = SendAnimation {
@@ -797,8 +797,8 @@ async fn send_animation_error() -> Result<(), Error> {
 #[tokio::test]
 async fn send_voice_success() -> Result<(), Error> {
     let mock_response = fs::read_to_string("src/tests/responses/send_voice_success.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "sendVoice", 200, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "sendVoice", 200, &mock_response).await;
 
     let mock_result = mocked.result::<Message>()?;
     let params = SendVoice {
@@ -815,8 +815,8 @@ async fn send_voice_success() -> Result<(), Error> {
 #[tokio::test]
 async fn send_voice_error() -> Result<(), Error> {
     let mock_response = fs::read_to_string("src/tests/responses/send_voice_error.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "sendVoice", 400, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "sendVoice", 400, &mock_response).await;
 
     let mock_error = mocked.result_error()?;
     let params = SendVoice {
@@ -836,8 +836,8 @@ async fn send_voice_error() -> Result<(), Error> {
 async fn send_video_note_success() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/send_video_note_success.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "sendVideoNote", 200, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "sendVideoNote", 200, &mock_response).await;
 
     let mock_result = mocked.result::<Message>()?;
     let params = SendVideoNote {
@@ -855,8 +855,8 @@ async fn send_video_note_success() -> Result<(), Error> {
 async fn send_video_note_error() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/send_video_note_error.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "sendVideoNote", 400, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "sendVideoNote", 400, &mock_response).await;
 
     let mock_error = mocked.result_error()?;
     let params = SendVideoNote {
@@ -874,8 +874,8 @@ async fn send_video_note_error() -> Result<(), Error> {
 async fn send_media_group_success() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/send_media_group_success.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "sendMediaGroup", 200, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "sendMediaGroup", 200, &mock_response).await;
 
     let mock_result = mocked.result::<Vec<Message>>()?;
     let params = SendMediaGroup {
@@ -893,8 +893,8 @@ async fn send_media_group_success() -> Result<(), Error> {
 async fn send_media_group_error() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/send_media_group_error.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "sendMediaGroup", 400, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "sendMediaGroup", 400, &mock_response).await;
 
     let mock_error = mocked.result_error()?;
     let params = SendMediaGroup {
@@ -913,8 +913,8 @@ async fn send_media_group_error() -> Result<(), Error> {
 async fn send_location_success() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/send_location_success.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "sendLocation", 200, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "sendLocation", 200, &mock_response).await;
 
     let mock_result = mocked.result::<Message>()?;
     let params = SendLocation {
@@ -931,8 +931,8 @@ async fn send_location_success() -> Result<(), Error> {
 #[tokio::test]
 async fn send_location_error() -> Result<(), Error> {
     let mock_response = fs::read_to_string("src/tests/responses/send_location_error.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "sendLocation", 400, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "sendLocation", 400, &mock_response).await;
 
     let mock_error = mocked.result_error()?;
     let params = SendLocation {
@@ -949,8 +949,8 @@ async fn send_location_error() -> Result<(), Error> {
 #[tokio::test]
 async fn send_venue_success() -> Result<(), Error> {
     let mock_response = fs::read_to_string("src/tests/responses/send_venue_success.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "sendVenue", 200, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "sendVenue", 200, &mock_response).await;
 
     let mock_result = mocked.result::<Message>()?;
     let params = SendVenue {
@@ -967,8 +967,8 @@ async fn send_venue_success() -> Result<(), Error> {
 #[tokio::test]
 async fn send_venue_error() -> Result<(), Error> {
     let mock_response = fs::read_to_string("src/tests/responses/send_venue_error.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "sendVenue", 400, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "sendVenue", 400, &mock_response).await;
 
     let mock_error = mocked.result_error()?;
     let params = SendVenue {
@@ -985,8 +985,8 @@ async fn send_venue_error() -> Result<(), Error> {
 async fn send_contact_success() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/send_contact_success.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "sendContact", 200, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "sendContact", 200, &mock_response).await;
 
     let mock_result = mocked.result::<Message>()?;
     let params = SendContact {
@@ -1003,8 +1003,8 @@ async fn send_contact_success() -> Result<(), Error> {
 #[tokio::test]
 async fn send_contact_error() -> Result<(), Error> {
     let mock_response = fs::read_to_string("src/tests/responses/send_contact_error.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "sendContact", 400, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "sendContact", 400, &mock_response).await;
 
     let mock_error = mocked.result_error()?;
     let params = SendContact {
@@ -1020,8 +1020,8 @@ async fn send_contact_error() -> Result<(), Error> {
 
 async fn send_poll_success() -> Result<(), Error> {
     let mock_response = fs::read_to_string("src/tests/responses/send_poll_success.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "sendPoll", 200, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "sendPoll", 200, &mock_response).await;
 
     let mock_result = mocked.result::<Message>()?;
     let params = SendPoll {
@@ -1038,8 +1038,8 @@ async fn send_poll_success() -> Result<(), Error> {
 #[tokio::test]
 async fn send_poll_error() -> Result<(), Error> {
     let mock_response = fs::read_to_string("src/tests/responses/send_poll_error.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "sendPoll", 400, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "sendPoll", 400, &mock_response).await;
 
     let mock_error = mocked.result_error()?;
     let params = SendPoll {
@@ -1056,8 +1056,8 @@ async fn send_poll_error() -> Result<(), Error> {
 #[tokio::test]
 async fn send_dice_success() -> Result<(), Error> {
     let mock_response = fs::read_to_string("src/tests/responses/send_dice_success.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "sendDice", 200, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "sendDice", 200, &mock_response).await;
 
     let mock_result = mocked.result::<Message>()?;
     let params = SendDice {
@@ -1075,8 +1075,8 @@ async fn send_dice_success() -> Result<(), Error> {
 #[tokio::test]
 async fn send_dice_error() -> Result<(), Error> {
     let mock_response = fs::read_to_string("src/tests/responses/send_dice_error.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "sendDice", 400, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "sendDice", 400, &mock_response).await;
 
     let mock_error = mocked.result_error()?;
     let params = SendDice {
@@ -1095,8 +1095,8 @@ async fn send_dice_error() -> Result<(), Error> {
 async fn send_chat_action_success() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/send_chat_action_success.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "sendChatAction", 200, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "sendChatAction", 200, &mock_response).await;
 
     let mock_result = mocked.result::<bool>()?;
     let params = SendChatAction {
@@ -1114,8 +1114,8 @@ async fn send_chat_action_success() -> Result<(), Error> {
 async fn send_chat_action_error() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/send_chat_action_error.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "sendChatAction", 400, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "sendChatAction", 400, &mock_response).await;
 
     let mock_error = mocked.result_error()?;
     let params = SendChatAction {
@@ -1134,8 +1134,8 @@ async fn send_chat_action_error() -> Result<(), Error> {
 async fn set_message_reaction_success() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/set_message_reaction_success.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "setMessageReaction", 200, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "setMessageReaction", 200, &mock_response).await;
 
     let mock_result = mocked.result::<bool>()?;
     let params = SetMessageReaction {
@@ -1153,8 +1153,8 @@ async fn set_message_reaction_success() -> Result<(), Error> {
 async fn set_message_reaction_error() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/set_message_reaction_error.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "setMessageReaction", 400, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "setMessageReaction", 400, &mock_response).await;
 
     let mock_error = mocked.result_error()?;
     let params = SetMessageReaction {
@@ -1177,8 +1177,8 @@ async fn set_message_reaction_error() -> Result<(), Error> {
 async fn get_user_profile_photos_success() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/get_user_profile_photos_success.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "getUserProfilePhotos", 200, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "getUserProfilePhotos", 200, &mock_response).await;
 
     let mock_result = mocked.result::<UserProfilePhotos>()?;
     let params = GetUserProfilePhotos {
@@ -1196,8 +1196,8 @@ async fn get_user_profile_photos_success() -> Result<(), Error> {
 async fn get_user_profile_photos_error() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/get_user_profile_photos_error.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "getUserProfilePhotos", 400, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "getUserProfilePhotos", 400, &mock_response).await;
 
     let mock_error = mocked.result_error()?;
     let params = GetUserProfilePhotos {
@@ -1219,8 +1219,8 @@ async fn get_user_profile_photos_error() -> Result<(), Error> {
 #[tokio::test]
 async fn get_file_success() -> Result<(), Error> {
     let mock_response = fs::read_to_string("src/tests/responses/get_file_success.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "getFile", 200, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "getFile", 200, &mock_response).await;
 
     let mock_result = mocked.result::<File>()?;
     let params = GetFile {
@@ -1237,8 +1237,8 @@ async fn get_file_success() -> Result<(), Error> {
 #[tokio::test]
 async fn get_file_error() -> Result<(), Error> {
     let mock_response = fs::read_to_string("src/tests/responses/get_file_error.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "getFile", 400, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "getFile", 400, &mock_response).await;
 
     let mock_error = mocked.result_error()?;
     let params = GetFile {
@@ -1256,8 +1256,8 @@ async fn get_file_error() -> Result<(), Error> {
 async fn ban_chat_member_success() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/ban_chat_member_success.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "banChatMember", 200, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "banChatMember", 200, &mock_response).await;
 
     let mock_result = mocked.result::<bool>()?;
     let params = BanChatMember {
@@ -1275,8 +1275,8 @@ async fn ban_chat_member_success() -> Result<(), Error> {
 async fn ban_chat_member_error() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/ban_chat_member_error.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "banChatMember", 400, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "banChatMember", 400, &mock_response).await;
 
     let mock_error = mocked.result_error()?;
     let params = BanChatMember {
@@ -1294,8 +1294,8 @@ async fn ban_chat_member_error() -> Result<(), Error> {
 async fn unban_chat_member_success() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/unban_chat_member_success.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "unbanChatMember", 200, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "unbanChatMember", 200, &mock_response).await;
 
     let mock_result = mocked.result::<bool>()?;
     let params = UnbanChatMember {
@@ -1313,8 +1313,8 @@ async fn unban_chat_member_success() -> Result<(), Error> {
 async fn unban_chat_member_error() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/unban_chat_member_error.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "unbanChatMember", 400, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "unbanChatMember", 400, &mock_response).await;
 
     let mock_error = mocked.result_error()?;
     let params = UnbanChatMember {
@@ -1333,8 +1333,8 @@ async fn unban_chat_member_error() -> Result<(), Error> {
 async fn restrict_chat_member_success() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/restrict_chat_member_success.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "restrictChatMember", 200, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "restrictChatMember", 200, &mock_response).await;
 
     let mock_result = mocked.result::<bool>()?;
     let params = RestrictChatMember {
@@ -1352,8 +1352,8 @@ async fn restrict_chat_member_success() -> Result<(), Error> {
 async fn restrict_chat_member_error() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/restrict_chat_member_error.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "restrictChatMember", 400, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "restrictChatMember", 400, &mock_response).await;
 
     let mock_error = mocked.result_error()?;
     let params = RestrictChatMember {
@@ -1376,8 +1376,8 @@ async fn restrict_chat_member_error() -> Result<(), Error> {
 async fn promote_chat_member_success() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/promote_chat_member_success.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "promoteChatMember", 200, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "promoteChatMember", 200, &mock_response).await;
 
     let mock_result = mocked.result::<bool>()?;
     let params = PromoteChatMember {
@@ -1395,8 +1395,8 @@ async fn promote_chat_member_success() -> Result<(), Error> {
 async fn promote_chat_member_error() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/promote_chat_member_error.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "promoteChatMember", 400, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "promoteChatMember", 400, &mock_response).await;
 
     let mock_error = mocked.result_error()?;
     let params = PromoteChatMember {
@@ -1420,13 +1420,14 @@ async fn set_chat_administrator_custom_title_success() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/set_chat_administrator_custom_title_success.json")
             .unwrap();
-    let mut server = mockito::Server::new();
+    let mut server = mockito::Server::new_async().await;
     let mocked = MockedAsync::new(
         &mut server,
         "setChatAdministratorCustomTitle",
         200,
         &mock_response,
-    );
+    )
+    .await;
 
     let mock_result = mocked.result::<bool>()?;
     let params = SetChatAdministratorCustomTitle {
@@ -1448,13 +1449,14 @@ async fn set_chat_administrator_custom_title_error() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/set_chat_administrator_custom_title_error.json")
             .unwrap();
-    let mut server = mockito::Server::new();
+    let mut server = mockito::Server::new_async().await;
     let mocked = MockedAsync::new(
         &mut server,
         "setChatAdministratorCustomTitle",
         400,
         &mock_response,
-    );
+    )
+    .await;
 
     let mock_error = mocked.result_error()?;
     let params = SetChatAdministratorCustomTitle {
@@ -1477,8 +1479,8 @@ async fn set_chat_administrator_custom_title_error() -> Result<(), Error> {
 async fn ban_chat_sender_chat_success() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/ban_chat_sender_chat_success.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "banChatSenderChat", 200, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "banChatSenderChat", 200, &mock_response).await;
 
     let mock_result = mocked.result::<bool>()?;
     let params = BanChatSenderChat {
@@ -1496,8 +1498,8 @@ async fn ban_chat_sender_chat_success() -> Result<(), Error> {
 async fn ban_chat_sender_chat_error() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/ban_chat_sender_chat_error.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "banChatSenderChat", 400, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "banChatSenderChat", 400, &mock_response).await;
 
     let mock_error = mocked.result_error()?;
     let params = BanChatSenderChat {
@@ -1520,8 +1522,8 @@ async fn ban_chat_sender_chat_error() -> Result<(), Error> {
 async fn unban_chat_sender_chat_success() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/unban_chat_sender_chat_success.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "unbanChatSenderChat", 200, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "unbanChatSenderChat", 200, &mock_response).await;
 
     let mock_result = mocked.result::<bool>()?;
     let params = UnbanChatSenderChat {
@@ -1539,8 +1541,8 @@ async fn unban_chat_sender_chat_success() -> Result<(), Error> {
 async fn unban_chat_sender_chat_error() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/unban_chat_sender_chat_error.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "unbanChatSenderChat", 400, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "unbanChatSenderChat", 400, &mock_response).await;
 
     let mock_error = mocked.result_error()?;
     let params = UnbanChatSenderChat {
@@ -1563,8 +1565,8 @@ async fn unban_chat_sender_chat_error() -> Result<(), Error> {
 async fn set_chat_permissions_success() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/set_chat_permissions_success.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "setChatPermissions", 200, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "setChatPermissions", 200, &mock_response).await;
 
     let mock_result = mocked.result::<bool>()?;
     let params = SetChatPermissions {
@@ -1582,8 +1584,8 @@ async fn set_chat_permissions_success() -> Result<(), Error> {
 async fn set_chat_permissions_error() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/set_chat_permissions_error.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "setChatPermissions", 400, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "setChatPermissions", 400, &mock_response).await;
 
     let mock_error = mocked.result_error()?;
     let params = SetChatPermissions {
@@ -1606,8 +1608,8 @@ async fn set_chat_permissions_error() -> Result<(), Error> {
 async fn export_chat_invite_link_success() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/export_chat_invite_link_success.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "exportChatInviteLink", 200, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "exportChatInviteLink", 200, &mock_response).await;
 
     let mock_result = mocked.result::<String>()?;
     let params = ExportChatInviteLink {
@@ -1625,8 +1627,8 @@ async fn export_chat_invite_link_success() -> Result<(), Error> {
 async fn export_chat_invite_link_error() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/export_chat_invite_link_error.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "exportChatInviteLink", 400, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "exportChatInviteLink", 400, &mock_response).await;
 
     let mock_error = mocked.result_error()?;
     let params = ExportChatInviteLink {
@@ -1649,8 +1651,8 @@ async fn export_chat_invite_link_error() -> Result<(), Error> {
 async fn create_chat_invite_link_success() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/create_chat_invite_link_success.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "createChatInviteLink", 200, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "createChatInviteLink", 200, &mock_response).await;
 
     let mock_result = mocked.result::<ChatInviteLink>()?;
     let params = CreateChatInviteLink {
@@ -1668,8 +1670,8 @@ async fn create_chat_invite_link_success() -> Result<(), Error> {
 async fn create_chat_invite_link_error() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/create_chat_invite_link_error.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "createChatInviteLink", 400, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "createChatInviteLink", 400, &mock_response).await;
 
     let mock_error = mocked.result_error()?;
     let params = CreateChatInviteLink {
@@ -1692,8 +1694,8 @@ async fn create_chat_invite_link_error() -> Result<(), Error> {
 async fn edit_chat_invite_link_success() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/edit_chat_invite_link_success.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "editChatInviteLink", 200, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "editChatInviteLink", 200, &mock_response).await;
 
     let mock_result = mocked.result::<ChatInviteLink>()?;
     let params = EditChatInviteLink {
@@ -1711,8 +1713,8 @@ async fn edit_chat_invite_link_success() -> Result<(), Error> {
 async fn edit_chat_invite_link_error() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/edit_chat_invite_link_error.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "editChatInviteLink", 400, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "editChatInviteLink", 400, &mock_response).await;
 
     let mock_error = mocked.result_error()?;
     let params = EditChatInviteLink {
@@ -1735,8 +1737,8 @@ async fn edit_chat_invite_link_error() -> Result<(), Error> {
 async fn revoke_chat_invite_link_success() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/revoke_chat_invite_link_success.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "revokeChatInviteLink", 200, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "revokeChatInviteLink", 200, &mock_response).await;
 
     let mock_result = mocked.result::<ChatInviteLink>()?;
     let params = RevokeChatInviteLink {
@@ -1754,8 +1756,8 @@ async fn revoke_chat_invite_link_success() -> Result<(), Error> {
 async fn revoke_chat_invite_link_error() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/revoke_chat_invite_link_error.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "revokeChatInviteLink", 400, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "revokeChatInviteLink", 400, &mock_response).await;
 
     let mock_error = mocked.result_error()?;
     let params = RevokeChatInviteLink {
@@ -1778,8 +1780,8 @@ async fn revoke_chat_invite_link_error() -> Result<(), Error> {
 async fn approve_chat_join_request_success() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/approve_chat_join_request_success.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "approveChatJoinRequest", 200, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "approveChatJoinRequest", 200, &mock_response).await;
 
     let mock_result = mocked.result::<bool>()?;
     let params = ApproveChatJoinRequest {
@@ -1797,8 +1799,8 @@ async fn approve_chat_join_request_success() -> Result<(), Error> {
 async fn approve_chat_join_request_error() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/approve_chat_join_request_error.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "approveChatJoinRequest", 400, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "approveChatJoinRequest", 400, &mock_response).await;
 
     let mock_error = mocked.result_error()?;
     let params = ApproveChatJoinRequest {
@@ -1821,8 +1823,8 @@ async fn approve_chat_join_request_error() -> Result<(), Error> {
 async fn decline_chat_join_request_success() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/decline_chat_join_request_success.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "declineChatJoinRequest", 200, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "declineChatJoinRequest", 200, &mock_response).await;
 
     let mock_result = mocked.result::<bool>()?;
     let params = DeclineChatJoinRequest {
@@ -1840,8 +1842,8 @@ async fn decline_chat_join_request_success() -> Result<(), Error> {
 async fn decline_chat_join_request_error() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/decline_chat_join_request_error.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "declineChatJoinRequest", 400, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "declineChatJoinRequest", 400, &mock_response).await;
 
     let mock_error = mocked.result_error()?;
     let params = DeclineChatJoinRequest {
@@ -1864,8 +1866,8 @@ async fn decline_chat_join_request_error() -> Result<(), Error> {
 async fn set_chat_photo_success() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/set_chat_photo_success.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "setChatPhoto", 200, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "setChatPhoto", 200, &mock_response).await;
 
     let mock_result = mocked.result::<bool>()?;
     let params = SetChatPhoto {
@@ -1883,8 +1885,8 @@ async fn set_chat_photo_success() -> Result<(), Error> {
 async fn set_chat_photo_error() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/set_chat_photo_error.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "setChatPhoto", 400, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "setChatPhoto", 400, &mock_response).await;
 
     let mock_error = mocked.result_error()?;
     let params = SetChatPhoto {
@@ -1902,8 +1904,8 @@ async fn set_chat_photo_error() -> Result<(), Error> {
 async fn delete_chat_photo_success() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/delete_chat_photo_success.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "deleteChatPhoto", 200, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "deleteChatPhoto", 200, &mock_response).await;
 
     let mock_result = mocked.result::<bool>()?;
     let params = DeleteChatPhoto {
@@ -1921,8 +1923,8 @@ async fn delete_chat_photo_success() -> Result<(), Error> {
 async fn delete_chat_photo_error() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/delete_chat_photo_error.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "deleteChatPhoto", 400, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "deleteChatPhoto", 400, &mock_response).await;
 
     let mock_error = mocked.result_error()?;
     let params = DeleteChatPhoto {
@@ -1941,8 +1943,8 @@ async fn delete_chat_photo_error() -> Result<(), Error> {
 async fn set_chat_title_success() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/set_chat_title_success.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "setChatTitle", 200, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "setChatTitle", 200, &mock_response).await;
 
     let mock_result = mocked.result::<bool>()?;
     let params = SetChatTitle {
@@ -1960,8 +1962,8 @@ async fn set_chat_title_success() -> Result<(), Error> {
 async fn set_chat_title_error() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/set_chat_title_error.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "setChatTitle", 400, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "setChatTitle", 400, &mock_response).await;
 
     let mock_error = mocked.result_error()?;
     let params = SetChatTitle {
@@ -1979,8 +1981,8 @@ async fn set_chat_title_error() -> Result<(), Error> {
 async fn set_chat_description_success() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/set_chat_description_success.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "setChatDescription", 200, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "setChatDescription", 200, &mock_response).await;
 
     let mock_result = mocked.result::<bool>()?;
     let params = SetChatDescription {
@@ -1998,8 +2000,8 @@ async fn set_chat_description_success() -> Result<(), Error> {
 async fn set_chat_description_error() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/set_chat_description_error.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "setChatDescription", 400, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "setChatDescription", 400, &mock_response).await;
 
     let mock_error = mocked.result_error()?;
     let params = SetChatDescription {
@@ -2022,8 +2024,8 @@ async fn set_chat_description_error() -> Result<(), Error> {
 async fn pin_chat_message_success() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/pin_chat_message_success.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "pinChatMessage", 200, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "pinChatMessage", 200, &mock_response).await;
 
     let mock_result = mocked.result::<bool>()?;
     let params = PinChatMessage {
@@ -2041,8 +2043,8 @@ async fn pin_chat_message_success() -> Result<(), Error> {
 async fn pin_chat_message_error() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/pin_chat_message_error.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "pinChatMessage", 400, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "pinChatMessage", 400, &mock_response).await;
 
     let mock_error = mocked.result_error()?;
     let params = PinChatMessage {
@@ -2061,8 +2063,8 @@ async fn pin_chat_message_error() -> Result<(), Error> {
 async fn unpin_chat_message_success() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/unpin_chat_message_success.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "unpinChatMessage", 200, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "unpinChatMessage", 200, &mock_response).await;
 
     let mock_result = mocked.result::<bool>()?;
     let params = UnpinChatMessage {
@@ -2080,8 +2082,8 @@ async fn unpin_chat_message_success() -> Result<(), Error> {
 async fn unpin_chat_message_error() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/unpin_chat_message_error.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "unpinChatMessage", 400, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "unpinChatMessage", 400, &mock_response).await;
 
     let mock_error = mocked.result_error()?;
     let params = UnpinChatMessage {
@@ -2101,8 +2103,8 @@ async fn unpin_chat_message_error() -> Result<(), Error> {
 async fn unpin_all_chat_messages_success() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/unpin_all_chat_messages_success.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "unpinAllChatMessages", 200, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "unpinAllChatMessages", 200, &mock_response).await;
 
     let mock_result = mocked.result::<bool>()?;
     let params = UnpinAllChatMessages {
@@ -2120,8 +2122,8 @@ async fn unpin_all_chat_messages_success() -> Result<(), Error> {
 async fn unpin_all_chat_messages_error() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/unpin_all_chat_messages_error.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "unpinAllChatMessages", 400, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "unpinAllChatMessages", 400, &mock_response).await;
 
     let mock_error = mocked.result_error()?;
     let params = UnpinAllChatMessages {
@@ -2143,8 +2145,8 @@ async fn unpin_all_chat_messages_error() -> Result<(), Error> {
 #[tokio::test]
 async fn leave_chat_success() -> Result<(), Error> {
     let mock_response = fs::read_to_string("src/tests/responses/leave_chat_success.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "leaveChat", 200, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "leaveChat", 200, &mock_response).await;
 
     let mock_result = mocked.result::<bool>()?;
     let params = LeaveChat {
@@ -2161,8 +2163,8 @@ async fn leave_chat_success() -> Result<(), Error> {
 #[tokio::test]
 async fn leave_chat_error() -> Result<(), Error> {
     let mock_response = fs::read_to_string("src/tests/responses/leave_chat_error.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "leaveChat", 400, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "leaveChat", 400, &mock_response).await;
 
     let mock_error = mocked.result_error()?;
     let params = LeaveChat {
@@ -2179,8 +2181,8 @@ async fn leave_chat_error() -> Result<(), Error> {
 #[tokio::test]
 async fn get_chat_success() -> Result<(), Error> {
     let mock_response = fs::read_to_string("src/tests/responses/get_chat_success.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "getChat", 200, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "getChat", 200, &mock_response).await;
 
     let mock_result = mocked.result::<Chat>()?;
     let params = GetChat {
@@ -2197,8 +2199,8 @@ async fn get_chat_success() -> Result<(), Error> {
 #[tokio::test]
 async fn get_chat_error() -> Result<(), Error> {
     let mock_response = fs::read_to_string("src/tests/responses/get_chat_error.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "getChat", 400, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "getChat", 400, &mock_response).await;
 
     let mock_error = mocked.result_error()?;
     let params = GetChat {
@@ -2216,8 +2218,8 @@ async fn get_chat_error() -> Result<(), Error> {
 async fn get_chat_administrators_success() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/get_chat_administrators_success.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "getChatAdministrators", 200, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "getChatAdministrators", 200, &mock_response).await;
 
     let mock_result = mocked.result::<Vec<ChatMember>>()?;
     let params = GetChatAdministrators {
@@ -2235,8 +2237,8 @@ async fn get_chat_administrators_success() -> Result<(), Error> {
 async fn get_chat_administrators_error() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/get_chat_administrators_error.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "getChatAdministrators", 400, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "getChatAdministrators", 400, &mock_response).await;
 
     let mock_error = mocked.result_error()?;
     let params = GetChatAdministrators {
@@ -2259,8 +2261,8 @@ async fn get_chat_administrators_error() -> Result<(), Error> {
 async fn get_chat_member_count_success() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/get_chat_member_count_success.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "getChatMemberCount", 200, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "getChatMemberCount", 200, &mock_response).await;
 
     let mock_result = mocked.result::<i64>()?;
     let params = GetChatMemberCount {
@@ -2278,8 +2280,8 @@ async fn get_chat_member_count_success() -> Result<(), Error> {
 async fn get_chat_member_count_error() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/get_chat_member_count_error.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "getChatMemberCount", 400, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "getChatMemberCount", 400, &mock_response).await;
 
     let mock_error = mocked.result_error()?;
     let params = GetChatMemberCount {
@@ -2302,8 +2304,8 @@ async fn get_chat_member_count_error() -> Result<(), Error> {
 async fn get_chat_member_success() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/get_chat_member_success.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "getChatMember", 200, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "getChatMember", 200, &mock_response).await;
 
     let mock_result = mocked.result::<ChatMember>()?;
     let params = GetChatMember {
@@ -2321,8 +2323,8 @@ async fn get_chat_member_success() -> Result<(), Error> {
 async fn get_chat_member_error() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/get_chat_member_error.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "getChatMember", 400, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "getChatMember", 400, &mock_response).await;
 
     let mock_error = mocked.result_error()?;
     let params = GetChatMember {
@@ -2340,8 +2342,8 @@ async fn get_chat_member_error() -> Result<(), Error> {
 async fn set_chat_sticker_set_success() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/set_chat_sticker_set_success.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "setChatStickerSet", 200, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "setChatStickerSet", 200, &mock_response).await;
 
     let mock_result = mocked.result::<bool>()?;
     let params = SetChatStickerSet {
@@ -2359,8 +2361,8 @@ async fn set_chat_sticker_set_success() -> Result<(), Error> {
 async fn set_chat_sticker_set_error() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/set_chat_sticker_set_error.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "setChatStickerSet", 400, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "setChatStickerSet", 400, &mock_response).await;
 
     let mock_error = mocked.result_error()?;
     let params = SetChatStickerSet {
@@ -2383,8 +2385,8 @@ async fn set_chat_sticker_set_error() -> Result<(), Error> {
 async fn delete_chat_sticker_set_success() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/delete_chat_sticker_set_success.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "deleteChatStickerSet", 200, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "deleteChatStickerSet", 200, &mock_response).await;
 
     let mock_result = mocked.result::<bool>()?;
     let params = DeleteChatStickerSet {
@@ -2402,8 +2404,8 @@ async fn delete_chat_sticker_set_success() -> Result<(), Error> {
 async fn delete_chat_sticker_set_error() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/delete_chat_sticker_set_error.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "deleteChatStickerSet", 400, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "deleteChatStickerSet", 400, &mock_response).await;
 
     let mock_error = mocked.result_error()?;
     let params = DeleteChatStickerSet {
@@ -2426,13 +2428,14 @@ async fn delete_chat_sticker_set_error() -> Result<(), Error> {
 async fn get_forum_topic_icon_stickers_success() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/get_forum_topic_icon_stickers.json").unwrap();
-    let mut server = mockito::Server::new();
+    let mut server = mockito::Server::new_async().await;
     let mocked = MockedAsync::new(
         &mut server,
         "getForumTopicIconStickers",
         200,
         &mock_response,
-    );
+    )
+    .await;
 
     let mock_result = mocked.result::<Vec<Sticker>>()?;
     let params = GetForumTopicIconStickers {
@@ -2450,8 +2453,8 @@ async fn get_forum_topic_icon_stickers_success() -> Result<(), Error> {
 async fn create_forum_topic_success() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/create_forum_topic_success.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "createForumTopic", 200, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "createForumTopic", 200, &mock_response).await;
 
     let mock_result = mocked.result::<ForumTopic>()?;
     let params = CreateForumTopic {
@@ -2469,8 +2472,8 @@ async fn create_forum_topic_success() -> Result<(), Error> {
 async fn create_forum_topic_error() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/create_forum_topic_error.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "createForumTopic", 400, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "createForumTopic", 400, &mock_response).await;
 
     let mock_error = mocked.result_error()?;
     let params = CreateForumTopic {
@@ -2490,8 +2493,8 @@ async fn create_forum_topic_error() -> Result<(), Error> {
 async fn edit_forum_topic_success() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/edit_forum_topic_success.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "editForumTopic", 200, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "editForumTopic", 200, &mock_response).await;
 
     let mock_result = mocked.result::<bool>()?;
     let params = EditForumTopic {
@@ -2509,8 +2512,8 @@ async fn edit_forum_topic_success() -> Result<(), Error> {
 async fn edit_forum_topic_error() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/edit_forum_topic_error.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "editForumTopic", 400, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "editForumTopic", 400, &mock_response).await;
 
     let mock_error = mocked.result_error()?;
     let params = EditForumTopic {
@@ -2529,8 +2532,8 @@ async fn edit_forum_topic_error() -> Result<(), Error> {
 async fn close_forum_topic_success() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/close_forum_topic_success.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "closeForumTopic", 200, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "closeForumTopic", 200, &mock_response).await;
 
     let mock_result = mocked.result::<bool>()?;
     let params = CloseForumTopic {
@@ -2548,8 +2551,8 @@ async fn close_forum_topic_success() -> Result<(), Error> {
 async fn close_forum_topic_error() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/close_forum_topic_error.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "closeForumTopic", 400, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "closeForumTopic", 400, &mock_response).await;
 
     let mock_error = mocked.result_error()?;
     let params = CloseForumTopic {
@@ -2568,8 +2571,8 @@ async fn close_forum_topic_error() -> Result<(), Error> {
 async fn reopen_forum_topic_success() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/reopen_forum_topic_success.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "reopenForumTopic", 200, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "reopenForumTopic", 200, &mock_response).await;
 
     let mock_result = mocked.result::<bool>()?;
     let params = ReopenForumTopic {
@@ -2587,8 +2590,8 @@ async fn reopen_forum_topic_success() -> Result<(), Error> {
 async fn reopen_forum_topic_error() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/reopen_forum_topic_error.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "reopenForumTopic", 400, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "reopenForumTopic", 400, &mock_response).await;
 
     let mock_error = mocked.result_error()?;
     let params = ReopenForumTopic {
@@ -2608,8 +2611,8 @@ async fn reopen_forum_topic_error() -> Result<(), Error> {
 async fn delete_forum_topic_success() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/delete_forum_topic_success.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "deleteForumTopic", 200, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "deleteForumTopic", 200, &mock_response).await;
 
     let mock_result = mocked.result::<bool>()?;
     let params = DeleteForumTopic {
@@ -2627,8 +2630,8 @@ async fn delete_forum_topic_success() -> Result<(), Error> {
 async fn delete_forum_topic_error() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/delete_forum_topic_error.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "deleteForumTopic", 400, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "deleteForumTopic", 400, &mock_response).await;
 
     let mock_error = mocked.result_error()?;
     let params = DeleteForumTopic {
@@ -2649,13 +2652,14 @@ async fn unpin_all_forum_topic_messages_success() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/unpin_all_forum_topic_messages_success.json")
             .unwrap();
-    let mut server = mockito::Server::new();
+    let mut server = mockito::Server::new_async().await;
     let mocked = MockedAsync::new(
         &mut server,
         "unpinAllForumTopicMessages",
         200,
         &mock_response,
-    );
+    )
+    .await;
 
     let mock_result = mocked.result::<bool>()?;
     let params = UnpinAllForumTopicMessages {
@@ -2677,13 +2681,14 @@ async fn unpin_all_forum_topic_messages_error() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/unpin_all_forum_topic_messages_error.json")
             .unwrap();
-    let mut server = mockito::Server::new();
+    let mut server = mockito::Server::new_async().await;
     let mocked = MockedAsync::new(
         &mut server,
         "unpinAllForumTopicMessages",
         200,
         &mock_response,
-    );
+    )
+    .await;
 
     let mock_error = mocked.result_error()?;
     let params = UnpinAllForumTopicMessages {
@@ -2706,8 +2711,8 @@ async fn unpin_all_forum_topic_messages_error() -> Result<(), Error> {
 async fn edit_general_forum_topic_success() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/edit_general_forum_topic_success.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "editGeneralForumTopic", 200, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "editGeneralForumTopic", 200, &mock_response).await;
 
     let mock_result = mocked.result::<bool>()?;
     let params = EditGeneralForumTopic {
@@ -2725,8 +2730,8 @@ async fn edit_general_forum_topic_success() -> Result<(), Error> {
 async fn edit_general_forum_topic_error() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/edit_general_forum_topic_error.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "editGeneralForumTopic", 400, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "editGeneralForumTopic", 400, &mock_response).await;
 
     let mock_error = mocked.result_error()?;
     let params = EditGeneralForumTopic {
@@ -2748,8 +2753,8 @@ async fn edit_general_forum_topic_error() -> Result<(), Error> {
 async fn close_general_forum_topic_success() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/close_general_forum_topic_success.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "closeGeneralForumTopic", 200, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "closeGeneralForumTopic", 200, &mock_response).await;
 
     let mock_result = mocked.result::<bool>()?;
     let params = CloseGeneralForumTopic {
@@ -2767,8 +2772,8 @@ async fn close_general_forum_topic_success() -> Result<(), Error> {
 async fn close_general_forum_topic_error() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/close_general_forum_topic_error.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "closeGeneralForumTopic", 400, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "closeGeneralForumTopic", 400, &mock_response).await;
 
     let mock_error = mocked.result_error()?;
     let params = CloseGeneralForumTopic {
@@ -2791,8 +2796,9 @@ async fn close_general_forum_topic_error() -> Result<(), Error> {
 async fn reopen_general_forum_topic_success() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/reopen_general_forum_topic_success.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "reopenGeneralForumTopic", 200, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked =
+        MockedAsync::new(&mut server, "reopenGeneralForumTopic", 200, &mock_response).await;
 
     let mock_result = mocked.result::<bool>()?;
     let params = ReopenGeneralForumTopic {
@@ -2810,8 +2816,9 @@ async fn reopen_general_forum_topic_success() -> Result<(), Error> {
 async fn reopen_general_forum_topic_error() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/reopen_general_forum_topic_error.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "reopenGeneralForumTopic", 400, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked =
+        MockedAsync::new(&mut server, "reopenGeneralForumTopic", 400, &mock_response).await;
 
     let mock_error = mocked.result_error()?;
     let params = ReopenGeneralForumTopic {
@@ -2834,8 +2841,8 @@ async fn reopen_general_forum_topic_error() -> Result<(), Error> {
 async fn hide_general_forum_topic_success() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/hide_general_forum_topic_success.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "hideGeneralForumTopic", 200, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "hideGeneralForumTopic", 200, &mock_response).await;
 
     let mock_result = mocked.result::<bool>()?;
     let params = HideGeneralForumTopic {
@@ -2853,8 +2860,8 @@ async fn hide_general_forum_topic_success() -> Result<(), Error> {
 async fn hide_general_forum_topic_error() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/hide_general_forum_topic_error.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "hideGeneralForumTopic", 400, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "hideGeneralForumTopic", 400, &mock_response).await;
 
     let mock_error = mocked.result_error()?;
     let params = HideGeneralForumTopic {
@@ -2877,8 +2884,9 @@ async fn hide_general_forum_topic_error() -> Result<(), Error> {
 async fn unhide_general_forum_topic_success() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/unhide_general_forum_topic_success.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "unhideGeneralForumTopic", 200, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked =
+        MockedAsync::new(&mut server, "unhideGeneralForumTopic", 200, &mock_response).await;
 
     let mock_result = mocked.result::<bool>()?;
     let params = UnhideGeneralForumTopic {
@@ -2896,8 +2904,9 @@ async fn unhide_general_forum_topic_success() -> Result<(), Error> {
 async fn unhide_general_forum_topic_error() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/unhide_general_forum_topic_error.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "unhideGeneralForumTopic", 400, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked =
+        MockedAsync::new(&mut server, "unhideGeneralForumTopic", 400, &mock_response).await;
 
     let mock_error = mocked.result_error()?;
     let params = UnhideGeneralForumTopic {
@@ -2922,13 +2931,14 @@ async fn unpin_all_general_forum_topic_messages_success() -> Result<(), Error> {
         "src/tests/responses/unpin_all_general_forum_topic_messages_success.json",
     )
     .unwrap();
-    let mut server = mockito::Server::new();
+    let mut server = mockito::Server::new_async().await;
     let mocked = MockedAsync::new(
         &mut server,
         "unpinAllGeneralForumTopicMessages",
         200,
         &mock_response,
-    );
+    )
+    .await;
 
     let mock_result = mocked.result::<bool>()?;
     let params = UnpinAllGeneralForumTopicMessages {
@@ -2951,13 +2961,14 @@ async fn unpin_all_general_forum_topic_messages_error() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/unpin_all_general_forum_topic_messages_error.json")
             .unwrap();
-    let mut server = mockito::Server::new();
+    let mut server = mockito::Server::new_async().await;
     let mocked = MockedAsync::new(
         &mut server,
         "unpinAllGeneralForumTopicMessages",
         200,
         &mock_response,
-    );
+    )
+    .await;
 
     let mock_error = mocked.result_error()?;
     let params = UnpinAllGeneralForumTopicMessages {
@@ -2980,8 +2991,8 @@ async fn unpin_all_general_forum_topic_messages_error() -> Result<(), Error> {
 async fn answer_callback_query_success() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/answer_callback_query_success.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "answerCallbackQuery", 200, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "answerCallbackQuery", 200, &mock_response).await;
 
     let mock_result = mocked.result::<bool>()?;
     let params = AnswerCallbackQuery {
@@ -2999,8 +3010,8 @@ async fn answer_callback_query_success() -> Result<(), Error> {
 async fn answer_callback_query_error() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/answer_callback_query_error.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "answerCallbackQuery", 400, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "answerCallbackQuery", 400, &mock_response).await;
 
     let mock_error = mocked.result_error()?;
     let params = AnswerCallbackQuery {
@@ -3023,8 +3034,8 @@ async fn answer_callback_query_error() -> Result<(), Error> {
 async fn get_user_chat_boosts_success() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/get_user_chat_boosts_success.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "getUserChatBoosts", 200, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "getUserChatBoosts", 200, &mock_response).await;
 
     let mock_result = mocked.result::<UserChatBoosts>()?;
     let params = GetUserChatBoosts {
@@ -3042,8 +3053,8 @@ async fn get_user_chat_boosts_success() -> Result<(), Error> {
 async fn get_user_chat_boosts_error() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/get_user_chat_boosts_error.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "getUserChatBoosts", 400, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "getUserChatBoosts", 400, &mock_response).await;
 
     let mock_error = mocked.result_error()?;
     let params = GetUserChatBoosts {
@@ -3065,8 +3076,8 @@ async fn get_user_chat_boosts_error() -> Result<(), Error> {
 #[tokio::test]
 async fn set_my_commands_success() -> Result<(), Error> {
     let mock_response = fs::read_to_string("src/tests/responses/set_my_commands.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "setMyCommands", 200, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "setMyCommands", 200, &mock_response).await;
 
     let mock_result = mocked.result::<bool>()?;
     let params = SetMyCommands {
@@ -3083,8 +3094,8 @@ async fn set_my_commands_success() -> Result<(), Error> {
 #[tokio::test]
 async fn delete_my_commands_success() -> Result<(), Error> {
     let mock_response = fs::read_to_string("src/tests/responses/delete_my_commands.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "deleteMyCommands", 200, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "deleteMyCommands", 200, &mock_response).await;
 
     let mock_result = mocked.result::<bool>()?;
     let params = DeleteMyCommands {
@@ -3101,8 +3112,8 @@ async fn delete_my_commands_success() -> Result<(), Error> {
 #[tokio::test]
 async fn get_my_commands_success() -> Result<(), Error> {
     let mock_response = fs::read_to_string("src/tests/responses/get_my_commands.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "getMyCommands", 200, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "getMyCommands", 200, &mock_response).await;
 
     let mock_result = mocked.result::<Vec<BotCommand>>()?;
     let params = GetMyCommands {
@@ -3119,8 +3130,8 @@ async fn get_my_commands_success() -> Result<(), Error> {
 #[tokio::test]
 async fn set_my_name_success() -> Result<(), Error> {
     let mock_response = fs::read_to_string("src/tests/responses/set_my_name_success.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "setMyName", 200, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "setMyName", 200, &mock_response).await;
 
     let mock_result = mocked.result::<bool>()?;
     let params = SetMyName {
@@ -3137,8 +3148,8 @@ async fn set_my_name_success() -> Result<(), Error> {
 #[tokio::test]
 async fn set_my_name_error() -> Result<(), Error> {
     let mock_response = fs::read_to_string("src/tests/responses/set_my_name_error.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "setMyName", 400, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "setMyName", 400, &mock_response).await;
 
     let mock_error = mocked.result_error()?;
     let params = SetMyName {
@@ -3155,8 +3166,8 @@ async fn set_my_name_error() -> Result<(), Error> {
 #[tokio::test]
 async fn get_my_name_success() -> Result<(), Error> {
     let mock_response = fs::read_to_string("src/tests/responses/get_my_name_success.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "getMyName", 200, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "getMyName", 200, &mock_response).await;
 
     let mock_result = mocked.result::<BotName>()?;
     let params = GetMyName {
@@ -3173,8 +3184,8 @@ async fn get_my_name_success() -> Result<(), Error> {
 #[tokio::test]
 async fn set_my_description_success() -> Result<(), Error> {
     let mock_response = fs::read_to_string("src/tests/responses/set_my_description.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "setMyDescription", 200, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "setMyDescription", 200, &mock_response).await;
 
     let mock_result = mocked.result::<bool>()?;
     let params = SetMyDescription {
@@ -3191,8 +3202,8 @@ async fn set_my_description_success() -> Result<(), Error> {
 #[tokio::test]
 async fn get_my_description_success() -> Result<(), Error> {
     let mock_response = fs::read_to_string("src/tests/responses/get_my_description.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "getMyDescription", 200, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "getMyDescription", 200, &mock_response).await;
 
     let mock_result = mocked.result::<BotDescription>()?;
     let params = GetMyDescription {
@@ -3210,8 +3221,8 @@ async fn get_my_description_success() -> Result<(), Error> {
 async fn set_my_short_description_success() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/set_my_short_description.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "setMyShortDescription", 200, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "setMyShortDescription", 200, &mock_response).await;
 
     let mock_result = mocked.result::<bool>()?;
     let params = SetMyShortDescription {
@@ -3229,8 +3240,8 @@ async fn set_my_short_description_success() -> Result<(), Error> {
 async fn get_my_short_description_success() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/get_my_short_description.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "getMyShortDescription", 200, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "getMyShortDescription", 200, &mock_response).await;
 
     let mock_result = mocked.result::<BotShortDescription>()?;
     let params = GetMyShortDescription {
@@ -3248,8 +3259,8 @@ async fn get_my_short_description_success() -> Result<(), Error> {
 async fn set_chat_menu_button_success() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/set_chat_menu_button.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "setChatMenuButton", 200, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "setChatMenuButton", 200, &mock_response).await;
 
     let mock_result = mocked.result::<bool>()?;
     let params = SetChatMenuButton {
@@ -3267,8 +3278,8 @@ async fn set_chat_menu_button_success() -> Result<(), Error> {
 async fn get_chat_menu_button_success() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/get_chat_menu_button.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "getChatMenuButton", 200, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "getChatMenuButton", 200, &mock_response).await;
 
     let mock_result = mocked.result::<MenuButton>()?;
     let params = GetChatMenuButton {
@@ -3286,13 +3297,14 @@ async fn get_chat_menu_button_success() -> Result<(), Error> {
 async fn set_my_default_administrator_rights_success() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/set_my_default_administrator_rights.json").unwrap();
-    let mut server = mockito::Server::new();
+    let mut server = mockito::Server::new_async().await;
     let mocked = MockedAsync::new(
         &mut server,
         "setMyDefaultAdministratorRights",
         200,
         &mock_response,
-    );
+    )
+    .await;
 
     let mock_result = mocked.result::<bool>()?;
     let params = SetMyDefaultAdministratorRights {
@@ -3314,13 +3326,14 @@ async fn set_my_default_administrator_rights_success() -> Result<(), Error> {
 async fn get_my_default_administrator_rights_success() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/get_my_default_administrator_rights.json").unwrap();
-    let mut server = mockito::Server::new();
+    let mut server = mockito::Server::new_async().await;
     let mocked = MockedAsync::new(
         &mut server,
         "getMyDefaultAdministratorRights",
         200,
         &mock_response,
-    );
+    )
+    .await;
 
     let mock_result = mocked.result::<ChatAdministratorRights>()?;
     let params = GetMyDefaultAdministratorRights {
@@ -3342,8 +3355,8 @@ async fn get_my_default_administrator_rights_success() -> Result<(), Error> {
 async fn edit_message_text_success() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/edit_message_text_success.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "editMessageText", 200, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "editMessageText", 200, &mock_response).await;
 
     let mock_result = mocked.result::<MessageResult>()?;
     let params = EditMessageText {
@@ -3361,8 +3374,8 @@ async fn edit_message_text_success() -> Result<(), Error> {
 async fn edit_message_text_error() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/edit_message_text_error.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "editMessageText", 400, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "editMessageText", 400, &mock_response).await;
 
     let mock_error = mocked.result_error()?;
     let params = EditMessageText {
@@ -3381,8 +3394,8 @@ async fn edit_message_text_error() -> Result<(), Error> {
 async fn edit_message_caption_success() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/edit_message_caption_success.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "editMessageCaption", 200, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "editMessageCaption", 200, &mock_response).await;
 
     let mock_result = mocked.result::<MessageResult>()?;
     let params = EditMessageCaption {
@@ -3400,8 +3413,8 @@ async fn edit_message_caption_success() -> Result<(), Error> {
 async fn edit_message_caption_error() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/edit_message_caption_error.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "editMessageCaption", 400, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "editMessageCaption", 400, &mock_response).await;
 
     let mock_error = mocked.result_error()?;
     let params = EditMessageCaption {
@@ -3424,8 +3437,8 @@ async fn edit_message_caption_error() -> Result<(), Error> {
 async fn edit_message_media_success() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/edit_message_media_success.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "editMessageMedia", 200, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "editMessageMedia", 200, &mock_response).await;
 
     let mock_result = mocked.result::<MessageResult>()?;
     let params = EditMessageMedia {
@@ -3443,8 +3456,8 @@ async fn edit_message_media_success() -> Result<(), Error> {
 async fn edit_message_media_error() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/edit_message_media_error.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "editMessageMedia", 400, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "editMessageMedia", 400, &mock_response).await;
 
     let mock_error = mocked.result_error()?;
     let params = EditMessageMedia {
@@ -3464,8 +3477,9 @@ async fn edit_message_media_error() -> Result<(), Error> {
 async fn edit_message_live_location_success() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/edit_message_live_location_success.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "editMessageLiveLocation", 200, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked =
+        MockedAsync::new(&mut server, "editMessageLiveLocation", 200, &mock_response).await;
 
     let mock_result = mocked.result::<MessageResult>()?;
     let params = EditMessageLiveLocation {
@@ -3483,8 +3497,9 @@ async fn edit_message_live_location_success() -> Result<(), Error> {
 async fn edit_message_live_location_error() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/edit_message_live_location_error.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "editMessageLiveLocation", 400, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked =
+        MockedAsync::new(&mut server, "editMessageLiveLocation", 400, &mock_response).await;
 
     let mock_error = mocked.result_error()?;
     let params = EditMessageLiveLocation {
@@ -3507,8 +3522,9 @@ async fn edit_message_live_location_error() -> Result<(), Error> {
 async fn stop_message_live_location_success() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/stop_message_live_location_success.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "stopMessageLiveLocation", 200, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked =
+        MockedAsync::new(&mut server, "stopMessageLiveLocation", 200, &mock_response).await;
 
     let mock_result = mocked.result::<MessageResult>()?;
     let params = StopMessageLiveLocation {
@@ -3526,8 +3542,9 @@ async fn stop_message_live_location_success() -> Result<(), Error> {
 async fn stop_message_live_location_error() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/stop_message_live_location_error.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "stopMessageLiveLocation", 400, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked =
+        MockedAsync::new(&mut server, "stopMessageLiveLocation", 400, &mock_response).await;
 
     let mock_error = mocked.result_error()?;
     let params = StopMessageLiveLocation {
@@ -3550,8 +3567,8 @@ async fn stop_message_live_location_error() -> Result<(), Error> {
 async fn edit_message_reply_markup_success() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/edit_message_reply_markup_success.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "editMessageReplyMarkup", 200, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "editMessageReplyMarkup", 200, &mock_response).await;
 
     let mock_result = mocked.result::<MessageResult>()?;
     let params = EditMessageReplyMarkup {
@@ -3569,8 +3586,8 @@ async fn edit_message_reply_markup_success() -> Result<(), Error> {
 async fn edit_message_reply_markup_error() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/edit_message_reply_markup_error.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "editMessageReplyMarkup", 400, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "editMessageReplyMarkup", 400, &mock_response).await;
 
     let mock_error = mocked.result_error()?;
     let params = EditMessageReplyMarkup {
@@ -3592,8 +3609,8 @@ async fn edit_message_reply_markup_error() -> Result<(), Error> {
 #[tokio::test]
 async fn stop_poll_success() -> Result<(), Error> {
     let mock_response = fs::read_to_string("src/tests/responses/stop_poll_success.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "stopPoll", 200, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "stopPoll", 200, &mock_response).await;
 
     let mock_result = mocked.result::<Poll>()?;
     let params = StopPoll {
@@ -3610,8 +3627,8 @@ async fn stop_poll_success() -> Result<(), Error> {
 #[tokio::test]
 async fn stop_poll_error() -> Result<(), Error> {
     let mock_response = fs::read_to_string("src/tests/responses/stop_poll_error.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "stopPoll", 400, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "stopPoll", 400, &mock_response).await;
 
     let mock_error = mocked.result_error()?;
     let params = StopPoll {
@@ -3629,8 +3646,8 @@ async fn stop_poll_error() -> Result<(), Error> {
 async fn delete_message_success() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/delete_message_success.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "deleteMessage", 200, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "deleteMessage", 200, &mock_response).await;
 
     let mock_result = mocked.result::<bool>()?;
     let params = DeleteMessage {
@@ -3648,8 +3665,8 @@ async fn delete_message_success() -> Result<(), Error> {
 async fn delete_message_error() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/delete_message_error.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "deleteMessage", 400, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "deleteMessage", 400, &mock_response).await;
 
     let mock_error = mocked.result_error()?;
     let params = DeleteMessage {
@@ -3667,8 +3684,8 @@ async fn delete_message_error() -> Result<(), Error> {
 async fn delete_messages_success() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/delete_messages_success.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "deleteMessages", 200, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "deleteMessages", 200, &mock_response).await;
 
     let mock_result = mocked.result::<bool>()?;
     let params = DeleteMessages {
@@ -3686,8 +3703,8 @@ async fn delete_messages_success() -> Result<(), Error> {
 async fn delete_messages_error() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/delete_messages_error.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "deleteMessages", 400, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "deleteMessages", 400, &mock_response).await;
 
     let mock_error = mocked.result_error()?;
     let params = DeleteMessages {
@@ -3705,8 +3722,8 @@ async fn delete_messages_error() -> Result<(), Error> {
 async fn send_sticker_success() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/send_sticker_success.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "sendSticker", 200, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "sendSticker", 200, &mock_response).await;
 
     let mock_result = mocked.result::<Message>()?;
     let params = SendSticker {
@@ -3723,8 +3740,8 @@ async fn send_sticker_success() -> Result<(), Error> {
 #[tokio::test]
 async fn send_sticker_error() -> Result<(), Error> {
     let mock_response = fs::read_to_string("src/tests/responses/send_sticker_error.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "sendSticker", 400, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "sendSticker", 400, &mock_response).await;
 
     let mock_error = mocked.result_error()?;
     let params = SendSticker {
@@ -3742,8 +3759,8 @@ async fn send_sticker_error() -> Result<(), Error> {
 async fn get_sticker_set_success() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/get_sticker_set_success.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "getStickerSet", 200, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "getStickerSet", 200, &mock_response).await;
 
     let mock_result = mocked.result::<StickerSet>()?;
     let params = GetStickerSet {
@@ -3761,8 +3778,8 @@ async fn get_sticker_set_success() -> Result<(), Error> {
 async fn get_sticker_set_error() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/get_sticker_set_error.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "getStickerSet", 400, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "getStickerSet", 400, &mock_response).await;
 
     let mock_error = mocked.result_error()?;
     let params = GetStickerSet {
@@ -3780,8 +3797,8 @@ async fn get_sticker_set_error() -> Result<(), Error> {
 async fn get_custom_emoji_stickers_success() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/get_custom_emoji_stickers_success.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "getCustomEmojiStickers", 200, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "getCustomEmojiStickers", 200, &mock_response).await;
 
     let mock_result = mocked.result::<Sticker>()?;
     let params = GetCustomEmojiStickers {
@@ -3799,8 +3816,8 @@ async fn get_custom_emoji_stickers_success() -> Result<(), Error> {
 async fn get_custom_emoji_stickers_error() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/get_custom_emoji_stickers_error.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "getCustomEmojiStickers", 400, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "getCustomEmojiStickers", 400, &mock_response).await;
 
     let mock_error = mocked.result_error()?;
     let params = GetCustomEmojiStickers {
@@ -3823,8 +3840,8 @@ async fn get_custom_emoji_stickers_error() -> Result<(), Error> {
 async fn upload_sticker_file_success() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/upload_sticker_file_success.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "uploadStickerFile", 200, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "uploadStickerFile", 200, &mock_response).await;
 
     let mock_result = mocked.result::<File>()?;
     let params = UploadStickerFile {
@@ -3842,8 +3859,8 @@ async fn upload_sticker_file_success() -> Result<(), Error> {
 async fn upload_sticker_file_error() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/upload_sticker_file_error.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "uploadStickerFile", 400, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "uploadStickerFile", 400, &mock_response).await;
 
     let mock_error = mocked.result_error()?;
     let params = UploadStickerFile {
@@ -3866,8 +3883,8 @@ async fn upload_sticker_file_error() -> Result<(), Error> {
 async fn create_new_sticker_set_success() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/create_new_sticker_set_success.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "createNewStickerSet", 200, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "createNewStickerSet", 200, &mock_response).await;
 
     let mock_result = mocked.result::<bool>()?;
     let params = CreateNewStickerSet {
@@ -3885,8 +3902,8 @@ async fn create_new_sticker_set_success() -> Result<(), Error> {
 async fn create_new_sticker_set_error() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/create_new_sticker_set_error.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "createNewStickerSet", 400, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "createNewStickerSet", 400, &mock_response).await;
 
     let mock_error = mocked.result_error()?;
     let params = CreateNewStickerSet {
@@ -3909,8 +3926,8 @@ async fn create_new_sticker_set_error() -> Result<(), Error> {
 async fn add_sticker_to_set_success() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/add_sticker_to_set_success.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "addStickerToSet", 200, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "addStickerToSet", 200, &mock_response).await;
 
     let mock_result = mocked.result::<bool>()?;
     let params = AddStickerToSet {
@@ -3928,8 +3945,8 @@ async fn add_sticker_to_set_success() -> Result<(), Error> {
 async fn add_sticker_to_set_error() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/add_sticker_to_set_error.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "addStickerToSet", 400, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "addStickerToSet", 400, &mock_response).await;
 
     let mock_error = mocked.result_error()?;
     let params = AddStickerToSet {
@@ -3949,8 +3966,9 @@ async fn add_sticker_to_set_error() -> Result<(), Error> {
 async fn set_sticker_position_in_set_success() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/set_sticker_position_in_set_success.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "setStickerPositionInSet", 200, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked =
+        MockedAsync::new(&mut server, "setStickerPositionInSet", 200, &mock_response).await;
 
     let mock_result = mocked.result::<bool>()?;
     let params = SetStickerPositionInSet {
@@ -3968,8 +3986,9 @@ async fn set_sticker_position_in_set_success() -> Result<(), Error> {
 async fn set_sticker_position_in_set_error() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/set_sticker_position_in_set_error.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "setStickerPositionInSet", 400, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked =
+        MockedAsync::new(&mut server, "setStickerPositionInSet", 400, &mock_response).await;
 
     let mock_error = mocked.result_error()?;
     let params = SetStickerPositionInSet {
@@ -3992,8 +4011,8 @@ async fn set_sticker_position_in_set_error() -> Result<(), Error> {
 async fn delete_sticker_from_set_success() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/delete_sticker_from_set_success.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "deleteStickerFromSet", 200, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "deleteStickerFromSet", 200, &mock_response).await;
 
     let mock_result = mocked.result::<bool>()?;
     let params = DeleteStickerFromSet {
@@ -4011,8 +4030,8 @@ async fn delete_sticker_from_set_success() -> Result<(), Error> {
 async fn delete_sticker_from_set_error() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/delete_sticker_from_set_error.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "deleteStickerFromSet", 400, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "deleteStickerFromSet", 400, &mock_response).await;
 
     let mock_error = mocked.result_error()?;
     let params = DeleteStickerFromSet {
@@ -4035,8 +4054,8 @@ async fn delete_sticker_from_set_error() -> Result<(), Error> {
 async fn set_sticker_emoji_list_success() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/set_sticker_emoji_list_success.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "setStickerEmojiList", 200, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "setStickerEmojiList", 200, &mock_response).await;
 
     let mock_result = mocked.result::<bool>()?;
     let params = SetStickerEmojiList {
@@ -4054,8 +4073,8 @@ async fn set_sticker_emoji_list_success() -> Result<(), Error> {
 async fn set_sticker_emoji_list_error() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/set_sticker_emoji_list_error.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "setStickerEmojiList", 400, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "setStickerEmojiList", 400, &mock_response).await;
 
     let mock_error = mocked.result_error()?;
     let params = SetStickerEmojiList {
@@ -4078,8 +4097,8 @@ async fn set_sticker_emoji_list_error() -> Result<(), Error> {
 async fn set_sticker_keywords_success() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/set_sticker_keywords_success.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "setStickerKeywords", 200, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "setStickerKeywords", 200, &mock_response).await;
 
     let mock_result = mocked.result::<bool>()?;
     let params = SetStickerKeywords {
@@ -4097,8 +4116,8 @@ async fn set_sticker_keywords_success() -> Result<(), Error> {
 async fn set_sticker_keywords_error() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/set_sticker_keywords_error.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "setStickerKeywords", 400, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "setStickerKeywords", 400, &mock_response).await;
 
     let mock_error = mocked.result_error()?;
     let params = SetStickerKeywords {
@@ -4121,8 +4140,8 @@ async fn set_sticker_keywords_error() -> Result<(), Error> {
 async fn set_sticker_mask_position_success() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/set_sticker_mask_position_success.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "setStickerMaskPosition", 200, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "setStickerMaskPosition", 200, &mock_response).await;
 
     let mock_result = mocked.result::<bool>()?;
     let params = SetStickerMaskPosition {
@@ -4140,8 +4159,8 @@ async fn set_sticker_mask_position_success() -> Result<(), Error> {
 async fn set_sticker_mask_position_error() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/set_sticker_mask_position_error.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "setStickerMaskPosition", 400, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "setStickerMaskPosition", 400, &mock_response).await;
 
     let mock_error = mocked.result_error()?;
     let params = SetStickerMaskPosition {
@@ -4164,8 +4183,8 @@ async fn set_sticker_mask_position_error() -> Result<(), Error> {
 async fn set_sticker_set_title_success() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/set_sticker_set_title_success.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "setStickerSetTitle", 200, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "setStickerSetTitle", 200, &mock_response).await;
 
     let mock_result = mocked.result::<bool>()?;
     let params = SetStickerSetTitle {
@@ -4183,8 +4202,8 @@ async fn set_sticker_set_title_success() -> Result<(), Error> {
 async fn set_sticker_set_title_error() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/set_sticker_set_title_error.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "setStickerSetTitle", 400, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "setStickerSetTitle", 400, &mock_response).await;
 
     let mock_error = mocked.result_error()?;
     let params = SetStickerSetTitle {
@@ -4207,8 +4226,8 @@ async fn set_sticker_set_title_error() -> Result<(), Error> {
 async fn set_sticker_set_thumbnail_success() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/set_sticker_set_thumbnail_success.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "setStickerSetThumbnail", 200, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "setStickerSetThumbnail", 200, &mock_response).await;
 
     let mock_result = mocked.result::<bool>()?;
     let params = SetStickerSetThumbnail {
@@ -4226,8 +4245,8 @@ async fn set_sticker_set_thumbnail_success() -> Result<(), Error> {
 async fn set_sticker_set_thumbnail_error() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/set_sticker_set_thumbnail_error.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "setStickerSetThumbnail", 400, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "setStickerSetThumbnail", 400, &mock_response).await;
 
     let mock_error = mocked.result_error()?;
     let params = SetStickerSetThumbnail {
@@ -4252,13 +4271,14 @@ async fn set_custom_emoji_sticker_set_thumbnail_success() -> Result<(), Error> {
         "src/tests/responses/set_custom_emoji_sticker_set_thumbnail_success.json",
     )
     .unwrap();
-    let mut server = mockito::Server::new();
+    let mut server = mockito::Server::new_async().await;
     let mocked = MockedAsync::new(
         &mut server,
         "setCustomEmojiStickerSetThumbnail",
         200,
         &mock_response,
-    );
+    )
+    .await;
 
     let mock_result = mocked.result::<bool>()?;
     let params = SetCustomEmojiStickerSetThumbnail {
@@ -4281,13 +4301,14 @@ async fn set_custom_emoji_sticker_set_thumbnail_error() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/set_custom_emoji_sticker_set_thumbnail_error.json")
             .unwrap();
-    let mut server = mockito::Server::new();
+    let mut server = mockito::Server::new_async().await;
     let mocked = MockedAsync::new(
         &mut server,
         "setCustomEmojiStickerSetThumbnail",
         400,
         &mock_response,
-    );
+    )
+    .await;
 
     let mock_error = mocked.result_error()?;
     let params = SetCustomEmojiStickerSetThumbnail {
@@ -4310,8 +4331,8 @@ async fn set_custom_emoji_sticker_set_thumbnail_error() -> Result<(), Error> {
 async fn delete_sticker_set_success() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/delete_sticker_set_success.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "deleteStickerSet", 200, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "deleteStickerSet", 200, &mock_response).await;
 
     let mock_result = mocked.result::<bool>()?;
     let params = DeleteStickerSet {
@@ -4329,8 +4350,8 @@ async fn delete_sticker_set_success() -> Result<(), Error> {
 async fn delete_sticker_set_error() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/delete_sticker_set_error.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "deleteStickerSet", 400, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "deleteStickerSet", 400, &mock_response).await;
 
     let mock_error = mocked.result_error()?;
     let params = DeleteStickerSet {
@@ -4350,8 +4371,8 @@ async fn delete_sticker_set_error() -> Result<(), Error> {
 async fn answer_inline_query_success() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/answer_inline_query_success.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "answerInlineQuery", 200, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "answerInlineQuery", 200, &mock_response).await;
 
     let mock_result = mocked.result::<bool>()?;
     let params = AnswerInlineQuery {
@@ -4369,8 +4390,8 @@ async fn answer_inline_query_success() -> Result<(), Error> {
 async fn answer_inline_query_error() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/answer_inline_query_error.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "answerInlineQuery", 400, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "answerInlineQuery", 400, &mock_response).await;
 
     let mock_error = mocked.result_error()?;
     let params = AnswerInlineQuery {
@@ -4394,8 +4415,8 @@ async fn answer_inline_query_error() -> Result<(), Error> {
 async fn answer_web_app_query_success() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/answer_web_app_query_success.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "answerWebAppQuery", 200, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "answerWebAppQuery", 200, &mock_response).await;
 
     let mock_result = mocked.result::<SentWebAppMessage>()?;
     let params = AnswerWebAppQuery {
@@ -4413,8 +4434,8 @@ async fn answer_web_app_query_success() -> Result<(), Error> {
 async fn answer_web_app_query_error() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/answer_web_app_query_error.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "answerWebAppQuery", 400, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "answerWebAppQuery", 400, &mock_response).await;
 
     let mock_error = mocked.result_error()?;
     let params = AnswerWebAppQuery {
@@ -4437,8 +4458,8 @@ async fn answer_web_app_query_error() -> Result<(), Error> {
 async fn send_invoice_success() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/send_invoice_success.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "sendInvoice", 200, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "sendInvoice", 200, &mock_response).await;
 
     let mock_result = mocked.result::<Message>()?;
     let params = SendInvoice {
@@ -4455,8 +4476,8 @@ async fn send_invoice_success() -> Result<(), Error> {
 #[tokio::test]
 async fn send_invoice_error() -> Result<(), Error> {
     let mock_response = fs::read_to_string("src/tests/responses/send_invoice_error.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "sendInvoice", 400, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "sendInvoice", 400, &mock_response).await;
 
     let mock_error = mocked.result_error()?;
     let params = SendInvoice {
@@ -4474,8 +4495,8 @@ async fn send_invoice_error() -> Result<(), Error> {
 async fn create_invoice_link_success() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/create_invoice_link_success.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "createInvoiceLink", 200, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "createInvoiceLink", 200, &mock_response).await;
 
     let mock_result = mocked.result::<String>()?;
     let params = CreateInvoiceLink {
@@ -4493,8 +4514,8 @@ async fn create_invoice_link_success() -> Result<(), Error> {
 async fn create_invoice_link_error() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/create_invoice_link_error.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "createInvoiceLink", 400, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "createInvoiceLink", 400, &mock_response).await;
 
     let mock_error = mocked.result_error()?;
     let params = CreateInvoiceLink {
@@ -4517,8 +4538,8 @@ async fn create_invoice_link_error() -> Result<(), Error> {
 async fn answer_shipping_query_success() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/answer_shipping_query_success.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "answerShippingQuery", 200, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "answerShippingQuery", 200, &mock_response).await;
 
     let mock_result = mocked.result::<bool>()?;
     let params = AnswerShippingQuery {
@@ -4536,8 +4557,8 @@ async fn answer_shipping_query_success() -> Result<(), Error> {
 async fn answer_shipping_query_error() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/answer_shipping_query_error.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "answerShippingQuery", 400, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "answerShippingQuery", 400, &mock_response).await;
 
     let mock_error = mocked.result_error()?;
     let params = AnswerShippingQuery {
@@ -4560,8 +4581,8 @@ async fn answer_shipping_query_error() -> Result<(), Error> {
 async fn answer_pre_checkout_query_success() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/answer_pre_checkout_query_success.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "answerPreCheckoutQuery", 200, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "answerPreCheckoutQuery", 200, &mock_response).await;
 
     let mock_result = mocked.result::<bool>()?;
     let params = AnswerPreCheckoutQuery {
@@ -4579,8 +4600,8 @@ async fn answer_pre_checkout_query_success() -> Result<(), Error> {
 async fn answer_pre_checkout_query_error() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/answer_pre_checkout_query_error.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "answerPreCheckoutQuery", 400, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "answerPreCheckoutQuery", 400, &mock_response).await;
 
     let mock_error = mocked.result_error()?;
     let params = AnswerPreCheckoutQuery {
@@ -4603,8 +4624,8 @@ async fn answer_pre_checkout_query_error() -> Result<(), Error> {
 async fn set_passport_data_errors_success() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/set_passport_data_errors_success.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "setPassportDataErrors", 200, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "setPassportDataErrors", 200, &mock_response).await;
 
     let mock_result = mocked.result::<bool>()?;
     let params = SetPassportDataErrors {
@@ -4622,8 +4643,8 @@ async fn set_passport_data_errors_success() -> Result<(), Error> {
 async fn set_passport_data_errors_error() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/set_passport_data_errors_error.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "setPassportDataErrors", 400, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "setPassportDataErrors", 400, &mock_response).await;
 
     let mock_error = mocked.result_error()?;
     let params = SetPassportDataErrors {
@@ -4645,8 +4666,8 @@ async fn set_passport_data_errors_error() -> Result<(), Error> {
 // #[tokio::test]
 async fn send_game_success() -> Result<(), Error> {
     let mock_response = fs::read_to_string("src/tests/responses/send_game_success.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "sendGame", 200, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "sendGame", 200, &mock_response).await;
 
     let mock_result = mocked.result::<Message>()?;
     let params = SendGame {
@@ -4663,8 +4684,8 @@ async fn send_game_success() -> Result<(), Error> {
 #[tokio::test]
 async fn send_game_error() -> Result<(), Error> {
     let mock_response = fs::read_to_string("src/tests/responses/send_game_error.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "sendGame", 400, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "sendGame", 400, &mock_response).await;
 
     let mock_error = mocked.result_error()?;
     let params = SendGame {
@@ -4682,8 +4703,8 @@ async fn send_game_error() -> Result<(), Error> {
 async fn set_game_score_success() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/set_game_score_success.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "setGameScore", 200, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "setGameScore", 200, &mock_response).await;
 
     let mock_result = mocked.result::<MessageResult>()?;
     let params = SetGameScore {
@@ -4701,8 +4722,8 @@ async fn set_game_score_success() -> Result<(), Error> {
 async fn set_game_score_error() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/set_game_score_error.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "setGameScore", 400, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "setGameScore", 400, &mock_response).await;
 
     let mock_error = mocked.result_error()?;
     let params = SetGameScore {
@@ -4720,8 +4741,8 @@ async fn set_game_score_error() -> Result<(), Error> {
 async fn get_game_high_scores_success() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/get_game_high_scores_success.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "setGameScore", 200, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "setGameScore", 200, &mock_response).await;
 
     let mock_result = mocked.result::<GameHighScore>()?;
     let params = GetGameHighScores {
@@ -4739,8 +4760,8 @@ async fn get_game_high_scores_success() -> Result<(), Error> {
 async fn get_game_high_scores_error() -> Result<(), Error> {
     let mock_response =
         fs::read_to_string("src/tests/responses/get_game_high_scores_error.json").unwrap();
-    let mut server = mockito::Server::new();
-    let mocked = MockedAsync::new(&mut server, "getGameHighScores", 400, &mock_response);
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "getGameHighScores", 400, &mock_response).await;
 
     let mock_error = mocked.result_error()?;
     let params = GetGameHighScores {

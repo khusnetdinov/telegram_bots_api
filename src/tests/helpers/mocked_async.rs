@@ -23,7 +23,7 @@ impl MockedAsync {
         Async::from(&config)
     }
 
-    fn mock_server(
+    async fn mock_server(
         server: &mut ServerGuard,
         token: &str,
         method: &str,
@@ -35,13 +35,19 @@ impl MockedAsync {
             .match_header("content-type", "application/json")
             .with_body(response)
             .with_status(status)
-            .create()
+            .create_async()
+            .await
     }
 
-    pub fn new(server: &mut ServerGuard, method: &str, status: usize, response: &str) -> Self {
+    pub async fn new(
+        server: &mut ServerGuard,
+        method: &str,
+        status: usize,
+        response: &str,
+    ) -> Self {
         let token = "0000000000:XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
         let mocked_client = Self::mock_api(server, token);
-        let mocked_server = Self::mock_server(server, token, method, status, response);
+        let mocked_server = Self::mock_server(server, token, method, status, response).await;
 
         Self {
             client: mocked_client,
