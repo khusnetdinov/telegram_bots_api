@@ -136,6 +136,7 @@ use crate::api::types::sent_web_app_message::SentWebAppMessage;
 use crate::api::types::sticker::Sticker;
 use crate::api::types::sticker_set::StickerSet;
 use crate::api::types::update::Update;
+use crate::api::types::user::User;
 use crate::api::types::user_chat_boosts::UserChatBoosts;
 use crate::api::types::user_profile_photos::UserProfilePhotos;
 use crate::api::types::webhook_info::WebhookInfo;
@@ -293,36 +294,36 @@ async fn get_webhook_info_error() -> Result<(), Error> {
     Ok(())
 }
 
-// #[tokio::test]
-// async fn get_me_success() -> Result<(), Error> {
-//     let mock_response = fs::read_to_string("src/tests/responses/get_me_success.json").unwrap();
-//
-//     let mut server = mockito::Server::new();
-//     let mocked = MockedAsync::new(&mut server, "getMe", 200, &mock_response);
-//
-//     let mock_result = mocked.result::<User>()?;
-//     let real_result = mocked.client.get_me().await?;
-//
-//     assert_eq!(mock_result, real_result);
-//     mocked.server.assert();
-//
-//     Ok(())
-// }
+#[tokio::test]
+async fn get_me_success() -> Result<(), Error> {
+    let mock_response = fs::read_to_string("src/tests/responses/get_me_success.json").unwrap();
 
-// #[tokio::test]
-// async fn get_me_error() -> Result<(), Error> {
-//     let mock_response = fs::read_to_string("src/tests/responses/get_me_error.json").unwrap();
-//     let mut server = mockito::Server::new();
-//     let mocked = MockedAsync::new(&mut server, "getMe", 401, &mock_response);
-//
-//     let mock_error = mocked.result_error()?;
-//     if let Error::Response(real_error) = mocked.client.get_me().await.unwrap_err()  {
-//         assert_eq!(mock_error, real_error);
-//         mocked.server.assert();
-//     }
-//
-//     Ok(())
-// }
+    let mut server = mockito::Server::new();
+    let mocked = MockedAsync::new(&mut server, "getMe", 200, &mock_response);
+
+    let mock_result = mocked.result::<User>()?;
+    let real_result = mocked.client.get_me().await?;
+
+    assert_eq!(mock_result, real_result);
+    mocked.server.assert();
+
+    Ok(())
+}
+
+#[tokio::test]
+async fn get_me_error() -> Result<(), Error> {
+    let mock_response = fs::read_to_string("src/tests/responses/get_me_error.json").unwrap();
+    let mut server = mockito::Server::new();
+    let mocked = MockedAsync::new(&mut server, "getMe", 401, &mock_response);
+
+    let mock_error = mocked.result_error()?;
+    if let Error::Response(real_error) = mocked.client.get_me().await.unwrap_err() {
+        assert_eq!(mock_error, real_error);
+        mocked.server.assert();
+    }
+
+    Ok(())
+}
 
 #[tokio::test]
 async fn log_out_success() -> Result<(), Error> {

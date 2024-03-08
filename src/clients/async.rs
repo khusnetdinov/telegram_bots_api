@@ -142,6 +142,7 @@ use crate::api::types::user_profile_photos::UserProfilePhotos;
 use crate::api::types::webhook_info::WebhookInfo;
 use crate::config::Config;
 use crate::errors::Error;
+use async_trait::async_trait;
 use reqwest::Response;
 use reqwest::{ClientBuilder, RequestBuilder};
 use serde::de::DeserializeOwned;
@@ -225,6 +226,7 @@ impl Async {
     }
 }
 
+#[async_trait]
 impl Requests for Async {
     async fn get_updates(&self, params: &GetUpdate) -> Result<Vec<Update>, Error> {
         self.respond_with::<Vec<Update>>(self.request("getUpdates").json(params))
