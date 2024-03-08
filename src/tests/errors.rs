@@ -1,27 +1,21 @@
 use crate::api::requests::sync::Requests;
 use crate::api::responses::result::ResponseResult;
 use crate::api::types::user::User;
-use crate::clients::r#async::Async;
 use crate::clients::sync::Sync;
 use crate::config::Config;
 use crate::errors::Error;
-use crate::Client;
 
 fn request_error() {
     todo!()
 }
 
 #[test]
-fn response_error() {
+fn response_sync_error() {
     let config = Config {
         ..Default::default()
     };
-    let client = Client {
-        sync: Sync::new(&config),
-        r#async: Async::new(&config),
-        config,
-    };
-    let error = client.sync.get_me().unwrap_err();
+    let client = Sync::from(&config);
+    let error = client.get_me().unwrap_err();
 
     assert_eq!(
         error.to_string(),

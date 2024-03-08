@@ -1,35 +1,29 @@
 use crate::api::responses::error::ResponseError;
 use crate::api::responses::result::ResponseResult;
 use crate::clients::r#async::Async;
-use crate::clients::sync::Sync;
 use crate::config::Config;
 use crate::errors::Error;
-use crate::Client;
 use mockito::{Mock, ServerGuard};
 use serde::de::DeserializeOwned;
 
-pub struct Mocked {
-    pub client: Client,
+pub struct MockedAsync {
+    pub client: Async,
     pub server: Mock,
     pub response: String,
 }
 
-impl Mocked {
-    fn mock_api(server: &ServerGuard, token: &str) -> Client {
+impl MockedAsync {
+    fn mock_api(server: &ServerGuard, token: &str) -> Async {
         let config = Config {
             url: server.url(),
             token: token.to_string(),
             ..Default::default()
         };
 
-        Client {
-            sync: Sync::new(&config),
-            r#async: Async::new(&config),
-            config,
-        }
+        Async::from(&config)
     }
 
-    fn mock_server(
+    async fn mock_server(
         server: &mut ServerGuard,
         token: &str,
         method: &str,
@@ -41,13 +35,19 @@ impl Mocked {
             .match_header("content-type", "application/json")
             .with_body(response)
             .with_status(status)
-            .create()
+            .create_async()
+            .await
     }
 
-    pub fn new(server: &mut ServerGuard, method: &str, status: usize, response: &str) -> Self {
+    pub async fn new(
+        server: &mut ServerGuard,
+        method: &str,
+        status: usize,
+        response: &str,
+    ) -> Self {
         let token = "0000000000:XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
         let mocked_client = Self::mock_api(server, token);
-        let mocked_server = Self::mock_server(server, token, method, status, response);
+        let mocked_server = Self::mock_server(server, token, method, status, response).await;
 
         Self {
             client: mocked_client,

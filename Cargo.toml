@@ -9,12 +9,20 @@ license = "MIT"
 talegram-version = "7.0"
 
 [[example]]
-name = "bot"
-path = "examples/bot.rs"
+name = "async-playground"
+path = "examples/async/playground.rs"
 
 [[example]]
-name = "playground"
-path = "examples/playground.rs"
+name = "async-get-me"
+path = "examples/async/get_me.rs"
+
+[[example]]
+name = "sync-playground"
+path = "examples/sync/playground.rs"
+
+[[example]]
+name = "sync-get-me"
+path = "examples/sync/get_me.rs"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
@@ -26,9 +34,11 @@ serde_json = "1.0.111"
 serde_qs = "0.12.0"
 serde_with_macros = "3.6.0"
 structopt = "0.3.26"
+async-trait = "0.1.77"
 tokio = { version = "1", features = ["full"] }
 
 # [minimal]
 openssl = { version = "0.10.55", optional = true }
 libgit2-sys = { version = "^0.16.2", optional = true }
 cargo-minimal-versions = { version = "0.1.25", optional = true }
+mio = "0.8.11"

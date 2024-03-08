@@ -33,3 +33,15 @@ impl Display for Error {
         }
     }
 }
+
+impl From<reqwest::Error> for Error {
+    fn from(error: reqwest::Error) -> Self {
+        Self::Request(error)
+    }
+}
+
+impl std::error::Error for Error {
+    fn description(&self) -> &str {
+        "Error:"
+    }
+}
