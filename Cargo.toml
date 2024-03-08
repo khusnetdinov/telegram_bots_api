@@ -34,10 +34,11 @@ serde_json = "1.0.111"
 serde_qs = "0.12.0"
 serde_with_macros = "3.6.0"
 structopt = "0.3.26"
+async-trait = "0.1.77"
 tokio = { version = "1", features = ["full"] }
 
 # [minimal]
 openssl = { version = "0.10.55", optional = true }
 libgit2-sys = { version = "^0.16.2", optional = true }
 cargo-minimal-versions = { version = "0.1.25", optional = true }
-async-trait = "0.1.77"
+mio = "0.8.11"
