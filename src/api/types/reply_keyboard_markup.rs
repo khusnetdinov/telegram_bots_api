@@ -1,7 +1,7 @@
 use crate::api::types::keyboard_button::KeyboardButton;
 use serde::{Deserialize, Serialize};
 
-/// https://core.telegram.org/bots/api#replykeyboardmarkup
+/// <https://core.telegram.org/bots/api#replykeyboardmarkup>
 /// This object represents a custom keyboard with reply options (see Introduction to bots for details and examples).
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct ReplyKeyboardMarkup {

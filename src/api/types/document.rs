@@ -1,7 +1,7 @@
 use crate::api::types::photo_size::PhotoSize;
 use serde::{Deserialize, Serialize};
 
-/// https://core.telegram.org/bots/api#document
+/// <https://core.telegram.org/bots/api#document>
 /// This object represents a general file (as opposed to photos, voice messages and audio files).
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct Document {

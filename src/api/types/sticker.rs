@@ -3,7 +3,7 @@ use crate::api::types::mask_position::MaskPosition;
 use crate::api::types::photo_size::PhotoSize;
 use serde::{Deserialize, Serialize};
 
-/// https://core.telegram.org/bots/api#sticker
+/// <https://core.telegram.org/bots/api#sticker>
 /// This object represents a sticker.
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct Sticker {

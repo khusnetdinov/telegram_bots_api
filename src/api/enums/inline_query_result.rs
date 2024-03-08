@@ -20,7 +20,7 @@ use crate::api::types::inline_query_result_video::InlineQueryResultVideo;
 use crate::api::types::inline_query_result_voice::InlineQueryResultVoice;
 use serde::{Deserialize, Serialize};
 
-/// https://core.telegram.org/bots/api#inlinequeryresult
+/// <https://core.telegram.org/bots/api#inlinequeryresult>
 /// This object represents one result of an inline query. Telegram clients currently support results of the following 20 types:
 /// InlineQueryResultCachedAudio
 /// InlineQueryResultCachedDocument

@@ -3,7 +3,7 @@ use crate::api::enums::reply_markup::ReplyMarkup;
 use crate::api::types::reply_parameters::ReplyParameters;
 use serde::Serialize;
 
-/// https://core.telegram.org/bots/api#sendvenue
+/// <https://core.telegram.org/bots/api#sendvenue>
 /// Use this method to send information about a venue. On success, the sent Message is returned.
 #[derive(Debug, Serialize, Default)]
 pub struct SendVenue {

@@ -4,7 +4,7 @@ use crate::api::types::chat_invite_link::ChatInviteLink;
 use crate::api::types::user::User;
 use serde::{Deserialize, Serialize};
 
-/// https://core.telegram.org/bots/api#chatmemberupdated
+/// <https://core.telegram.org/bots/api#chatmemberupdated>
 /// This object represents changes in the status of a chat member.
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct ChatMemberUpdated {

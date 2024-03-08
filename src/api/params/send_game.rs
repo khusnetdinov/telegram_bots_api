@@ -3,7 +3,7 @@ use crate::api::types::inline_keyboard_markup::InlineKeyboardMarkup;
 use crate::api::types::reply_parameters::ReplyParameters;
 use serde::Serialize;
 
-/// https://core.telegram.org/bots/api#sendgame
+/// <https://core.telegram.org/bots/api#sendgame>
 /// Use this method to send a game. On success, the sent Message is returned.
 #[derive(Debug, Serialize, Default)]
 pub struct SendGame {

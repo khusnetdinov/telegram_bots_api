@@ -48,7 +48,7 @@ use crate::api::types::web_app_data::WebAppData;
 use crate::api::types::write_access_allowed::WriteAccessAllowed;
 use serde::{Deserialize, Serialize};
 
-/// https://core.telegram.org/bots/api#message
+/// <https://core.telegram.org/bots/api#message>
 /// This object represents a message.
 #[derive(Debug, Serialize, Deserialize, Default, PartialEq)]
 pub struct Message {

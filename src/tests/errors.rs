@@ -5,10 +5,6 @@ use crate::clients::sync::Sync;
 use crate::config::Config;
 use crate::errors::Error;
 
-fn request_error() {
-    todo!()
-}
-
 #[test]
 fn response_sync_error() {
     let config = Config {

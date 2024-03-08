@@ -5,7 +5,7 @@ use crate::api::types::message_entity::MessageEntity;
 use crate::api::types::reply_parameters::ReplyParameters;
 use serde::Serialize;
 
-/// https://core.telegram.org/bots/api#sendvideo
+/// <https://core.telegram.org/bots/api#sendvideo>
 /// Use this method to send video files, Telegram clients support MPEG4 videos (other formats may be sent as Document). On success, the sent Message is returned. Bots can currently send video files of up to 50 MB in size, this limit may be changed in the future.
 #[derive(Debug, Serialize, Default)]
 pub struct SendVideo {

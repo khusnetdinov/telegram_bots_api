@@ -3,7 +3,7 @@ use crate::api::enums::reply_markup::ReplyMarkup;
 use crate::api::types::reply_parameters::ReplyParameters;
 use serde::Serialize;
 
-/// https://core.telegram.org/bots/api#sendcontact
+/// <https://core.telegram.org/bots/api#sendcontact>
 /// Use this method to send phone contacts. On success, the sent Message is returned.
 #[derive(Debug, Serialize, Default)]
 pub struct SendContact {

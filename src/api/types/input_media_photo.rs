@@ -1,7 +1,7 @@
 use crate::api::types::message_entity::MessageEntity;
 use serde::{Deserialize, Serialize};
 
-/// https://core.telegram.org/bots/api#inputmediaphoto
+/// <https://core.telegram.org/bots/api#inputmediaphoto>
 /// Represents a photo to be sent.
 #[derive(Debug, Serialize, Deserialize, Default, PartialEq)]
 pub struct InputMediaPhoto {

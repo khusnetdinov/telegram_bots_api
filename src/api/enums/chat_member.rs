@@ -6,7 +6,7 @@ use crate::api::types::chat_member_owner::ChatMemberOwner;
 use crate::api::types::chat_member_restricted::ChatMemberRestricted;
 use serde::{Deserialize, Serialize};
 
-/// https://core.telegram.org/bots/api#chatmember
+/// <https://core.telegram.org/bots/api#chatmember>
 /// This object contains information about one member of a chat. Currently, the following 6 types of chat members are supported:
 /// ChatMemberOwner
 /// ChatMemberAdministrator

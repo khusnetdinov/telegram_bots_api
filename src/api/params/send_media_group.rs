@@ -3,7 +3,7 @@ use crate::api::enums::input_media::InputMedia;
 use crate::api::types::reply_parameters::ReplyParameters;
 use serde::Serialize;
 
-/// https://core.telegram.org/bots/api#sendmediagroup
+/// <https://core.telegram.org/bots/api#sendmediagroup>
 /// Use this method to send a group of photos, videos, documents or audios as an album. Documents and audio files can be only grouped in an album with messages of the same type. On success, an array of Messages that were sent is returned.
 #[derive(Debug, Serialize, Default)]
 pub struct SendMediaGroup {

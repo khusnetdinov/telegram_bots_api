@@ -5,7 +5,7 @@ use crate::api::types::chat_photo::ChatPhoto;
 use crate::api::types::message::Message;
 use serde::{Deserialize, Serialize};
 
-/// https://core.telegram.org/bots/api#chat
+/// <https://core.telegram.org/bots/api#chat>
 /// This object represents a chat.
 #[derive(Debug, Serialize, Deserialize, Default, PartialEq)]
 pub struct Chat {

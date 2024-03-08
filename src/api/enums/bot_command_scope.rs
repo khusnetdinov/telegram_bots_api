@@ -7,7 +7,7 @@ use crate::api::types::bot_command_scope_chat_member::BotCommandScopeChatMember;
 use crate::api::types::bot_command_scope_default::BotCommandScopeDefault;
 use serde::{Deserialize, Serialize};
 
-/// https://core.telegram.org/bots/api#botcommandscope
+/// <https://core.telegram.org/bots/api#botcommandscope>
 /// This object represents the scope to which bot commands are applied. Currently, the following 7 scopes are supported:
 /// BotCommandScopeDefault
 /// BotCommandScopeAllPrivateChats

@@ -5,7 +5,7 @@ use crate::api::types::message_entity::MessageEntity;
 use crate::api::types::reply_parameters::ReplyParameters;
 use serde::Serialize;
 
-/// https://core.telegram.org/bots/api#sendphoto
+/// <https://core.telegram.org/bots/api#sendphoto>
 /// Use this method to send photos. On success, the sent Message is returned.
 #[derive(Debug, Serialize, Default)]
 pub struct SendPhoto {

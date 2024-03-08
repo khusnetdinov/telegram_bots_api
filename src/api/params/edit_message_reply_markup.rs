@@ -2,7 +2,7 @@ use crate::api::enums::chat_uid::ChatUId;
 use crate::api::types::inline_keyboard_markup::InlineKeyboardMarkup;
 use serde::Serialize;
 
-/// https://core.telegram.org/bots/api#editmessagereplymarkup
+/// <https://core.telegram.org/bots/api#editmessagereplymarkup>
 /// Use this method to edit only the reply markup of messages. On success, if the edited message is not an inline message, the edited Message is returned, otherwise True is returned.
 #[derive(Debug, Serialize, Default)]
 pub struct EditMessageReplyMarkup {

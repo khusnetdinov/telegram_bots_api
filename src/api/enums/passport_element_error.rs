@@ -9,7 +9,7 @@ use crate::api::types::passport_element_error_translation_files::PassportElement
 use crate::api::types::passport_element_error_unspecified::PassportElementErrorUnspecified;
 use serde::{Deserialize, Serialize};
 
-/// https://core.telegram.org/bots/api#passportelementerror
+/// <https://core.telegram.org/bots/api#passportelementerror>
 /// This object represents an error in the Telegram Passport element which was submitted that should be resolved by the user. It should be one of:
 /// PassportElementErrorDataField
 /// PassportElementErrorFrontSide

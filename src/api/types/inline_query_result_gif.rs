@@ -3,7 +3,7 @@ use crate::api::types::inline_keyboard_markup::InlineKeyboardMarkup;
 use crate::api::types::message_entity::MessageEntity;
 use serde::{Deserialize, Serialize};
 
-/// https://core.telegram.org/bots/api#inlinequeryresultgif
+/// <https://core.telegram.org/bots/api#inlinequeryresultgif>
 /// Represents a link to an animated GIF file. By default, this animated GIF file will be sent by the user with optional caption. Alternatively, you can use input_message_content to send a message with the specified content instead of the animation.
 #[derive(Debug, Serialize, Deserialize, Default, PartialEq)]
 pub struct InlineQueryResultGif {

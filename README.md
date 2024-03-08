@@ -12,44 +12,119 @@
 ![https://github.com/khusnetdinov/telegram/actions/workflows/tests/badge.svg](https://github.com/khusnetdinov/telegram/actions/workflows/tests.yml/badge.svg)
 ![https://github.com/khusnetdinov/telegram/actions/workflows/rolling/badge.svg](https://github.com/khusnetdinov/telegram/actions/workflows/rolling.yml/badge.svg)
 
-### Description
-
-- TODO
+  Telegram bots api simple rust wrapper, and no more.
 
 ### Features
 
-- TODO
-
-### Files structure
-
-- TODO
+  - async: asynchronous execution api calls
+  - sync: synchronous execution api calls
 
 ### Installation
 
-- TODO
+Run `cargo add telegram_bots_api`, or add lines to `Cargo.toml`:
+
+```toml
+[dependencies]
+telegram_bots_api = "0.0.1"
+```
 
 ### Configuration
 
-- TODO
+```
 
-### Commands
+USAGE:
+    sync-playground [FLAGS] [OPTIONS] --token <token>
 
-- TODO
+FLAGS:
+    -d, --debug         Environment: Debug mode
+    -h, --help          Prints help information
+    -p, --production    Environment: Is production
+    -V, --version       Prints version information
+
+OPTIONS:
+        --connect-timeout <connect-timeout>    Client: Connect timeout in secs. Set a timeout for only the connect phase
+                                               [default: 5]
+        --timeout <timeout>                    Client: Timeout in secs. The timeout is applied from when the request
+                                               starts connecting until the response body has finished [default: 5]
+        --token <token>                        Telegram: Token
+        --updates-limit <updates-limit>        Updates: Limits the number of updates to be retrieved [default: 100]
+        --updates-offset <updates-offset>      Updates: Identifier of the first update to be returned [default: 0]
+        --updates-timeout <updates-timeout>    Updates: Timeout in seconds for long polling [default: 0]
+        --url <url>                            Telegram: Api url [default: https://api.telegram.org]
+```
 
 ### How to use
 
-- TODO
+Only one required flag is `token`, example run:
 
-### Examples
+```
+$ cargo run -- --token 0000000000:XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+```
 
-- TODO
+### File structure:
 
-### Roadmap
-- Implement Client settings:
-  - Long polling
-  - WebHook listen Http
-  - WebHook listen Https
-  - Switching to api (api <=> local)
-- Examples
-- Docker
-- FFI
+```
+.
+├── Cargo.lock                                        # Lock file
+├── Cargo.toml                                        # Toml file
+├── LICENSE                                           # LICENSE
+├── README.md                                         # README
+├── /examples                                         # Examples
+│   ├── /async
+│   │   ├── get_me.rs
+│   │   └── playground.rs
+│   └── /sync
+│       ├── get_me.rs
+│       └── playground.rs
+├── postman.json                                      # Postman collection
+└── /src                                              # Source code
+    ├── /api                                          # Api structs definitions
+    │   ├── /enums                                    # Enums
+    │   │   ├── bot_command_scope.rs
+    │   │   ...
+    │   │   └── reply_markup.rs
+    │   ├── enums.rs
+    │   ├── mod.rs
+    │   ├── /params                                   # Params structs for payload
+    │   │   ├── add_sticker_to_set.rs
+    │   │   ...
+    │   │   └── upload_sticker_file.rs
+    │   ├── params.rs
+    │   ├── /requests                                 # Request traits
+    │   │   ├── async.rs
+    │   │   └── sync.rs
+    │   ├── requests.rs
+    │   ├── /responses                                # Telegram responses structs definitions
+    │   │   ├── error.rs
+    │   │   ├── parameters.rs
+    │   │   └── result.rs
+    │   ├── responses.rs
+    │   ├── /types                                    # Telegram types 
+    │   │   ├── animation.rs
+    │   │   ...
+    │   │   └── write_access_allowed.rs
+    │   └── types.rs
+    ├── /clients                                      # Clients definitions
+    │   ├── async.rs
+    │   ├── mod.rs
+    │   └── sync.rs
+    ├── config.rs                                     # Config definition
+    ├── errors.rs                                     # Errors definition
+    ├── lib.rs
+    └── /tests
+        ├── /clients                                  # Cleints
+        │   ├── async.rs                              # Async client tests
+        │   ├── mod.rs
+        │   └── sync.rs                               # Sync client tests
+        ├── config.rs                                 # Config tests
+        ├── errors.rs                                 # Errors tests
+        ├── /helpers                                  # Helpers for tests
+        │   ├── mocked_async.rs
+        │   ├── mocked_sync.rs
+        │   └── mod.rs
+        ├── mod.rs
+        └── responses                                 # Example of json responses
+            ├── add_sticker_to_set_error.json
+            ...
+            └── upload_sticker_file_success.json
+```

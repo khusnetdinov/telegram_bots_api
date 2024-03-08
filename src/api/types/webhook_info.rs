@@ -1,6 +1,6 @@
 use serde::{Deserialize, Serialize};
 
-/// https://core.telegram.org/bots/api#webhookinfo
+/// <https://core.telegram.org/bots/api#webhookinfo>
 /// Describes the current status of a webhook.
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 #[serde_with_macros::skip_serializing_none]

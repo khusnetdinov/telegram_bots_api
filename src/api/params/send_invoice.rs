@@ -4,7 +4,7 @@ use crate::api::types::labeled_price::LabeledPrice;
 use crate::api::types::reply_parameters::ReplyParameters;
 use serde::Serialize;
 
-/// https://core.telegram.org/bots/api#sendinvoice
+/// <https://core.telegram.org/bots/api#sendinvoice>
 /// Use this method to send invoices. On success, the sent Message is returned.
 #[derive(Debug, Serialize, Default)]
 pub struct SendInvoice {

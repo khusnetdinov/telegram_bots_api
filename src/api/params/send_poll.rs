@@ -4,7 +4,7 @@ use crate::api::types::message_entity::MessageEntity;
 use crate::api::types::reply_parameters::ReplyParameters;
 use serde::Serialize;
 
-/// https://core.telegram.org/bots/api#sendpoll
+/// <https://core.telegram.org/bots/api#sendpoll>
 /// Use this method to send a native poll. On success, the sent Message is returned.
 #[derive(Debug, Serialize, Default)]
 pub struct SendPoll {

@@ -1,6 +1,6 @@
 use serde::{Deserialize, Serialize};
 
-/// https://core.telegram.org/bots/api#messageid
+/// <https://core.telegram.org/bots/api#messageid>
 /// This object represents a unique message identifier.
 #[derive(Debug, Serialize, Deserialize, Default, PartialEq)]
 pub struct MessageId {

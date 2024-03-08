@@ -1,6 +1,6 @@
 use serde::{Deserialize, Serialize};
 
-/// https://core.telegram.org/bots/api#chatpermissions
+/// <https://core.telegram.org/bots/api#chatpermissions>
 /// Describes actions that a non-administrator user is allowed to take in a chat.
 #[derive(Debug, Serialize, Deserialize, Default, PartialEq)]
 pub struct ChatPermissions {
