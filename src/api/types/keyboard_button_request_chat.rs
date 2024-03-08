@@ -1,7 +1,7 @@
 use crate::api::types::chat_administrator_rights::ChatAdministratorRights;
 use serde::{Deserialize, Serialize};
 
-/// https://core.telegram.org/bots/api#keyboardbuttonrequestchat
+/// <https://core.telegram.org/bots/api#keyboardbuttonrequestchat>
 /// This object defines the criteria used to request a suitable chat. The identifier of the selected chat will be shared with the bot when the corresponding button is pressed.
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct KeyboardButtonRequestChat {

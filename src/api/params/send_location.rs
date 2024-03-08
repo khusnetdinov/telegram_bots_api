@@ -3,7 +3,7 @@ use crate::api::enums::reply_markup::ReplyMarkup;
 use crate::api::types::reply_parameters::ReplyParameters;
 use serde::Serialize;
 
-/// https://core.telegram.org/bots/api#sendlocation
+/// <https://core.telegram.org/bots/api#sendlocation>
 /// Use this method to send point on the map. On success, the sent Message is returned.
 #[derive(Debug, Serialize, Default)]
 pub struct SendLocation {

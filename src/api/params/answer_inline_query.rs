@@ -2,7 +2,7 @@ use crate::api::enums::inline_query_result::InlineQueryResult;
 use crate::api::types::inline_query_results_button::InlineQueryResultsButton;
 use serde::Serialize;
 
-/// https://core.telegram.org/bots/api#answerinlinequery
+/// <https://core.telegram.org/bots/api#answerinlinequery>
 /// Use this method to send answers to an inline query. On success, True is returned.
 /// No more than 50 results per query are allowed.
 #[derive(Debug, Serialize, Default)]

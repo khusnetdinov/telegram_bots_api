@@ -13,7 +13,7 @@ use crate::api::types::pre_checkout_query::PreCheckoutQuery;
 use crate::api::types::shipping_query::ShippingQuery;
 use serde::{Deserialize, Serialize};
 
-/// https://core.telegram.org/bots/api#update
+/// <https://core.telegram.org/bots/api#update>
 /// This object represents an incoming update.
 /// At most one of the optional parameters can be present in any given update.
 #[derive(Debug, Serialize, Deserialize, PartialEq)]

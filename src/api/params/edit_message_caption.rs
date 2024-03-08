@@ -3,7 +3,7 @@ use crate::api::types::inline_keyboard_markup::InlineKeyboardMarkup;
 use crate::api::types::message_entity::MessageEntity;
 use serde::Serialize;
 
-/// https://core.telegram.org/bots/api#editmessagecaption
+/// <https://core.telegram.org/bots/api#editmessagecaption>
 /// Use this method to edit captions of messages. On success, if the edited message is not an inline message, the edited Message is returned, otherwise True is returned.
 #[derive(Debug, Serialize, Default)]
 pub struct EditMessageCaption {

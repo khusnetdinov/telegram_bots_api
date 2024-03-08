@@ -2,7 +2,7 @@ use crate::api::enums::file_input::FileInput;
 use crate::api::types::message_entity::MessageEntity;
 use serde::{Deserialize, Serialize};
 
-/// https://core.telegram.org/bots/api#inputmediadocument
+/// <https://core.telegram.org/bots/api#inputmediadocument>
 /// Represents a general file to be sent.
 #[derive(Debug, Serialize, Deserialize, Default, PartialEq)]
 pub struct InputMediaDocument {

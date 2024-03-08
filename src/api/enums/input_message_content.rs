@@ -5,7 +5,7 @@ use crate::api::types::input_text_message_content::InputTextMessageContent;
 use crate::api::types::input_venue_message_content::InputVenueMessageContent;
 use serde::{Deserialize, Serialize};
 
-/// https://core.telegram.org/bots/api#inputmessagecontent
+/// <https://core.telegram.org/bots/api#inputmessagecontent>
 /// This object represents the content of a message to be sent as a result of an inline query. Telegram clients currently support the following 5 types:
 /// InputTextMessageContent
 /// InputLocationMessageContent

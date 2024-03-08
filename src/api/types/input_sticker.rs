@@ -2,7 +2,7 @@ use crate::api::enums::file_input::FileInput;
 use crate::api::types::mask_position::MaskPosition;
 use serde::{Deserialize, Serialize};
 
-/// https://core.telegram.org/bots/api#inputsticker
+/// <https://core.telegram.org/bots/api#inputsticker>
 /// This object describes a sticker to be added to a sticker set.
 #[derive(Debug, Serialize, Deserialize, Default, PartialEq)]
 pub struct InputSticker {

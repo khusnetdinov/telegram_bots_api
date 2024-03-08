@@ -1,6 +1,6 @@
 use serde::{Deserialize, Serialize};
 
-/// https://core.telegram.org/bots/api#shippingaddress
+/// <https://core.telegram.org/bots/api#shippingaddress>
 /// This object represents a shipping address.
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct ShippingAddress {

@@ -2,7 +2,7 @@ use crate::api::types::link_preview_options::LinkPreviewOptions;
 use crate::api::types::message_entity::MessageEntity;
 use serde::{Deserialize, Serialize};
 
-/// https://core.telegram.org/bots/api#inputtextmessagecontent
+/// <https://core.telegram.org/bots/api#inputtextmessagecontent>
 /// Represents the content of a text message to be sent as the result of an inline query.
 #[derive(Debug, Serialize, Deserialize, Default, PartialEq)]
 pub struct InputTextMessageContent {

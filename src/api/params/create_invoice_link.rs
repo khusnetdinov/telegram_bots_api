@@ -1,7 +1,7 @@
 use crate::api::types::labeled_price::LabeledPrice;
 use serde::Serialize;
 
-/// https://core.telegram.org/bots/api#createinvoicelink
+/// <https://core.telegram.org/bots/api#createinvoicelink>
 /// Use this method to create a link for an invoice. Returns the created invoice link as String on success.
 #[derive(Debug, Serialize, Default)]
 pub struct CreateInvoiceLink {

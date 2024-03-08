@@ -1,7 +1,7 @@
 use crate::api::enums::reaction_type::ReactionType;
 use serde::{Deserialize, Serialize};
 
-/// https://core.telegram.org/bots/api#reactioncount
+/// <https://core.telegram.org/bots/api#reactioncount>
 /// Represents a reaction added to a message along with the number of times it was added.
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct ReactionCount {

@@ -2,7 +2,7 @@ use crate::api::enums::input_message_content::InputMessageContent;
 use crate::api::types::inline_keyboard_markup::InlineKeyboardMarkup;
 use serde::{Deserialize, Serialize};
 
-/// https://core.telegram.org/bots/api#inlinequeryresultarticle
+/// <https://core.telegram.org/bots/api#inlinequeryresultarticle>
 /// Represents a link to an article or web page.
 #[derive(Debug, Serialize, Deserialize, Default, PartialEq)]
 pub struct InlineQueryResultArticle {

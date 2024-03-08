@@ -1,6 +1,6 @@
 use serde::{Deserialize, Serialize};
 
-/// https://core.telegram.org/bots/api#user
+/// <https://core.telegram.org/bots/api#user>
 /// This object represents a Telegram user or bot.
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 #[serde_with_macros::skip_serializing_none]

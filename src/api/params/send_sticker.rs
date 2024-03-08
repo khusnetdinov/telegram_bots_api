@@ -4,7 +4,7 @@ use crate::api::enums::reply_markup::ReplyMarkup;
 use crate::api::types::reply_parameters::ReplyParameters;
 use serde::Serialize;
 
-/// https://core.telegram.org/bots/api#sendsticker
+/// <https://core.telegram.org/bots/api#sendsticker>
 /// Use this method to send static .WEBP, animated .TGS, or video .WEBM stickers. On success, the sent Message is returned.
 #[derive(Debug, Serialize, Default)]
 pub struct SendSticker {

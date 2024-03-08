@@ -4,7 +4,7 @@ use crate::api::types::switch_inline_query_chosen_chat::SwitchInlineQueryChosenC
 use crate::api::types::web_app_info::WebAppInfo;
 use serde::{Deserialize, Serialize};
 
-/// https://core.telegram.org/bots/api#inlinekeyboardbutton
+/// <https://core.telegram.org/bots/api#inlinekeyboardbutton>
 /// This object represents one button of an inline keyboard. You must use exactly one of the optional fields.
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct InlineKeyboardButton {

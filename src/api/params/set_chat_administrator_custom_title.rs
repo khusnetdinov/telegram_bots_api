@@ -1,7 +1,7 @@
 use crate::api::enums::chat_uid::ChatUId;
 use serde::Serialize;
 
-/// https://core.telegram.org/bots/api#setchatadministratorcustomtitle
+/// <https://core.telegram.org/bots/api#setchatadministratorcustomtitle>
 /// Use this method to set a custom title for an administrator in a supergroup promoted by the bot. Returns True on success.
 #[derive(Debug, Serialize, Default)]
 pub struct SetChatAdministratorCustomTitle {

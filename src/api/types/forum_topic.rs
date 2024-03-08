@@ -1,6 +1,6 @@
 use serde::{Deserialize, Serialize};
 
-/// https://core.telegram.org/bots/api#forumtopic
+/// <https://core.telegram.org/bots/api#forumtopic>
 /// This object represents a forum topic.
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct ForumTopic {

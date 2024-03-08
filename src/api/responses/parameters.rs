@@ -1,6 +1,6 @@
 use serde::Deserialize;
 
-/// https://core.telegram.org/bots/api#responseparameters
+/// <https://core.telegram.org/bots/api#responseparameters>
 #[derive(Debug, Deserialize, PartialEq)]
 pub struct ResponseParameters {
     #[serde(skip_serializing_if = "Option::is_none")]

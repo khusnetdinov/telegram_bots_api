@@ -4,7 +4,7 @@ use crate::api::types::link_preview_options::LinkPreviewOptions;
 use crate::api::types::message_entity::MessageEntity;
 use serde::Serialize;
 
-/// https://core.telegram.org/bots/api#editmessagetext
+/// <https://core.telegram.org/bots/api#editmessagetext>
 /// Use this method to edit text and game messages. On success, if the edited message is not an inline message, the edited Message is returned, otherwise True is returned.
 #[derive(Debug, Serialize, Default)]
 pub struct EditMessageText {

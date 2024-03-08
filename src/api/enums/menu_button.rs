@@ -1,7 +1,7 @@
 use crate::api::types::web_app_info::WebAppInfo;
 use serde::{Deserialize, Serialize};
 
-/// https://core.telegram.org/bots/api#menubutton
+/// <https://core.telegram.org/bots/api#menubutton>
 /// This object describes the bot's menu button in a private chat. It should be one of
 /// MenuButtonCommands
 /// MenuButtonWebApp

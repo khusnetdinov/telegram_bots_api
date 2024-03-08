@@ -2,7 +2,7 @@ use crate::api::types::chat::Chat;
 use crate::api::types::message_id::MessageId;
 use serde::{Deserialize, Serialize};
 
-/// https://core.telegram.org/bots/api#messageoriginchannel
+/// <https://core.telegram.org/bots/api#messageoriginchannel>
 /// The message was originally sent to a channel chat.
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct MessageOriginChannel {

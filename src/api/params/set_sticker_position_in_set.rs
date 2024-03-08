@@ -1,6 +1,6 @@
 use serde::Serialize;
 
-/// https://core.telegram.org/bots/api#setstickerpositioninset
+/// <https://core.telegram.org/bots/api#setstickerpositioninset>
 /// Use this method to move a sticker in a set created by the bot to a specific position. Returns True on success.
 #[derive(Debug, Serialize, Default)]
 pub struct SetStickerPositionInSet {

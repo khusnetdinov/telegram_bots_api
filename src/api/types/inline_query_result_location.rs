@@ -2,7 +2,7 @@ use crate::api::enums::input_message_content::InputMessageContent;
 use crate::api::types::inline_keyboard_markup::InlineKeyboardMarkup;
 use serde::{Deserialize, Serialize};
 
-/// https://core.telegram.org/bots/api#inlinequeryresultlocation
+/// <https://core.telegram.org/bots/api#inlinequeryresultlocation>
 /// Represents a location on a map. By default, the location will be sent by the user. Alternatively, you can use input_message_content to send a message with the specified content instead of the location.
 #[derive(Debug, Serialize, Deserialize, Default, PartialEq)]
 pub struct InlineQueryResultLocation {

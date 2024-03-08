@@ -2,7 +2,7 @@ use crate::api::enums::chat_uid::ChatUId;
 use crate::api::types::message_id::MessageId;
 use serde::Serialize;
 
-/// https://core.telegram.org/bots/api#deletemessage
+/// <https://core.telegram.org/bots/api#deletemessage>
 /// Use this method to delete a message, including service messages, with the following limitations:
 /// - A message can only be deleted if it was sent less than 48 hours ago.
 /// - Service messages about a supergroup, channel, or forum topic creation can't be deleted.

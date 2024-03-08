@@ -1,6 +1,6 @@
 use serde::Serialize;
 
-/// https://core.telegram.org/bots/api#setmyname
+/// <https://core.telegram.org/bots/api#setmyname>
 /// Use this method to change the bot's name. Returns True on success.
 #[derive(Debug, Serialize, Default)]
 pub struct SetMyName {

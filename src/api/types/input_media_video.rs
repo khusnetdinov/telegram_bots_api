@@ -2,7 +2,7 @@ use crate::api::enums::file_input::FileInput;
 use crate::api::types::message_entity::MessageEntity;
 use serde::{Deserialize, Serialize};
 
-/// https://core.telegram.org/bots/api#inputmediavideo
+/// <https://core.telegram.org/bots/api#inputmediavideo>
 /// Represents a video to be sent.
 #[derive(Debug, Serialize, Deserialize, Default, PartialEq)]
 pub struct InputMediaVideo {
