@@ -27,7 +27,7 @@ Run `cargo add telegram_bots_api`, or add lines to `Cargo.toml`:
 
 ```toml
 [dependencies]
-telegram_bots_api = "0.0.1"
+telegram_bots_api = "0.0.2"
 ```
 
 ### Configuration
