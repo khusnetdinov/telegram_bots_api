@@ -1,6 +1,7 @@
 use crate::api::responses::error::ResponseError;
 use std::fmt::{Display, Formatter};
 
+/// Errors for telegram bots api.
 #[derive(Debug)]
 pub enum Error {
     Request(reqwest::Error),

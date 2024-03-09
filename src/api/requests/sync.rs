@@ -139,6 +139,7 @@ use crate::api::types::user_profile_photos::UserProfilePhotos;
 use crate::api::types::webhook_info::WebhookInfo;
 use crate::errors::Error;
 
+/// Sync client methods for telegram bots api.
 pub trait Requests {
     /// <https://core.telegram.org/bots/api#getupdates>
     /// Use this method to receive incoming updates using long polling (wiki). Returns an Array of Update objects.
