@@ -148,6 +148,7 @@ use reqwest::{ClientBuilder, RequestBuilder};
 use serde::de::DeserializeOwned;
 use std::time::Duration;
 
+/// Async client for telegram bots api.
 #[derive(Debug)]
 pub struct Async {
     pub client: reqwest::Client,

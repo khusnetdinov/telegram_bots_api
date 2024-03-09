@@ -140,6 +140,7 @@ use crate::api::types::webhook_info::WebhookInfo;
 use crate::errors::Error;
 use async_trait::async_trait;
 
+/// Async client methods for telegram bots api.
 #[async_trait]
 pub trait Requests {
     /// <https://core.telegram.org/bots/api#getupdates>

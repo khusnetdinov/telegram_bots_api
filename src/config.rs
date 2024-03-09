@@ -1,5 +1,6 @@
 use structopt::StructOpt;
 
+/// Configuration with default values.
 #[derive(StructOpt, Debug, PartialEq)]
 #[structopt(name = "base")]
 pub struct Config {

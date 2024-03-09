@@ -146,6 +146,7 @@ use reqwest::blocking::{ClientBuilder, RequestBuilder, Response};
 use serde::de::DeserializeOwned;
 use std::time::Duration;
 
+/// Sync client for telegram bots api.
 #[derive(Debug)]
 pub struct Sync {
     client: reqwest::blocking::Client,
