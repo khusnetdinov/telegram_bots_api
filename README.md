@@ -7,12 +7,12 @@
 [![docs.rs](https://img.shields.io/docsrs/telegram_bots_api)](https://docs.rs/telegram_bots_api/latest/telegram_bots_api/)
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fkhusnetdinov%2Ftelegram.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fkhusnetdinov%2Ftelegram?ref=badge_shield)
 
-![https://github.com/khusnetdinov/telegram/actions/workflows/codecov_report/badge.svg](https://github.com/khusnetdinov/telegram/actions/workflows/codecov_report.yml/badge.svg)
-![https://github.com/khusnetdinov/telegram/actions/workflows/lints/badge.svg](https://github.com/khusnetdinov/telegram/actions/workflows/lints.yml/badge.svg)
-![https://github.com/khusnetdinov/telegram/actions/workflows/msrv/badge.svg](https://github.com/khusnetdinov/telegram/actions/workflows/msrv.yml/badge.svg)
-![https://github.com/khusnetdinov/telegram/actions/workflows/features/badge.svg](https://github.com/khusnetdinov/telegram/actions/workflows/features.yml/badge.svg)
-![https://github.com/khusnetdinov/telegram/actions/workflows/tests/badge.svg](https://github.com/khusnetdinov/telegram/actions/workflows/tests.yml/badge.svg)
-![https://github.com/khusnetdinov/telegram/actions/workflows/rolling/badge.svg](https://github.com/khusnetdinov/telegram/actions/workflows/rolling.yml/badge.svg)
+![https://github.com/khusnetdinov/telegram_bots_api/actions/workflows/codecov_report/badge.svg](https://github.com/khusnetdinov/telegram/actions/workflows/codecov_report.yml/badge.svg)
+![https://github.com/khusnetdinov/telegram_bots_api/actions/workflows/lints/badge.svg](https://github.com/khusnetdinov/telegram/actions/workflows/lints.yml/badge.svg)
+![https://github.com/khusnetdinov/telegram_bots_api/actions/workflows/msrv/badge.svg](https://github.com/khusnetdinov/telegram/actions/workflows/msrv.yml/badge.svg)
+![https://github.com/khusnetdinov/telegram_bots_api/actions/workflows/features/badge.svg](https://github.com/khusnetdinov/telegram/actions/workflows/features.yml/badge.svg)
+![https://github.com/khusnetdinov/telegram_bots_api/actions/workflows/tests/badge.svg](https://github.com/khusnetdinov/telegram/actions/workflows/tests.yml/badge.svg)
+![https://github.com/khusnetdinov/telegram_bots_api/actions/workflows/rolling/badge.svg](https://github.com/khusnetdinov/telegram/actions/workflows/rolling.yml/badge.svg)
 
   Telegram bots api simple rust wrapper, and no more.
 
