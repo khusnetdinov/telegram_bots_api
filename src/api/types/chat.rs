@@ -78,4 +78,8 @@ pub struct Chat {
     pub linked_chat_id: Option<i64>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub location: Option<ChatLocation>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub unrestrict_boost_count: Option<i64>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub custom_emoji_sticker_set_name: Option<String>,
 }

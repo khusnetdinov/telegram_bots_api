@@ -3,6 +3,7 @@ use crate::api::enums::message_origin::MessageOrigin;
 use crate::api::types::animation::Animation;
 use crate::api::types::audio::Audio;
 use crate::api::types::chat::Chat;
+use crate::api::types::chat_boost_added::ChatBoostAdded;
 use crate::api::types::chat_shared::ChatShared;
 use crate::api::types::contact::Contact;
 use crate::api::types::dice::Dice;
@@ -198,4 +199,10 @@ pub struct Message {
     pub web_app_data: Option<WebAppData>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub reply_markup: Option<InlineKeyboardMarkup>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub boost_added: Option<Box<ChatBoostAdded>>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub reply_to_story: Option<Box<Story>>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub sender_boost_count: Option<i64>,
 }
