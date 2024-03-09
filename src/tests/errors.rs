@@ -12,10 +12,13 @@ fn request_error() {
         ok: false,
         error_code: 000,
         description: String::from("description"),
-        parameters: None
+        parameters: None,
     });
 
-    assert_eq!(error.to_string(), "Response Error: error code 0: description");
+    assert_eq!(
+        error.to_string(),
+        "Response Error: error code 0: description"
+    );
 }
 
 #[test]
