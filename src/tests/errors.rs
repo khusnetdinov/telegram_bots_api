@@ -1,9 +1,22 @@
 use crate::api::requests::sync::Requests;
+use crate::api::responses::error::ResponseError;
 use crate::api::responses::result::ResponseResult;
 use crate::api::types::user::User;
 use crate::clients::sync::Sync;
 use crate::config::Config;
 use crate::errors::Error;
+
+#[test]
+fn request_error() {
+    let error = Error::Response(ResponseError {
+        ok: false,
+        error_code: 000,
+        description: String::from("description"),
+        parameters: None
+    });
+
+    assert_eq!(error.to_string(), "Response Error: error code 0: description");
+}
 
 #[test]
 fn response_sync_error() {
