@@ -20,13 +20,13 @@ use serde::{Deserialize, Serialize};
 pub struct Update {
     pub update_id: i64,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub message: Option<Message>,
+    pub message: Option<Box<Message>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub edited_message: Option<Message>,
+    pub edited_message: Option<Box<Message>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub channel_post: Option<Message>,
+    pub channel_post: Option<Box<Message>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub edited_channel_post: Option<Message>,
+    pub edited_channel_post: Option<Box<Message>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub message_reaction: Option<MessageReactionUpdated>,
     #[serde(skip_serializing_if = "Option::is_none")]
