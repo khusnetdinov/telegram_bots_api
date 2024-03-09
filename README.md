@@ -2,9 +2,9 @@
 
 ![Static Badge](https://img.shields.io/badge/Project_Status-development-red)
 [![codecov](https://codecov.io/gh/khusnetdinov/telegram_bots_api/graph/badge.svg?token=HODA8WDALK)](https://codecov.io/gh/khusnetdinov/telegram_bots_api)
-![crates.io](https://img.shields.io/crates/v/telegram_bots_api.svg)
+[![crates.io](https://img.shields.io/crates/v/telegram_bots_api.svg)](https://crates.io/crates/telegram_bots_api)
 ![Static Badge](https://img.shields.io/badge/Telegram_Bot_API-7.0-green)
-![docs.rs](https://img.shields.io/docsrs/telegram_bots_api)
+[![docs.rs](https://img.shields.io/docsrs/telegram_bots_api)](https://docs.rs/telegram_bots_api/latest/telegram_bots_api/)
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fkhusnetdinov%2Ftelegram.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fkhusnetdinov%2Ftelegram?ref=badge_shield)
 
 ![https://github.com/khusnetdinov/telegram/actions/workflows/codecov_report/badge.svg](https://github.com/khusnetdinov/telegram/actions/workflows/codecov_report.yml/badge.svg)
