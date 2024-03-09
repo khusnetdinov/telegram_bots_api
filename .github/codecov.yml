@@ -8,6 +8,7 @@ coverage:
         threshold: 1%
 
 ignore:
+  - "api/**/*"
   - "tests/**/*"
 
 comment:
