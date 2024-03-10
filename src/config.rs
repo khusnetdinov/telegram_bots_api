@@ -1,7 +1,7 @@
 use structopt::StructOpt;
 
 /// Configuration with default values.
-#[derive(StructOpt, Debug, PartialEq)]
+#[derive(StructOpt, Debug, Clone, PartialEq)]
 #[structopt(name = "base")]
 pub struct Config {
     /// Environment: Debug mode.
