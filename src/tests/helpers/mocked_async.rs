@@ -20,7 +20,7 @@ impl MockedAsync {
             ..Default::default()
         };
 
-        Async::from(&config)
+        Async::from(config)
     }
 
     async fn mock_server(

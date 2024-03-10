@@ -150,30 +150,23 @@ use std::time::Duration;
 #[derive(Debug)]
 pub struct Sync {
     client: reqwest::blocking::Client,
-    offset: i64,
-    limit: i64,
-    timeout: u64,
+    config: Config,
     url: String,
 }
 
-impl From<&Config> for Sync {
-    fn from(config: &Config) -> Self {
+impl From<Config> for Sync {
+    fn from(config: Config) -> Self {
         let client = ClientBuilder::new()
             .timeout(Duration::from_secs(config.timeout))
             .connect_timeout(Duration::from_secs(config.connect_timeout))
             .build()
             .unwrap();
 
-        let offset = config.updates_offset;
-        let limit = config.updates_limit;
-        let timeout = config.updates_timeout;
         let url = config.build_url();
 
         Self {
             client,
-            offset,
-            limit,
-            timeout,
+            config,
             url,
         }
     }
@@ -182,9 +175,6 @@ impl From<&Config> for Sync {
 impl Sync {
     pub fn new() -> Self {
         let config = Config::new();
-        let offset = config.updates_offset;
-        let limit = config.updates_limit;
-        let timeout = config.updates_timeout;
         let url = config.build_url();
         let client = ClientBuilder::new()
             .timeout(Duration::from_secs(config.timeout))
@@ -194,9 +184,7 @@ impl Sync {
 
         Self {
             client,
-            offset,
-            limit,
-            timeout,
+            config,
             url,
         }
     }

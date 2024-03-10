@@ -152,17 +152,12 @@ use std::time::Duration;
 #[derive(Debug)]
 pub struct Async {
     pub client: reqwest::Client,
-    offset: i64,
-    limit: i64,
-    timeout: u64,
+    pub config: Config,
     pub url: String,
 }
 
-impl From<&Config> for Async {
-    fn from(config: &Config) -> Self {
-        let offset = config.updates_offset;
-        let limit = config.updates_limit;
-        let timeout = config.updates_timeout;
+impl From<Config> for Async {
+    fn from(config: Config) -> Self {
         let url = config.build_url();
         let client = ClientBuilder::new()
             .timeout(Duration::from_secs(config.timeout))
@@ -172,9 +167,7 @@ impl From<&Config> for Async {
 
         Self {
             client,
-            offset,
-            limit,
-            timeout,
+            config,
             url,
         }
     }
@@ -183,9 +176,6 @@ impl From<&Config> for Async {
 impl Async {
     pub fn new() -> Self {
         let config = Config::new();
-        let offset = config.updates_offset;
-        let limit = config.updates_limit;
-        let timeout = config.updates_timeout;
         let url = config.build_url();
         let client = reqwest::Client::builder()
             .timeout(Duration::from_secs(config.timeout))
@@ -195,9 +185,7 @@ impl Async {
 
         Self {
             client,
-            offset,
-            limit,
-            timeout,
+            config,
             url,
         }
     }
