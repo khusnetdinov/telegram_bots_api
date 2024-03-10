@@ -150,7 +150,7 @@ use std::time::Duration;
 #[derive(Debug)]
 pub struct Sync {
     client: reqwest::blocking::Client,
-    config: Config,
+    pub config: Config,
     url: String,
 }
 

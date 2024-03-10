@@ -151,9 +151,9 @@ use std::time::Duration;
 /// Async client for telegram bots api.
 #[derive(Debug)]
 pub struct Async {
-    pub client: reqwest::Client,
+    client: reqwest::Client,
     pub config: Config,
-    pub url: String,
+    url: String,
 }
 
 impl From<Config> for Async {
