@@ -8,6 +8,7 @@ use crate::api::types::inline_query::InlineQuery;
 use crate::api::types::message::Message;
 use crate::api::types::message_reaction_count_update::MessageReactionCountUpdated;
 use crate::api::types::message_reaction_updated::MessageReactionUpdated;
+use crate::api::types::poll::Poll;
 use crate::api::types::poll_answer::PollAnswer;
 use crate::api::types::pre_checkout_query::PreCheckoutQuery;
 use crate::api::types::shipping_query::ShippingQuery;
@@ -42,7 +43,7 @@ pub struct Update {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub pre_checkout_query: Option<PreCheckoutQuery>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub poll: Option<PreCheckoutQuery>,
+    pub poll: Option<Poll>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub poll_answer: Option<PollAnswer>,
     #[serde(skip_serializing_if = "Option::is_none")]
