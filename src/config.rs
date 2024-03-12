@@ -54,7 +54,6 @@ impl Config {
         format!("{}/bot{}/", self.url, self.token)
     }
 
-
     pub fn webhook(&self) -> Option<String> {
         if self.webhook.is_empty() {
             None
