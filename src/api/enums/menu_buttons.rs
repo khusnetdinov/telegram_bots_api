@@ -10,7 +10,7 @@ use serde::{Deserialize, Serialize};
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 #[serde(tag = "type")]
 #[serde(rename_all = "snake_case")]
-pub enum MenuButton {
+pub enum MenuButtons {
     Commands,
     WebApp { text: String, web_app: WebAppInfo },
     Default,

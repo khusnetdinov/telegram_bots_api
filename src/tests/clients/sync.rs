@@ -1,7 +1,7 @@
 use crate::api::enums::chat_member::ChatMember;
 use crate::api::enums::chat_uid::ChatUId;
 use crate::api::enums::file_input::FileInput;
-use crate::api::enums::menu_button::MenuButton;
+use crate::api::enums::menu_buttons::MenuButtons;
 use crate::api::enums::message_result::MessageResult;
 use crate::api::params::add_sticker_to_set::AddStickerToSet;
 use crate::api::params::answer_callback_query::AnswerCallbackQuery;
@@ -2846,7 +2846,7 @@ fn get_chat_menu_button_success() {
     let mut server = mockito::Server::new();
     let mocked = MockedSync::new(&mut server, "getChatMenuButton", 200, &mock_response);
 
-    let mock_result = mocked.result::<MenuButton>().unwrap();
+    let mock_result = mocked.result::<MenuButtons>().unwrap();
     let params = GetChatMenuButton {
         ..Default::default()
     };

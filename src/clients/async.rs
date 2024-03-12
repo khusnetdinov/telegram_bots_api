@@ -1,5 +1,5 @@
 use crate::api::enums::chat_member::ChatMember;
-use crate::api::enums::menu_button::MenuButton;
+use crate::api::enums::menu_buttons::MenuButtons;
 use crate::api::enums::message_result::MessageResult;
 use crate::api::params::add_sticker_to_set::AddStickerToSet;
 use crate::api::params::answer_callback_query::AnswerCallbackQuery;
@@ -707,8 +707,8 @@ impl Requests for Async {
             .await
     }
 
-    async fn get_chat_menu_button(&self, params: &GetChatMenuButton) -> Result<MenuButton, Error> {
-        self.respond_with::<MenuButton>(self.request("getChatMenuButton").await.json(params))
+    async fn get_chat_menu_button(&self, params: &GetChatMenuButton) -> Result<MenuButtons, Error> {
+        self.respond_with::<MenuButtons>(self.request("getChatMenuButton").await.json(params))
             .await
     }
 

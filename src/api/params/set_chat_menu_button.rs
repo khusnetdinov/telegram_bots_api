@@ -1,5 +1,5 @@
 use crate::api::enums::chat_uid::ChatUId;
-use crate::api::enums::menu_button::MenuButton;
+use crate::api::enums::menu_buttons::MenuButtons;
 use serde::Serialize;
 
 /// <https://core.telegram.org/bots/api#setchatmenubutton>
@@ -9,5 +9,5 @@ pub struct SetChatMenuButton {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub chat_id: Option<ChatUId>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub menu_button: Option<MenuButton>,
+    pub menu_button: Option<MenuButtons>,
 }
