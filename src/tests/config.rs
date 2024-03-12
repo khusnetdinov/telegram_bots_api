@@ -9,6 +9,7 @@ fn new_with_default() {
 
     assert_eq!(config.token, String::from(""));
     assert_eq!(config.url, String::from(""));
+    assert_eq!(config.webhook, String::from(""));
     assert_eq!(config.timeout, 5u64);
     assert_eq!(config.connect_timeout, 5u64);
     assert_eq!(config.updates_offset, 0i64);

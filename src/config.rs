@@ -20,6 +20,10 @@ pub struct Config {
     #[structopt(long, default_value = "https://api.telegram.org")]
     pub url: String,
 
+    /// Telegram: Api url.
+    #[structopt(long, default_value = "")]
+    pub webhook: String,
+
     /// Client: Timeout in secs. The timeout is applied from when the request starts connecting until the response body has finished.
     #[structopt(long, default_value = "5")]
     pub timeout: u64,
@@ -58,8 +62,9 @@ impl Default for Config {
         Self {
             debug: false,
             production: false,
-            url: String::from(""),
             token: String::from(""),
+            url: String::from(""),
+            webhook: String::from(""),
             timeout: 5u64,
             connect_timeout: 5u64,
             updates_offset: 0i64,
