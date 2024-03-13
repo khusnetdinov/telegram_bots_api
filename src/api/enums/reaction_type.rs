@@ -1,5 +1,5 @@
-use crate::api::types::reaction_type_custom_emoji::ReactionTypeCustomEmoji;
-use crate::api::types::reaction_type_emoji::ReactionTypeEmoji;
+use crate::api::structs::reaction_type_custom_emoji::ReactionTypeCustomEmoji;
+use crate::api::structs::reaction_type_emoji::ReactionTypeEmoji;
 use serde::{Deserialize, Serialize};
 
 /// <https://core.telegram.org/bots/api#reactiontype>

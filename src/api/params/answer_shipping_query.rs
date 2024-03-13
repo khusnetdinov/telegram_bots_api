@@ -1,4 +1,4 @@
-use crate::api::types::shipping_option::ShippingOption;
+use crate::api::structs::shipping_option::ShippingOption;
 use serde::Serialize;
 
 /// <https://core.telegram.org/bots/api#answershippingquery>

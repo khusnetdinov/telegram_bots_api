@@ -1,4 +1,4 @@
-use crate::api::types::message::Message;
+use crate::api::structs::message::Message;
 use serde::{Deserialize, Serialize};
 
 /// <https://core.telegram.org/bots/api#updating-messages>

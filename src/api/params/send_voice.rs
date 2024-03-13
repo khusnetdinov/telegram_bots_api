@@ -1,8 +1,8 @@
 use crate::api::enums::chat_uid::ChatUId;
 use crate::api::enums::file_input::FileInput;
 use crate::api::enums::reply_markup::ReplyMarkup;
-use crate::api::types::message_entity::MessageEntity;
-use crate::api::types::reply_parameters::ReplyParameters;
+use crate::api::structs::message_entity::MessageEntity;
+use crate::api::structs::reply_parameters::ReplyParameters;
 use serde::Serialize;
 
 /// <https://core.telegram.org/bots/api#sendvoice>

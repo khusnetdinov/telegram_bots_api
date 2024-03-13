@@ -1,7 +1,7 @@
 use crate::api::enums::chat_uid::ChatUId;
-use crate::api::types::inline_keyboard_markup::InlineKeyboardMarkup;
-use crate::api::types::link_preview_options::LinkPreviewOptions;
-use crate::api::types::message_entity::MessageEntity;
+use crate::api::structs::inline_keyboard_markup::InlineKeyboardMarkup;
+use crate::api::structs::link_preview_options::LinkPreviewOptions;
+use crate::api::structs::message_entity::MessageEntity;
 use serde::Serialize;
 
 /// <https://core.telegram.org/bots/api#editmessagetext>

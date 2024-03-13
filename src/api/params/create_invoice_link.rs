@@ -1,4 +1,4 @@
-use crate::api::types::labeled_price::LabeledPrice;
+use crate::api::structs::labeled_price::LabeledPrice;
 use serde::Serialize;
 
 /// <https://core.telegram.org/bots/api#createinvoicelink>

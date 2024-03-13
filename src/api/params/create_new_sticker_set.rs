@@ -1,4 +1,4 @@
-use crate::api::types::input_sticker::InputSticker;
+use crate::api::structs::input_sticker::InputSticker;
 use serde::Serialize;
 
 /// <https://core.telegram.org/bots/api#createnewstickerset>

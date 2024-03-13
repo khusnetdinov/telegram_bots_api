@@ -1,5 +1,5 @@
 use crate::api::enums::inline_query_result::InlineQueryResult;
-use crate::api::types::inline_query_results_button::InlineQueryResultsButton;
+use crate::api::structs::inline_query_results_button::InlineQueryResultsButton;
 use serde::Serialize;
 
 /// <https://core.telegram.org/bots/api#answerinlinequery>

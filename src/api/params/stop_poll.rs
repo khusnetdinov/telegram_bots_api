@@ -1,6 +1,6 @@
 use crate::api::enums::chat_uid::ChatUId;
-use crate::api::types::inline_keyboard_markup::InlineKeyboardMarkup;
-use crate::api::types::message_id::MessageId;
+use crate::api::structs::inline_keyboard_markup::InlineKeyboardMarkup;
+use crate::api::structs::message_id::MessageId;
 use serde::Serialize;
 
 /// <https://core.telegram.org/bots/api#stoppoll>

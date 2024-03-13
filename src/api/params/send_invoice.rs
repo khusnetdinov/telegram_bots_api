@@ -1,7 +1,7 @@
 use crate::api::enums::chat_uid::ChatUId;
-use crate::api::types::inline_keyboard_markup::InlineKeyboardMarkup;
-use crate::api::types::labeled_price::LabeledPrice;
-use crate::api::types::reply_parameters::ReplyParameters;
+use crate::api::structs::inline_keyboard_markup::InlineKeyboardMarkup;
+use crate::api::structs::labeled_price::LabeledPrice;
+use crate::api::structs::reply_parameters::ReplyParameters;
 use serde::Serialize;
 
 /// <https://core.telegram.org/bots/api#sendinvoice>

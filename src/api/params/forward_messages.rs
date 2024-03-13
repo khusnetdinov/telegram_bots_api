@@ -1,5 +1,5 @@
 use crate::api::enums::chat_uid::ChatUId;
-use crate::api::types::message_id::MessageId;
+use crate::api::structs::message_id::MessageId;
 use serde::Serialize;
 
 /// <https://core.telegram.org/bots/api#forwardmessages>

@@ -1,4 +1,4 @@
-use crate::api::types::mask_position::MaskPosition;
+use crate::api::structs::mask_position::MaskPosition;
 use serde::Serialize;
 
 /// <https://core.telegram.org/bots/api#setstickermaskposition>

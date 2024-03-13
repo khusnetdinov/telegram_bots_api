@@ -11,4 +11,4 @@ pub mod requests;
 pub mod responses;
 
 /// Telegram models structs.
-pub mod types;
+pub mod structs;

@@ -1,6 +1,6 @@
 use serde::Serialize;
 
-use crate::api::types::input_file::InputFile;
+use crate::api::structs::input_file::InputFile;
 
 /// <https://core.telegram.org/bots/api#setwebhook>
 /// Use this method to specify a URL and receive incoming updates via an outgoing webhook. Whenever there is an update for the bot, we will send an HTTPS POST request to the specified URL, containing a JSON-serialized Update. In case of an unsuccessful request, we will give up after a reasonable amount of attempts. Returns True on success.

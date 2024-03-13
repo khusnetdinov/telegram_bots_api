@@ -1,6 +1,6 @@
-use crate::api::types::chat_boost_source_gift_code::ChatBoostSourceGiftCode;
-use crate::api::types::chat_boost_source_giveaway::ChatBoostSourceGiveaway;
-use crate::api::types::chat_boost_source_premium::ChatBoostSourcePremium;
+use crate::api::structs::chat_boost_source_gift_code::ChatBoostSourceGiftCode;
+use crate::api::structs::chat_boost_source_giveaway::ChatBoostSourceGiveaway;
+use crate::api::structs::chat_boost_source_premium::ChatBoostSourcePremium;
 use serde::{Deserialize, Serialize};
 
 /// <https://core.telegram.org/bots/api#chatboostsource>

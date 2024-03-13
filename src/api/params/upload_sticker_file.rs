@@ -1,4 +1,4 @@
-use crate::api::types::input_file::InputFile;
+use crate::api::structs::input_file::InputFile;
 use serde::Serialize;
 
 /// <https://core.telegram.org/bots/api#uploadstickerfile>

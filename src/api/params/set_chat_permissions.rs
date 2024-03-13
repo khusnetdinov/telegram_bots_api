@@ -1,5 +1,5 @@
 use crate::api::enums::chat_uid::ChatUId;
-use crate::api::types::chat_permissions::ChatPermissions;
+use crate::api::structs::chat_permissions::ChatPermissions;
 use serde::Serialize;
 
 /// <https://core.telegram.org/bots/api#setchatpermissions>

@@ -1,11 +1,11 @@
-use crate::api::types::bot_command::BotCommand;
-use crate::api::types::bot_command_scope_all_chat_administrators::BotCommandScopeAllChatAdministrators;
-use crate::api::types::bot_command_scope_all_group_chats::BotCommandScopeAllGroupChats;
-use crate::api::types::bot_command_scope_all_private_chats::BotCommandScopeAllPrivateChats;
-use crate::api::types::bot_command_scope_chat::BotCommandScopeChat;
-use crate::api::types::bot_command_scope_chat_administrators::BotCommandScopeChatAdministrators;
-use crate::api::types::bot_command_scope_chat_member::BotCommandScopeChatMember;
-use crate::api::types::bot_command_scope_default::BotCommandScopeDefault;
+use crate::api::structs::bot_command::BotCommand;
+use crate::api::structs::bot_command_scope_all_chat_administrators::BotCommandScopeAllChatAdministrators;
+use crate::api::structs::bot_command_scope_all_group_chats::BotCommandScopeAllGroupChats;
+use crate::api::structs::bot_command_scope_all_private_chats::BotCommandScopeAllPrivateChats;
+use crate::api::structs::bot_command_scope_chat::BotCommandScopeChat;
+use crate::api::structs::bot_command_scope_chat_administrators::BotCommandScopeChatAdministrators;
+use crate::api::structs::bot_command_scope_chat_member::BotCommandScopeChatMember;
+use crate::api::structs::bot_command_scope_default::BotCommandScopeDefault;
 use serde::{Deserialize, Serialize};
 
 /// <https://core.telegram.org/bots/api#botcommandscope>

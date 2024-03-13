@@ -1,27 +1,27 @@
-use crate::api::types::inline_query_result_article::InlineQueryResultArticle;
-use crate::api::types::inline_query_result_audio::InlineQueryResultAudio;
-use crate::api::types::inline_query_result_cached_audio::InlineQueryResultCachedAudio;
-use crate::api::types::inline_query_result_cached_document::InlineQueryResultCachedDocument;
-use crate::api::types::inline_query_result_cached_gif::InlineQueryResultCachedGif;
-use crate::api::types::inline_query_result_cached_mpeg4_gif::InlineQueryResultCachedMpeg4Gif;
-use crate::api::types::inline_query_result_cached_photo::InlineQueryResultCachedPhoto;
-use crate::api::types::inline_query_result_cached_sticker::InlineQueryResultCachedSticker;
-use crate::api::types::inline_query_result_cached_video::InlineQueryResultCachedVideo;
-use crate::api::types::inline_query_result_cached_voice::InlineQueryResultCachedVoice;
-use crate::api::types::inline_query_result_contact::InlineQueryResultContact;
-use crate::api::types::inline_query_result_document::InlineQueryResultDocument;
-use crate::api::types::inline_query_result_game::InlineQueryResultGame;
-use crate::api::types::inline_query_result_gif::InlineQueryResultGif;
-use crate::api::types::inline_query_result_location::InlineQueryResultLocation;
-use crate::api::types::inline_query_result_mpeg4_gif::InlineQueryResultMpeg4Gif;
-use crate::api::types::inline_query_result_photo::InlineQueryResultPhoto;
-use crate::api::types::inline_query_result_venue::InlineQueryResultVenue;
-use crate::api::types::inline_query_result_video::InlineQueryResultVideo;
-use crate::api::types::inline_query_result_voice::InlineQueryResultVoice;
+use crate::api::structs::inline_query_result_article::InlineQueryResultArticle;
+use crate::api::structs::inline_query_result_audio::InlineQueryResultAudio;
+use crate::api::structs::inline_query_result_cached_audio::InlineQueryResultCachedAudio;
+use crate::api::structs::inline_query_result_cached_document::InlineQueryResultCachedDocument;
+use crate::api::structs::inline_query_result_cached_gif::InlineQueryResultCachedGif;
+use crate::api::structs::inline_query_result_cached_mpeg4_gif::InlineQueryResultCachedMpeg4Gif;
+use crate::api::structs::inline_query_result_cached_photo::InlineQueryResultCachedPhoto;
+use crate::api::structs::inline_query_result_cached_sticker::InlineQueryResultCachedSticker;
+use crate::api::structs::inline_query_result_cached_video::InlineQueryResultCachedVideo;
+use crate::api::structs::inline_query_result_cached_voice::InlineQueryResultCachedVoice;
+use crate::api::structs::inline_query_result_contact::InlineQueryResultContact;
+use crate::api::structs::inline_query_result_document::InlineQueryResultDocument;
+use crate::api::structs::inline_query_result_game::InlineQueryResultGame;
+use crate::api::structs::inline_query_result_gif::InlineQueryResultGif;
+use crate::api::structs::inline_query_result_location::InlineQueryResultLocation;
+use crate::api::structs::inline_query_result_mpeg4_gif::InlineQueryResultMpeg4Gif;
+use crate::api::structs::inline_query_result_photo::InlineQueryResultPhoto;
+use crate::api::structs::inline_query_result_venue::InlineQueryResultVenue;
+use crate::api::structs::inline_query_result_video::InlineQueryResultVideo;
+use crate::api::structs::inline_query_result_voice::InlineQueryResultVoice;
 use serde::{Deserialize, Serialize};
 
 /// <https://core.telegram.org/bots/api#inlinequeryresult>
-/// This object represents one result of an inline query. Telegram clients currently support results of the following 20 types:
+/// This object represents one result of an inline query. Telegram clients currently support results of the following 20 structs:
 /// InlineQueryResultCachedAudio
 /// InlineQueryResultCachedDocument
 /// InlineQueryResultCachedGif

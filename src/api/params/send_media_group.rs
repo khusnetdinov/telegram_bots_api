@@ -1,6 +1,6 @@
 use crate::api::enums::chat_uid::ChatUId;
 use crate::api::enums::input_media::InputMedia;
-use crate::api::types::reply_parameters::ReplyParameters;
+use crate::api::structs::reply_parameters::ReplyParameters;
 use serde::Serialize;
 
 /// <https://core.telegram.org/bots/api#sendmediagroup>

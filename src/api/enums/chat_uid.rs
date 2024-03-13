@@ -1,4 +1,4 @@
-use crate::api::types::chat_id::ChatId;
+use crate::api::structs::chat_id::ChatId;
 use serde::{Deserialize, Serialize};
 
 /// Unique identifier for the target chat or username of the target channel (in the format @channelusername)

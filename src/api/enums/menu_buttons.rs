@@ -1,4 +1,4 @@
-use crate::api::types::web_app_info::WebAppInfo;
+use crate::api::structs::web_app_info::WebAppInfo;
 use serde::{Deserialize, Serialize};
 
 /// <https://core.telegram.org/bots/api#menubutton>

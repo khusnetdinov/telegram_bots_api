@@ -119,27 +119,27 @@ use crate::api::params::upload_sticker_file::UploadStickerFile;
 use crate::api::requests::sync::Requests;
 use crate::api::responses::error::ResponseError;
 use crate::api::responses::result::ResponseResult;
-use crate::api::types::bot_command::BotCommand;
-use crate::api::types::bot_description::BotDescription;
-use crate::api::types::bot_name::BotName;
-use crate::api::types::bot_short_description::BotShortDescription;
-use crate::api::types::chat::Chat;
-use crate::api::types::chat_administrator_rights::ChatAdministratorRights;
-use crate::api::types::chat_invite_link::ChatInviteLink;
-use crate::api::types::file::File;
-use crate::api::types::forum_topic::ForumTopic;
-use crate::api::types::game_high_score::GameHighScore;
-use crate::api::types::message::Message;
-use crate::api::types::message_id::MessageId;
-use crate::api::types::poll::Poll;
-use crate::api::types::sent_web_app_message::SentWebAppMessage;
-use crate::api::types::sticker::Sticker;
-use crate::api::types::sticker_set::StickerSet;
-use crate::api::types::update::Update;
-use crate::api::types::user::User;
-use crate::api::types::user_chat_boosts::UserChatBoosts;
-use crate::api::types::user_profile_photos::UserProfilePhotos;
-use crate::api::types::webhook_info::WebhookInfo;
+use crate::api::structs::bot_command::BotCommand;
+use crate::api::structs::bot_description::BotDescription;
+use crate::api::structs::bot_name::BotName;
+use crate::api::structs::bot_short_description::BotShortDescription;
+use crate::api::structs::chat::Chat;
+use crate::api::structs::chat_administrator_rights::ChatAdministratorRights;
+use crate::api::structs::chat_invite_link::ChatInviteLink;
+use crate::api::structs::file::File;
+use crate::api::structs::forum_topic::ForumTopic;
+use crate::api::structs::game_high_score::GameHighScore;
+use crate::api::structs::message::Message;
+use crate::api::structs::message_id::MessageId;
+use crate::api::structs::poll::Poll;
+use crate::api::structs::sent_web_app_message::SentWebAppMessage;
+use crate::api::structs::sticker::Sticker;
+use crate::api::structs::sticker_set::StickerSet;
+use crate::api::structs::update::Update;
+use crate::api::structs::user::User;
+use crate::api::structs::user_chat_boosts::UserChatBoosts;
+use crate::api::structs::user_profile_photos::UserProfilePhotos;
+use crate::api::structs::webhook_info::WebhookInfo;
 use crate::config::Config;
 use crate::errors::Error;
 use reqwest::blocking::{ClientBuilder, RequestBuilder, Response};
@@ -154,8 +154,9 @@ pub struct Sync {
     url: String,
 }
 
-impl From<Config> for Sync {
-    fn from(config: Config) -> Self {
+impl From<&Config> for Sync {
+    fn from(config: &Config) -> Self {
+        let config = config.to_owned();
         let client = ClientBuilder::new()
             .timeout(Duration::from_secs(config.timeout))
             .connect_timeout(Duration::from_secs(config.connect_timeout))

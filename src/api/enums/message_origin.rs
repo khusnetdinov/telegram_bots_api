@@ -1,7 +1,7 @@
-use crate::api::types::message_origin_channel::MessageOriginChannel;
-use crate::api::types::message_origin_chat::MessageOriginChat;
-use crate::api::types::message_origin_hidden_user::MessageOriginHiddenUser;
-use crate::api::types::message_origin_user::MessageOriginUser;
+use crate::api::structs::message_origin_channel::MessageOriginChannel;
+use crate::api::structs::message_origin_chat::MessageOriginChat;
+use crate::api::structs::message_origin_hidden_user::MessageOriginHiddenUser;
+use crate::api::structs::message_origin_user::MessageOriginUser;
 use serde::{Deserialize, Serialize};
 
 /// <https://core.telegram.org/bots/api#messageorigin>

@@ -1,5 +1,5 @@
 use crate::api::enums::chat_uid::ChatUId;
-use crate::api::types::inline_keyboard_markup::InlineKeyboardMarkup;
+use crate::api::structs::inline_keyboard_markup::InlineKeyboardMarkup;
 use serde::Serialize;
 
 /// <https://core.telegram.org/bots/api#editmessagelivelocation>

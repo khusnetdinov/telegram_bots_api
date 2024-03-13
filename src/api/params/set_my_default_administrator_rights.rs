@@ -1,4 +1,4 @@
-use crate::api::types::chat_administrator_rights::ChatAdministratorRights;
+use crate::api::structs::chat_administrator_rights::ChatAdministratorRights;
 use serde::Serialize;
 
 /// <https://core.telegram.org/bots/api#setmydefaultadministratorrights>

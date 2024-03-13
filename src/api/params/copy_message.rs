@@ -1,8 +1,8 @@
 use crate::api::enums::chat_uid::ChatUId;
 use crate::api::enums::reply_markup::ReplyMarkup;
-use crate::api::types::message_entity::MessageEntity;
-use crate::api::types::message_id::MessageId;
-use crate::api::types::reply_parameters::ReplyParameters;
+use crate::api::structs::message_entity::MessageEntity;
+use crate::api::structs::message_id::MessageId;
+use crate::api::structs::reply_parameters::ReplyParameters;
 use serde::Serialize;
 
 /// <https://core.telegram.org/bots/api#copymessage>
