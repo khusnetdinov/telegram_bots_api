@@ -1,4 +1,3 @@
-use crate::api::structs::bot_command::BotCommand;
 use crate::api::structs::bot_command_scope_all_chat_administrators::BotCommandScopeAllChatAdministrators;
 use crate::api::structs::bot_command_scope_all_group_chats::BotCommandScopeAllGroupChats;
 use crate::api::structs::bot_command_scope_all_private_chats::BotCommandScopeAllPrivateChats;
@@ -18,8 +17,7 @@ use serde::{Deserialize, Serialize};
 /// BotCommandScopeChatAdministrators
 /// BotCommandScopeChatMember
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
-pub enum BotCommands {
-    Command(BotCommand),
+pub enum BotCommandScopes {
     Default(BotCommandScopeDefault),
     AllPrivateChats(BotCommandScopeAllPrivateChats),
     AllGroupChats(BotCommandScopeAllGroupChats),

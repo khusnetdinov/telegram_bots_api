@@ -1,4 +1,4 @@
-use crate::api::enums::bot_commands::BotCommands;
+use crate::api::enums::bot_command_scopes::BotCommandScopes;
 use serde::Serialize;
 
 /// <https://core.telegram.org/bots/api#getmycommands>
@@ -6,7 +6,7 @@ use serde::Serialize;
 #[derive(Debug, Serialize, Default)]
 pub struct GetMyCommands {
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub scope: Option<BotCommands>,
+    pub scope: Option<BotCommandScopes>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub language_code: Option<String>,
 }

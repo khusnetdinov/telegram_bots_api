@@ -1,3 +1,4 @@
+use crate::api::enums::chat_uid::ChatUId;
 use serde::{Deserialize, Serialize};
 
 /// <https://core.telegram.org/bots/api#botcommandscopechat>
@@ -6,5 +7,5 @@ use serde::{Deserialize, Serialize};
 pub struct BotCommandScopeChat {
     #[serde(rename(serialize = "type", deserialize = "type"))]
     pub kind: String,
-    pub chat_id: i64,
+    pub chat_id: ChatUId,
 }

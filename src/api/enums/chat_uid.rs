@@ -21,6 +21,15 @@ impl From<&str> for ChatUId {
     }
 }
 
+impl From<String> for ChatUId {
+    fn from(string: String) -> Self {
+        match string.parse::<i64>() {
+            Ok(chat_id) => Self::I64(ChatId::from(chat_id)),
+            Err(_) => Self::Username(string),
+        }
+    }
+}
+
 impl Default for ChatUId {
     fn default() -> Self {
         Self::I64(ChatId(0))

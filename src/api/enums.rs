@@ -1,4 +1,4 @@
-pub mod bot_commands;
+pub mod bot_command_scopes;
 pub mod chat_actions;
 pub mod chat_boost_source;
 pub mod chat_member;
