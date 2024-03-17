@@ -154,9 +154,8 @@ pub struct Sync {
     url: String,
 }
 
-impl From<&Config> for Sync {
-    fn from(config: &Config) -> Self {
-        let config = config.to_owned();
+impl From<Config> for Sync {
+    fn from(config: Config) -> Self {
         let client = ClientBuilder::new()
             .timeout(Duration::from_secs(config.timeout))
             .connect_timeout(Duration::from_secs(config.connect_timeout))

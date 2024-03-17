@@ -156,9 +156,8 @@ pub struct Async {
     url: String,
 }
 
-impl From<&Config> for Async {
-    fn from(config: &Config) -> Self {
-        let config = config.to_owned();
+impl From<Config> for Async {
+    fn from(config: Config) -> Self {
         let url = config.build_url();
         let client = ClientBuilder::new()
             .timeout(Duration::from_secs(config.timeout))
