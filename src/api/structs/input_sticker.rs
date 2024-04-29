@@ -12,4 +12,5 @@ pub struct InputSticker {
     pub mask_position: Option<MaskPosition>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub keywords: Option<Vec<String>>,
+    pub format: String,
 }

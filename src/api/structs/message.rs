@@ -82,6 +82,8 @@ pub struct Message {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub has_protected_content: Option<bool>,
     #[serde(skip_serializing_if = "Option::is_none")]
+    pub is_from_offline: Option<bool>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub media_group_id: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub author_signature: Option<String>,
@@ -205,4 +207,8 @@ pub struct Message {
     pub reply_to_story: Option<Box<Story>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub sender_boost_count: Option<i64>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub sender_business_bot: Option<Box<User>>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub business_connection_id: Option<String>,
 }

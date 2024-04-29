@@ -39,6 +39,7 @@ use crate::api::params::edit_message_text::EditMessageText;
 use crate::api::params::export_chat_invite_link::ExportChatInviteLink;
 use crate::api::params::forward_message::ForwardMessage;
 use crate::api::params::forward_messages::ForwardMessages;
+use crate::api::params::get_business_connection::GetBusinessConnection;
 use crate::api::params::get_chat::GetChat;
 use crate::api::params::get_chat_administrators::GetChatAdministrators;
 use crate::api::params::get_chat_member::GetChatMember;
@@ -63,6 +64,7 @@ use crate::api::params::pin_chat_message::PinChatMessage;
 use crate::api::params::promote_chat_member::PromoteChatMember;
 use crate::api::params::reopen_forum_topic::ReopenForumTopic;
 use crate::api::params::reopen_general_forum_topic::ReopenGeneralForumTopic;
+use crate::api::params::replace_sticker_in_set::ReplaceStickerInSet;
 use crate::api::params::restrict_chat_member::RestrictChatMember;
 use crate::api::params::revoke_chat_invite_link::RevokeChatInviteLink;
 use crate::api::params::send_animation::SendAnimation;
@@ -123,6 +125,7 @@ use crate::api::structs::bot_command::BotCommand;
 use crate::api::structs::bot_description::BotDescription;
 use crate::api::structs::bot_name::BotName;
 use crate::api::structs::bot_short_description::BotShortDescription;
+use crate::api::structs::business_connection::BusinessConnection;
 use crate::api::structs::chat::Chat;
 use crate::api::structs::chat_administrator_rights::ChatAdministratorRights;
 use crate::api::structs::chat_invite_link::ChatInviteLink;
@@ -530,6 +533,13 @@ impl Requests for Sync {
         self.respond_with::<UserChatBoosts>(self.request("getUserChatBoosts").json(params))
     }
 
+    fn get_business_connection(
+        &self,
+        params: &GetBusinessConnection,
+    ) -> Result<BusinessConnection, Error> {
+        self.respond_with::<BusinessConnection>(self.request("getBusinessConnection").json(params))
+    }
+
     fn set_my_commands(&self, params: &SetMyCommands) -> Result<bool, Error> {
         self.respond_with::<bool>(self.request("setMyCommands").json(params))
     }
@@ -668,6 +678,10 @@ impl Requests for Sync {
 
     fn delete_sticker_from_set(&self, params: &DeleteStickerFromSet) -> Result<bool, Error> {
         self.respond_with::<bool>(self.request("deleteStickerFromSet").json(params))
+    }
+
+    fn replace_sticker_in_set(&self, params: &ReplaceStickerInSet) -> Result<bool, Error> {
+        self.respond_with::<bool>(self.request("replaceStickerInSet").json(params))
     }
 
     fn set_sticker_emoji_list(&self, params: &SetStickerEmojiList) -> Result<bool, Error> {

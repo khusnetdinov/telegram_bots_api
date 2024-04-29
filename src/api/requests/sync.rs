@@ -39,6 +39,7 @@ use crate::api::params::edit_message_text::EditMessageText;
 use crate::api::params::export_chat_invite_link::ExportChatInviteLink;
 use crate::api::params::forward_message::ForwardMessage;
 use crate::api::params::forward_messages::ForwardMessages;
+use crate::api::params::get_business_connection::GetBusinessConnection;
 use crate::api::params::get_chat::GetChat;
 use crate::api::params::get_chat_administrators::GetChatAdministrators;
 use crate::api::params::get_chat_member::GetChatMember;
@@ -63,6 +64,7 @@ use crate::api::params::pin_chat_message::PinChatMessage;
 use crate::api::params::promote_chat_member::PromoteChatMember;
 use crate::api::params::reopen_forum_topic::ReopenForumTopic;
 use crate::api::params::reopen_general_forum_topic::ReopenGeneralForumTopic;
+use crate::api::params::replace_sticker_in_set::ReplaceStickerInSet;
 use crate::api::params::restrict_chat_member::RestrictChatMember;
 use crate::api::params::revoke_chat_invite_link::RevokeChatInviteLink;
 use crate::api::params::send_animation::SendAnimation;
@@ -120,6 +122,7 @@ use crate::api::structs::bot_command::BotCommand;
 use crate::api::structs::bot_description::BotDescription;
 use crate::api::structs::bot_name::BotName;
 use crate::api::structs::bot_short_description::BotShortDescription;
+use crate::api::structs::business_connection::BusinessConnection;
 use crate::api::structs::chat::Chat;
 use crate::api::structs::chat_administrator_rights::ChatAdministratorRights;
 use crate::api::structs::chat_invite_link::ChatInviteLink;
@@ -454,6 +457,13 @@ pub trait Requests {
     /// Use this method to get the list of boosts added to a chat by a user. Requires administrator rights in the chat. Returns a UserChatBoosts object.
     fn get_user_chat_boosts(&self, params: &GetUserChatBoosts) -> Result<UserChatBoosts, Error>;
 
+    /// <https://core.telegram.org/bots/api#getbusinessconnection>
+    /// Use this method to get information about the connection of the bot with a business account. Returns a BusinessConnection object on success.
+    fn get_business_connection(
+        &self,
+        params: &GetBusinessConnection,
+    ) -> Result<BusinessConnection, Error>;
+
     /// <https://core.telegram.org/bots/api#setmycommands>
     /// Use this method to change the list of the bot's commands. See this manual for more details about bot commands. Returns True on success.
     fn set_my_commands(&self, params: &SetMyCommands) -> Result<bool, Error>;
@@ -600,6 +610,10 @@ pub trait Requests {
     /// <https://core.telegram.org/bots/api#deletestickerfromset>
     /// Use this method to delete a sticker from a set created by the bot. Returns True on success.
     fn delete_sticker_from_set(&self, params: &DeleteStickerFromSet) -> Result<bool, Error>;
+
+    /// <https://core.telegram.org/bots/api#replacestickerinset>
+    /// Use this method to replace an existing sticker in a sticker set with a new one. The method is equivalent to calling deleteStickerFromSet, then addStickerToSet, then setStickerPositionInSet. Returns True on success.
+    fn replace_sticker_in_set(&self, params: &ReplaceStickerInSet) -> Result<bool, Error>;
 
     /// <https://core.telegram.org/bots/api#setstickeremojilist>
     /// Use this method to change the list of emoji assigned to a regular or custom emoji sticker. The sticker must belong to a sticker set created by the bot. Returns True on success.

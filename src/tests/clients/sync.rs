@@ -65,6 +65,7 @@ use crate::api::params::pin_chat_message::PinChatMessage;
 use crate::api::params::promote_chat_member::PromoteChatMember;
 use crate::api::params::reopen_forum_topic::ReopenForumTopic;
 use crate::api::params::reopen_general_forum_topic::ReopenGeneralForumTopic;
+use crate::api::params::replace_sticker_in_set::ReplaceStickerInSet;
 use crate::api::params::restrict_chat_member::RestrictChatMember;
 use crate::api::params::revoke_chat_invite_link::RevokeChatInviteLink;
 use crate::api::params::send_animation::SendAnimation;
@@ -3497,6 +3498,41 @@ fn delete_sticker_from_set_error() {
         ..Default::default()
     };
     if let Error::Response(real_error) = mocked.client.delete_sticker_from_set(&params).unwrap_err()
+    {
+        assert_eq!(mock_error, real_error);
+        mocked.server.assert();
+    }
+}
+
+#[test]
+fn replace_sticker_in_set_success() {
+    let mock_response =
+        fs::read_to_string("src/tests/responses/replace_sticker_in_set_success.json").unwrap();
+    let mut server = mockito::Server::new();
+    let mocked = MockedSync::new(&mut server, "replaceStickerInSet", 200, &mock_response);
+
+    let mock_result = mocked.result::<bool>().unwrap();
+    let params = ReplaceStickerInSet {
+        ..Default::default()
+    };
+    let real_result = mocked.client.replace_sticker_in_set(&params).unwrap();
+
+    assert_eq!(mock_result, real_result);
+    mocked.server.assert();
+}
+
+#[test]
+fn replace_sticker_in_set_error() {
+    let mock_response =
+        fs::read_to_string("src/tests/responses/replace_sticker_in_set_error.json").unwrap();
+    let mut server = mockito::Server::new();
+    let mocked = MockedSync::new(&mut server, "replaceStickerInSet", 400, &mock_response);
+
+    let mock_error = mocked.result_error().unwrap();
+    let params = ReplaceStickerInSet {
+        ..Default::default()
+    };
+    if let Error::Response(real_error) = mocked.client.replace_sticker_in_set(&params).unwrap_err()
     {
         assert_eq!(mock_error, real_error);
         mocked.server.assert();

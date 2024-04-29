@@ -1,3 +1,4 @@
+use crate::api::structs::shared_user::SharedUser;
 use serde::{Deserialize, Serialize};
 
 /// <https://core.telegram.org/bots/api#usersshared>
@@ -5,5 +6,5 @@ use serde::{Deserialize, Serialize};
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct UsersShared {
     pub request_id: i64,
-    pub user_ids: Vec<i64>,
+    pub user_ids: Vec<SharedUser>,
 }

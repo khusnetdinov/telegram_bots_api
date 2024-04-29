@@ -24,4 +24,6 @@ pub struct User {
     pub can_read_all_group_messages: Option<bool>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub supports_inline_queries: Option<bool>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub an_connect_to_business: Option<bool>,
 }
