@@ -9,8 +9,6 @@ pub struct StickerSet {
     pub name: String,
     pub title: String,
     pub sticker_type: String,
-    pub is_animated: bool,
-    pub is_video: bool,
     pub stickers: Vec<Sticker>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub thumbnail: Option<PhotoSize>,

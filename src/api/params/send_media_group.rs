@@ -17,4 +17,6 @@ pub struct SendMediaGroup {
     pub protect_content: Option<bool>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub reply_parameters: Option<ReplyParameters>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub business_connection_id: Option<String>,
 }

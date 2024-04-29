@@ -11,4 +11,10 @@ pub struct KeyboardButtonRequestUsers {
     pub user_is_premium: Option<bool>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub max_quantity: Option<i64>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub request_name: Option<bool>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub request_username: Option<bool>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub request_photo: Option<bool>,
 }

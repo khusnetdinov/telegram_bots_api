@@ -19,4 +19,10 @@ pub struct KeyboardButtonRequestChat {
     pub bot_administrator_rights: Option<ChatAdministratorRights>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub bot_is_member: Option<bool>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub request_title: Option<bool>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub request_username: Option<bool>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub request_photo: Option<bool>,
 }

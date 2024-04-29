@@ -1,0 +1,17 @@
+{
+  "ok": true,
+  "error_code": 200,
+  "result": {
+    "id": "1276618370",
+    "user_chat_id": 1276618370,
+    "user": {
+      "id": 1276618370,
+      "is_bot": true,
+      "first_name": "FirstName",
+      "username": "username"
+    },
+    "date": 1619159414,
+    "can_reply": true,
+    "is_enabled": true
+  }
+}

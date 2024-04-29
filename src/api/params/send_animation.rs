@@ -37,4 +37,6 @@ pub struct SendAnimation {
     pub reply_parameters: Option<ReplyParameters>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub reply_markup: Option<ReplyMarkup>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub business_connection_id: Option<String>,
 }

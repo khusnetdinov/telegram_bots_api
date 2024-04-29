@@ -1,4 +1,8 @@
 use crate::api::enums::reaction_type::ReactionType;
+use crate::api::structs::birthdate::Birthdate;
+use crate::api::structs::business_intro::BusinessIntro;
+use crate::api::structs::business_location::BusinessLocation;
+use crate::api::structs::business_opening_hours::BusinessOpeningHours;
 use crate::api::structs::chat_location::ChatLocation;
 use crate::api::structs::chat_permissions::ChatPermissions;
 use crate::api::structs::chat_photo::ChatPhoto;
@@ -26,6 +30,10 @@ pub struct Chat {
     pub photo: Option<ChatPhoto>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub active_usernames: Option<Vec<String>>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub birthdate: Option<Birthdate>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub personal_chat: Option<Box<Chat>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub available_reactions: Option<Vec<ReactionType>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -82,4 +90,10 @@ pub struct Chat {
     pub unrestrict_boost_count: Option<i64>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub custom_emoji_sticker_set_name: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub business_intro: Option<BusinessIntro>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub business_location: Option<BusinessLocation>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub business_opening_hours: Option<BusinessOpeningHours>,
 }

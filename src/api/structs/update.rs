@@ -1,3 +1,5 @@
+use crate::api::structs::business_connection::BusinessConnection;
+use crate::api::structs::business_message_deleted::BusinessMessagesDeleted;
 use crate::api::structs::callback_query::CallbackQuery;
 use crate::api::structs::chat_boost_removed::ChatBoostRemoved;
 use crate::api::structs::chat_boost_updated::ChatBoostUpdated;
@@ -56,4 +58,12 @@ pub struct Update {
     pub chat_boost: Option<ChatBoostUpdated>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub removed_chat_boost: Option<ChatBoostRemoved>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub business_connection: Option<BusinessConnection>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub business_message: Option<Message>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub edited_business_message: Option<Message>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub deleted_business_messages: Option<BusinessMessagesDeleted>,
 }

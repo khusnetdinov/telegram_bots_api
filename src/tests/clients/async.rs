@@ -41,6 +41,7 @@ use crate::api::params::edit_message_text::EditMessageText;
 use crate::api::params::export_chat_invite_link::ExportChatInviteLink;
 use crate::api::params::forward_message::ForwardMessage;
 use crate::api::params::forward_messages::ForwardMessages;
+use crate::api::params::get_business_connection::GetBusinessConnection;
 use crate::api::params::get_chat::GetChat;
 use crate::api::params::get_chat_administrators::GetChatAdministrators;
 use crate::api::params::get_chat_member::GetChatMember;
@@ -65,6 +66,7 @@ use crate::api::params::pin_chat_message::PinChatMessage;
 use crate::api::params::promote_chat_member::PromoteChatMember;
 use crate::api::params::reopen_forum_topic::ReopenForumTopic;
 use crate::api::params::reopen_general_forum_topic::ReopenGeneralForumTopic;
+use crate::api::params::replace_sticker_in_set::ReplaceStickerInSet;
 use crate::api::params::restrict_chat_member::RestrictChatMember;
 use crate::api::params::revoke_chat_invite_link::RevokeChatInviteLink;
 use crate::api::params::send_animation::SendAnimation;
@@ -123,6 +125,7 @@ use crate::api::structs::bot_command::BotCommand;
 use crate::api::structs::bot_description::BotDescription;
 use crate::api::structs::bot_name::BotName;
 use crate::api::structs::bot_short_description::BotShortDescription;
+use crate::api::structs::business_connection::BusinessConnection;
 use crate::api::structs::chat::Chat;
 use crate::api::structs::chat_administrator_rights::ChatAdministratorRights;
 use crate::api::structs::chat_invite_link::ChatInviteLink;
@@ -3074,6 +3077,49 @@ async fn get_user_chat_boosts_error() -> Result<(), Error> {
 }
 
 #[tokio::test]
+async fn get_business_connection_success() -> Result<(), Error> {
+    let mock_response =
+        fs::read_to_string("src/tests/responses/get_business_connection_success.json").unwrap();
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "getBusinessConnection", 200, &mock_response).await;
+
+    let mock_result = mocked.result::<BusinessConnection>()?;
+    let params = GetBusinessConnection {
+        ..Default::default()
+    };
+    let real_result = mocked.client.get_business_connection(&params).await?;
+
+    assert_eq!(mock_result, real_result);
+    mocked.server.assert();
+
+    Ok(())
+}
+
+#[tokio::test]
+async fn get_business_connection_error() -> Result<(), Error> {
+    let mock_response =
+        fs::read_to_string("src/tests/responses/get_business_connection_error.json").unwrap();
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "getBusinessConnection", 400, &mock_response).await;
+
+    let mock_error = mocked.result_error()?;
+    let params = GetBusinessConnection {
+        ..Default::default()
+    };
+    if let Error::Response(real_error) = mocked
+        .client
+        .get_business_connection(&params)
+        .await
+        .unwrap_err()
+    {
+        assert_eq!(mock_error, real_error);
+        mocked.server.assert();
+    }
+
+    Ok(())
+}
+
+#[tokio::test]
 async fn set_my_commands_success() -> Result<(), Error> {
     let mock_response = fs::read_to_string("src/tests/responses/set_my_commands.json").unwrap();
     let mut server = mockito::Server::new_async().await;
@@ -4040,6 +4086,49 @@ async fn delete_sticker_from_set_error() -> Result<(), Error> {
     if let Error::Response(real_error) = mocked
         .client
         .delete_sticker_from_set(&params)
+        .await
+        .unwrap_err()
+    {
+        assert_eq!(mock_error, real_error);
+        mocked.server.assert();
+    }
+
+    Ok(())
+}
+
+#[tokio::test]
+async fn replace_sticker_in_set_success() -> Result<(), Error> {
+    let mock_response =
+        fs::read_to_string("src/tests/responses/replace_sticker_in_set_success.json").unwrap();
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "replaceStickerInSet", 200, &mock_response).await;
+
+    let mock_result = mocked.result::<bool>()?;
+    let params = ReplaceStickerInSet {
+        ..Default::default()
+    };
+    let real_result = mocked.client.replace_sticker_in_set(&params).await?;
+
+    assert_eq!(mock_result, real_result);
+    mocked.server.assert();
+
+    Ok(())
+}
+
+#[tokio::test]
+async fn replace_sticker_in_set_error() -> Result<(), Error> {
+    let mock_response =
+        fs::read_to_string("src/tests/responses/replace_sticker_in_set_error.json").unwrap();
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "replaceStickerInSet", 400, &mock_response).await;
+
+    let mock_error = mocked.result_error()?;
+    let params = ReplaceStickerInSet {
+        ..Default::default()
+    };
+    if let Error::Response(real_error) = mocked
+        .client
+        .replace_sticker_in_set(&params)
         .await
         .unwrap_err()
     {

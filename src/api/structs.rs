@@ -1,5 +1,6 @@
 pub mod animation;
 pub mod audio;
+pub mod birthdate;
 pub mod bot_command;
 pub mod bot_command_scope_all_chat_administrators;
 pub mod bot_command_scope_all_group_chats;
@@ -170,3 +171,11 @@ pub mod web_app_data;
 pub mod web_app_info;
 pub mod webhook_info;
 pub mod write_access_allowed;
+
+pub mod business_connection;
+pub mod business_intro;
+pub mod business_location;
+pub mod business_message_deleted;
+pub mod business_opening_hours;
+pub mod business_opening_hours_interval;
+pub mod shared_user;
