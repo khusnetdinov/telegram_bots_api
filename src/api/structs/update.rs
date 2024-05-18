@@ -19,7 +19,7 @@ use serde::{Deserialize, Serialize};
 /// <https://core.telegram.org/bots/api#update>
 /// This object represents an incoming update.
 /// At most one of the optional parameters can be present in any given update.
-#[derive(Debug, Serialize, Deserialize, PartialEq)]
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
 pub struct Update {
     pub update_id: i64,
     #[serde(skip_serializing_if = "Option::is_none")]

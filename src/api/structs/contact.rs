@@ -2,7 +2,7 @@ use serde::{Deserialize, Serialize};
 
 /// <https://core.telegram.org/bots/api#contact>
 /// This object represents a phone contact.
-#[derive(Debug, Serialize, Deserialize, PartialEq)]
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
 pub struct Contact {
     pub phone_number: String,
     pub first_name: String,

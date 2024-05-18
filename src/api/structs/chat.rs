@@ -11,7 +11,7 @@ use serde::{Deserialize, Serialize};
 
 /// <https://core.telegram.org/bots/api#chat>
 /// This object represents a chat.
-#[derive(Debug, Serialize, Deserialize, Default, PartialEq)]
+#[derive(Debug, Clone, Serialize, Deserialize, Default, PartialEq)]
 pub struct Chat {
     #[serde(rename(serialize = "type", deserialize = "type"))]
     pub kind: String,

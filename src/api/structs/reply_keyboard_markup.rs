@@ -3,7 +3,7 @@ use serde::{Deserialize, Serialize};
 
 /// <https://core.telegram.org/bots/api#replykeyboardmarkup>
 /// This object represents a custom keyboard with reply options (see Introduction to bots for details and examples).
-#[derive(Debug, Serialize, Deserialize, PartialEq)]
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
 pub struct ReplyKeyboardMarkup {
     pub keyboard: Vec<KeyboardButton>,
     #[serde(skip_serializing_if = "Option::is_none")]

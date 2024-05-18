@@ -150,17 +150,18 @@ use reqwest::Response;
 use reqwest::{ClientBuilder, RequestBuilder};
 use serde::de::DeserializeOwned;
 use std::time::Duration;
+use std::sync::Arc;
 
 /// Async client for telegram bots api.
 #[derive(Debug)]
 pub struct Async {
     client: reqwest::Client,
-    pub config: Config,
+    pub config: Arc<Config>,
     url: String,
 }
 
-impl From<Config> for Async {
-    fn from(config: Config) -> Self {
+impl From<Arc<Config>> for Async {
+    fn from(config: Arc<Config>) -> Self {
         let url = config.build_url();
         let client = ClientBuilder::new()
             .timeout(Duration::from_secs(config.timeout))
@@ -178,7 +179,7 @@ impl From<Config> for Async {
 
 impl Async {
     pub fn new() -> Self {
-        let config = Config::new();
+        let config = Arc::new(Config::new());
         let url = config.build_url();
         let client = reqwest::Client::builder()
             .timeout(Duration::from_secs(config.timeout))

@@ -5,7 +5,7 @@ use serde::{Deserialize, Serialize};
 
 /// <https://core.telegram.org/bots/api#messagereactioncountupdated>
 /// This object represents reaction changes on a message with anonymous reactions.
-#[derive(Debug, Serialize, Deserialize, PartialEq)]
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
 pub struct MessageReactionCountUpdated {
     pub chat: Chat,
     pub message_id: MessageId,

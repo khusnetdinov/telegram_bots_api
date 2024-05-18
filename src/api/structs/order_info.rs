@@ -3,7 +3,7 @@ use serde::{Deserialize, Serialize};
 
 /// <https://core.telegram.org/bots/api#orderinfo>
 /// This object represents information about an order.
-#[derive(Debug, Serialize, Deserialize, PartialEq)]
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
 pub struct OrderInfo {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub name: Option<String>,

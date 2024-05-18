@@ -10,7 +10,7 @@ use serde::{Deserialize, Serialize};
 /// MessageOriginHiddenUser
 /// MessageOriginChat
 /// MessageOriginChannel
-#[derive(Debug, Serialize, Deserialize, PartialEq)]
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
 pub enum MessageOrigin {
     User(MessageOriginUser),
     HiddenUser(MessageOriginHiddenUser),

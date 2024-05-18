@@ -5,7 +5,7 @@ use serde::{Deserialize, Serialize};
 
 /// <https://core.telegram.org/bots/api#chatjoinrequest>
 /// Represents a join request sent to a chat.
-#[derive(Debug, Serialize, Deserialize, PartialEq)]
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
 pub struct ChatJoinRequest {
     pub chat: Chat,
     pub from: User,

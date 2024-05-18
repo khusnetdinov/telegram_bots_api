@@ -2,7 +2,7 @@ use crate::api::structs::chat_id::ChatId;
 use serde::{Deserialize, Serialize};
 
 /// Unique identifier for the target chat or username of the target channel (in the format @channelusername)
-#[derive(Debug, Serialize, Deserialize, PartialEq)]
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
 #[serde(untagged)]
 pub enum ChatUId {
     I64(ChatId),

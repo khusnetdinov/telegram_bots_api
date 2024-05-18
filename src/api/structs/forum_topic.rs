@@ -2,7 +2,7 @@ use serde::{Deserialize, Serialize};
 
 /// <https://core.telegram.org/bots/api#forumtopic>
 /// This object represents a forum topic.
-#[derive(Debug, Serialize, Deserialize, PartialEq)]
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
 pub struct ForumTopic {
     pub message_thread_id: i64,
     pub name: String,

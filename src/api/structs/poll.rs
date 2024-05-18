@@ -4,7 +4,7 @@ use serde::{Deserialize, Serialize};
 
 /// <https://core.telegram.org/bots/api#poll>
 /// This object contains information about a poll.
-#[derive(Debug, Serialize, Deserialize, PartialEq)]
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
 pub struct Poll {
     #[serde(rename(serialize = "type", deserialize = "type"))]
     pub kind: String,

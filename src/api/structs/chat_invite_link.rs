@@ -3,7 +3,7 @@ use serde::{Deserialize, Serialize};
 
 /// <https://core.telegram.org/bots/api#chatinvitelink>
 /// Represents an invite link for a chat.
-#[derive(Debug, Serialize, Deserialize, PartialEq)]
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
 pub struct ChatInviteLink {
     pub invite_link: String,
     pub creator: User,

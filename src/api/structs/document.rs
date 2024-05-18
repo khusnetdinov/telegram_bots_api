@@ -3,7 +3,7 @@ use serde::{Deserialize, Serialize};
 
 /// <https://core.telegram.org/bots/api#document>
 /// This object represents a general file (as opposed to photos, voice messages and audio files).
-#[derive(Debug, Serialize, Deserialize, PartialEq)]
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
 pub struct Document {
     pub file_id: String,
     pub file_unique_id: String,

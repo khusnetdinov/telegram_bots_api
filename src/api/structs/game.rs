@@ -5,7 +5,7 @@ use serde::{Deserialize, Serialize};
 
 /// <https://core.telegram.org/bots/api#game>
 /// This object represents a game. Use BotFather to create and edit games, their short names will act as unique identifiers.
-#[derive(Debug, Serialize, Deserialize, PartialEq)]
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
 pub struct Game {
     pub title: String,
     pub description: String,

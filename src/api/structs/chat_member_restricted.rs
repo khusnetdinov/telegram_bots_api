@@ -3,7 +3,7 @@ use serde::{Deserialize, Serialize};
 
 /// <https://core.telegram.org/bots/api#chatmemberrestricted>
 /// Represents a chat member that is under certain restrictions in the chat. Supergroups only.
-#[derive(Debug, Serialize, Deserialize, PartialEq)]
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
 pub struct ChatMemberRestricted {
     pub status: String,
     pub user: User,

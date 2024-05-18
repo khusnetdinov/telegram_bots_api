@@ -6,7 +6,7 @@ use serde::{Deserialize, Serialize};
 
 /// <https://core.telegram.org/bots/api#chatmemberupdated>
 /// This object represents changes in the status of a chat member.
-#[derive(Debug, Serialize, Deserialize, PartialEq)]
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
 pub struct ChatMemberUpdated {
     pub chat: Chat,
     pub from: User,

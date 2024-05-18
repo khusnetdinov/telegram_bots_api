@@ -51,7 +51,7 @@ use serde::{Deserialize, Serialize};
 
 /// <https://core.telegram.org/bots/api#message>
 /// This object represents a message.
-#[derive(Debug, Serialize, Deserialize, Default, PartialEq)]
+#[derive(Debug, Clone, Serialize, Deserialize, Default, PartialEq)]
 pub struct Message {
     #[serde(flatten)]
     pub message_id: MessageId,

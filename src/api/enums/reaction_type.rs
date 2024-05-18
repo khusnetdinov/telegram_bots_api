@@ -6,7 +6,7 @@ use serde::{Deserialize, Serialize};
 /// This object describes the type of a reaction. Currently, it can be one of
 /// ReactionTypeEmoji
 /// ReactionTypeCustomEmoji
-#[derive(Debug, Serialize, Deserialize, PartialEq)]
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
 pub enum ReactionType {
     Emoji(ReactionTypeEmoji),
     CustomEmoji(ReactionTypeCustomEmoji),

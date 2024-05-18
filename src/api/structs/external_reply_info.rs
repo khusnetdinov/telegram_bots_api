@@ -23,7 +23,7 @@ use serde::{Deserialize, Serialize};
 
 /// <https://core.telegram.org/bots/api#externalreplyinfo>
 /// This object contains information about a message that is being replied to, which may come from another chat or forum topic.
-#[derive(Debug, Serialize, Deserialize, PartialEq)]
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
 pub struct ExternalReplyInfo {
     pub origin: MessageOrigin,
     #[serde(skip_serializing_if = "Option::is_none")]

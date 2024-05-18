@@ -4,7 +4,7 @@ use serde::{Deserialize, Serialize};
 
 /// <https://core.telegram.org/bots/api#shippingquery>
 /// This object contains information about an incoming shipping query.
-#[derive(Debug, Serialize, Deserialize, PartialEq)]
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
 pub struct ShippingQuery {
     pub id: String,
     pub from: User,

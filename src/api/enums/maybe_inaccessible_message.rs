@@ -6,7 +6,7 @@ use serde::{Deserialize, Serialize};
 /// This object describes a message that can be inaccessible to the bot. It can be one of
 /// Message
 /// InaccessibleMessage
-#[derive(Debug, Serialize, Deserialize, PartialEq)]
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
 pub enum MaybeInaccessibleMessage {
     Message(Box<Message>),
     InaccessibleMessage(InaccessibleMessage),

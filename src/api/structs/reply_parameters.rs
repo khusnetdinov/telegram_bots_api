@@ -4,7 +4,7 @@ use serde::{Deserialize, Serialize};
 
 /// <https://core.telegram.org/bots/api#replyparameters>
 /// Describes reply parameters for the message that is being sent.
-#[derive(Debug, Serialize, Deserialize, PartialEq)]
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
 pub struct ReplyParameters {
     pub message_id: MessageId,
     #[serde(skip_serializing_if = "Option::is_none")]

@@ -5,7 +5,7 @@ use serde::{Deserialize, Serialize};
 
 /// <https://core.telegram.org/bots/api#sticker>
 /// This object represents a sticker.
-#[derive(Debug, Serialize, Deserialize, PartialEq)]
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
 pub struct Sticker {
     #[serde(rename(serialize = "type", deserialize = "type"))]
     pub kind: String,

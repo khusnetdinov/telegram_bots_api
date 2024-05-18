@@ -4,7 +4,7 @@ use serde::{Deserialize, Serialize};
 
 /// <https://core.telegram.org/bots/api#inputmediaaudio>
 /// Represents an audio file to be treated as music to be sent.
-#[derive(Debug, Serialize, Deserialize, Default, PartialEq)]
+#[derive(Debug, Clone, Serialize, Deserialize, Default, PartialEq)]
 pub struct InputMediaAudio {
     #[serde(rename(serialize = "type", deserialize = "type"))]
     pub kind: String,

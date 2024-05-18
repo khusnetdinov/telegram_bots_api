@@ -3,7 +3,7 @@ use serde::{Deserialize, Serialize};
 
 /// <https://core.telegram.org/bots/api#giveaway>
 /// This object represents a message about a scheduled giveaway.
-#[derive(Debug, Serialize, Deserialize, PartialEq)]
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
 pub struct Giveaway {
     pub chats: Vec<Chat>,
     pub winners_selection_date: i64,

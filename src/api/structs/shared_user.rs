@@ -3,7 +3,7 @@ use serde::{Deserialize, Serialize};
 
 /// <https://core.telegram.org/bots/api#shareduser>
 /// This object contains information about a user that was shared with the bot using a KeyboardButtonRequestUser button.
-#[derive(Debug, Serialize, Deserialize, PartialEq)]
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
 pub struct SharedUser {
     pub user_id: u64,
     #[serde(skip_serializing_if = "Option::is_none")]

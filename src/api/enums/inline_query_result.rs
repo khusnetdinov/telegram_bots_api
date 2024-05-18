@@ -42,7 +42,7 @@ use serde::{Deserialize, Serialize};
 /// InlineQueryResultVenue
 /// InlineQueryResultVideo
 /// InlineQueryResultVoice
-#[derive(Debug, Serialize, Deserialize, PartialEq)]
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
 pub enum InlineQueryResult {
     CachedAudio(InlineQueryResultCachedAudio),
     CachedDocument(InlineQueryResultCachedDocument),

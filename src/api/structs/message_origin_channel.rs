@@ -4,7 +4,7 @@ use serde::{Deserialize, Serialize};
 
 /// <https://core.telegram.org/bots/api#messageoriginchannel>
 /// The message was originally sent to a channel chat.
-#[derive(Debug, Serialize, Deserialize, PartialEq)]
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
 pub struct MessageOriginChannel {
     #[serde(rename(serialize = "type", deserialize = "type"))]
     pub kind: String,

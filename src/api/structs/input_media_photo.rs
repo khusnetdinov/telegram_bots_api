@@ -3,7 +3,7 @@ use serde::{Deserialize, Serialize};
 
 /// <https://core.telegram.org/bots/api#inputmediaphoto>
 /// Represents a photo to be sent.
-#[derive(Debug, Serialize, Deserialize, Default, PartialEq)]
+#[derive(Debug, Clone, Serialize, Deserialize, Default, PartialEq)]
 pub struct InputMediaPhoto {
     #[serde(rename(serialize = "type", deserialize = "type"))]
     pub kind: String,

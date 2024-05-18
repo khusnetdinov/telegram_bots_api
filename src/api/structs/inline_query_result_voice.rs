@@ -5,7 +5,7 @@ use serde::{Deserialize, Serialize};
 
 /// <https://core.telegram.org/bots/api#inlinequeryresultvoice>
 /// Represents a link to a voice recording in an .OGG container encoded with OPUS. By default, this voice recording will be sent by the user. Alternatively, you can use input_message_content to send a message with the specified content instead of the the voice message.
-#[derive(Debug, Serialize, Deserialize, Default, PartialEq)]
+#[derive(Debug, Clone, Serialize, Deserialize, Default, PartialEq)]
 pub struct InlineQueryResultVoice {
     #[serde(rename(serialize = "type", deserialize = "type"))]
     pub kind: String,

@@ -3,7 +3,7 @@ use serde::{Deserialize, Serialize};
 
 /// <https://core.telegram.org/bots/api#encryptedpassportelement>
 /// Describes documents or other Telegram Passport elements shared with the bot by the user.
-#[derive(Debug, Serialize, Deserialize, PartialEq)]
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
 pub struct EncryptedPassportElement {
     #[serde(rename(serialize = "type", deserialize = "type"))]
     pub kind: String,

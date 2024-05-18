@@ -20,7 +20,7 @@ use serde::{Deserialize, Serialize};
 /// PassportElementErrorTranslationFile
 /// PassportElementErrorTranslationFiles
 /// PassportElementErrorUnspecified
-#[derive(Debug, Serialize, Deserialize, PartialEq)]
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
 pub enum PassportElementError {
     DataField(PassportElementErrorDataField),
     FrontSide(PassportElementErrorFrontSide),

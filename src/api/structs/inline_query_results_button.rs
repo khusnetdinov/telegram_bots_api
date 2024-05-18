@@ -3,7 +3,7 @@ use serde::{Deserialize, Serialize};
 
 /// <https://core.telegram.org/bots/api#inlinequeryresultsbutton>
 /// This object represents a button to be shown above inline query results. You must use exactly one of the optional fields.
-#[derive(Debug, Serialize, Deserialize, PartialEq)]
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
 pub struct InlineQueryResultsButton {
     pub text: String,
     #[serde(skip_serializing_if = "Option::is_none")]

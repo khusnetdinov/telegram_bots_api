@@ -2,7 +2,7 @@ use serde::{Deserialize, Serialize};
 
 /// <https://core.telegram.org/bots/api#chatpermissions>
 /// Describes actions that a non-administrator user is allowed to take in a chat.
-#[derive(Debug, Serialize, Deserialize, Default, PartialEq)]
+#[derive(Debug, Clone, Serialize, Deserialize, Default, PartialEq)]
 pub struct ChatPermissions {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub can_send_messages: Option<bool>,

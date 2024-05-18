@@ -3,7 +3,7 @@ use serde::{Deserialize, Serialize};
 
 /// <https://core.telegram.org/bots/api#textquote>
 /// This object contains information about the quoted part of a message that is replied to by the given message.
-#[derive(Debug, Serialize, Deserialize, PartialEq)]
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
 pub struct TextQuote {
     pub text: String,
     pub position: i64,

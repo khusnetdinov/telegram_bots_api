@@ -8,7 +8,7 @@ use serde::{Deserialize, Serialize};
 /// ChatBoostSourcePremium
 /// ChatBoostSourceGiftCode
 /// ChatBoostSourceGiveaway
-#[derive(Debug, Serialize, Deserialize, PartialEq)]
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
 pub enum ChatBoostSource {
     Premium(ChatBoostSourcePremium),
     GiftCode(ChatBoostSourceGiftCode),

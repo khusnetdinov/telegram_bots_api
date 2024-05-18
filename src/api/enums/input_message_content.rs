@@ -12,7 +12,7 @@ use serde::{Deserialize, Serialize};
 /// InputVenueMessageContent
 /// InputContactMessageContent
 /// InputInvoiceMessageContent
-#[derive(Debug, Serialize, Deserialize, PartialEq)]
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
 pub enum InputMessageContent {
     InputTextMessageContent(InputTextMessageContent),
     InputLocationMessageContent(InputLocationMessageContent),
