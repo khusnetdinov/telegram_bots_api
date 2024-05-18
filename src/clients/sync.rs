@@ -147,8 +147,8 @@ use crate::config::Config;
 use crate::errors::Error;
 use reqwest::blocking::{ClientBuilder, RequestBuilder, Response};
 use serde::de::DeserializeOwned;
-use std::time::Duration;
 use std::rc::Rc;
+use std::time::Duration;
 
 /// Sync client for telegram bots api.
 #[derive(Debug)]
