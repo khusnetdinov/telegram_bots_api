@@ -128,6 +128,7 @@ use crate::api::structs::bot_short_description::BotShortDescription;
 use crate::api::structs::business_connection::BusinessConnection;
 use crate::api::structs::chat::Chat;
 use crate::api::structs::chat_administrator_rights::ChatAdministratorRights;
+use crate::api::structs::chat_full_info::ChatFullInfo;
 use crate::api::structs::chat_invite_link::ChatInviteLink;
 use crate::api::structs::file::File;
 use crate::api::structs::forum_topic::ForumTopic;
@@ -434,8 +435,8 @@ impl Requests for Sync {
         self.respond_with::<bool>(self.request("leaveChat").json(params))
     }
 
-    fn get_chat(&self, params: &GetChat) -> Result<Chat, Error> {
-        self.respond_with::<Chat>(self.request("getChat").json(params))
+    fn get_chat(&self, params: &GetChat) -> Result<ChatFullInfo, Error> {
+        self.respond_with::<ChatFullInfo>(self.request("getChat").json(params))
     }
 
     fn get_chat_administrators(

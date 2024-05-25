@@ -126,6 +126,7 @@ use crate::api::structs::bot_name::BotName;
 use crate::api::structs::bot_short_description::BotShortDescription;
 use crate::api::structs::chat::Chat;
 use crate::api::structs::chat_administrator_rights::ChatAdministratorRights;
+use crate::api::structs::chat_full_info::ChatFullInfo;
 use crate::api::structs::chat_invite_link::ChatInviteLink;
 use crate::api::structs::file::File;
 use crate::api::structs::forum_topic::ForumTopic;
@@ -1908,7 +1909,7 @@ fn get_chat_success() {
     let mut server = mockito::Server::new();
     let mocked = MockedSync::new(&mut server, "getChat", 200, &mock_response);
 
-    let mock_result = mocked.result::<Chat>().unwrap();
+    let mock_result = mocked.result::<ChatFullInfo>().unwrap();
     let params = GetChat {
         ..Default::default()
     };

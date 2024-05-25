@@ -126,8 +126,8 @@ use crate::api::structs::bot_description::BotDescription;
 use crate::api::structs::bot_name::BotName;
 use crate::api::structs::bot_short_description::BotShortDescription;
 use crate::api::structs::business_connection::BusinessConnection;
-use crate::api::structs::chat::Chat;
 use crate::api::structs::chat_administrator_rights::ChatAdministratorRights;
+use crate::api::structs::chat_full_info::ChatFullInfo;
 use crate::api::structs::chat_invite_link::ChatInviteLink;
 use crate::api::structs::file::File;
 use crate::api::structs::forum_topic::ForumTopic;
@@ -2187,7 +2187,7 @@ async fn get_chat_success() -> Result<(), Error> {
     let mut server = mockito::Server::new_async().await;
     let mocked = MockedAsync::new(&mut server, "getChat", 200, &mock_response).await;
 
-    let mock_result = mocked.result::<Chat>()?;
+    let mock_result = mocked.result::<ChatFullInfo>()?;
     let params = GetChat {
         ..Default::default()
     };
