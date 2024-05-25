@@ -3,6 +3,7 @@ use crate::api::enums::message_origin::MessageOrigin;
 use crate::api::structs::animation::Animation;
 use crate::api::structs::audio::Audio;
 use crate::api::structs::chat::Chat;
+use crate::api::structs::chat_background::ChatBackground;
 use crate::api::structs::chat_boost_added::ChatBoostAdded;
 use crate::api::structs::chat_shared::ChatShared;
 use crate::api::structs::contact::Contact;
@@ -211,4 +212,6 @@ pub struct Message {
     pub sender_business_bot: Option<Box<User>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub business_connection_id: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub chat_background_set: Option<ChatBackground>,
 }

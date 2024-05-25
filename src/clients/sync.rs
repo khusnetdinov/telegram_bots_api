@@ -128,6 +128,7 @@ use crate::api::structs::bot_short_description::BotShortDescription;
 use crate::api::structs::business_connection::BusinessConnection;
 use crate::api::structs::chat::Chat;
 use crate::api::structs::chat_administrator_rights::ChatAdministratorRights;
+use crate::api::structs::chat_full_info::ChatFullInfo;
 use crate::api::structs::chat_invite_link::ChatInviteLink;
 use crate::api::structs::file::File;
 use crate::api::structs::forum_topic::ForumTopic;
@@ -147,19 +148,18 @@ use crate::config::Config;
 use crate::errors::Error;
 use reqwest::blocking::{ClientBuilder, RequestBuilder, Response};
 use serde::de::DeserializeOwned;
-use std::rc::Rc;
 use std::time::Duration;
 
 /// Sync client for telegram bots api.
 #[derive(Debug)]
 pub struct Sync {
     client: reqwest::blocking::Client,
-    pub config: Rc<Config>,
+    pub config: Config,
     url: String,
 }
 
-impl From<Rc<Config>> for Sync {
-    fn from(config: Rc<Config>) -> Self {
+impl From<Config> for Sync {
+    fn from(config: Config) -> Self {
         let client = ClientBuilder::new()
             .timeout(Duration::from_secs(config.timeout))
             .connect_timeout(Duration::from_secs(config.connect_timeout))
@@ -178,7 +178,7 @@ impl From<Rc<Config>> for Sync {
 
 impl Sync {
     pub fn new() -> Self {
-        let config = Rc::new(Config::new());
+        let config = Config::new();
         let url = config.build_url();
         let client = ClientBuilder::new()
             .timeout(Duration::from_secs(config.timeout))
@@ -435,8 +435,8 @@ impl Requests for Sync {
         self.respond_with::<bool>(self.request("leaveChat").json(params))
     }
 
-    fn get_chat(&self, params: &GetChat) -> Result<Chat, Error> {
-        self.respond_with::<Chat>(self.request("getChat").json(params))
+    fn get_chat(&self, params: &GetChat) -> Result<ChatFullInfo, Error> {
+        self.respond_with::<ChatFullInfo>(self.request("getChat").json(params))
     }
 
     fn get_chat_administrators(

@@ -126,8 +126,8 @@ use crate::api::structs::bot_description::BotDescription;
 use crate::api::structs::bot_name::BotName;
 use crate::api::structs::bot_short_description::BotShortDescription;
 use crate::api::structs::business_connection::BusinessConnection;
-use crate::api::structs::chat::Chat;
 use crate::api::structs::chat_administrator_rights::ChatAdministratorRights;
+use crate::api::structs::chat_full_info::ChatFullInfo;
 use crate::api::structs::chat_invite_link::ChatInviteLink;
 use crate::api::structs::file::File;
 use crate::api::structs::forum_topic::ForumTopic;
@@ -149,19 +149,18 @@ use async_trait::async_trait;
 use reqwest::Response;
 use reqwest::{ClientBuilder, RequestBuilder};
 use serde::de::DeserializeOwned;
-use std::sync::Arc;
 use std::time::Duration;
 
 /// Async client for telegram bots api.
 #[derive(Debug)]
 pub struct Async {
     client: reqwest::Client,
-    pub config: Arc<Config>,
+    pub config: Config,
     url: String,
 }
 
-impl From<Arc<Config>> for Async {
-    fn from(config: Arc<Config>) -> Self {
+impl From<Config> for Async {
+    fn from(config: Config) -> Self {
         let url = config.build_url();
         let client = ClientBuilder::new()
             .timeout(Duration::from_secs(config.timeout))
@@ -179,7 +178,7 @@ impl From<Arc<Config>> for Async {
 
 impl Async {
     pub fn new() -> Self {
-        let config = Arc::new(Config::new());
+        let config = Config::new();
         let url = config.build_url();
         let client = reqwest::Client::builder()
             .timeout(Duration::from_secs(config.timeout))
@@ -506,8 +505,8 @@ impl Requests for Async {
             .await
     }
 
-    async fn get_chat(&self, params: &GetChat) -> Result<Chat, Error> {
-        self.respond_with::<Chat>(self.request("getChat").await.json(params))
+    async fn get_chat(&self, params: &GetChat) -> Result<ChatFullInfo, Error> {
+        self.respond_with::<ChatFullInfo>(self.request("getChat").await.json(params))
             .await
     }
 

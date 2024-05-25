@@ -9,6 +9,8 @@ pub struct EditMessageLiveLocation {
     pub latitude: f64,
     pub longitude: f64,
     #[serde(skip_serializing_if = "Option::is_none")]
+    pub live_period: Option<i64>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub chat_id: Option<ChatUId>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub message_id: Option<i64>,

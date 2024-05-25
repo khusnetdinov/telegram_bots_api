@@ -16,6 +16,8 @@ pub struct Poll {
     pub is_anonymous: bool,
     pub allows_multiple_answers: bool,
     #[serde(skip_serializing_if = "Option::is_none")]
+    pub question_entities: Option<Vec<MessageEntity>>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub correct_option_id: Option<i64>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub explanation: Option<String>,

@@ -5,5 +5,5 @@ use serde::{Deserialize, Serialize};
 /// This object represents an inline keyboard that appears right next to the message it belongs to.
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
 pub struct InlineKeyboardMarkup {
-    pub inline_keyboard: Vec<InlineKeyboardButton>,
+    pub inline_keyboard: Vec<Vec<InlineKeyboardButton>>,
 }

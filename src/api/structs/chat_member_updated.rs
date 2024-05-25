@@ -16,5 +16,7 @@ pub struct ChatMemberUpdated {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub invite_link: Option<ChatInviteLink>,
     #[serde(skip_serializing_if = "Option::is_none")]
+    pub via_join_request: Option<bool>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub via_chat_folder_invite_link: Option<bool>,
 }

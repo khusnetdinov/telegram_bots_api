@@ -12,6 +12,7 @@
     },
     "description": "Frankenstein group",
     "invite_link": "https://t.me/joinchat/smSXMzNKTwA0ZjFi",
+    "max_reaction_count": 0,
     "permissions": {
       "can_send_messages": true,
       "can_send_polls": true,

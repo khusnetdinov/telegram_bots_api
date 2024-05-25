@@ -1,3 +1,5 @@
+pub mod background_fills;
+pub mod background_types;
 pub mod bot_command_scopes;
 pub mod chat_actions;
 pub mod chat_boost_source;

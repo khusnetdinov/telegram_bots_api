@@ -125,6 +125,7 @@ use crate::api::structs::bot_short_description::BotShortDescription;
 use crate::api::structs::business_connection::BusinessConnection;
 use crate::api::structs::chat::Chat;
 use crate::api::structs::chat_administrator_rights::ChatAdministratorRights;
+use crate::api::structs::chat_full_info::ChatFullInfo;
 use crate::api::structs::chat_invite_link::ChatInviteLink;
 use crate::api::structs::file::File;
 use crate::api::structs::forum_topic::ForumTopic;
@@ -363,7 +364,7 @@ pub trait Requests {
 
     /// <https://core.telegram.org/bots/api#getchat>
     /// Use this method to get up to date information about the chat. Returns a Chat object on success.
-    fn get_chat(&self, params: &GetChat) -> Result<Chat, Error>;
+    fn get_chat(&self, params: &GetChat) -> Result<ChatFullInfo, Error>;
 
     /// <https://core.telegram.org/bots/api#getchatadministrators>
     /// Use this method to get a list of administrators in a chat, which aren't bots. Returns an Array of ChatMember objects.
