@@ -147,19 +147,18 @@ use crate::config::Config;
 use crate::errors::Error;
 use reqwest::blocking::{ClientBuilder, RequestBuilder, Response};
 use serde::de::DeserializeOwned;
-use std::rc::Rc;
 use std::time::Duration;
 
 /// Sync client for telegram bots api.
 #[derive(Debug)]
 pub struct Sync {
     client: reqwest::blocking::Client,
-    pub config: Rc<Config>,
+    pub config: Config,
     url: String,
 }
 
-impl From<Rc<Config>> for Sync {
-    fn from(config: Rc<Config>) -> Self {
+impl From<Config> for Sync {
+    fn from(config: Config) -> Self {
         let client = ClientBuilder::new()
             .timeout(Duration::from_secs(config.timeout))
             .connect_timeout(Duration::from_secs(config.connect_timeout))
@@ -178,7 +177,7 @@ impl From<Rc<Config>> for Sync {
 
 impl Sync {
     pub fn new() -> Self {
-        let config = Rc::new(Config::new());
+        let config = Config::new();
         let url = config.build_url();
         let client = ClientBuilder::new()
             .timeout(Duration::from_secs(config.timeout))

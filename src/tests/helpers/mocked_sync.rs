@@ -5,7 +5,6 @@ use crate::config::Config;
 use crate::errors::Error;
 use mockito::{Mock, ServerGuard};
 use serde::de::DeserializeOwned;
-use std::rc::Rc;
 
 pub struct MockedSync {
     pub client: Sync,
@@ -15,11 +14,11 @@ pub struct MockedSync {
 
 impl MockedSync {
     fn mock_api(server: &ServerGuard, token: &str) -> Sync {
-        let config = Rc::new(Config {
+        let config = Config {
             url: server.url(),
             token: token.to_string(),
             ..Default::default()
-        });
+        };
 
         Sync::from(config)
     }

@@ -5,7 +5,6 @@ use crate::config::Config;
 use crate::errors::Error;
 use mockito::{Mock, ServerGuard};
 use serde::de::DeserializeOwned;
-use std::sync::Arc;
 
 pub struct MockedAsync {
     pub client: Async,
@@ -15,11 +14,11 @@ pub struct MockedAsync {
 
 impl MockedAsync {
     fn mock_api(server: &ServerGuard, token: &str) -> Async {
-        let config = Arc::new(Config {
+        let config = Config {
             url: server.url(),
             token: token.to_string(),
             ..Default::default()
-        });
+        };
 
         Async::from(config)
     }
