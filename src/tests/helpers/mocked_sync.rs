@@ -20,7 +20,7 @@ impl MockedSync {
             ..Default::default()
         };
 
-        Sync::from(config)
+        Sync::from(&config)
     }
 
     fn mock_server(

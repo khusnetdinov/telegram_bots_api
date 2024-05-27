@@ -146,8 +146,8 @@ use crate::api::structs::webhook_info::WebhookInfo;
 use crate::config::Config;
 use crate::errors::Error;
 use async_trait::async_trait;
+use reqwest::RequestBuilder;
 use reqwest::Response;
-use reqwest::{ClientBuilder, RequestBuilder};
 use serde::de::DeserializeOwned;
 use std::time::Duration;
 
@@ -155,42 +155,36 @@ use std::time::Duration;
 #[derive(Debug)]
 pub struct Async {
     client: reqwest::Client,
-    pub config: Config,
     url: String,
 }
 
-impl From<Config> for Async {
-    fn from(config: Config) -> Self {
-        let url = config.build_url();
-        let client = ClientBuilder::new()
-            .timeout(Duration::from_secs(config.timeout))
-            .connect_timeout(Duration::from_secs(config.connect_timeout))
-            .build()
-            .unwrap();
-
-        Self {
-            client,
-            config,
-            url,
-        }
+impl From<&Config> for Async {
+    fn from(config: &Config) -> Self {
+        Async::new(
+            config.timeout,
+            config.connect_timeout,
+            config.url.as_str(),
+            config.token.as_str(),
+        )
     }
 }
 
 impl Async {
-    pub fn new() -> Self {
-        let config = Config::new();
-        let url = config.build_url();
+    pub fn new(timeout: u64, connect_timeout: u64, url: &str, token: &str) -> Self {
+        let url = format!("{}/bot{}/", url, token);
         let client = reqwest::Client::builder()
-            .timeout(Duration::from_secs(config.timeout))
-            .connect_timeout(Duration::from_secs(config.connect_timeout))
+            .timeout(Duration::from_secs(timeout))
+            .connect_timeout(Duration::from_secs(connect_timeout))
             .build()
             .unwrap();
 
-        Self {
-            client,
-            config,
-            url,
-        }
+        Self { client, url }
+    }
+
+    pub fn from_env() -> Self {
+        let config = Config::new();
+
+        Self::from(&config)
     }
 
     async fn request(&self, method: &str) -> RequestBuilder {

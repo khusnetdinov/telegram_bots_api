@@ -27,7 +27,7 @@ Run `cargo add telegram_bots_api`, or add lines to `Cargo.toml`:
 
 ```toml
 [dependencies]
-telegram_bots_api = "0.73.0"
+telegram_bots_api = "0.73.1"
 rust-version = "1.70.0"
 ```
 

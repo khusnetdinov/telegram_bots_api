@@ -12,7 +12,7 @@ async fn main() -> Result<(), Box<dyn Error>> {
         ..SendPoll::default()
     };
 
-    let response = Async::new().send_poll(&params).await?;
+    let response = Async::from_env().send_poll(&params).await?;
 
     // let params = StopPoll {
     //     message_id: MessageId::from(450),

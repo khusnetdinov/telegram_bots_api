@@ -49,10 +49,6 @@ impl Config {
     pub fn new() -> Self {
         Config::from_args()
     }
-
-    pub fn build_url(&self) -> String {
-        format!("{}/bot{}/", self.url, self.token)
-    }
 }
 
 impl Default for Config {

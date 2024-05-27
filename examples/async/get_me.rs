@@ -4,7 +4,7 @@ use telegram_bots_api::clients::r#async::Async;
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn Error>> {
-    let response = Async::new().get_me().await?;
+    let response = Async::from_env().get_me().await?;
 
     println!("{:#?}", response);
 
