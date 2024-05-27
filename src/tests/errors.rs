@@ -26,7 +26,7 @@ fn response_sync_error() {
     let config = Config {
         ..Default::default()
     };
-    let client = Sync::from(config);
+    let client = Sync::from(&config);
     let error = client.get_me().unwrap_err();
 
     assert_eq!(

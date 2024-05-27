@@ -124,7 +124,6 @@ use crate::api::structs::bot_command::BotCommand;
 use crate::api::structs::bot_description::BotDescription;
 use crate::api::structs::bot_name::BotName;
 use crate::api::structs::bot_short_description::BotShortDescription;
-use crate::api::structs::chat::Chat;
 use crate::api::structs::chat_administrator_rights::ChatAdministratorRights;
 use crate::api::structs::chat_full_info::ChatFullInfo;
 use crate::api::structs::chat_invite_link::ChatInviteLink;
