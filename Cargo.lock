@@ -1265,7 +1265,7 @@ dependencies = [
 
 [[package]]
 name = "telegram_bots_api"
-version = "0.73.1"
+version = "0.73.2"
 dependencies = [
  "async-trait",
  "cargo-minimal-versions",
