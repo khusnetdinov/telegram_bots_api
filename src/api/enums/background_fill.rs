@@ -9,7 +9,7 @@ use serde::{Deserialize, Serialize};
 /// BackgroundFillGradient
 /// BackgroundFillFreeformGradient
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
-pub enum BackgroundFills {
+pub enum BackgroundFill {
     Solid(BackgroundFillSolid),
     Gradient(BackgroundFillGradient),
     FreeformGradient(BackgroundFillFreeformGradient),

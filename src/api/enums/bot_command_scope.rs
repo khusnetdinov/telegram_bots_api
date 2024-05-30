@@ -18,7 +18,7 @@ use serde::{Deserialize, Serialize};
 /// BotCommandScopeChatMember
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
 #[serde(untagged)]
-pub enum BotCommandScopes {
+pub enum BotCommandScope {
     Default(BotCommandScopeDefault),
     AllPrivateChats(BotCommandScopeAllPrivateChats),
     AllGroupChats(BotCommandScopeAllGroupChats),

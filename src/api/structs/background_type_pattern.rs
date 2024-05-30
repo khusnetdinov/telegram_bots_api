@@ -1,4 +1,4 @@
-use crate::api::enums::background_fills::BackgroundFills;
+use crate::api::enums::background_fill::BackgroundFill;
 use crate::api::structs::document::Document;
 use serde::{Deserialize, Serialize};
 
@@ -9,7 +9,7 @@ pub struct BackgroundTypePattern {
     #[serde(rename(serialize = "type", deserialize = "type"))]
     pub kind: String,
     pub document: Document,
-    pub fill: BackgroundFills,
+    pub fill: BackgroundFill,
     pub intensity: u8,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub is_inverted: Option<bool>,

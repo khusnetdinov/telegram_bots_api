@@ -1,5 +1,5 @@
 use crate::api::enums::chat_member::ChatMember;
-use crate::api::enums::menu_buttons::MenuButtons;
+use crate::api::enums::menu_button::MenuButton;
 use crate::api::enums::message_result::MessageResult;
 use crate::api::params::add_sticker_to_set::AddStickerToSet;
 use crate::api::params::answer_callback_query::AnswerCallbackQuery;
@@ -536,7 +536,7 @@ pub trait Requests {
 
     /// <https://core.telegram.org/bots/api#getchatmenubutton>
     /// Use this method to get the current value of the bot's menu button in a private chat, or the default menu button. Returns MenuButton on success.
-    async fn get_chat_menu_button(&self, params: &GetChatMenuButton) -> Result<MenuButtons, Error>;
+    async fn get_chat_menu_button(&self, params: &GetChatMenuButton) -> Result<MenuButton, Error>;
 
     /// <https://core.telegram.org/bots/api#setmydefaultadministratorrights>
     /// Use this method to change the default administrator rights requested by the bot when it's added as an administrator to groups or channels. These rights will be suggested to users, but they are free to modify the list before adding the bot. Returns True on success.

@@ -1,4 +1,4 @@
-use crate::api::enums::background_types::BackgroundTypes;
+use crate::api::enums::background_type::BackgroundType;
 use serde::{Deserialize, Serialize};
 
 /// <https://core.telegram.org/bots/api#chatbackground>
@@ -6,5 +6,5 @@ use serde::{Deserialize, Serialize};
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
 pub struct ChatBackground {
     #[serde(rename(serialize = "type", deserialize = "type"))]
-    pub kind: BackgroundTypes,
+    pub kind: BackgroundType,
 }

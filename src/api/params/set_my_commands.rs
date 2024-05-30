@@ -1,4 +1,4 @@
-use crate::api::enums::bot_command_scopes::BotCommandScopes;
+use crate::api::enums::bot_command_scope::BotCommandScope;
 use crate::api::structs::bot_command::BotCommand;
 use serde::Serialize;
 
@@ -8,7 +8,7 @@ use serde::Serialize;
 pub struct SetMyCommands {
     pub commands: Vec<BotCommand>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub scope: Option<BotCommandScopes>,
+    pub scope: Option<BotCommandScope>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub language_code: Option<String>,
 }

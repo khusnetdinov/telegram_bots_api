@@ -1,4 +1,4 @@
-use crate::api::enums::background_fills::BackgroundFills;
+use crate::api::enums::background_fill::BackgroundFill;
 use serde::{Deserialize, Serialize};
 
 /// <https://core.telegram.org/bots/api#backgroundtypefill>
@@ -7,6 +7,6 @@ use serde::{Deserialize, Serialize};
 pub struct BackgroundTypeFill {
     #[serde(rename(serialize = "type", deserialize = "type"))]
     pub kind: String,
-    pub fill: BackgroundFills,
+    pub fill: BackgroundFill,
     pub dark_theme_dimming: u8,
 }
