@@ -8,9 +8,10 @@ pub struct InputInvoiceMessageContent {
     pub title: String,
     pub description: String,
     pub payload: String,
-    pub provider_token: String,
     pub currency: String,
     pub prices: Vec<LabeledPrice>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub provider_token: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub max_tip_amount: Option<i64>,
     #[serde(skip_serializing_if = "Option::is_none")]

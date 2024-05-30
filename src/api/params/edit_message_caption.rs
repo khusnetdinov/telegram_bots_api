@@ -21,4 +21,6 @@ pub struct EditMessageCaption {
     pub caption_entities: Option<Vec<MessageEntity>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub reply_markup: Option<InlineKeyboardMarkup>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub show_caption_above_media: Option<bool>,
 }

@@ -63,6 +63,7 @@ use crate::api::params::hide_general_forum_topic::HideGeneralForumTopic;
 use crate::api::params::leave_chat::LeaveChat;
 use crate::api::params::pin_chat_message::PinChatMessage;
 use crate::api::params::promote_chat_member::PromoteChatMember;
+use crate::api::params::refund_star_payment::RefundStarPayment;
 use crate::api::params::reopen_forum_topic::ReopenForumTopic;
 use crate::api::params::reopen_general_forum_topic::ReopenGeneralForumTopic;
 use crate::api::params::replace_sticker_in_set::ReplaceStickerInSet;
@@ -3971,6 +3972,40 @@ fn answer_shipping_query_error() {
         ..Default::default()
     };
     if let Error::Response(real_error) = mocked.client.answer_shipping_query(&params).unwrap_err() {
+        assert_eq!(mock_error, real_error);
+        mocked.server.assert();
+    }
+}
+
+#[test]
+fn refund_star_payment_success() {
+    let mock_response =
+        fs::read_to_string("src/tests/responses/refund_star_payment_success.json").unwrap();
+    let mut server = mockito::Server::new();
+    let mocked = MockedSync::new(&mut server, "refundStarPayment", 200, &mock_response);
+
+    let mock_result = mocked.result::<bool>().unwrap();
+    let params = RefundStarPayment {
+        ..Default::default()
+    };
+    let real_result = mocked.client.refund_star_payment(&params).unwrap();
+
+    assert_eq!(mock_result, real_result);
+    mocked.server.assert();
+}
+
+#[test]
+fn refund_star_payment_error() {
+    let mock_response =
+        fs::read_to_string("src/tests/responses/refund_star_payment_error.json").unwrap();
+    let mut server = mockito::Server::new();
+    let mocked = MockedSync::new(&mut server, "refundStarPayment", 400, &mock_response);
+
+    let mock_error = mocked.result_error().unwrap();
+    let params = RefundStarPayment {
+        ..Default::default()
+    };
+    if let Error::Response(real_error) = mocked.client.refund_star_payment(&params).unwrap_err() {
         assert_eq!(mock_error, real_error);
         mocked.server.assert();
     }

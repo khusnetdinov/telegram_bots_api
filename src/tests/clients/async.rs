@@ -64,6 +64,7 @@ use crate::api::params::hide_general_forum_topic::HideGeneralForumTopic;
 use crate::api::params::leave_chat::LeaveChat;
 use crate::api::params::pin_chat_message::PinChatMessage;
 use crate::api::params::promote_chat_member::PromoteChatMember;
+use crate::api::params::refund_star_payment::RefundStarPayment;
 use crate::api::params::reopen_forum_topic::ReopenForumTopic;
 use crate::api::params::reopen_general_forum_topic::ReopenGeneralForumTopic;
 use crate::api::params::replace_sticker_in_set::ReplaceStickerInSet;
@@ -4656,6 +4657,49 @@ async fn answer_shipping_query_error() -> Result<(), Error> {
     if let Error::Response(real_error) = mocked
         .client
         .answer_shipping_query(&params)
+        .await
+        .unwrap_err()
+    {
+        assert_eq!(mock_error, real_error);
+        mocked.server.assert();
+    }
+
+    Ok(())
+}
+
+#[tokio::test]
+async fn refund_star_payment_success() -> Result<(), Error> {
+    let mock_response =
+        fs::read_to_string("src/tests/responses/answer_pre_checkout_query_success.json").unwrap();
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "refundStarPayment", 200, &mock_response).await;
+
+    let mock_result = mocked.result::<bool>()?;
+    let params = RefundStarPayment {
+        ..Default::default()
+    };
+    let real_result = mocked.client.refund_star_payment(&params).await?;
+
+    assert_eq!(mock_result, real_result);
+    mocked.server.assert();
+
+    Ok(())
+}
+
+#[tokio::test]
+async fn refund_star_payment_error() -> Result<(), Error> {
+    let mock_response =
+        fs::read_to_string("src/tests/responses/answer_pre_checkout_query_error.json").unwrap();
+    let mut server = mockito::Server::new_async().await;
+    let mocked = MockedAsync::new(&mut server, "refundStarPayment", 400, &mock_response).await;
+
+    let mock_error = mocked.result_error()?;
+    let params = RefundStarPayment {
+        ..Default::default()
+    };
+    if let Error::Response(real_error) = mocked
+        .client
+        .refund_star_payment(&params)
         .await
         .unwrap_err()
     {
