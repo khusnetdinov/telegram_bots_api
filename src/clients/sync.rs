@@ -62,6 +62,7 @@ use crate::api::params::hide_general_forum_topic::HideGeneralForumTopic;
 use crate::api::params::leave_chat::LeaveChat;
 use crate::api::params::pin_chat_message::PinChatMessage;
 use crate::api::params::promote_chat_member::PromoteChatMember;
+use crate::api::params::refund_star_payment::RefundStarPayment;
 use crate::api::params::reopen_forum_topic::ReopenForumTopic;
 use crate::api::params::reopen_general_forum_topic::ReopenGeneralForumTopic;
 use crate::api::params::replace_sticker_in_set::ReplaceStickerInSet;
@@ -728,6 +729,9 @@ impl Requests for Sync {
 
     fn answer_shipping_query(&self, params: &AnswerShippingQuery) -> Result<bool, Error> {
         self.respond_with::<bool>(self.request("answerShippingQuery").json(params))
+    }
+    fn refund_star_payment(&self, params: &RefundStarPayment) -> Result<bool, Error> {
+        self.respond_with::<bool>(self.request("refundStarPayment").json(params))
     }
 
     fn answer_pre_checkout_query(&self, params: &AnswerPreCheckoutQuery) -> Result<bool, Error> {

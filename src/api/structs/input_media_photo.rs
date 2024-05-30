@@ -16,4 +16,6 @@ pub struct InputMediaPhoto {
     pub caption_entities: Option<Vec<MessageEntity>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub has_spoiler: Option<bool>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub show_caption_above_media: Option<bool>,
 }

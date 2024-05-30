@@ -12,9 +12,10 @@ pub struct SendInvoice {
     pub title: String,
     pub description: String,
     pub payload: String,
-    pub provider_token: String,
     pub currency: String,
     pub prices: Vec<LabeledPrice>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub provider_token: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub message_thread_id: Option<i64>,
     #[serde(skip_serializing_if = "Option::is_none")]

@@ -95,6 +95,8 @@ pub struct Message {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub link_preview_options: Option<LinkPreviewOptions>,
     #[serde(skip_serializing_if = "Option::is_none")]
+    pub effect_id: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub animation: Option<Animation>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub audio: Option<Audio>,
@@ -116,6 +118,8 @@ pub struct Message {
     pub caption: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub caption_entities: Option<Vec<MessageEntity>>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub show_caption_above_media: Option<bool>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub has_media_spoiler: Option<bool>,
     #[serde(skip_serializing_if = "Option::is_none")]
