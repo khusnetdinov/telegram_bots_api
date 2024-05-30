@@ -46,6 +46,124 @@
         "date": 1707331951,
         "text": "updates2"
       }
+    },
+    {
+      "update_id": 615499549,
+      "message": {
+        "message_id": 886,
+        "from": {
+          "id": 147951145,
+          "is_bot": false,
+          "first_name": "Marat",
+          "last_name": "Khusnetdinov",
+          "username": "khusnetdinov",
+          "language_code": "ru",
+          "is_premium": true
+        },
+        "chat": {
+          "id": 147951145,
+          "first_name": "Marat",
+          "last_name": "Khusnetdinov",
+          "username": "khusnetdinov",
+          "type": "private"
+        },
+        "date": 1717051275,
+        "forward_origin": {
+          "type": "user",
+          "sender_user": {
+            "id": 147951145,
+            "is_bot": false,
+            "first_name": "Marat",
+            "last_name": "Khusnetdinov",
+            "username": "khusnetdinov",
+            "language_code": "ru",
+            "is_premium": true
+          },
+          "date": 1717051256
+        },
+        "forward_from": {
+          "id": 147951145,
+          "is_bot": false,
+          "first_name": "Marat",
+          "last_name": "Khusnetdinov",
+          "username": "khusnetdinov",
+          "language_code": "ru",
+          "is_premium": true
+        },
+        "forward_date": 1717051256,
+        "text": "asdasd"
+      }
+    },
+    {
+      "update_id": 615499550,
+      "message": {
+        "message_id": 887,
+        "from": {
+          "id": 147951145,
+          "is_bot": false,
+          "first_name": "Marat",
+          "last_name": "Khusnetdinov",
+          "username": "khusnetdinov",
+          "language_code": "ru",
+          "is_premium": true
+        },
+        "chat": {
+          "id": 147951145,
+          "first_name": "Marat",
+          "last_name": "Khusnetdinov",
+          "username": "khusnetdinov",
+          "type": "private"
+        },
+        "date": 1717051302,
+        "text": "Test @@@@@@@@@@@@@@"
+      }
+    },
+    {
+      "update_id": 615499551,
+      "message": {
+        "message_id": 888,
+        "from": {
+          "id": 147951145,
+          "is_bot": false,
+          "first_name": "Marat",
+          "last_name": "Khusnetdinov",
+          "username": "khusnetdinov",
+          "language_code": "ru",
+          "is_premium": true
+        },
+        "chat": {
+          "id": 147951145,
+          "first_name": "Marat",
+          "last_name": "Khusnetdinov",
+          "username": "khusnetdinov",
+          "type": "private"
+        },
+        "date": 1717051302,
+        "forward_origin": {
+          "type": "user",
+          "sender_user": {
+            "id": 147951145,
+            "is_bot": false,
+            "first_name": "Marat",
+            "last_name": "Khusnetdinov",
+            "username": "khusnetdinov",
+            "language_code": "ru",
+            "is_premium": true
+          },
+          "date": 1717051256
+        },
+        "forward_from": {
+          "id": 147951145,
+          "is_bot": false,
+          "first_name": "Marat",
+          "last_name": "Khusnetdinov",
+          "username": "khusnetdinov",
+          "language_code": "ru",
+          "is_premium": true
+        },
+        "forward_date": 1717051256,
+        "text": "asdasd"
+      }
     }
   ]
 }
