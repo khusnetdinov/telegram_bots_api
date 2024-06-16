@@ -17,7 +17,7 @@ pub struct WebhookInfo {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub last_synchronization_error_date: Option<i64>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub max_connections: Option<i64>,
+    pub max_connections: Option<u32>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub allowed_updates: Option<Vec<String>>,
 }
