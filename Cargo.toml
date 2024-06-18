@@ -3,8 +3,8 @@
 [package]
 name = "telegram_bots_api"
 edition = "2021"
-rust-version = "1.70.0"
-version = "0.74.0"
+rust-version = "1.74.0"
+version = "0.75.0"
 license = "MIT"
 description = "Telegram bots api simple rust wrapper, and no more."
 documentation = "https://docs.rs/telegram_bots_api"
@@ -14,7 +14,7 @@ keywords = ["telegram", "bots", "api"]
 authors = ["Marat Khusnetdinov <khusnetdinov@gmail.com>"]
 
 [package.metadata]
-talegram-version = "7.4"
+talegram-version = "7.5"
 
 [features]
 nightly = []

@@ -1,3 +1,4 @@
+mod allowed_updates;
 pub mod background_fill;
 pub mod background_type;
 pub mod bot_command_scope;
@@ -16,3 +17,5 @@ pub mod message_result;
 pub mod passport_element_error;
 pub mod reaction_type;
 pub mod reply_markup;
+pub mod revenue_withdrawal_state;
+pub mod transaction_partner;

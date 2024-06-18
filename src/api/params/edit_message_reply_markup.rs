@@ -14,4 +14,6 @@ pub struct EditMessageReplyMarkup {
     pub inline_message_id: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub reply_markup: Option<InlineKeyboardMarkup>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub business_connection_id: Option<String>,
 }
