@@ -151,7 +151,7 @@ use serde::de::DeserializeOwned;
 use std::time::Duration;
 
 /// Sync client for telegram bots api.
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub struct Sync {
     client: reqwest::blocking::Client,
     url: String,
