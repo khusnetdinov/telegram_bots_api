@@ -1,5 +1,5 @@
 use crate::api::enums::chat_uid::ChatUId;
-use crate::api::structs::inline_keyboard_markup::InlineKeyboardMarkup;
+use crate::api::enums::reply_markup::ReplyMarkup;
 use crate::api::structs::reply_parameters::ReplyParameters;
 use serde::Serialize;
 
@@ -18,7 +18,7 @@ pub struct SendGame {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub reply_parameters: Option<ReplyParameters>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub reply_markup: Option<InlineKeyboardMarkup>,
+    pub reply_markup: Option<ReplyMarkup>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub business_connection_id: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
