@@ -7,5 +7,5 @@ use serde::{Deserialize, Serialize};
 pub struct InputPollOption {
     pub text: Option<String>,
     pub text_parse_mode: Option<String>,
-    pub text_entities: Vec<MessageEntity>,
+    pub text_entities: Option<Vec<MessageEntity>>,
 }
