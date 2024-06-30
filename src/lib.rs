@@ -13,5 +13,8 @@ pub mod clients;
 
 /// Lib configuration struct.
 pub mod config;
-mod errors;
+
+/// Lib Errors;
+pub mod errors;
+
 mod tests;
