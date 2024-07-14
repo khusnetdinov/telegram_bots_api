@@ -194,6 +194,7 @@ pub mod paid_media_info;
 pub mod paid_media_photo;
 pub mod paid_media_preview;
 pub mod paid_media_video;
+pub mod refunded_payment;
 pub mod revenue_withdrawal_state_failed;
 pub mod revenue_withdrawal_state_pending;
 pub mod revenue_withdrawal_state_succeeded;

@@ -33,6 +33,7 @@ use crate::api::structs::passport_data::PassportData;
 use crate::api::structs::photo_size::PhotoSize;
 use crate::api::structs::poll::Poll;
 use crate::api::structs::proximity_alert_triggered::ProximityAlertTriggered;
+use crate::api::structs::refunded_payment::RefundedPayment;
 use crate::api::structs::sticker::Sticker;
 use crate::api::structs::story::Story;
 use crate::api::structs::successful_payment::SuccessfulPayment;
@@ -221,4 +222,6 @@ pub struct Message {
     pub chat_background_set: Option<ChatBackground>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub paid_media: Option<PaidMediaInfo>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub refunded_payment: Option<RefundedPayment>,
 }
