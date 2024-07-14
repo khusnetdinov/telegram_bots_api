@@ -76,6 +76,7 @@ pub mod send_invoice;
 pub mod send_location;
 pub mod send_media_group;
 pub mod send_message;
+pub mod send_paid_media;
 pub mod send_photo;
 pub mod send_poll;
 pub mod send_sticker;

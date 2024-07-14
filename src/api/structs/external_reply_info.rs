@@ -11,6 +11,7 @@ use crate::api::structs::giveaway_winners::GiveawayWinners;
 use crate::api::structs::invoice::Invoice;
 use crate::api::structs::link_preview_options::LinkPreviewOptions;
 use crate::api::structs::location::Location;
+use crate::api::structs::paid_media_info::PaidMediaInfo;
 use crate::api::structs::photo_size::PhotoSize;
 use crate::api::structs::poll::Poll;
 use crate::api::structs::sticker::Sticker;
@@ -70,4 +71,6 @@ pub struct ExternalReplyInfo {
     pub poll: Option<Poll>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub venue: Option<Venue>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub paid_media: Option<PaidMediaInfo>,
 }
