@@ -973,8 +973,10 @@ impl Requests for Async {
     async fn get_game_high_scores(
         &self,
         params: &GetGameHighScores,
-    ) -> Result<GameHighScore, Error> {
-        self.respond_with::<GameHighScore>(self.request("getGameHighScores").await.json(params))
-            .await
+    ) -> Result<Vec<GameHighScore>, Error> {
+        self.respond_with::<Vec<GameHighScore>>(
+            self.request("getGameHighScores").await.json(params),
+        )
+        .await
     }
 }

@@ -4877,7 +4877,7 @@ async fn get_game_high_scores_success() -> Result<(), Error> {
     let mut server = mockito::Server::new_async().await;
     let mocked = MockedAsync::new(&mut server, "setGameScore", 200, &mock_response).await;
 
-    let mock_result = mocked.result::<GameHighScore>()?;
+    let mock_result = mocked.result::<Vec<GameHighScore>>()?;
     let params = GetGameHighScores {
         ..Default::default()
     };

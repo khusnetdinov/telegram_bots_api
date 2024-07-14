@@ -748,5 +748,5 @@ pub trait Requests {
     async fn get_game_high_scores(
         &self,
         params: &GetGameHighScores,
-    ) -> Result<GameHighScore, Error>;
+    ) -> Result<Vec<GameHighScore>, Error>;
 }

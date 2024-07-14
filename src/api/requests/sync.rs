@@ -696,5 +696,6 @@ pub trait Requests {
 
     /// <https://core.telegram.org/bots/api#getgamehighscores>
     /// Use this method to get data for high score tables. Will return the score of the specified user and several of their neighbors in a game. Returns an Array of GameHighScore objects.
-    fn get_game_high_scores(&self, params: &GetGameHighScores) -> Result<GameHighScore, Error>;
+    fn get_game_high_scores(&self, params: &GetGameHighScores)
+        -> Result<Vec<GameHighScore>, Error>;
 }

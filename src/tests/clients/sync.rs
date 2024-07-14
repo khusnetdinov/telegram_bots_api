@@ -4158,7 +4158,7 @@ fn get_game_high_scores_success() {
     let mut server = mockito::Server::new();
     let mocked = MockedSync::new(&mut server, "setGameScore", 200, &mock_response);
 
-    let mock_result = mocked.result::<GameHighScore>().unwrap();
+    let mock_result = mocked.result::<Vec<GameHighScore>>().unwrap();
     let params = GetGameHighScores {
         ..Default::default()
     };

@@ -7,6 +7,6 @@ use serde::{Deserialize, Serialize};
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
 #[serde(untagged)]
 pub enum MessageResult {
-    Inline(String),
+    Inline(bool),
     Message(Message),
 }

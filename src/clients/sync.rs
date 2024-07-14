@@ -755,7 +755,10 @@ impl Requests for Sync {
         self.respond_with::<MessageResult>(self.request("setGameScore").json(params))
     }
 
-    fn get_game_high_scores(&self, params: &GetGameHighScores) -> Result<GameHighScore, Error> {
-        self.respond_with::<GameHighScore>(self.request("getGameHighScores").json(params))
+    fn get_game_high_scores(
+        &self,
+        params: &GetGameHighScores,
+    ) -> Result<Vec<GameHighScore>, Error> {
+        self.respond_with::<Vec<GameHighScore>>(self.request("getGameHighScores").json(params))
     }
 }
