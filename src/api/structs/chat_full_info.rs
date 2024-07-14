@@ -98,4 +98,6 @@ pub struct ChatFullInfo {
     pub business_location: Option<BusinessLocation>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub business_opening_hours: Option<BusinessOpeningHours>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub can_send_paid_media: Option<bool>,
 }

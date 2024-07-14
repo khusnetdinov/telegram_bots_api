@@ -79,6 +79,7 @@ use crate::api::params::send_invoice::SendInvoice;
 use crate::api::params::send_location::SendLocation;
 use crate::api::params::send_media_group::SendMediaGroup;
 use crate::api::params::send_message::SendMessage;
+use crate::api::params::send_paid_media::SendPaidMedia;
 use crate::api::params::send_photo::SendPhoto;
 use crate::api::params::send_poll::SendPoll;
 use crate::api::params::send_sticker::SendSticker;
@@ -209,6 +210,10 @@ pub trait Requests {
     /// <https://core.telegram.org/bots/api#sendvideo>
     /// Use this method to send video files, Telegram clients support MPEG4 videos (other formats may be sent as Document). On success, the sent Message is returned. Bots can currently send video files of up to 50 MB in size, this limit may be changed in the future.
     fn send_video(&self, params: &SendVideo) -> Result<Message, Error>;
+
+    /// <https://core.telegram.org/bots/api#sendpaidmedia>
+    /// Use this method to send paid media to channel chats. On success, the sent Message is returned.
+    fn send_paid_media(&self, params: &SendPaidMedia) -> Result<Message, Error>;
 
     /// <https://core.telegram.org/bots/api#sendanimation>
     /// Use this method to send animation files (GIF or H.264/MPEG-4 AVC video without sound). On success, the sent Message is returned. Bots can currently send animation files of up to 50 MB in size, this limit may be changed in the future.

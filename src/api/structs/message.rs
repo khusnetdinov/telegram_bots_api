@@ -28,6 +28,7 @@ use crate::api::structs::location::Location;
 use crate::api::structs::message_auto_delete_timer_changed::MessageAutoDeleteTimerChanged;
 use crate::api::structs::message_entity::MessageEntity;
 use crate::api::structs::message_id::MessageId;
+use crate::api::structs::paid_media_info::PaidMediaInfo;
 use crate::api::structs::passport_data::PassportData;
 use crate::api::structs::photo_size::PhotoSize;
 use crate::api::structs::poll::Poll;
@@ -218,4 +219,6 @@ pub struct Message {
     pub business_connection_id: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub chat_background_set: Option<ChatBackground>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub paid_media: Option<PaidMediaInfo>,
 }

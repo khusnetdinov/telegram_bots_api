@@ -79,6 +79,7 @@ use crate::api::params::send_invoice::SendInvoice;
 use crate::api::params::send_location::SendLocation;
 use crate::api::params::send_media_group::SendMediaGroup;
 use crate::api::params::send_message::SendMessage;
+use crate::api::params::send_paid_media::SendPaidMedia;
 use crate::api::params::send_photo::SendPhoto;
 use crate::api::params::send_poll::SendPoll;
 use crate::api::params::send_sticker::SendSticker;
@@ -292,6 +293,11 @@ impl Requests for Async {
 
     async fn send_video(&self, params: &SendVideo) -> Result<Message, Error> {
         self.respond_with::<Message>(self.request("sendVideo").await.json(params))
+            .await
+    }
+
+    async fn send_paid_media(&self, params: &SendPaidMedia) -> Result<Message, Error> {
+        self.respond_with::<Message>(self.request("sendPaidMedia").await.json(params))
             .await
     }
 
