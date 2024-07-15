@@ -6,7 +6,7 @@ use serde::Serialize;
 #[derive(Debug, Serialize, Default)]
 pub struct SetGameScore {
     pub user_id: i64,
-    pub score: i64,
+    pub score: u64,
     pub force: Option<bool>,
     pub disable_edit_message: Option<bool>,
     pub chat_id: Option<ChatUId>,
