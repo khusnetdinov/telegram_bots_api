@@ -47,7 +47,7 @@ pub struct SendPoll {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub question_parse_mode: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub question_entities: Option<MessageEntity>,
+    pub question_entities: Option<Vec<MessageEntity>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub message_effect_id: Option<String>,
 }
