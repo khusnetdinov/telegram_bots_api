@@ -1,4 +1,5 @@
 use crate::api::enums::chat_member::ChatMember;
+use crate::api::enums::file_input::FileInput;
 use crate::api::enums::menu_button::MenuButton;
 use crate::api::enums::message_result::MessageResult;
 use crate::api::params::add_sticker_to_set::AddStickerToSet;
@@ -149,6 +150,8 @@ use crate::config::Config;
 use crate::errors::Error;
 use reqwest::blocking::{RequestBuilder, Response};
 use serde::de::DeserializeOwned;
+use serde::Serialize;
+use std::path::PathBuf;
 use std::time::Duration;
 
 /// Sync client for telegram bots api.
@@ -187,11 +190,11 @@ impl Sync {
         Self::from(&config)
     }
 
-    fn request(&self, method: &str) -> RequestBuilder {
+    pub fn request(&self, method: &str) -> RequestBuilder {
         self.client.post(format!("{}{}", self.url, method))
     }
 
-    fn respond_with<T: DeserializeOwned>(&self, response: RequestBuilder) -> Result<T, Error> {
+    pub fn respond_with<T: DeserializeOwned>(&self, response: RequestBuilder) -> Result<T, Error> {
         match response.send() {
             Ok(response) => match response.status().as_u16() {
                 200 => self.decode::<T>(response),
@@ -209,6 +212,32 @@ impl Sync {
             Ok(success) => Ok(success.result),
             Err(error) => Err(Error::Decode(error)),
         }
+    }
+
+    fn as_value<T: Serialize>(&self, kind: &T) -> serde_json::value::Value {
+        let json_string = serde_json::to_string(kind).unwrap();
+
+        serde_json::from_str(&json_string).unwrap()
+    }
+
+    fn form_with_file_field<T: Serialize>(
+        &self,
+        params: T,
+        file_field: String,
+    ) -> Result<reqwest::blocking::multipart::Form, Box<dyn std::error::Error>> {
+        let mut form = reqwest::blocking::multipart::Form::new();
+
+        for (field, value) in self.as_value(&params).as_object().unwrap() {
+            if field == &file_field {
+                let path = PathBuf::from(value.get("path").unwrap().as_str().unwrap());
+
+                form = form.file(file_field.clone(), path.as_path())?;
+            } else {
+                form = form.text(field.to_string(), value.to_string());
+            }
+        }
+
+        Ok(form)
     }
 }
 
@@ -262,19 +291,51 @@ impl Requests for Sync {
     }
 
     fn send_photo(&self, params: &SendPhoto) -> Result<Message, Error> {
-        self.respond_with::<Message>(self.request("sendPhoto").json(params))
+        if let FileInput::InputFile(_) = &params.photo {
+            let form = self
+                .form_with_file_field(params, "photo".to_string())
+                .unwrap();
+
+            self.respond_with::<Message>(self.request("sendPhoto").multipart(form))
+        } else {
+            self.respond_with::<Message>(self.request("sendPhoto").json(&params))
+        }
     }
 
     fn send_audio(&self, params: &SendAudio) -> Result<Message, Error> {
-        self.respond_with::<Message>(self.request("sendAudio").json(params))
+        if let FileInput::InputFile(_) = &params.audio {
+            let form = self
+                .form_with_file_field(params, "audio".to_string())
+                .unwrap();
+
+            self.respond_with::<Message>(self.request("sendAudio").multipart(form))
+        } else {
+            self.respond_with::<Message>(self.request("sendAudio").json(&params))
+        }
     }
 
     fn send_document(&self, params: &SendDocument) -> Result<Message, Error> {
-        self.respond_with::<Message>(self.request("sendDocument").json(params))
+        if let FileInput::InputFile(_) = &params.document {
+            let form = self
+                .form_with_file_field(params, "document".to_string())
+                .unwrap();
+
+            self.respond_with::<Message>(self.request("sendDocument").multipart(form))
+        } else {
+            self.respond_with::<Message>(self.request("sendDocument").json(&params))
+        }
     }
 
     fn send_video(&self, params: &SendVideo) -> Result<Message, Error> {
-        self.respond_with::<Message>(self.request("sendVideo").json(params))
+        if let FileInput::InputFile(_) = &params.video {
+            let form = self
+                .form_with_file_field(params, "video".to_string())
+                .unwrap();
+
+            self.respond_with::<Message>(self.request("sendVideo").multipart(form))
+        } else {
+            self.respond_with::<Message>(self.request("sendVideo").json(&params))
+        }
     }
 
     fn send_paid_media(&self, params: &SendPaidMedia) -> Result<Message, Error> {
@@ -282,15 +343,39 @@ impl Requests for Sync {
     }
 
     fn send_animation(&self, params: &SendAnimation) -> Result<Message, Error> {
-        self.respond_with::<Message>(self.request("sendAnimation").json(params))
+        if let FileInput::InputFile(_) = &params.animation {
+            let form = self
+                .form_with_file_field(params, "animation".to_string())
+                .unwrap();
+
+            self.respond_with::<Message>(self.request("sendAnimation").multipart(form))
+        } else {
+            self.respond_with::<Message>(self.request("sendAnimation").json(&params))
+        }
     }
 
     fn send_voice(&self, params: &SendVoice) -> Result<Message, Error> {
-        self.respond_with::<Message>(self.request("sendVoice").json(params))
+        if let FileInput::InputFile(_) = &params.voice {
+            let form = self
+                .form_with_file_field(params, "voice".to_string())
+                .unwrap();
+
+            self.respond_with::<Message>(self.request("sendVoice").multipart(form))
+        } else {
+            self.respond_with::<Message>(self.request("sendVoice").json(&params))
+        }
     }
 
     fn send_video_note(&self, params: &SendVideoNote) -> Result<Message, Error> {
-        self.respond_with::<Message>(self.request("sendVideoNote").json(params))
+        if let FileInput::InputFile(_) = &params.video_note {
+            let form = self
+                .form_with_file_field(params, "video_note".to_string())
+                .unwrap();
+
+            self.respond_with::<Message>(self.request("sendVideoNote").multipart(form))
+        } else {
+            self.respond_with::<Message>(self.request("sendVideoNote").json(&params))
+        }
     }
 
     fn send_media_group(&self, params: &SendMediaGroup) -> Result<Vec<Message>, Error> {
