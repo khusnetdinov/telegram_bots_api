@@ -4,6 +4,7 @@ use crate::api::enums::reply_markup::ReplyMarkup;
 use crate::api::structs::message_entity::MessageEntity;
 use crate::api::structs::reply_parameters::ReplyParameters;
 use serde::Serialize;
+use crate::api::structs::photo_size::PhotoSize;
 
 /// <https://core.telegram.org/bots/api#sendanimation>
 /// Use this method to send animation files (GIF or H.264/MPEG-4 AVC video without sound). On success, the sent Message is returned. Bots can currently send animation files of up to 50 MB in size, this limit may be changed in the future.
@@ -17,7 +18,7 @@ pub struct SendAudio {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub duration: Option<i64>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub thumbnail: Option<FileInput>,
+    pub thumbnail: Option<PhotoSize>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub caption: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]

@@ -3,6 +3,7 @@ use crate::api::enums::file_input::FileInput;
 use crate::api::enums::reply_markup::ReplyMarkup;
 use crate::api::structs::reply_parameters::ReplyParameters;
 use serde::Serialize;
+use crate::api::structs::photo_size::PhotoSize;
 
 /// <https://core.telegram.org/bots/api#sendvideonote>
 /// As of v.4.0, Telegram clients support rounded square MPEG4 videos of up to 1 minute long. Use this method to send video messages. On success, the sent Message is returned.
@@ -17,7 +18,7 @@ pub struct SendVideoNote {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub length: Option<i64>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub thumbnail: Option<FileInput>,
+    pub thumbnail: Option<PhotoSize>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub disable_notification: Option<bool>,
     #[serde(skip_serializing_if = "Option::is_none")]
