@@ -37,7 +37,7 @@ tokio-util = { version = "0.7.3", features = ["codec"] }
 
 # cargo-minimal-versions
 cargo-minimal-versions = { version = "0.1.25", optional = true }
-openssl = { version = "0.10.55", optional = true }
+openssl = { version = "0.10.66", optional = true }
 libgit2-sys = { version = "^0.16.2", optional = true }
 mio = "0.8.11"
 
