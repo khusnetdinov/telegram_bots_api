@@ -14,7 +14,6 @@ pub mod bot_name;
 pub mod bot_short_description;
 pub mod callback_game;
 pub mod callback_query;
-pub mod channel_username;
 pub mod chat;
 pub mod chat_administrator_rights;
 pub mod chat_boost;
