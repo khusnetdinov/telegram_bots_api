@@ -2,6 +2,7 @@ use crate::api::structs::user::User;
 use serde::{Deserialize, Serialize};
 
 /// <https://core.telegram.org/bots/api#businessconnection>
+/// Describes the connection of the bot with a business account.
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
 pub struct BusinessConnection {
     pub id: String,

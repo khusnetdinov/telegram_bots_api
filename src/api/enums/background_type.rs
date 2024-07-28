@@ -10,7 +10,6 @@ use serde::{Deserialize, Serialize};
 /// BackgroundTypeWallpaper
 /// BackgroundTypePattern
 /// BackgroundTypeChatTheme
-
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
 pub enum BackgroundType {
     Fill(BackgroundTypeFill),

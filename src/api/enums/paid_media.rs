@@ -9,7 +9,6 @@ use serde::{Deserialize, Serialize};
 /// PaidMediaPhoto
 /// PaidMediaVideo
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
-
 pub enum PaidMedia {
     Preview(PaidMediaPreview),
     Photo(PaidMediaPhoto),
