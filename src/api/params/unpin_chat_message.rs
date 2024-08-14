@@ -8,4 +8,6 @@ pub struct UnpinChatMessage {
     pub chat_id: ChatUId,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub message_id: Option<i64>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub business_connection_id: Option<String>,
 }

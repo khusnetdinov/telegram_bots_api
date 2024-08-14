@@ -11,4 +11,6 @@ pub struct PinChatMessage {
     pub chat_id: ChatUId,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub disable_notification: Option<bool>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub business_connection_id: Option<String>,
 }
