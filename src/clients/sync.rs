@@ -16,6 +16,7 @@ use crate::api::params::close_general_forum_topic::CloseGeneralForumTopic;
 use crate::api::params::copy_message::CopyMessage;
 use crate::api::params::copy_messages::CopyMessages;
 use crate::api::params::create_chat_invite_link::CreateChatInviteLink;
+use crate::api::params::create_chat_subscription_invite_link::CreateChatSubscriptionInviteLink;
 use crate::api::params::create_forum_topic::CreateForumTopic;
 use crate::api::params::create_invoice_link::CreateInvoiceLink;
 use crate::api::params::create_new_sticker_set::CreateNewStickerSet;
@@ -30,6 +31,7 @@ use crate::api::params::delete_sticker_from_set::DeleteStickerFromSet;
 use crate::api::params::delete_sticker_set::DeleteStickerSet;
 use crate::api::params::delete_webhook::DeleteWebhook;
 use crate::api::params::edit_chat_invite_link::EditChatInviteLink;
+use crate::api::params::edit_chat_subscription_invite_link::EditChatSubscriptionInviteLink;
 use crate::api::params::edit_forum_topic::EditForumTopic;
 use crate::api::params::edit_general_forum_topic::EditGeneralForumTopic;
 use crate::api::params::edit_message_caption::EditMessageCaption;
@@ -469,6 +471,25 @@ impl Requests for Sync {
 
     fn edit_chat_invite_link(&self, params: &EditChatInviteLink) -> Result<ChatInviteLink, Error> {
         self.respond_with::<ChatInviteLink>(self.request("editChatInviteLink").json(params))
+    }
+
+    fn create_chat_subscription_invite_link(
+        &self,
+        params: &CreateChatSubscriptionInviteLink,
+    ) -> Result<ChatInviteLink, Error> {
+        self.respond_with::<ChatInviteLink>(
+            self.request("createChatSubscriptionInviteLink")
+                .json(params),
+        )
+    }
+
+    fn edit_chat_subscription_invite_link(
+        &self,
+        params: &EditChatSubscriptionInviteLink,
+    ) -> Result<ChatInviteLink, Error> {
+        self.respond_with::<ChatInviteLink>(
+            self.request("editChatSubscriptionInviteLink").json(params),
+        )
     }
 
     fn revoke_chat_invite_link(
