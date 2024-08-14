@@ -26,4 +26,6 @@ pub struct User {
     pub supports_inline_queries: Option<bool>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub an_connect_to_business: Option<bool>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub has_main_web_app: Option<bool>,
 }
