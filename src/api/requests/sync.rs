@@ -15,6 +15,7 @@ use crate::api::params::close_general_forum_topic::CloseGeneralForumTopic;
 use crate::api::params::copy_message::CopyMessage;
 use crate::api::params::copy_messages::CopyMessages;
 use crate::api::params::create_chat_invite_link::CreateChatInviteLink;
+use crate::api::params::create_chat_subscription_invite_link::CreateChatSubscriptionInviteLink;
 use crate::api::params::create_forum_topic::CreateForumTopic;
 use crate::api::params::create_invoice_link::CreateInvoiceLink;
 use crate::api::params::create_new_sticker_set::CreateNewStickerSet;
@@ -29,6 +30,7 @@ use crate::api::params::delete_sticker_from_set::DeleteStickerFromSet;
 use crate::api::params::delete_sticker_set::DeleteStickerSet;
 use crate::api::params::delete_webhook::DeleteWebhook;
 use crate::api::params::edit_chat_invite_link::EditChatInviteLink;
+use crate::api::params::edit_chat_subscription_invite_link::EditChatSubscriptionInviteLink;
 use crate::api::params::edit_forum_topic::EditForumTopic;
 use crate::api::params::edit_general_forum_topic::EditGeneralForumTopic;
 use crate::api::params::edit_message_caption::EditMessageCaption;
@@ -319,6 +321,20 @@ pub trait Requests {
     /// <https://core.telegram.org/bots/api#editchatinvitelink>
     /// Use this method to edit a non-primary invite link created by the bot. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Returns the edited invite link as a ChatInviteLink object.
     fn edit_chat_invite_link(&self, params: &EditChatInviteLink) -> Result<ChatInviteLink, Error>;
+
+    /// <https://core.telegram.org/bots/api#createchatsubscriptioninvitelink>
+    /// Use this method to create a subscription invite link for a channel chat. The bot must have the can_invite_users administrator rights. The link can be edited using the method editChatSubscriptionInviteLink or revoked using the method revokeChatInviteLink. Returns the new invite link as a ChatInviteLink object.
+    fn create_chat_subscription_invite_link(
+        &self,
+        params: &CreateChatSubscriptionInviteLink,
+    ) -> Result<ChatInviteLink, Error>;
+
+    /// https://core.telegram.org/bots/api#editchatsubscriptioninvitelink
+    /// Use this method to edit a subscription invite link created by the bot. The bot must have the can_invite_users administrator rights. Returns the edited invite link as a ChatInviteLink object.
+    fn edit_chat_subscription_invite_link(
+        &self,
+        params: &EditChatSubscriptionInviteLink,
+    ) -> Result<ChatInviteLink, Error>;
 
     /// <https://core.telegram.org/bots/api#revokechatinvitelink>
     /// Use this method to revoke an invite link created by the bot. If the primary link is revoked, a new link is automatically generated. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Returns the revoked invite link as ChatInviteLink object.
