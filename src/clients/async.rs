@@ -150,7 +150,6 @@ use crate::api::structs::user_profile_photos::UserProfilePhotos;
 use crate::api::structs::webhook_info::WebhookInfo;
 use crate::config::Config;
 use crate::errors::Error;
-use async_trait::async_trait;
 use reqwest::RequestBuilder;
 use reqwest::Response;
 use serde::de::DeserializeOwned;
@@ -208,7 +207,10 @@ impl Async {
                 400..=429 => Err(Error::Response(ResponseError::from(
                     &response.text().await?,
                 ))),
-                _ => Err(Error::Unexpected(String::from(""))),
+                _ => Err(Error::Unexpected(format!(
+                    "ResponseStatus: {:#?}",
+                    response.status().as_u16()
+                ))),
             },
             Err(error) => Err(Error::Request(error)),
         }
@@ -230,12 +232,12 @@ impl Async {
     async fn form_with_file_field<T: Serialize>(
         &self,
         params: T,
-        file_field: String,
+        file_field: &'static str,
     ) -> Result<reqwest::multipart::Form, Box<dyn std::error::Error>> {
         let mut form = reqwest::multipart::Form::new();
 
         for (field, value) in self.as_value(&params).await.as_object().unwrap() {
-            if field == &file_field {
+            if field == file_field {
                 let path = PathBuf::from(value.get("path").unwrap().as_str().unwrap());
                 let file_path = path.as_path();
                 let file_name = path.file_name().unwrap().to_str().unwrap().to_string();
@@ -248,7 +250,7 @@ impl Async {
 
                 let part = reqwest::multipart::Part::stream(body_file).file_name(file_name);
 
-                form = form.part(file_field.clone(), part);
+                form = form.part(file_field, part);
             } else {
                 form = form.text(field.to_string(), value.to_string());
             }
@@ -256,9 +258,23 @@ impl Async {
 
         Ok(form)
     }
+
+    async fn form_with_files_field<T: Serialize>(
+        &self,
+        params: T,
+        _file_field: &'static str,
+    ) -> Result<reqwest::multipart::Form, Box<dyn std::error::Error>> {
+        let mut form = reqwest::multipart::Form::new();
+
+        for (field, value) in self.as_value(&params).await.as_object().unwrap() {
+            form = form.text(field.to_string(), serde_json::to_string(value).unwrap());
+        }
+
+        Ok(form)
+    }
 }
 
-#[async_trait]
+#[async_trait::async_trait]
 impl Requests for Async {
     async fn get_updates(&self, params: &GetUpdate) -> Result<Vec<Update>, Error> {
         self.respond_with::<Vec<Update>>(self.request("getUpdates").await.json(params))
@@ -322,10 +338,7 @@ impl Requests for Async {
 
     async fn send_photo(&self, params: &SendPhoto) -> Result<Message, Error> {
         if let FileInput::InputFile(_) = &params.photo {
-            let form = self
-                .form_with_file_field(params, "photo".to_string())
-                .await
-                .unwrap();
+            let form = self.form_with_file_field(params, "photo").await.unwrap();
 
             self.respond_with::<Message>(self.request("sendPhoto").await.multipart(form))
                 .await
@@ -337,10 +350,7 @@ impl Requests for Async {
 
     async fn send_audio(&self, params: &SendAudio) -> Result<Message, Error> {
         if let FileInput::InputFile(_) = &params.audio {
-            let form = self
-                .form_with_file_field(params, "audio".to_string())
-                .await
-                .unwrap();
+            let form = self.form_with_file_field(params, "audio").await.unwrap();
 
             self.respond_with::<Message>(self.request("sendAudio").await.multipart(form))
                 .await
@@ -352,10 +362,7 @@ impl Requests for Async {
 
     async fn send_document(&self, params: &SendDocument) -> Result<Message, Error> {
         if let FileInput::InputFile(_) = &params.document {
-            let form = self
-                .form_with_file_field(params, "document".to_string())
-                .await
-                .unwrap();
+            let form = self.form_with_file_field(params, "document").await.unwrap();
 
             self.respond_with::<Message>(self.request("sendDocument").await.multipart(form))
                 .await
@@ -367,10 +374,7 @@ impl Requests for Async {
 
     async fn send_video(&self, params: &SendVideo) -> Result<Message, Error> {
         if let FileInput::InputFile(_) = &params.video {
-            let form = self
-                .form_with_file_field(params, "video".to_string())
-                .await
-                .unwrap();
+            let form = self.form_with_file_field(params, "video").await.unwrap();
 
             self.respond_with::<Message>(self.request("sendVideo").await.multipart(form))
                 .await
@@ -388,7 +392,7 @@ impl Requests for Async {
     async fn send_animation(&self, params: &SendAnimation) -> Result<Message, Error> {
         if let FileInput::InputFile(_) = &params.animation {
             let form = self
-                .form_with_file_field(params, "animation".to_string())
+                .form_with_file_field(params, "animation")
                 .await
                 .unwrap();
 
@@ -402,10 +406,7 @@ impl Requests for Async {
 
     async fn send_voice(&self, params: &SendVoice) -> Result<Message, Error> {
         if let FileInput::InputFile(_) = &params.voice {
-            let form = self
-                .form_with_file_field(params, "voice".to_string())
-                .await
-                .unwrap();
+            let form = self.form_with_file_field(params, "voice").await.unwrap();
 
             self.respond_with::<Message>(self.request("sendVoice").await.multipart(form))
                 .await
@@ -418,7 +419,7 @@ impl Requests for Async {
     async fn send_video_note(&self, params: &SendVideoNote) -> Result<Message, Error> {
         if let FileInput::InputFile(_) = &params.video_note {
             let form = self
-                .form_with_file_field(params, "video_note".to_string())
+                .form_with_file_field(params, "video_note")
                 .await
                 .unwrap();
 
@@ -431,7 +432,9 @@ impl Requests for Async {
     }
 
     async fn send_media_group(&self, params: &SendMediaGroup) -> Result<Vec<Message>, Error> {
-        self.respond_with::<Vec<Message>>(self.request("sendMediaGroup").await.json(params))
+        let form = self.form_with_files_field(params, "media").await.unwrap();
+
+        self.respond_with::<Vec<Message>>(self.request("sendMediaGroup").await.multipart(form))
             .await
     }
 

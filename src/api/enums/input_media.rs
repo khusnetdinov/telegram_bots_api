@@ -13,6 +13,7 @@ use serde::{Deserialize, Serialize};
 /// InputMediaPhoto
 /// InputMediaVideo
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
+#[serde(untagged)]
 pub enum InputMedia {
     Animation(InputMediaAnimation),
     Document(InputMediaDocument),
