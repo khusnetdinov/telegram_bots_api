@@ -1,4 +1,5 @@
 use crate::api::enums::chat_uid::ChatUId;
+use crate::api::structs::message_id::MessageId;
 use serde::Serialize;
 
 /// <https://core.telegram.org/bots/api#unpinchatmessage>
@@ -7,7 +8,7 @@ use serde::Serialize;
 pub struct UnpinChatMessage {
     pub chat_id: ChatUId,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub message_id: Option<i64>,
+    pub message_id: Option<MessageId>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub business_connection_id: Option<String>,
 }

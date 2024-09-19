@@ -18,4 +18,6 @@ pub struct Giveaway {
     pub country_codes: Option<Vec<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub premium_subscription_month_count: Option<i64>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub prize_star_count: Option<i64>,
 }
