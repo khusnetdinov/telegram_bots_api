@@ -1,6 +1,7 @@
 use crate::api::enums::chat_uid::ChatUId;
 use crate::api::enums::input_media::InputMedia;
 use crate::api::structs::inline_keyboard_markup::InlineKeyboardMarkup;
+use crate::api::structs::message_id::MessageId;
 use serde::Serialize;
 
 /// <https://core.telegram.org/bots/api#editmessagemedia>
@@ -11,7 +12,7 @@ pub struct EditMessageMedia {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub chat_id: Option<ChatUId>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub message_id: Option<i64>,
+    pub message_id: Option<MessageId>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub inline_message_id: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
