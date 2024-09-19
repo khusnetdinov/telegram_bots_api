@@ -13,6 +13,7 @@ use crate::api::structs::message_reaction_updated::MessageReactionUpdated;
 use crate::api::structs::poll::Poll;
 use crate::api::structs::poll_answer::PollAnswer;
 use crate::api::structs::pre_checkout_query::PreCheckoutQuery;
+use crate::api::structs::purchased_paid_media::PaidMediaPurchased;
 use crate::api::structs::shipping_query::ShippingQuery;
 use serde::{Deserialize, Serialize};
 
@@ -44,6 +45,8 @@ pub struct Update {
     pub shipping_query: Option<ShippingQuery>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub pre_checkout_query: Option<PreCheckoutQuery>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub purchased_paid_media: Option<PaidMediaPurchased>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub poll: Option<Poll>,
     #[serde(skip_serializing_if = "Option::is_none")]

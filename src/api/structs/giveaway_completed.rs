@@ -9,4 +9,6 @@ pub struct GiveawayCompleted {
     pub unclaimed_prize_count: Option<i64>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub giveaway_completed: Option<Box<GiveawayCompleted>>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub is_star_giveaway: Option<bool>,
 }

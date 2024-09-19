@@ -23,4 +23,6 @@ pub struct GiveawayWinners {
     pub was_refunded: Option<bool>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub prize_description: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub prize_star_count: Option<i64>,
 }
