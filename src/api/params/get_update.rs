@@ -1,3 +1,4 @@
+use crate::api::enums::allowed_updates::AllowedUpdate;
 use serde::Serialize;
 
 /// <https://core.telegram.org/bots/api#getupdates>
@@ -8,5 +9,5 @@ pub struct GetUpdate {
     pub limit: i64,
     pub timeout: u64,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub allowed_updates: Option<Vec<String>>,
+    pub allowed_updates: Option<Vec<AllowedUpdate>>,
 }
