@@ -8,7 +8,8 @@ use serde::{Deserialize, Serialize};
 #[derive(Debug, Serialize, Deserialize, Default)]
 pub struct GetGameHighScores {
     pub user_id: i64,
-    pub chat_id: ChatUId,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub chat_id: Option<ChatUId>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub message_id: Option<MessageId>,
     #[serde(skip_serializing_if = "Option::is_none")]
